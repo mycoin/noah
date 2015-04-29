@@ -10,19 +10,19 @@ import java.util.List;
  */
 public class PeopleWrapper {
 
-	private List<Person> people;
-
-	public void setPeople(List<Person> people) {
-		this.people = people;
+	public static PeopleWrapper createNew(List<Person> people) {
+		PeopleWrapper pw = new PeopleWrapper();
+		pw.setPeople(people);
+		return pw;
 	}
+
+	private List<Person> people;
 
 	public List<Person> getPeople() {
 		return people;
 	}
 
-	public static PeopleWrapper createNew(List<Person> people) {
-		PeopleWrapper pw = new PeopleWrapper();
-		pw.setPeople(people);
-		return pw;
+	public void setPeople(List<Person> people) {
+		this.people = people;
 	}
 }

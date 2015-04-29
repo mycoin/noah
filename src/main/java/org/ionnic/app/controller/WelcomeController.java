@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 /**
  * This class has the logic for acting on web requests.
@@ -47,39 +46,6 @@ public class WelcomeController {
 	@Autowired
 	private IPeopleService peopleService;
 
-	@RequestMapping(value = "/hello")
-	public ResponseEntity<String> hello() {
-		return new ResponseEntity<String>("<h1>Hello!</h1>", HttpStatus.OK);
-	}
-
-	/**
-	 * Responds with a welcome message for users. Can be accessed with GET or
-	 * POST. If a name parameter is set, the name value will be included in the
-	 * welcome.
-	 * 
-	 * @param name
-	 *            an optional name for
-	 * @return
-	 */
-	@RequestMapping(value = "/welcome", method = {RequestMethod.GET, RequestMethod.POST})
-	public ResponseEntity<String> welcomeGET(@RequestParam(required = false, value = "name") String name) {
-
-		String welcome = "";
-		if (name != null && name.length() > 0) {
-			welcome = "<h1>Welcome " + name + "!</h1>";
-		} else {
-			welcome = "<h1>Welcome!</h1>";
-		}
-
-		return new ResponseEntity<String>(welcome, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/people", method = RequestMethod.GET)
-	public ModelAndView getPeople() {
-		List<Person> people = peopleService.getPeople();
-		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
-	}
-
 	/**
 	 * 
 	 * @param person
@@ -97,29 +63,25 @@ public class WelcomeController {
 		return SpringMVCUtils.getOutputModel(new ApiMessage("Person added with id=" + id));
 	}
 
-	@RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
-	public ModelAndView getPersonById(@PathVariable(value = "id") int id) {
-
-		Person p = peopleService.getPerson(id);
-		return SpringMVCUtils.getOutputModel(p);
-	}
-
 	/**
-	 * Updates a stored person.
+	 * Concatenates the validation errors from the allErrors param into a single
+	 * string for display to a user.
 	 * 
-	 * @param id
-	 * @param person
-	 *            the new person object.
-	 * @return A person object in a ModelAndView if successful, or an ApiMessage
-	 *         in the ModelAndView if an error occured.
+	 * @param allErrors
+	 * @return
 	 */
-	@RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
-	public ModelAndView updatePersonById(@PathVariable(value = "id") int id, @Valid @RequestBody Person person) {
+	private String buildErrorString(List<ObjectError> allErrors) {
+		StringBuilder b = new StringBuilder();
 
-		person.setId(id);
-		peopleService.updatePerson(id, person);
+		b.append(allErrors.get(0));
 
-		return SpringMVCUtils.getOutputModel(person);
+		// append any remaining errors
+		for (int i = 1; i < allErrors.size(); i++) {
+			b.append("\n");
+			b.append(String.format("%s - %s", allErrors.get(i).getObjectName(), allErrors.get(i).getDefaultMessage()));
+		}
+
+		return b.toString();
 	}
 
 	@RequestMapping(value = "/people/{id}", method = RequestMethod.DELETE)
@@ -130,10 +92,23 @@ public class WelcomeController {
 		return SpringMVCUtils.getOutputModel(new ApiMessage("Person with id " + id + " successfully deleted."));
 	}
 
+	@RequestMapping(value = "/people", method = RequestMethod.GET)
+	public ModelAndView getPeople() {
+		List<Person> people = peopleService.getPeople();
+		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
+	}
+
 	@RequestMapping(value = "/people/search", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView getPeopleByName(@RequestParam(value = "name") String name) {
 		List<Person> people = peopleService.getPeople(name);
 		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
+	}
+
+	@RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
+	public ModelAndView getPersonById(@PathVariable(value = "id") int id) {
+
+		Person p = peopleService.getPerson(id);
+		return SpringMVCUtils.getOutputModel(p);
 	}
 
 	/**
@@ -177,24 +152,48 @@ public class WelcomeController {
 		return SpringMVCUtils.getOutputModel(new ApiMessage(errors));
 	}
 
+	@RequestMapping(value = "/hello")
+	public ResponseEntity<String> hello() {
+		return new ResponseEntity<String>("<h1>Hello!</h1>", HttpStatus.OK);
+	}
+
 	/**
-	 * Concatenates the validation errors from the allErrors param into a single
-	 * string for display to a user.
+	 * Updates a stored person.
 	 * 
-	 * @param allErrors
+	 * @param id
+	 * @param person
+	 *            the new person object.
+	 * @return A person object in a ModelAndView if successful, or an ApiMessage
+	 *         in the ModelAndView if an error occured.
+	 */
+	@RequestMapping(value = "/people/{id}", method = RequestMethod.PUT)
+	public ModelAndView updatePersonById(@PathVariable(value = "id") int id, @Valid @RequestBody Person person) {
+
+		person.setId(id);
+		peopleService.updatePerson(id, person);
+
+		return SpringMVCUtils.getOutputModel(person);
+	}
+
+	/**
+	 * Responds with a welcome message for users. Can be accessed with GET or
+	 * POST. If a name parameter is set, the name value will be included in the
+	 * welcome.
+	 * 
+	 * @param name
+	 *            an optional name for
 	 * @return
 	 */
-	private String buildErrorString(List<ObjectError> allErrors) {
-		StringBuilder b = new StringBuilder();
+	@RequestMapping(value = "/welcome", method = {RequestMethod.GET, RequestMethod.POST})
+	public ResponseEntity<String> welcomeGET(@RequestParam(required = false, value = "name") String name) {
 
-		b.append(allErrors.get(0));
-
-		// append any remaining errors
-		for (int i = 1; i < allErrors.size(); i++) {
-			b.append("\n");
-			b.append(String.format("%s - %s", allErrors.get(i).getObjectName(), allErrors.get(i).getDefaultMessage()));
+		String welcome = "";
+		if (name != null && name.length() > 0) {
+			welcome = "<h1>Welcome, " + name + "! </h1>";
+		} else {
+			welcome = "<h1>Welcome!</h1>";
 		}
 
-		return b.toString();
+		return new ResponseEntity<String>(welcome, HttpStatus.OK);
 	}
 }

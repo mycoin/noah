@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.ionnic.app.model.Person;
 import org.springframework.stereotype.Service;
 
-
 @Service("peopleService")
 public class PeopleService implements IPeopleService {
 
@@ -26,10 +25,36 @@ public class PeopleService implements IPeopleService {
 		addPerson(new Person("Joshus.a Teller", "FSAA"));
 	}
 
+	@Override
+	public int addPerson(Person person) throws IllegalArgumentException {
+
+		if (people.containsValue(person)) {
+			throw new IllegalArgumentException("Person " + person + " already exists.");
+		}
+
+		int id = idGen.incrementAndGet();
+		person.setId(id);
+		people.put(id, person);
+
+		return id;
+	}
+
+	@Override
+	public void deletePerson(int id) throws IllegalArgumentException {
+		if (!people.containsKey(id)) {
+			throw new IllegalArgumentException("Unable to find person with id " + id);
+		}
+
+		people.remove(id);
+
+	}
+
+	@Override
 	public List<Person> getPeople() {
 		return new ArrayList<Person>(people.values());
 	}
 
+	@Override
 	public List<Person> getPeople(String name) {
 
 		name = name.toLowerCase();
@@ -44,6 +69,7 @@ public class PeopleService implements IPeopleService {
 		return matchingPeople;
 	}
 
+	@Override
 	public Person getPerson(int id) throws IllegalArgumentException {
 		Person p = people.get(id);
 		if (p == null) {
@@ -52,19 +78,7 @@ public class PeopleService implements IPeopleService {
 		return p;
 	}
 
-	public int addPerson(Person person) throws IllegalArgumentException {
-
-		if (people.containsValue(person)) {
-			throw new IllegalArgumentException("Person " + person + " already exists.");
-		}
-
-		int id = idGen.incrementAndGet();
-		person.setId(id);
-		people.put(id, person);
-
-		return id;
-	}
-
+	@Override
 	public void updatePerson(int id, Person person) throws IllegalArgumentException {
 
 		if (!people.containsKey(id)) {
@@ -72,15 +86,6 @@ public class PeopleService implements IPeopleService {
 		}
 
 		people.put(id, person);
-
-	}
-
-	public void deletePerson(int id) throws IllegalArgumentException {
-		if (!people.containsKey(id)) {
-			throw new IllegalArgumentException("Unable to find person with id " + id);
-		}
-
-		people.remove(id);
 
 	}
 }

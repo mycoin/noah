@@ -22,43 +22,6 @@ public class Person {
 		this.organisation = o;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getOrganisation() {
-		return organisation;
-	}
-
-	public void setOrganisation(String organisation) {
-		this.organisation = organisation;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("name=%s, organisation=%s", this.name, this.organisation);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
 	@Override
 	// Person objects are equal if they have the same name.
 	public boolean equals(Object obj) {
@@ -75,5 +38,42 @@ public class Person {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getOrganisation() {
+		return organisation;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setOrganisation(String organisation) {
+		this.organisation = organisation;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("name=%s, organisation=%s", this.name, this.organisation);
 	}
 }

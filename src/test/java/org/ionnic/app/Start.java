@@ -19,7 +19,7 @@ public class Start {
 	/**
 	 * The port the server should run on.
 	 */
-	private static final int PORT = 8080;
+	private static final int PORT = 8088;
 
 	public static void main(String[] args) {
 		Server server = new Server();
