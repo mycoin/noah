@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<description>
+		Defines the applications context. In this case, its not
+		very useful as there is only one servlet in use. If there were
+		multiple servlets in use, then shared beans could be defined here to
+		make configuration simpler.
+
+		It is also useful as a central place to import configurations. Eg
+		security config, database config, etc.
+
+		Imports the following configuration files:
+		- security-context.xml
+	</description>
+
+	<!-- Imports the security-context.xml file from the classpath. -->
+	<import resource="classpath:security-context.xml" />
+
+</beans>
