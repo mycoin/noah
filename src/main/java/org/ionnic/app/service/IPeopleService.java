@@ -1,8 +1,9 @@
-package com.spidertracks.demo.rest.api.service;
+package org.ionnic.app.service;
 
 import java.util.List;
 
-import com.spidertracks.demo.rest.api.model.Person;
+import org.ionnic.app.model.Person;
+
 
 public interface IPeopleService {
 	public List<Person> getPeople();

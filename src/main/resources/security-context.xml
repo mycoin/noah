@@ -35,7 +35,7 @@
 				a real app, this would be linked to a database of some sort. Spring has built 
 				in support for using JDBC compatible databases as a user details store. -->
 			<user-service>
-				<user name="user" password="pass" authorities="ROLE_USER" />
+				<user name="admin" password="admin" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

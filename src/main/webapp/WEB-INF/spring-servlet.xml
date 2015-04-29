@@ -8,7 +8,7 @@
 	<!-- Scans the classpath of this application for Spring annotations such as @Component, @Service, @Controller and @Repositry 
 		to deploy as beans. For example, the PeopleService is annotated with @Service("peopleService") which means that spring will 
 		automatically create a bean with the name peopleService. -->
-	<context:component-scan base-package="com.spidertracks.demo.rest.api" />
+	<context:component-scan base-package="org.ionnic.app" />
 
 	<!-- Create the XStream marshaller bean -->
 	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
@@ -16,14 +16,14 @@
 		<!-- Set some properties to make the outputted xml look nicer -->
 		<property name="aliases">
 			<map>
-				<entry key="people" value="com.spidertracks.demo.rest.api.model.PeopleWrapper" />
-				<entry key="apimessage" value="com.spidertracks.demo.rest.api.model.ApiMessage" />
-				<entry key="person" value="com.spidertracks.demo.rest.api.model.Person" />
+				<entry key="people" value="org.ionnic.app.model.PeopleWrapper" />
+				<entry key="apimessage" value="org.ionnic.app.model.ApiMessage" />
+				<entry key="person" value="org.ionnic.app.model.Person" />
 			</map>
 		</property>
 		<property name="implicitCollections">
 			<map>
-				<entry key="com.spidertracks.demo.rest.api.model.PeopleWrapper" value="people" />
+				<entry key="org.ionnic.app.model.PeopleWrapper" value="people" />
 			</map>
 		</property>
 	</bean>
@@ -44,10 +44,11 @@
 	<!-- Configures the different content types the servlet can handle. -->
 	<bean name="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 
+		<property name="parameterName" value="data-type" />
+
 		<property name="ignoreAcceptHeader" value="true" />
 		<property name="favorParameter" value="true" />
-		<property name="parameterName" value="data-type" />
-		<property name="favorPathExtension" value="true" />
+		<property name="favorPathExtension" value="false" />
 		<!-- if no content type is specified, return json. -->
 		<property name="defaultContentType" value="application/json" />
 
@@ -74,9 +75,6 @@
 		</property>
 	</bean>
 
-	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/views/" />
-		<property name="suffix" value=".jsp" />
-		
-	</bean> -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <property name="prefix" value="/views/" 
+		/> <property name="suffix" value=".jsp" /> </bean> -->
 </beans>

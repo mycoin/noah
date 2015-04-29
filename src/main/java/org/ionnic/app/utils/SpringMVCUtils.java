@@ -1,4 +1,4 @@
-package com.spidertracks.demo.rest.api.utils;
+package org.ionnic.app.utils;
 
 import org.springframework.web.servlet.ModelAndView;
 

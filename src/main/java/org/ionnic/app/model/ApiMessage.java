@@ -1,4 +1,4 @@
-package com.spidertracks.demo.rest.api.model;
+package org.ionnic.app.model;
 
 /**
  * A wrapper class for showing a message to the

@@ -1,10 +1,15 @@
-package com.spidertracks.demo.rest.api.controller;
+package org.ionnic.app.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.ionnic.app.model.ApiMessage;
+import org.ionnic.app.model.PeopleWrapper;
+import org.ionnic.app.model.Person;
+import org.ionnic.app.service.IPeopleService;
+import org.ionnic.app.utils.SpringMVCUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spidertracks.demo.rest.api.model.ApiMessage;
-import com.spidertracks.demo.rest.api.model.PeopleWrapper;
-import com.spidertracks.demo.rest.api.model.Person;
-import com.spidertracks.demo.rest.api.service.IPeopleService;
-import com.spidertracks.demo.rest.api.utils.SpringMVCUtils;
 
 @Controller
 /**

@@ -1,4 +1,4 @@
-package com.spidertracks.demo.rest.api;
+package org.ionnic.app;
 
 import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;
@@ -19,7 +19,7 @@ public class Start {
 	/**
 	 * The port the server should run on.
 	 */
-	private static final int PORT = 8090;
+	private static final int PORT = 8080;
 
 	public static void main(String[] args) {
 		Server server = new Server();
