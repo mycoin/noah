@@ -4,6 +4,9 @@
   <projects/>
   <buildSpec>
     <buildCommand>
+      <name>org.eclipse.wst.common.project.facet.core.builder</name>
+    </buildCommand>
+    <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
     </buildCommand>
     <buildCommand>
@@ -13,5 +16,6 @@
   <natures>
     <nature>org.maven.ide.eclipse.maven2Nature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
   </natures>
 </projectDescription>

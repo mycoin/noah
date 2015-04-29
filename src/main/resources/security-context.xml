@@ -22,7 +22,7 @@
 	<http create-session="stateless">
 		<!-- Any resources under the people url require the user role, all other 
 			resources are accessible to everyone. -->
-		<intercept-url pattern="/people*" access="ROLE_USER" />
+		<intercept-url pattern="/people/*" access="ROLE_USER" />
 
 		<!-- Configures basic auth. -->
 		<http-basic />
@@ -35,7 +35,7 @@
 				a real app, this would be linked to a database of some sort. Spring has built 
 				in support for using JDBC compatible databases as a user details store. -->
 			<user-service>
-				<user name="user" password="pass" authorities="ROLE_USER" />
+				<user name="admin" password="" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

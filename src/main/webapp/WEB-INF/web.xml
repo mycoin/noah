@@ -19,21 +19,18 @@
 
 	<servlet-mapping>
 		<servlet-name>rest</servlet-name>
-		<url-pattern>
-			/*
-		</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
-	<!-- Bootstrap listener to start up and shut down Spring's root WebApplicationContext. Delegates to ContextLoader. -->
+	<!-- Bootstrap listener to start up and shut down Spring's root WebApplicationContext. 
+		Delegates to ContextLoader. -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/applicationContext.xml
-		</param-value>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 
 	<!-- Spring Security -->

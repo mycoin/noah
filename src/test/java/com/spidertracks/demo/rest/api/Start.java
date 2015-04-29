@@ -15,7 +15,7 @@ public class Start {
 	/**
 	 * The path to the web app on the server. Relative to root (/)
 	 */
-	private static final String CONTEXT_PATH = "/rest";
+	private static final String CONTEXT_PATH = "/";
 	/**
 	 * The port the server should run on.
 	 */

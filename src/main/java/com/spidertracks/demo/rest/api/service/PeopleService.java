@@ -21,6 +21,8 @@ public class PeopleService implements IPeopleService {
 		addPerson(new Person("John Doe", "Spidertracks"));
 		addPerson(new Person("Jane Doe", "Spidertracks"));
 		addPerson(new Person("Joshua Teller", "FAA"));
+		addPerson(new Person("Joshua Teller", "FAA"));
+		addPerson(new Person("Joshua Teller", "FAA"));
 	}
 
 	public List<Person> getPeople() {
