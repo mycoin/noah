@@ -1,15 +1,17 @@
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+.edpproj
+.svn
+.idea
+npm-debug.log
+Desktop.ini
+Thumbs.db
+.DS_Store
 *.jar
 *.war
 *.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
+*.tmp
+*.bak
+*.sw
+*.class
+node_modules/
 target/
-output/
+tool/cache/
