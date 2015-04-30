@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOMCAT_HOME=/usr/local/opt/tomcat/7.0.52.0/
+TOMCAT_HOME=/usr/local/opt/tomcat/7.0.61
 mvn clean
 mvn install -Dmaven.test.skip=true
 

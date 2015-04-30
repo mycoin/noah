@@ -10,14 +10,15 @@ Clone the repository:
 
 ```
 git clone git@github.com:mycoin/spring-mvc.git
+sh bootstrap.sh
 ```
 
-If this is your first time using Github, review http://help.github.com to learn the basics.
+then open <http://localhost:8090/>
 
 ###To run the application:
 -------------------
 Import the project as a maven project into your IDE of choice. 
-Look for the `com.spidertracks.demo.rest.api.Start` class in src/test/java and run it. You should now have the application running at http://localhost:8090/rest/
+Look for the `org.ionnic.app.Start` class in src/test/java and run it. You should now have the application running at http://localhost:8088/spring-mvc/
 
 
 Spring Framework Version: 3.1.0.RELEASE
@@ -40,26 +41,26 @@ URLs the servlet responds to:
 		included in the welcome response. 
 + `/people` - This path will only respond to GET requests. The response format can be changed from the default of json to xml by using one of the 
 	three methods listed above. The response is a description of a person object in json or xml.  
-	The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `user` and the password is `pass`.
+	The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `admin` and the password is `12345`.
 
 	Example URLs:
 
-		http://localhost:8090/rest/people/search?name=doe
-		http://localhost:8090/rest/people/search.xml?name=doe
-		http://localhost:8090/rest/people/search.json?name=doe
-		http://localhost:8090/rest/people
-		http://localhost:8090/rest/people.json
-		http://localhost:8090/rest/people.xml
-		http://localhost:8090/rest/people/1
-		http://localhost:8090/rest/people/1.xml
-		http://localhost:8090/rest/people/1.json
-		http://localhost:8090/rest/people - Use POST with a body and appropriate content type to create a new person.
-		http://localhost:8090/rest/people/1 - with PUT request and a updated person object
-		http://localhost:8090/rest/people/1.xml  - with PUT request and a updated person object    
-		http://localhost:8090/rest/people/1.json  - with PUT request and a updated person object
-		http://localhost:8090/rest/people/1 - DELETE request
-		http://localhost:8090/rest/people/1.json - DELETE request
-		http://localhost:8090/rest/people/1.xml - DELETE request
+* <http://localhost:8088/spring-mvc/people/search?name=doe>
+* <http://localhost:8088/spring-mvc/people/search.xml?name=doe>
+* <http://localhost:8088/spring-mvc/people/search.json?name=doe>
+* <http://localhost:8088/spring-mvc/people>
+* <http://localhost:8088/spring-mvc/people.json>
+* <http://localhost:8088/spring-mvc/people.xml>
+* <http://localhost:8088/spring-mvc/people/1>
+* <http://localhost:8088/spring-mvc/people/1.xml>
+* <http://localhost:8088/spring-mvc/people/1.json>
+* <http://localhost:8088/spring-mvc/people> - Use POST with a body and appropriate content type to create a new person.
+* <http://localhost:8088/spring-mvc/people/1> - with PUT request and a updated person object
+* <http://localhost:8088/spring-mvc/people/1.xml> - with PUT request and a updated person object    
+* <http://localhost:8088/spring-mvc/people/1.json> - with PUT request and a updated person object
+* <http://localhost:8088/spring-mvc/people/1> - DELETE request
+* <http://localhost:8088/spring-mvc/people/1.json> - DELETE request
+* <http://localhost:8088/spring-mvc/people/1.xml> - DELETE request
 
 ### Features
 
