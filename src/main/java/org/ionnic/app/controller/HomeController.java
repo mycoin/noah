@@ -24,7 +24,7 @@ public class HomeController {
 	 *            an optional name for
 	 * @return
 	 */
-	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public ResponseEntity<String> welcomeGET(@RequestParam(required = false, value = "name") String name) {
 
 		String welcome = "";

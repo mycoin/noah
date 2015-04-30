@@ -29,7 +29,7 @@ public class Start {
 		connector.setSoLingerTime(-1);
 		connector.setPort(PORT);
 
-		server.setConnectors(new Connector[]{connector});
+		server.setConnectors(new Connector[] { connector });
 
 		// makes the web app available at localhost:PORT/CONTEXT_PATH (with only
 		// one slash between PORT and CONTEXT_PATH, eg

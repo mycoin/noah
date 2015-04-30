@@ -98,7 +98,7 @@ public class WelcomeController {
 		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
 	}
 
-	@RequestMapping(value = "/people/search", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/people/search", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView getPeopleByName(@RequestParam(value = "name") String name) {
 		List<Person> people = peopleService.getPeople(name);
 		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
@@ -184,7 +184,7 @@ public class WelcomeController {
 	 *            an optional name for
 	 * @return
 	 */
-	@RequestMapping(value = "/welcome", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/welcome", method = { RequestMethod.GET, RequestMethod.POST })
 	public ResponseEntity<String> welcomeGET(@RequestParam(required = false, value = "name") String name) {
 
 		String welcome = "";
