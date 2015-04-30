@@ -33,7 +33,6 @@ public class HomeController {
 		} else {
 			welcome = "<h1>Welcome.</h1>";
 		}
-
 		return new ResponseEntity<String>(welcome, HttpStatus.OK);
 	}
 }

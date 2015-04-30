@@ -9,7 +9,7 @@ import org.ionnic.app.model.ApiMessage;
 import org.ionnic.app.model.PeopleWrapper;
 import org.ionnic.app.model.Person;
 import org.ionnic.app.service.IPeopleService;
-import org.ionnic.app.utils.SpringMVCUtils;
+import org.ionnic.app.util.SpringMVCUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

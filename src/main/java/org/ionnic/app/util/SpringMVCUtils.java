@@ -1,4 +1,4 @@
-package org.ionnic.app.utils;
+package org.ionnic.app.util;
 
 import org.springframework.web.servlet.ModelAndView;
 

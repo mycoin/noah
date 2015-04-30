@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.ionnic.app</groupId>
 	<artifactId>spring-mvc</artifactId>
+	<name>Spring-MVC</name>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest.api Maven Webapp</name>
 	<url>http://home.ionnic.org</url>
 
 	<properties>
@@ -167,4 +167,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.10</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
