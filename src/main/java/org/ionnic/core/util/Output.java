@@ -1,4 +1,4 @@
-package org.ionnic.util;
+package org.ionnic.core.util;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author
  * 
  */
-public class SpringMVCUtils {
+public class Output {
 
 	/**
 	 * The model name to use when returning a ModelAndView with a single model.
@@ -48,5 +48,9 @@ public class SpringMVCUtils {
 	 */
 	public static ModelAndView getOutputModel(Object obj) {
 		return new ModelAndView("", RESPONSE_ATTRIBUTE, obj);
+	}
+
+	public static ModelAndView jsp() {
+		return null;
 	}
 }

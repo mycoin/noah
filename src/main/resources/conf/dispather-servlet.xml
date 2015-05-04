@@ -29,7 +29,7 @@
 		<property name="resourceLoaderPath" value="/" />
 	</bean>
 
-	<!-- 配置:自动扫描的包名 -->
+	<!-- Configuration: automatically scan the package name -->
 	<context:component-scan base-package="org.ionnic.app">
 		<context:exclude-filter type="regex" expression="org.ionnic.app.util.*" />
 	</context:component-scan>
@@ -49,32 +49,41 @@
 
 	<!-- Configures the different content types the servlet can handle. -->
 	<bean name="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
 
-		<!-- 支持参数匹配 -->
+		<!-- Support parameter matching -->
 		<property name="favorParameter" value="true" />
 		<property name="parameterName" value="format" />
 
-		<!-- 表示Accept-Header匹配 -->
+		<!-- Accept-Header -->
 		<property name="ignoreAcceptHeader" value="true" />
 
-		<!-- 支持后缀匹配 -->
+		<!-- Suffix matching support -->
 		<property name="favorPathExtension" value="true" />
 
 		<!-- if no content type is specified, return json. -->
-		<property name="defaultContentType" value="application/json" />
+		<property name="defaultContentType" value="text/html" />
 
 		<!-- the mapping from file extensions to media types. -->
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json" />
 				<entry key="xml" value="application/xml" />
+				<entry key="rss" value="application/rss+xml" />
 			</map>
 		</property>
 
 		<property name="viewResolvers">
 			<list>
-				<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <property name="prefix" value="/META-INF/jsp/" 
-					/> <property name="suffix" value="" /> </bean> -->
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/META-INF/jsp/" />
+					<property name="suffix" value=".jsp" />
+					<property name="contentType" value="text/html;charset=utf-8" />
+					<property name="order" value="1" />
+					<property name="alwaysInclude" value="true" />
+					
+				</bean>
 				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 					<property name="prefix" value="" />
 					<property name="suffix" value=".vm" />
@@ -84,18 +93,22 @@
 
 		<property name="defaultViews">
 			<list>
+
+				<!-- JSON -->
 				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
 					<property name="extractValueFromSingleKeyModel" value="true" />
 					<property name="contentType" value="application/json;charset=UTF-8" />
 				</bean>
-				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+
+				<!-- JAXB XML -->
+				<bean id="xml" class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<constructor-arg ref="xstreamMarshaller" />
-					<property name="modelKey" value="responseAttribute" />
+					<property name="modelKey" value="data" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 
-	<!-- 配置:对静态资源访问 -->
+	<!-- Configuration: access to static resource -->
 	<mvc:default-servlet-handler />
 </beans>

@@ -9,11 +9,10 @@ import org.ionnic.app.model.ApiMessage;
 import org.ionnic.app.model.PeopleWrapper;
 import org.ionnic.app.model.Person;
 import org.ionnic.app.service.IPeopleService;
-import org.ionnic.util.SpringMVCUtils;
+import org.ionnic.core.util.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+//@Controller
 /**
  * This class has the logic for acting on web requests.
  * 
  * @author ajesler
  *
  */
-public class WelcomeController {
+public class Welcome {
 
 	/**
 	 * A service that provides operations around managing people. Spring will
@@ -58,9 +57,8 @@ public class WelcomeController {
 	 */
 	@RequestMapping(value = "/people", method = RequestMethod.POST)
 	public ModelAndView addPerson(@Valid @RequestBody Person person) {
-
 		int id = peopleService.addPerson(person);
-		return SpringMVCUtils.getOutputModel(new ApiMessage("Person added with id=" + id));
+		return Output.getOutputModel(new ApiMessage("Person added with id=" + id));
 	}
 
 	/**
@@ -89,26 +87,26 @@ public class WelcomeController {
 
 		peopleService.deletePerson(id);
 
-		return SpringMVCUtils.getOutputModel(new ApiMessage("Person with id " + id + " successfully deleted."));
+		return Output.getOutputModel(new ApiMessage("Person with id " + id + " successfully deleted."));
 	}
 
 	@RequestMapping(value = "/people", method = RequestMethod.GET)
 	public ModelAndView getPeople() {
 		List<Person> people = peopleService.getPeople();
-		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
+		return Output.getOutputModel(PeopleWrapper.createNew(people));
 	}
 
 	@RequestMapping(value = "/people/search", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView getPeopleByName(@RequestParam(value = "name") String name) {
 		List<Person> people = peopleService.getPeople(name);
-		return SpringMVCUtils.getOutputModel(PeopleWrapper.createNew(people));
+		return Output.getOutputModel(PeopleWrapper.createNew(people));
 	}
 
 	@RequestMapping(value = "/people/{id}", method = RequestMethod.GET)
 	public ModelAndView getPersonById(@PathVariable(value = "id") int id) {
 
 		Person p = peopleService.getPerson(id);
-		return SpringMVCUtils.getOutputModel(p);
+		return Output.getOutputModel(p);
 	}
 
 	/**
@@ -125,7 +123,7 @@ public class WelcomeController {
 		// set the response status code to indicate the request was bad.
 		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
-		return SpringMVCUtils.getOutputModel(new ApiMessage(e.getMessage()));
+		return Output.getOutputModel(new ApiMessage(e.getMessage()));
 	}
 
 	/**
@@ -149,7 +147,7 @@ public class WelcomeController {
 		// set the response status code to indicate the request was bad.
 		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
-		return SpringMVCUtils.getOutputModel(new ApiMessage(errors));
+		return Output.getOutputModel(new ApiMessage(errors));
 	}
 
 	@RequestMapping(value = "/hello")
@@ -172,7 +170,7 @@ public class WelcomeController {
 		person.setId(id);
 		peopleService.updatePerson(id, person);
 
-		return SpringMVCUtils.getOutputModel(person);
+		return Output.getOutputModel(person);
 	}
 
 	/**
@@ -195,10 +193,5 @@ public class WelcomeController {
 		}
 
 		return new ResponseEntity<String>(welcome, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/test/jsp", method = { RequestMethod.GET, RequestMethod.POST })
-	public String jspTest() {
-		return "index.jsp";
 	}
 }

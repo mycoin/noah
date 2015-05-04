@@ -22,5 +22,8 @@
 
 	<!-- Imports the applicationContext-security.xml file from the classpath. -->
 	<import resource="classpath:conf/applicationContext-security.xml" />
+	
+	<!-- applicationContext filter -->
+	<import resource="classpath:conf/applicationContext-filter.xml" />
 
 </beans>
