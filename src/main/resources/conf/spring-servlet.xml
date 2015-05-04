@@ -5,11 +5,6 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- 配置:自动扫描的包名 -->
-	<context:component-scan base-package="org.ionnic.app">
-		<context:exclude-filter type="regex" expression="org.ionnic.app.util.*" />
-	</context:component-scan>
-
 	<!-- Create the XStream marshaller bean -->
 	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true" />
@@ -28,6 +23,17 @@
 		</property>
 	</bean>
 
+	<!-- Velocity Configuration -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="configLocation" value="/WEB-INF/velocity.properties" />
+		<property name="resourceLoaderPath" value="/" />
+	</bean>
+
+	<!-- 配置:自动扫描的包名 -->
+	<context:component-scan base-package="org.ionnic.app">
+		<context:exclude-filter type="regex" expression="org.ionnic.app.util.*" />
+	</context:component-scan>
+
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
 	<mvc:annotation-driven>
 		<!-- we are adding an XStream converter to the default list. It seems that if we do not include this section, then marshalling 
@@ -44,37 +50,47 @@
 	<!-- Configures the different content types the servlet can handle. -->
 	<bean name="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 
-		<property name="parameterName" value="data-type" />
-
-		<property name="ignoreAcceptHeader" value="true" />
+		<!-- 支持参数匹配 -->
 		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="format" />
+
+		<!-- 表示Accept-Header匹配 -->
+		<property name="ignoreAcceptHeader" value="true" />
+
+		<!-- 支持后缀匹配 -->
 		<property name="favorPathExtension" value="true" />
+
 		<!-- if no content type is specified, return json. -->
 		<property name="defaultContentType" value="application/json" />
 
+		<!-- the mapping from file extensions to media types. -->
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json" />
 				<entry key="xml" value="application/xml" />
 			</map>
 		</property>
+
+		<property name="viewResolvers">
+			<list>
+				<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <property name="prefix" value="/META-INF/jsp/" 
+					/> <property name="suffix" value="" /> </bean> -->
+				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="prefix" value="" />
+					<property name="suffix" value=".vm" />
+				</bean>
+			</list>
+		</property>
+
 		<property name="defaultViews">
 			<list>
-				<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
-				<!-- <property name="prefix" value="/views/" /> -->
-				<!-- <property name="suffix" value=".jsp" /> -->
-				<!-- </bean> -->
-
 				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-					<!-- see http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/web/servlet/view/json/MappingJacksonJsonView.html#setExtractValueFromSingleKeyModel(boolean) -->
 					<property name="extractValueFromSingleKeyModel" value="true" />
 					<property name="contentType" value="application/json;charset=UTF-8" />
 				</bean>
-
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<constructor-arg ref="xstreamMarshaller" />
-					<!-- see http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/web/servlet/view/xml/MarshallingView.html#setModelKey(java.lang.String) -->
-					<property name="modelKey" value="responseObject" />
+					<property name="modelKey" value="responseAttribute" />
 				</bean>
 			</list>
 		</property>

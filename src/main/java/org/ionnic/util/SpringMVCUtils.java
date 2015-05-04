@@ -1,11 +1,11 @@
-package org.ionnic.app.util;
+package org.ionnic.util;
 
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Utils for dealing with Spring MVC
  * 
- * @author ajesler
+ * @author
  * 
  */
 public class SpringMVCUtils {
@@ -14,7 +14,7 @@ public class SpringMVCUtils {
 	 * The model name to use when returning a ModelAndView with a single model.
 	 * object.
 	 */
-	public static final String SINGLE_OBJECT_RESPONSE = "responseObject";
+	public static final String RESPONSE_ATTRIBUTE = "responseAttribute";
 
 	/**
 	 * This is a helper method to deal with the fact that we have to use
@@ -47,6 +47,6 @@ public class SpringMVCUtils {
 	 * @return
 	 */
 	public static ModelAndView getOutputModel(Object obj) {
-		return new ModelAndView("", SINGLE_OBJECT_RESPONSE, obj);
+		return new ModelAndView("", RESPONSE_ATTRIBUTE, obj);
 	}
 }

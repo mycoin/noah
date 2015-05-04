@@ -20,7 +20,7 @@ public class PeopleService implements IPeopleService {
 		addPerson(new Person("John Doe", "Spidertracks"));
 		addPerson(new Person("Jane Doe", "Spidertracks"));
 		addPerson(new Person("Joshua Teller", "FAA"));
-		addPerson(new Person("W Teller", "FA"));
+		addPerson(new Person("Wee Teller", "FA"));
 		addPerson(new Person("Joshua", "FAA"));
 		addPerson(new Person("Joshus.a Teller", "FSAA"));
 	}

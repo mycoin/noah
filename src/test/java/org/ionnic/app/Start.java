@@ -7,20 +7,14 @@ import org.mortbay.jetty.webapp.WebAppContext;
 
 /**
  * Starts an embedded Jetty server running our application.
- * 
- * @author ajesler
- * 
  */
 public class Start {
-	/**
-	 * The path to the web app on the server. Relative to root (/)
-	 */
 	private static final String CONTEXT_PATH = "/";
-	/**
-	 * The port the server should run on.
-	 */
 	private static final int PORT = 8088;
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Server server = new Server();
 
@@ -31,15 +25,12 @@ public class Start {
 
 		server.setConnectors(new Connector[] { connector });
 
-		// makes the web app available at localhost:PORT/CONTEXT_PATH (with only
-		// one slash between PORT and CONTEXT_PATH, eg
-		// http://localhost:8086/rest)
 		WebAppContext bb = new WebAppContext();
 		bb.setServer(server);
 		bb.setContextPath(CONTEXT_PATH);
 		bb.setWar("src/main/webapp");
+			
 		server.addHandler(bb);
-
 		try {
 			System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
 			server.start();
@@ -50,9 +41,7 @@ public class Start {
 			server.stop();
 			server.join();
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.exit(100);
 		}
-
 	}
 }
