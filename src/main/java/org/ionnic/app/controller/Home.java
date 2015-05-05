@@ -48,7 +48,6 @@ import org.springframework.web.servlet.ModelAndView;
 // @RequestMapping(value = "/home/1")
 // public ModelAndView index(Model model) {
 //
-
 //
 // // return commit();
 //
@@ -66,7 +65,7 @@ public class Home {
 		map.put("status", 0);
 		map.put("statusInfo", "OK");
 		map.put("data", "RequestMapping(home).");
-		
+			
 		return new ModelAndView("home/index", map);
 	}
 
@@ -76,5 +75,4 @@ public class Home {
 		view.addObject("about", "about");
 		return view;
 	}
-
 }

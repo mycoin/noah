@@ -28,9 +28,9 @@ import org.springframework.web.servlet.ModelAndView;
  * This class has the logic for acting on web requests.
  * 
  * @author ajesler
- *
+ * 
  */
-public class Welcome {
+public class People {
 
 	/**
 	 * A service that provides operations around managing people. Spring will

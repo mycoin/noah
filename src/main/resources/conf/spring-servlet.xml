@@ -82,7 +82,7 @@
 					<property name="contentType" value="text/html;charset=utf-8" />
 					<property name="order" value="1" />
 					<property name="alwaysInclude" value="true" />
-					
+
 				</bean>
 				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 					<property name="prefix" value="" />

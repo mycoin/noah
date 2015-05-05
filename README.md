@@ -10,15 +10,15 @@ Clone the repository:
 
 ```
 git clone git@github.com:mycoin/spring-mvc.git
-sh bootstrap.sh
+mvn jetty:run
 ```
 
-then open <http://localhost:8090/>
+then open <http://localhost:8080/spring-mvc/>
 
 ###To run the application:
 -------------------
 Import the project as a maven project into your IDE of choice. 
-Look for the `org.ionnic.app.Start` class in src/test/java and run it. You should now have the application running at http://localhost:8088/spring-mvc/
+Look for the `org.ionnic.app.Main` class run it. You should now have the application running at <http://localhost:8080/spring-mvc/>
 
 
 Spring Framework Version: 3.1.0.RELEASE

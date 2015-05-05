@@ -8,9 +8,9 @@ import org.mortbay.jetty.webapp.WebAppContext;
 /**
  * Starts an embedded Jetty server running our application.
  */
-public class Start {
-	private static final String CONTEXT_PATH = "/";
-	private static final int PORT = 8088;
+public class Main {
+	private static final String CONTEXT_PATH = "/spring-mvc";
+	private static final int PORT = 8080;
 
 	/**
 	 * @param args
@@ -29,7 +29,7 @@ public class Start {
 		bb.setServer(server);
 		bb.setContextPath(CONTEXT_PATH);
 		bb.setWar("src/main/webapp");
-			
+
 		server.addHandler(bb);
 		try {
 			System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
