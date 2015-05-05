@@ -10,8 +10,11 @@ Thumbs.db
 *.ear
 *.tmp
 *.bak
-*.sw
+*.dump
 *.class
 node_modules/
 target/
 tool/cache/
+.classpath
+.project
+.settings/
