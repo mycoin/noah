@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.ionnic.app</groupId>
 	<artifactId>spring-mvc</artifactId>
-	<name>Spring-MVC</name>
+	<name>Spring-MVC-Framework</name>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<url>http://home.ionnic.org</url>
