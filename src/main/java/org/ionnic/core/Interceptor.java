@@ -8,18 +8,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class Interceptor implements HandlerInterceptor {
 
-	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) throws Exception {
-		// TODO Auto-generated method stub
+	@Override
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) {
+		// System.out.println("preHandle()");
 
+		String className = handler.getClass().getName();
+		if (className.equals(null)) {
+			return false;
+		}
+		return true;
 	}
 
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-
+		// System.out.println("postHandle()");
 	}
 
-	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		// System.out.println("afterCompletion()");
 	}
 }

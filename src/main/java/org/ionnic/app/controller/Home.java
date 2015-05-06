@@ -61,11 +61,19 @@ public class Home {
 
 	@RequestMapping("/home")
 	public ModelAndView index() {
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("id", 0);
+		data.put("name", "ronghan.lrh");
+		data.put("age", 25);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("status", 0);
 		map.put("statusInfo", "OK");
-		map.put("data", "RequestMapping(home).");
-			
+		map.put("data", data);
+		
+		
+		System.out.println("index()");
 		return new ModelAndView("home/index", map);
 	}
 

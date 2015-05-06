@@ -35,17 +35,22 @@
 	</context:component-scan>
 
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
-	<mvc:annotation-driven>
-		<!-- we are adding an XStream converter to the default list. It seems that if we do not include this section, then marshalling 
-			will work, but unmarshalling will not, instead we get a "Unsupported Media Type". -->
-		<mvc:message-converters>
-			<!-- Configure the XStream message converter -->
-			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
-				<property name="marshaller" ref="xstreamMarshaller" />
-				<property name="unmarshaller" ref="xstreamMarshaller" />
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
+	<!-- <mvc:annotation-driven> <mvc:return-value-handlers> <bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" 
+		/> </mvc:return-value-handlers> we are adding an XStream converter to the default list. It seems that if we do not include 
+		this section, then marshalling will work, but unmarshalling will not, instead we get a "Unsupported Media Type". <mvc:message-converters> 
+		Configure the XStream message converter <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"> 
+		<property name="marshaller" ref="xstreamMarshaller" /> <property name="unmarshaller" ref="xstreamMarshaller" /> </bean> </mvc:message-converters> 
+		</mvc:annotation-driven> -->
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<bean class="org.ionnic.core.Interceptor" />
+			</list>
+		</property>
+	</bean>
+
 
 	<!-- Configures the different content types the servlet can handle. -->
 	<bean name="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
