@@ -14,7 +14,7 @@ public class Output {
 	 * The model name to use when returning a ModelAndView with a single model.
 	 * object.
 	 */
-	public static final String RESPONSE_ATTRIBUTE = "responseAttribute";
+	public static final String RESPONSE_ATTRIBUTE = "data";
 
 	/**
 	 * This is a helper method to deal with the fact that we have to use
@@ -47,7 +47,11 @@ public class Output {
 	 * @return
 	 */
 	public static ModelAndView getOutputModel(Object obj) {
-		return new ModelAndView("", RESPONSE_ATTRIBUTE, obj);
+		return getOutputModel("", obj);
+	}
+
+	public static ModelAndView getOutputModel(String viewName, Object obj) {
+		return new ModelAndView(viewName, RESPONSE_ATTRIBUTE, obj);
 	}
 
 	public static ModelAndView jsp() {

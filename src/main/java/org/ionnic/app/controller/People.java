@@ -13,6 +13,7 @@ import org.ionnic.core.util.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,13 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Controller
 /**
  * This class has the logic for acting on web requests.
  * 
  * @author ajesler
  * 
  */
+@Controller
 public class People {
 
 	/**
@@ -93,7 +94,7 @@ public class People {
 	@RequestMapping(value = "/people", method = RequestMethod.GET)
 	public ModelAndView getPeople() {
 		List<Person> people = peopleService.getPeople();
-		return Output.getOutputModel(PeopleWrapper.createNew(people));
+		return Output.getOutputModel("people/index", PeopleWrapper.createNew(people));
 	}
 
 	@RequestMapping(value = "/people/search", method = { RequestMethod.POST, RequestMethod.GET })
