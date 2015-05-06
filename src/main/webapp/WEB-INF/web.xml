@@ -87,7 +87,8 @@
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- Configuration error handling -->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/page/error.html</location>
