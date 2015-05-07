@@ -73,7 +73,7 @@ public class Home {
 		map.put("status", 0);
 		map.put("statusInfo", "OK");
 		map.put("data", data);
-		
+
 		System.out.println(req.getAttribute("Param"));
 		System.out.println("index()");
 		return new ModelAndView("home/index", map);
@@ -83,6 +83,12 @@ public class Home {
 	public ModelAndView about() {
 		ModelAndView view = new ModelAndView("home/about");
 		view.addObject("about", "about");
+		return view;
+	}
+
+	@RequestMapping("/home/install")
+	public ModelAndView install() {
+		ModelAndView view = new ModelAndView("home/install");
 		return view;
 	}
 }

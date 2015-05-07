@@ -1,9 +1,9 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<beans:description>
 		This file defines all of the necessary security
@@ -20,9 +20,14 @@
 
 	<!-- Create the auth restrictions. create-session="stateless" means that a session will never be created, the user will 
 		have to send auth credentials each time. -->
-	<http create-session="stateless">
+	<http create-session="stateless" auto-config="true">
+		<port-mappings>
+			<port-mapping http="8080" https="8443" />
+		</port-mappings>
+
 		<!-- Any resources under the people url require the user role, all other resources are accessible to everyone. -->
-		<intercept-url pattern="/admin/*" access="ROLE_USER" />
+		<intercept-url pattern="/people/*" access="ROLE_USER" requires-channel="any" />
+		<intercept-url pattern="/page/*" access="ROLE_USER" requires-channel="any" />
 
 		<!-- Configures basic auth. -->
 		<http-basic />
@@ -33,10 +38,12 @@
 		<authentication-provider>
 			<!-- Lists the user names, password, and authorities of our users. In a real app, this would be linked to a database of 
 				some sort. Spring has built in support for using JDBC compatible databases as a user details store. -->
+			<password-encoder hash="md5" />
 			<user-service>
-				<user name="admin" password="12345" authorities="ROLE_USER" />
+				<!-- usr:1234, admin:12345 -->
+				<user name="usr" password="81dc9bdb52d04dc20036dbd8313ed055" authorities="ROLE_USER" />
+				<user name="admin" password="827ccb0eea8a706c4c34a16891f84e7b" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-
 </beans:beans>

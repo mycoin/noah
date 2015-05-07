@@ -6,6 +6,11 @@
 	<description>This project will allow you to start off with spring MVC.</description>
 	<!-- context-param >> listener >> fileter >> servlet -->
 
+	<!-- <context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param> -->
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:conf/applicationContext.xml</param-value>
@@ -16,57 +21,27 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- characterEncoding filter -->
-	<filter>
-		<filter-name>characterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>characterEncodingFilter</filter-name>
-		<servlet-name>DispatherServlet</servlet-name>
-	</filter-mapping>
-
 	<!-- Spring Security -->
 	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-name>DispatherFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
 			<param-name>targetBeanName</param-name>
 			<param-value>springSecurityFilterChain</param-value>
 		</init-param>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
 	</filter>
 
 	<!-- Adding these filters activates Spring security. -->
 	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-name>DispatherFilter</filter-name>
 		<servlet-name>DispatherServlet</servlet-name>
 	</filter-mapping>
 
-
-	<!-- Using PUT and DELETE methods in Spring MVC. e.g <input name="method" value="DELETE" /> -->
-	<filter>
-		<filter-name>HiddenHttpMethodFilter</filter-name>
-		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-		<init-param>
-			<param-name>methodParam</param-name>
-			<param-value>method</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>HiddenHttpMethodFilter</filter-name>
-		<servlet-name>DispatherServlet</servlet-name>
-	</filter-mapping>
-
+	<!-- mapping the spring servlet -->
 	<servlet>
 		<servlet-name>DispatherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -87,7 +62,7 @@
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- Configuration error handling -->
 	<error-page>
 		<error-code>404</error-code>
@@ -101,5 +76,4 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
 </web-app>

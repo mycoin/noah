@@ -640,7 +640,8 @@ public class StringUtil {
 	 * @return text
 	 */
 	public static String stripTags(String html) {
-		Pattern regx = Pattern.compile("\\s*<.*?>\\s*", Pattern.DOTALL | Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
+		Pattern regx = Pattern
+				.compile("</?\\p{Alpha}+ *( +\\p{Alpha}+ *=(\"(\\\\.|[\\x00-\\x21\\x23-\\x5b\\u005d-\\uffff])*\"|'(\\\\.|[\\x00-\\x26\\x28-\\x5b\\u005d-\\uffff])*'|[\\x00-\\x3d\\u003f-\\uffff]*) *)*>");
 		Matcher matches = regx.matcher(html);
 		return matches.replaceAll("");
 	}

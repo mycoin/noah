@@ -58,8 +58,15 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+	<!-- <bean class="org.ionnic.core.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> <property name="prefix" value="/META-INF/jsp/" 
+		/> <property name="suffix" value=".jsp" /> <property name="contentType" value="text/html;charset=utf-8" /> <property name="order" 
+		value="1" /> <property name="alwaysInclude" value="true" /> </bean> </entry> <entry key="vm"> <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> 
+		<property name="exposeRequestAttributes" value="true" /> <property name="contentType" value="text/html;charset=utf-8" /> 
+		<property name="prefix" value="" /> <property name="suffix" value=".vm" /> </bean> </entry> </map> </property> </bean> -->
+
 	<!-- Configures the different content types the servlet can handle. -->
-	<bean name="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="order" value="1" />
 
 		<!-- Support parameter matching -->
@@ -78,9 +85,10 @@
 		<!-- the mapping from file extensions to media types. -->
 		<property name="mediaTypes">
 			<map>
+				<entry key="ajax" value="application/json" />
 				<entry key="json" value="application/json" />
 				<entry key="xml" value="application/xml" />
-				<entry key="rss" value="application/rss+xml" />
+				<entry key="html" value="text/html" />
 			</map>
 		</property>
 
@@ -93,12 +101,9 @@
 					<property name="contentType" value="text/html;charset=utf-8" />
 					<property name="order" value="1" />
 					<property name="alwaysInclude" value="true" />
-
 				</bean>
-				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-					<property name="prefix" value="" />
-					<property name="suffix" value=".vm" />
-				</bean>
+				<!-- <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> <property name="prefix" value="" 
+					/> <property name="suffix" value=".vm" /> </bean> -->
 			</list>
 		</property>
 
@@ -111,13 +116,14 @@
 				</bean>
 
 				<!-- JAXB XML -->
-				<bean id="xml" class="org.springframework.web.servlet.view.xml.MarshallingView">
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<constructor-arg ref="xstreamMarshaller" />
 					<property name="modelKey" value="data" />
 				</bean>
 			</list>
 		</property>
 	</bean>
+
 
 	<!-- Configuration: access to static resource -->
 	<mvc:default-servlet-handler />
