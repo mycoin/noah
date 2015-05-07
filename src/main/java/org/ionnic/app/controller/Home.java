@@ -3,6 +3,8 @@ package org.ionnic.app.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,7 +62,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Home {
 
 	@RequestMapping("/home")
-	public ModelAndView index() {
+	public ModelAndView index(HttpServletRequest req) {
 
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("id", 0);
@@ -72,7 +74,7 @@ public class Home {
 		map.put("statusInfo", "OK");
 		map.put("data", data);
 		
-		
+		System.out.println(req.getAttribute("Param"));
 		System.out.println("index()");
 		return new ModelAndView("home/index", map);
 	}
