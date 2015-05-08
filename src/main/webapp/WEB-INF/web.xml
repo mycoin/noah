@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd ">
 	<display-name>spring-mvc</display-name>
 
@@ -9,7 +9,7 @@
 	<!-- <context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-	</context-param> -->
+		</context-param> -->
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -46,16 +46,31 @@
 		<servlet-name>DispatherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
-		<!-- The spring-servlet.xml class is loaded automatically, because Spring will search for a file named <servlet-name>-servlet.xml 
+		<!-- The spring-servlet.xml class is loaded automatically, because Spring will search for a file named <servlet-name>-servlet.xml
 			in the WEB-INF directory. -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:conf/spring-servlet.xml</param-value>
 		</init-param>
 
-		<!-- load-on-startup means that the servlet will be loaded straight away, rather than waiting for the first request. In 
-			our case, there is only one servlet, so we might as well load it straight away. -->
+		<!-- load-on-startup means that the servlet will be loaded straight away, rather than waiting for the first request.
+			In our case, there is only one servlet, so we might as well load it straight away. -->
 		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- The JSP page compiler and execution servlet -->
+	<servlet>
+		<servlet-name>jsp</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+		<init-param>
+			<param-name>fork</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>xpoweredBy</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -66,13 +81,18 @@
 	<!-- Configuration error handling -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/page/error.html</location>
+		<location>/page/404.jsp</location>
 	</error-page>
-
 	<error-page>
 		<error-code>500</error-code>
-		<location>/page/error.html</location>
+		<location>/page/error.jsp</location>
 	</error-page>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<!-- Default Welcome File List -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

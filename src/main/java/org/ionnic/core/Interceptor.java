@@ -14,7 +14,6 @@ public class Interceptor implements HandlerInterceptor {
 		if (className.equals(null)) {
 			return false;
 		}
-		req.setAttribute("Param", 23456789);
 		return true;
 	}
 

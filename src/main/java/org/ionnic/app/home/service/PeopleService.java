@@ -1,4 +1,4 @@
-package org.ionnic.app.service;
+package org.ionnic.app.home.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.ionnic.app.model.Person;
+import org.ionnic.app.home.model.Person;
 import org.springframework.stereotype.Service;
 
 @Service("peopleService")

@@ -1,4 +1,4 @@
-package org.ionnic.app.controller;
+package org.ionnic.app.home.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +67,7 @@ public class Home {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("id", 0);
 		data.put("name", "ronghan.lrh");
+		data.put("website", "http://home.ionnic.org/");
 		data.put("age", 25);
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -74,7 +75,7 @@ public class Home {
 		map.put("statusInfo", "OK");
 		map.put("data", data);
 
-		System.out.println(req.getAttribute("Param"));
+		// System.out.println(req.getAttribute("Param"));
 		System.out.println("index()");
 		return new ModelAndView("home/index", map);
 	}

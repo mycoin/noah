@@ -1,8 +1,8 @@
-package org.ionnic.app.service;
+package org.ionnic.app.home.service;
 
 import java.util.List;
 
-import org.ionnic.app.model.Person;
+import org.ionnic.app.home.model.Person;
 
 public interface IPeopleService {
 	public int addPerson(Person person);

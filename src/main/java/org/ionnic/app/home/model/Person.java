@@ -1,4 +1,4 @@
-package org.ionnic.app.model;
+package org.ionnic.app.home.model;
 
 import javax.validation.constraints.NotNull;
 

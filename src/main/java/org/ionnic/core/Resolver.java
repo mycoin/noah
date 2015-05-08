@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
-
 public class Resolver implements ViewResolver {
 	private Map<String, ViewResolver> resolvers;
 
@@ -17,14 +16,15 @@ public class Resolver implements ViewResolver {
 	@Override
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
 		int n = viewName.lastIndexOf(".");
-		if (n == (-1))
+		if (n == (-1)) {
 			return null;
+		}
 		String suffix = viewName.substring(n + 1);
 
 		ViewResolver resolver = resolvers.get(suffix);
-		if (resolver != null)
+		if (resolver != null) {
 			return resolver.resolveViewName(viewName.substring(0, n), locale);
-
+		}
 		return null;
 	}
 

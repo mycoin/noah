@@ -1,4 +1,4 @@
-package org.ionnic.app.model;
+package org.ionnic.app.home.model;
 
 /**
  * A wrapper class for showing a message to the

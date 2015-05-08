@@ -5,28 +5,28 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- Create the XStream marshaller bean -->
-	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
-		<property name="autodetectAnnotations" value="true" />
-		<!-- Set some properties to make the outputted xml look nicer -->
-		<property name="aliases">
-			<map>
-				<entry key="people" value="org.ionnic.app.model.PeopleWrapper" />
-				<entry key="apimessage" value="org.ionnic.app.model.ApiMessage" />
-				<entry key="person" value="org.ionnic.app.model.Person" />
-			</map>
-		</property>
-		<property name="implicitCollections">
-			<map>
-				<entry key="org.ionnic.app.model.PeopleWrapper" value="people" />
-			</map>
-		</property>
-	</bean>
-
 	<!-- Velocity Configuration -->
 	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 		<property name="resourceLoaderPath" value="/" />
+	</bean>
+
+	<!-- Create the XStream marshaller bean -->
+	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true" />
+		<!-- Set some properties to make the outputted xml look nicer -->
+		<!-- <property name="aliases">
+			<map>
+			<entry key="people" value="org.ionnic.app.model.PeopleWrapper" />
+			<entry key="apimessage" value="org.ionnic.app.model.ApiMessage" />
+			<entry key="person" value="org.ionnic.app.model.Person" />
+			</map>
+			</property>
+			<property name="implicitCollections">
+			<map>
+			<entry key="org.ionnic.app.model.PeopleWrapper" value="people" />
+			</map>
+			</property> -->
 	</bean>
 
 	<!-- Configuration: automatically scan the package name -->
@@ -34,7 +34,7 @@
 
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
 	<mvc:annotation-driven>
-		<!-- we are adding an XStream converter to the default list. It seems that if we do not include this section, then marshalling 
+		<!-- we are adding an XStream converter to the default list. It seems that if we do not include this section, then marshalling
 			will work, but unmarshalling will not, instead we get a "Unsupported Media Type". -->
 		<mvc:message-converters>
 			<!-- Configure the XStream message converter -->
@@ -58,11 +58,11 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<!-- <bean class="org.ionnic.core.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> <property name="prefix" value="/META-INF/jsp/" 
-		/> <property name="suffix" value=".jsp" /> <property name="contentType" value="text/html;charset=utf-8" /> <property name="order" 
-		value="1" /> <property name="alwaysInclude" value="true" /> </bean> </entry> <entry key="vm"> <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> 
-		<property name="exposeRequestAttributes" value="true" /> <property name="contentType" value="text/html;charset=utf-8" /> 
+	<!-- <bean class="org.ionnic.core.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> <property name="prefix" value="/META-INF/jsp/"
+		/> <property name="suffix" value=".jsp" /> <property name="contentType" value="text/html;charset=utf-8" /> <property name="order"
+		value="1" /> <property name="alwaysInclude" value="true" /> </bean> </entry> <entry key="vm"> <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="exposeRequestAttributes" value="true" /> <property name="contentType" value="text/html;charset=utf-8" />
 		<property name="prefix" value="" /> <property name="suffix" value=".vm" /> </bean> </entry> </map> </property> </bean> -->
 
 	<!-- Configures the different content types the servlet can handle. -->
@@ -102,7 +102,7 @@
 					<property name="order" value="1" />
 					<property name="alwaysInclude" value="true" />
 				</bean>
-				<!-- <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> <property name="prefix" value="" 
+				<!-- <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> <property name="prefix" value=""
 					/> <property name="suffix" value=".vm" /> </bean> -->
 			</list>
 		</property>

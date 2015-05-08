@@ -1,15 +1,15 @@
-package org.ionnic.app.controller;
+package org.ionnic.app.home.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.ionnic.app.model.ApiMessage;
-import org.ionnic.app.model.PeopleWrapper;
-import org.ionnic.app.model.Person;
-import org.ionnic.app.service.IPeopleService;
-import org.ionnic.core.util.Output;
+import org.ionnic.app.home.model.ApiMessage;
+import org.ionnic.app.home.model.PeopleWrapper;
+import org.ionnic.app.home.model.Person;
+import org.ionnic.app.home.service.IPeopleService;
+import org.ionnic.core.Output;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
