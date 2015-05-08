@@ -1,7 +1,7 @@
-<%@ page contentType="text/html;charset=Big5" import="java.util.regex.*,java.io.*,java.net.*" isErrorPage="true"%>
+<%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
 <html>
 <head>
-<title>Apache Tomcat/7.0.61 - Error report</title>
+<title>500 - Internal Server Error</title>
 <style>
 H1,H2,H3 {
 	padding: 5px;
@@ -22,13 +22,14 @@ H2 {
 H3 {
 	color: white;
 	background-color: #525D76;
-	font-size: 14px;
+	font-size: 12px;
+	font-weight: normal;
 }
 
 TABLE TR TD {
 	vertical-align: text-top;
 	font-size: 12px;
-	line-height: 1.3;
+	line-height: 16px;
 	padding-right: 10px;
 }
 
@@ -48,10 +49,6 @@ B {
 HR {
 	color: #525D76;
 }
-
-.trace {
-	display: none;
-}
 </style>
 </head>
 <body>
@@ -67,19 +64,15 @@ HR {
 			<td><%=request.getRequestURI()%></td>
 		</tr>
 		<tr>
-			<td align="right"><b>secure</b></td>
-			<td><%=request.isSecure()%></td>
-		</tr>
-		<tr>
 			<td align="right"><b>message</b></td>
 			<td><%=exception%></td>
 		</tr>
-		<tr class="trace">
+		<tr>
 			<td align="right"><b>trace</b></td>
 			<td>
 				<%
 					for (StackTraceElement item : exception.getStackTrace()) {
-						out.append("at " + item.toString());
+						out.append("at " + item);
 						out.append("<br>");
 					}
 				%>
@@ -87,6 +80,6 @@ HR {
 		</tr>
 	</table>
 	<HR size="1" noshade="noshade">
-	<h3>Apache Tomcat/7.0.61</h3>
+	<h3>home.ionnic.org</h3>
 </body>
 </html>

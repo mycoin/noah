@@ -1,6 +1,7 @@
+<%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
 <html>
 <head>
-<title>Apache Tomcat/7.0.61 - Error report</title>
+<title>404 - Page not found</title>
 <style>
 H1,H2,H3 {
 	padding: 5px;
@@ -27,7 +28,7 @@ H3 {
 TABLE TR TD {
 	vertical-align: text-top;
 	font-size: 12px;
-	line-height: 1.3;
+	line-height: 16px;
 	padding-right: 10px;
 }
 
@@ -47,10 +48,6 @@ B {
 HR {
 	color: #525D76;
 }
-
-.trace {
-	display: none;
-}
 </style>
 </head>
 <body>
@@ -62,15 +59,15 @@ HR {
 			<td>404</td>
 		</tr>
 		<tr>
-			<td align="right"><b>request</b></td>
-			<td></td>
+			<td align="right"><b>servlet</b></td>
+			<td><%=request.getAttribute("javax.servlet.error.servlet_name")%></td>
 		</tr>
 		<tr>
-			<td align="right"><b>message</b></td>
-			<td>java.io.FileNotFoundException: /META-INF/jsp/home/install.jsp</td>
+			<td align="right"><b>URL</b></td>
+			<td><%=request.getAttribute("javax.servlet.forward.request_uri")%></td>
 		</tr>
 	</table>
 	<HR size="1" noshade="noshade">
-	<h3>Apache Tomcat/7.0.61</h3>
+	<h3>home.ionnic.org</h3>
 </body>
 </html>
