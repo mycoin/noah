@@ -1,11 +1,11 @@
 spring-mvc
-========
+===
 
 This project will allow you to start off on the good foot with spring MVC.
 
 
 ### To get the code:
--------------------
+---
 Clone the repository:
 
 ```
@@ -16,7 +16,7 @@ mvn jetty:run
 then open <http://localhost:8080/spring-mvc/>
 
 ###To run the application:
--------------------
+===
 Import the project as a maven project into your IDE of choice. 
 Look for the `org.ionnic.app.Main` class run it. You should now have the application running at <http://localhost:8080/spring-mvc/>
 
@@ -25,7 +25,7 @@ Spring Framework Version: 3.1.0.RELEASE
 
 
 ###Overview
-========
+===
 
 This is an application to demo the implementation of a REST API that can return responses in both JSON and XML. 
 There are three ways of requesting a specific type of response:
@@ -85,7 +85,7 @@ section starting with `<mvc:annotation-driven>` automatically creates some stand
 Jackson library is on the classpath, then a JSON converter will be created. We also add an XML marshaller based on XStream. We do this manually because by default Spring doesn't seem to do it quite right.
 
 
-### Start.java
+### Main.java
 
 This is the class that runs an embedded Jetty server with the servlet. 
 

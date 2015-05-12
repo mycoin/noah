@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
+<!doctype html>
 <html>
 <head>
 <title>500 - Internal Server Error</title>
@@ -80,6 +81,8 @@ HR {
 		</tr>
 	</table>
 	<HR size="1" noshade="noshade">
-	<h3>home.ionnic.org</h3>
+	<h3>
+		Powered by
+		<%=application.getServerInfo()%></h3>
 </body>
 </html>

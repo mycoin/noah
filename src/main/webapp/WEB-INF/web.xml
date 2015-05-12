@@ -60,7 +60,7 @@
 
 	<!-- The JSP page compiler and execution servlet -->
 	<servlet>
-		<servlet-name>jsp</servlet-name>
+		<servlet-name>JspServlet</servlet-name>
 		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
 		<init-param>
 			<param-name>fork</param-name>
@@ -74,6 +74,11 @@
 	</servlet>
 
 	<servlet-mapping>
+		<servlet-name>JspServlet</servlet-name>
+		<url-pattern>/page/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
@@ -81,11 +86,15 @@
 	<!-- Configuration error handling -->
 	<error-page>
 		<error-code>404</error-code>
-		<location>/page/404.jsp</location>
+		<location>/page/common/missing.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/page/error.jsp</location>
+		<location>/page/common/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/page/common/error.jsp</location>
 	</error-page>
 
 	<session-config>

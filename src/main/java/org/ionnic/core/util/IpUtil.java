@@ -3,13 +3,15 @@ package org.ionnic.core.util;
 import javax.servlet.http.HttpServletRequest;
 
 public class IpUtil {
+	public static final String LOCAL = "LOCAL";
+
 	/**
 	 * 获取登录用户IP地址
 	 * 
 	 * @param request
 	 * @return
 	 */
-	public static String getIpAddr(HttpServletRequest request) {
+	public static String getIPAddr(HttpServletRequest request) {
 		String addr = request.getHeader("x-forwarded-for");
 		if (addr == null || addr.length() == 0 || "unknown".equalsIgnoreCase(addr)) {
 			addr = request.getHeader("Proxy-Client-IP");
@@ -25,7 +27,5 @@ public class IpUtil {
 		}
 		return addr;
 	}
-
-	public static final String LOCAL = "LOCAL";
 
 }

@@ -32,6 +32,15 @@ public class StringUtil {
 		}
 	}
 
+	public static String getASCII(String string) {
+		StringBuffer strBuf = new StringBuffer();
+		byte[] bGBK = string.getBytes();
+		for (int i = 0; i < bGBK.length; i++) {
+			strBuf.append(Integer.toHexString(bGBK[i] & 0XFF));
+		}
+		return strBuf.toString();
+	}
+
 	/**
 	 * html解码
 	 * 
@@ -553,6 +562,11 @@ public class StringUtil {
 		declare(isMessyCode("�"), "messyCode error.");
 
 		System.out.println("OK");
+		
+		
+		
+		
+		System.out.println(getASCII("你"));
 	}
 
 	/**

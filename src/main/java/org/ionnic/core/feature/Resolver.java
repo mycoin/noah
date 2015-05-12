@@ -1,4 +1,4 @@
-package org.ionnic.core;
+package org.ionnic.core.feature;
 
 import java.util.Locale;
 import java.util.Map;
