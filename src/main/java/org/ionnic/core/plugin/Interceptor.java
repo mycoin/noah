@@ -1,4 +1,4 @@
-package org.ionnic.core.feature;
+package org.ionnic.core.plugin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

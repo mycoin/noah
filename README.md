@@ -1,10 +1,12 @@
-spring-mvc
+spring-mvc 
 ===
+
+[![Build Status](https://travis-ci.org/mycoin/spring-mvc.svg?branch=master)](https://travis-ci.org/mycoin/spring-mvc)
 
 This project will allow you to start off on the good foot with spring MVC.
 
 
-### To get the code:
+### Get start
 ---
 Clone the repository:
 
@@ -13,19 +15,16 @@ git clone git@github.com:mycoin/spring-mvc.git
 mvn jetty:run
 ```
 
-then open <http://localhost:8080/spring-mvc/>
+or 
 
-###To run the application:
-===
 Import the project as a maven project into your IDE of choice. 
-Look for the `org.ionnic.app.Main` class run it. You should now have the application running at <http://localhost:8080/spring-mvc/>
+Run the class `org.ionnic.app.Main`. 
 
-
-Spring Framework Version: 3.1.0.RELEASE
+then open <http://localhost:8080/spring-mvc/>
 
 
 ###Overview
-===
+---
 
 This is an application to demo the implementation of a REST API that can return responses in both JSON and XML. 
 There are three ways of requesting a specific type of response:
