@@ -1,4 +1,4 @@
-package org.ionnic.core.util;
+package org.ionnic.test.misc;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

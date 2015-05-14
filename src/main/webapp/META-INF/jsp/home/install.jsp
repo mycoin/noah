@@ -1,9 +1,7 @@
 <%@page contentType="text/html;charset=gb2312"%>
 <%@page import="java.io.*,java.util.*,java.net.*"%>
-<%!String tblWidth = "700";
-	String tblAlign = "center";
+<%!
 	String strOS = System.getProperty("os.name");
-
 	private String getIp() {
 		String strTmp = "";
 		try {
@@ -55,7 +53,7 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-
+table {width: 890px}
 a:link {
 	text-decoration: none;
 }
@@ -89,15 +87,9 @@ a:active {
 </head>
 
 <body>
-	<table align="center" width="277" border="0">
-		<tr>
-			<td width="90" align="center">Jsp探针 ver1.0</td>
-			<td width="85" align="center"><a href="http://www.51safe.net">无忧安全网</a></td>
-		</tr>
-	</table>
 	<div align="center">
 		<br>
-		<table width="<%=tblWidth%>" align="<%=tblAlign%>" border="0" cellspacing="0" cellpadding="1">
+		<table>
 			<tr>
 				<td colspan="2" height="22" bgcolor="#E0E0E0"><span class="STYLE5">&nbsp;服务器基本信息 </span>
 				</td>
@@ -108,7 +100,7 @@ a:active {
 			</tr>
 			<tr>
 				<td height="23" width="20%">&nbsp;域名/IP</td>
-				<td>&nbsp;<%=request.getServerName()%> <%=getIp()%></td>
+				<td>&nbsp;<%=request.getServerName()%> / <%=getIp()%></td>
 			</tr>
 			<tr>
 				<td height="23">&nbsp;服务器端口</td>
@@ -133,7 +125,7 @@ a:active {
 			</tr>
 			<tr>
 				<td height="23">&nbsp;服务器时间</td>
-				<td>&nbsp;<%=new Date().toLocaleString()%></td>
+				<td>&nbsp;<%=new Date()%></td>
 			</tr>
 			<tr>
 				<td height="23" width="20%">&nbsp;CPU 信息</td>
@@ -152,8 +144,12 @@ a:active {
 				<td>&nbsp;<%=application.getRealPath(request.getRequestURI())%></td>
 			</tr>
 		</table>
+		<%
+		Properties p = System.getProperties();
+		response.getWriter().append(p.keys().toString());
+		%>
 		<br>
-		<table width="<%=tblWidth%>" align="<%=tblAlign%>" border="0" cellspacing="0" cellpadding="1">
+		<table>
 			<tr>
 				<td colspan="2" height="22" bgcolor="#E0E0E0"><span class="STYLE4">&nbsp;<span class="STYLE5">Java
 							相关信息</span> </span>
@@ -182,7 +178,7 @@ a:active {
 			</tr>
 		</table>
 		<br>
-		<table width="<%=tblWidth%>" align="<%=tblAlign%>" border="0" cellspacing="0" cellpadding="1">
+		<table>
 			<tr>
 				<td colspan="2" height="22" bgcolor="#E0E0E0">&nbsp;服务器环境变量 &nbsp;</td>
 			</tr>

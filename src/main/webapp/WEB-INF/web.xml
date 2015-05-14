@@ -6,19 +6,30 @@
 	<description>This project will allow you to start off with spring MVC.</description>
 	<!-- context-param >> listener >> fileter >> servlet -->
 
-	<!-- <context-param>
-		<param-name>contextClass</param-name>
-		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-		</context-param> -->
-
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:conf/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>rootLevel</param-name>
+		<param-value>DEBUG</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>loggingLevel</param-name>
+		<param-value>INFO</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:conf/local/log4j.properties</param-value>
 	</context-param>
 
 	<!-- Bootstrap listener to start up and shut down Spring's root WebApplicationContext. Delegates to ContextLoader. -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
 	<!-- Spring Security -->
@@ -77,7 +88,7 @@
 		<servlet-name>JspServlet</servlet-name>
 		<url-pattern>/page/</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>

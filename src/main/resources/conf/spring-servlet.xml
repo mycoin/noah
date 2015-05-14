@@ -54,11 +54,11 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
-			<bean class="org.ionnic.core.plugin.Interceptor" />
+			<bean class="org.ionnic.core.web.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<!-- <bean class="org.ionnic.core.plugin.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- <bean class="org.ionnic.core.web.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> <property name="prefix" value="/META-INF/jsp/"
 		/> <property name="suffix" value=".jsp" /> <property name="contentType" value="text/html;charset=utf-8" /> <property name="order"
 		value="1" /> <property name="alwaysInclude" value="true" /> </bean> </entry> <entry key="vm"> <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
@@ -123,7 +123,6 @@
 			</list>
 		</property>
 	</bean>
-
 
 	<!-- Configuration: access to static resource -->
 	<mvc:default-servlet-handler />
