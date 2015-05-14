@@ -15,6 +15,21 @@ public class EncodingFilter extends OncePerRequestFilter {
 
 	private boolean forceEncoding = false;
 
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
+			IOException {
+
+		if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
+			request.setCharacterEncoding(this.encoding);
+			if (this.forceEncoding) {
+				response.setCharacterEncoding(this.encoding);
+			}
+		}
+
+		System.out.println("EncodingFilter.doFilterInternal()");
+		filterChain.doFilter(request, response);
+	}
+
 	/**
 	 * Set the encoding to use for requests. This encoding will be passed into a
 	 * {@link javax.servlet.http.HttpServletRequest#setCharacterEncoding} call.
@@ -42,21 +57,6 @@ public class EncodingFilter extends OncePerRequestFilter {
 	 */
 	public void setForceEncoding(boolean forceEncoding) {
 		this.forceEncoding = forceEncoding;
-	}
-
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
-			IOException {
-
-		if (this.encoding != null && (this.forceEncoding || request.getCharacterEncoding() == null)) {
-			request.setCharacterEncoding(this.encoding);
-			if (this.forceEncoding) {
-				response.setCharacterEncoding(this.encoding);
-			}
-		}
-
-		System.out.println("EncodingFilter.doFilterInternal()");
-		filterChain.doFilter(request, response);
 	}
 
 }

@@ -14,35 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class HttpMethodFilter extends OncePerRequestFilter {
-	/** Default method parameter: <code>method</code> */
-	public static final String DEFAULT_METHOD_PARAM = "method";
-
-	private String methodParam = DEFAULT_METHOD_PARAM;
-
-	/**
-	 * Set the parameter name to look for HTTP methods.
-	 * 
-	 * @see #DEFAULT_METHOD_PARAM
-	 */
-	public void setMethodParam(String methodParam) {
-		Assert.hasText(methodParam, "'methodParam' must not be empty");
-		this.methodParam = methodParam;
-	}
-
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
-			IOException {
-
-		String paramValue = request.getParameter(this.methodParam);
-		if ("POST".equals(request.getMethod()) && StringUtils.hasLength(paramValue)) {
-			String method = paramValue.toUpperCase(Locale.ENGLISH);
-			HttpServletRequest wrapper = new HttpMethodRequestWrapper(request, method);
-			filterChain.doFilter(wrapper, response);
-		} else {
-			filterChain.doFilter(request, response);
-		}
-	}
-
 	/**
 	 * Simple {@link HttpServletRequest} wrapper that returns the supplied
 	 * method for {@link HttpServletRequest#getMethod()}.
@@ -60,5 +31,34 @@ public class HttpMethodFilter extends OncePerRequestFilter {
 		public String getMethod() {
 			return this.method;
 		}
+	}
+
+	/** Default method parameter: <code>method</code> */
+	public static final String DEFAULT_METHOD_PARAM = "method";
+
+	private String methodParam = DEFAULT_METHOD_PARAM;
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
+			IOException {
+
+		String paramValue = request.getParameter(this.methodParam);
+		if ("POST".equals(request.getMethod()) && StringUtils.hasLength(paramValue)) {
+			String method = paramValue.toUpperCase(Locale.ENGLISH);
+			HttpServletRequest wrapper = new HttpMethodRequestWrapper(request, method);
+			filterChain.doFilter(wrapper, response);
+		} else {
+			filterChain.doFilter(request, response);
+		}
+	}
+
+	/**
+	 * Set the parameter name to look for HTTP methods.
+	 * 
+	 * @see #DEFAULT_METHOD_PARAM
+	 */
+	public void setMethodParam(String methodParam) {
+		Assert.hasText(methodParam, "'methodParam' must not be empty");
+		this.methodParam = methodParam;
 	}
 }

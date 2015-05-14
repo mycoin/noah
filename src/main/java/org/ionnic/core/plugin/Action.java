@@ -15,11 +15,11 @@ public abstract class Action {
 	ModelAndView modelAndView = new ModelAndView();
 	public static Logger log = LoggerFactory.getLogger(Action.class);
 
-	public ModelAndView commit() {
-		return null;
-	}
-
 	public void addContext(Map<String, Object> map) {
 		modelAndView.addAllObjects(map);
+	}
+
+	public ModelAndView commit() {
+		return null;
 	}
 }

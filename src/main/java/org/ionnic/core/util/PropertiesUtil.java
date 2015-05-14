@@ -11,13 +11,13 @@ public class PropertiesUtil {
 
 	public static String FILE_CONFIG = "classpath:/WEB-INF/conf/context.properties";
 
-	private Properties data = null;
-
-	private String version = "1.0";
-
 	public static void main(String[] args) {
 		System.out.println(new PropertiesUtil().get("domain", "vs.baidu.com"));
 	}
+
+	private Properties data = null;
+
+	private String version = "1.0";
 
 	/**
 	 * @param key
@@ -25,13 +25,6 @@ public class PropertiesUtil {
 	 */
 	public String get(String key) {
 		return get(key, null);
-	}
-
-	/**
-	 * @return the version
-	 */
-	public String getVersion() {
-		return version;
 	}
 
 	/**
@@ -57,5 +50,12 @@ public class PropertiesUtil {
 			value = defaultValue;
 		}
 		return value;
+	}
+
+	/**
+	 * @return the version
+	 */
+	public String getVersion() {
+		return version;
 	}
 }

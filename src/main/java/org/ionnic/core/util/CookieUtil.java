@@ -13,18 +13,6 @@ import java.util.Set;
 public class CookieUtil {
 
 	/**
-	 * 设置 Cookie, 过期时间为30分钟
-	 * 
-	 * @param name
-	 *            名称
-	 * @param value
-	 *            值
-	 */
-	public static Cookie setCookie(HttpServletResponse response, String name, String value, String path) {
-		return addCookie(response, name, value, path, 60 * 30);
-	}
-
-	/**
 	 * 设置 Cookie, 过期时间自定义
 	 * 
 	 * @param name
@@ -82,17 +70,6 @@ public class CookieUtil {
 	}
 
 	/**
-	 * 获得指定Cookie的值
-	 * 
-	 * @param name
-	 *            名称
-	 * @return 值
-	 */
-	public static String getCookie(HttpServletRequest request, String name) {
-		return getCookie(request, null, name, false);
-	}
-
-	/**
 	 * 获得指定Cookie的值，并删除。
 	 * 
 	 * @param name
@@ -136,5 +113,28 @@ public class CookieUtil {
 			}
 		}
 		return value;
+	}
+
+	/**
+	 * 获得指定Cookie的值
+	 * 
+	 * @param name
+	 *            名称
+	 * @return 值
+	 */
+	public static String getCookie(HttpServletRequest request, String name) {
+		return getCookie(request, null, name, false);
+	}
+
+	/**
+	 * 设置 Cookie, 过期时间为30分钟
+	 * 
+	 * @param name
+	 *            名称
+	 * @param value
+	 *            值
+	 */
+	public static Cookie setCookie(HttpServletResponse response, String name, String value, String path) {
+		return addCookie(response, name, value, path, 60 * 30);
 	}
 }

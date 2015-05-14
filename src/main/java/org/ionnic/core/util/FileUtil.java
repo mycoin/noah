@@ -8,33 +8,6 @@ import java.io.IOException;
 
 public class FileUtil {
 	/**
-	 * 获取文件扩展名
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	public static String getExtend(String filename) {
-		return getExtend(filename, "");
-	}
-
-	/**
-	 * 获取文件扩展名
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	public static String getExtend(String filename, String defExt) {
-		if ((filename != null) && (filename.length() > 0)) {
-			int i = filename.lastIndexOf('.');
-
-			if ((i > 0) && (i < (filename.length() - 1))) {
-				return (filename.substring(i + 1)).toLowerCase();
-			}
-		}
-		return defExt.toLowerCase();
-	}
-
-	/**
 	 * 文件复制
 	 * 
 	 * @param
@@ -74,5 +47,32 @@ public class FileUtil {
 			return false;
 		}
 		return fileDelete.delete();
+	}
+
+	/**
+	 * 获取文件扩展名
+	 * 
+	 * @param filename
+	 * @return
+	 */
+	public static String getExtend(String filename) {
+		return getExtend(filename, "");
+	}
+
+	/**
+	 * 获取文件扩展名
+	 * 
+	 * @param filename
+	 * @return
+	 */
+	public static String getExtend(String filename, String defExt) {
+		if ((filename != null) && (filename.length() > 0)) {
+			int i = filename.lastIndexOf('.');
+
+			if ((i > 0) && (i < (filename.length() - 1))) {
+				return (filename.substring(i + 1)).toLowerCase();
+			}
+		}
+		return defExt.toLowerCase();
 	}
 }

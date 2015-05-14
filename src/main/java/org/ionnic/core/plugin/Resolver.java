@@ -9,10 +9,6 @@ import org.springframework.web.servlet.ViewResolver;
 public class Resolver implements ViewResolver {
 	private Map<String, ViewResolver> resolvers;
 
-	public void setResolvers(Map<String, ViewResolver> resolvers) {
-		this.resolvers = resolvers;
-	}
-
 	@Override
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
 		int n = viewName.lastIndexOf(".");
@@ -26,6 +22,10 @@ public class Resolver implements ViewResolver {
 			return resolver.resolveViewName(viewName.substring(0, n), locale);
 		}
 		return null;
+	}
+
+	public void setResolvers(Map<String, ViewResolver> resolvers) {
+		this.resolvers = resolvers;
 	}
 
 }
