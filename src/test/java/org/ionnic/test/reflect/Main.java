@@ -1,6 +1,5 @@
 package org.ionnic.test.reflect;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;

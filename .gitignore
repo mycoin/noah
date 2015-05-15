@@ -7,7 +7,6 @@ Thumbs.db
 .DS_Store
 *.jar
 *.war
-*.log
 *.tmp
 *.bak
 *.dump

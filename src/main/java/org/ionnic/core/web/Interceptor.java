@@ -1,27 +1,31 @@
 package org.ionnic.core.web;
 
-import org.springframework.ui.ModelMap;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.context.request.WebRequestInterceptor;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class Interceptor implements WebRequestInterceptor {
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+public class Interceptor implements HandlerInterceptor {
+	private Object control;
 
 	@Override
-	public void preHandle(WebRequest request) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		System.out.println("preHandle()");
+		control = this.getClass().getName();
+		return true;
 	}
-	
+
 	@Override
-	public void postHandle(WebRequest request, ModelMap model) throws Exception {
-		// TODO Auto-generated method stub
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		System.out.println("postHandle()");
+		modelAndView.addObject("control", control);
+//		modelAndView.setViewName("jsp://");
 	}
 
 	@Override
-	public void afterCompletion(WebRequest request, Exception ex) throws Exception {
-		// TODO Auto-generated method stub
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		System.out.println("afterCompletion()");
-
 	}
+
 }
