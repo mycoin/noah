@@ -34,21 +34,18 @@
 
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
 	<mvc:annotation-driven>
-		<!-- we are adding an XStream converter to the default list. It seems that if we do not include this section, then marshalling
-			will work, but unmarshalling will not, instead we get a "Unsupported Media Type". -->
 		<mvc:message-converters>
-			<!-- Configure the XStream message converter -->
 			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
 				<property name="marshaller" ref="xstreamMarshaller" />
 				<property name="unmarshaller" ref="xstreamMarshaller" />
 			</bean>
 		</mvc:message-converters>
 
-		<!-- mvc:return-value-handlers -->
 		<mvc:return-value-handlers>
 			<bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
 		</mvc:return-value-handlers>
 	</mvc:annotation-driven>
+
 
 	<!-- interceptors' configure -->
 	<mvc:interceptors>
@@ -57,13 +54,6 @@
 			<bean class="org.ionnic.core.web.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-	<!-- <bean class="org.ionnic.core.web.Resolver"> <property name="resolvers"> <map> <entry key="jsp"> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> <property name="prefix" value="/META-INF/jsp/"
-		/> <property name="suffix" value=".jsp" /> <property name="contentType" value="text/html;charset=utf-8" /> <property name="order"
-		value="1" /> <property name="alwaysInclude" value="true" /> </bean> </entry> <entry key="vm"> <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="exposeRequestAttributes" value="true" /> <property name="contentType" value="text/html;charset=utf-8" />
-		<property name="prefix" value="" /> <property name="suffix" value=".vm" /> </bean> </entry> </map> </property> </bean> -->
 
 	<!-- Configures the different content types the servlet can handle. -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

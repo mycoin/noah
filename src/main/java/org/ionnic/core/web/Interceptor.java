@@ -24,5 +24,4 @@ public class Interceptor implements WebRequestInterceptor {
 		System.out.println("afterCompletion()");
 
 	}
-
 }
