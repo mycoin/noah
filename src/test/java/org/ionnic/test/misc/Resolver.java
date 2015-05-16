@@ -1,4 +1,4 @@
-package org.ionnic.core.web;
+package org.ionnic.test.misc;
 
 import java.util.Locale;
 import java.util.Map;

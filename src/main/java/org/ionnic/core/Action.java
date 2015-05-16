@@ -1,4 +1,4 @@
-package org.ionnic.core.web;
+package org.ionnic.core;
 
 import java.util.Map;
 
