@@ -20,32 +20,28 @@
 	<!--[if lt IE 7]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-	<table cellpadding="5px"  border="1px">
-        <tr>
-            <td>拦截器对象</td>
-            <td>${control}</td>
-        </tr>
-        <tr>
-            <td>控制器注入</td>
-            <td>${data}</td>
-        </tr>
-        <tr>
-            <td>Cookie</td>
-            <td><%=request.getCookies()%></td>
-        </tr>
-        <tr>
-            <td>JSON视图</td>
-            <td>
-                <iframe src="home.json"></iframe>
-            </td>
-        </tr>
-        <tr>
-            <td>XML视图</td>
-            <td>
-                <iframe src="home.xml"></iframe>
-            </td>
-        </tr>
-    </table>
+	<table cellpadding="5px" border="1px">
+		<tr>
+			<td>拦截器对象</td>
+			<td>${control}</td>
+		</tr>
+		<tr>
+			<td>控制器注入</td>
+			<td>${data}</td>
+		</tr>
+		<tr>
+			<td>Cookie</td>
+			<td><%=request.getCookies()%></td>
+		</tr>
+		<tr>
+			<td>JSON视图</td>
+			<td><iframe src="<%=request.getContextPath()%>/home.json"></iframe></td>
+		</tr>
+		<tr>
+			<td>XML视图</td>
+			<td><iframe src="<%=request.getContextPath()%>/home.xml"></iframe></td>
+		</tr>
+	</table>
 
 
 </body>

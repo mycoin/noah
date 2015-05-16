@@ -50,7 +50,7 @@
 	<!-- interceptors' configure -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*" />
+			<mvc:mapping path="/**" />
 			<bean class="org.ionnic.core.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
