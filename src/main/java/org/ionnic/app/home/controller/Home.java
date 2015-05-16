@@ -38,10 +38,6 @@ public class Home {
 		map.put("statusInfo", "OK");
 		map.put("data", data);
 
-		log.debug("23456789098765432");
-		System.out.println(request);
-		// System.out.println(req.getAttribute("Param"));
-
 		return new ModelAndView("home/index", map);
 	}
 

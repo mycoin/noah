@@ -33,13 +33,25 @@
 	<context:component-scan base-package="org.ionnic.app" />
 
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
-	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven /> -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+				<property name="marshaller" ref="xstreamMarshaller" />
+				<property name="unmarshaller" ref="xstreamMarshaller" />
+			</bean>
+		</mvc:message-converters>
+
+		<mvc:return-value-handlers>
+			<bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
+		</mvc:return-value-handlers>
+	</mvc:annotation-driven>
 
 	<!-- interceptors' configure -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
-			<bean class="org.ionnic.core.web.Interceptor" />
+			<bean class="org.ionnic.core.Interceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
@@ -103,5 +115,5 @@
 	</bean>
 
 	<!-- Configuration: access to static resource -->
-	<mvc:default-servlet-handler />
+	<mvc:default-servlet-handler default-servlet-name="default" />
 </beans>

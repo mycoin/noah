@@ -1,4 +1,4 @@
-package org.ionnic.core.web;
+package org.ionnic.core;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +20,6 @@ public class Interceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		System.out.println("postHandle()");
 		modelAndView.addObject("control", control);
-//		modelAndView.setViewName("jsp://");
 	}
 
 	@Override
