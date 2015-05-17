@@ -5,6 +5,7 @@ npm-debug.log
 Desktop.ini
 Thumbs.db
 .DS_Store
+*.log
 *.jar
 *.war
 *.tmp

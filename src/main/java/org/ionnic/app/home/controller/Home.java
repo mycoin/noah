@@ -24,6 +24,11 @@ public class Home {
 		return view;
 	}
 
+	@RequestMapping("/home/join")
+	public void join() {
+
+	}
+
 	@RequestMapping("/home")
 	public ModelAndView index(HttpServletRequest req, WebRequest request) {
 
