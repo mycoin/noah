@@ -15,6 +15,7 @@ public class Interceptor implements HandlerInterceptor {
 
 		System.out.println(handler.getClass());
 		control = this.getClass().getName();
+		
 		return true;
 	}
 
@@ -29,6 +30,7 @@ public class Interceptor implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		System.out.println("afterCompletion()");
+		
 	}
 
 }
