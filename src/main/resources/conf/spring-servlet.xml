@@ -4,7 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
+	
+	<context:property-placeholder location="classpath:conf/local/servlet.properties"/>
+	
 	<!-- Velocity Configuration -->
 	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
@@ -75,7 +77,6 @@
 		<!-- the mapping from file extensions to media types. -->
 		<property name="mediaTypes">
 			<map>
-				<entry key="ajax" value="application/json" />
 				<entry key="json" value="application/json" />
 				<entry key="xml" value="application/xml" />
 				<entry key="html" value="text/html" />
@@ -88,7 +89,7 @@
 					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 					<property name="prefix" value="/META-INF/jsp/" />
 					<property name="suffix" value=".jsp" />
-					<property name="contentType" value="text/html;charset=utf-8" />
+					<property name="contentType" value="text/html;charset=UTF-8" />
 					<property name="order" value="1" />
 					<property name="alwaysInclude" value="true" />
 				</bean>

@@ -38,6 +38,10 @@
 			<td><iframe src="<%=request.getContextPath()%>/home.json"></iframe></td>
 		</tr>
 		<tr>
+			<td>security视图</td>
+			<td><iframe src="<%=request.getContextPath()%>/people/1.json"></iframe></td>
+		</tr>
+		<tr>
 			<td>XML视图</td>
 			<td><iframe src="<%=request.getContextPath()%>/home.xml"></iframe></td>
 		</tr>

@@ -44,5 +44,12 @@ public class Product {
 	public void setHashMap(Map<?, ?> isOnline) {
 
 	}
+	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Product {id: " + id;
+	}
 
 }

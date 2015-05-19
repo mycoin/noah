@@ -37,7 +37,6 @@ public class Main {
 
 		return map;
 	}
-
 }
 
 @SuppressWarnings("rawtypes")
