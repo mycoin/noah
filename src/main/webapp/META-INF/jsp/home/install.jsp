@@ -45,7 +45,9 @@
 body,td,th {
     font-size: 12px;
     line-height: 1.34;
-    padding: 2px
+    padding: 2px;
+    white-space: pre-wrap;
+    word-break:break-all
 }
 
 body {
