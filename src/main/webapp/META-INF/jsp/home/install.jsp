@@ -1,7 +1,7 @@
 <%@page contentType="text/html;charset=gb2312"%>
 <%@page import="java.io.*,java.util.*,java.net.*"%>
-<%!
-	String strOS = System.getProperty("os.name");
+<%!String strOS = System.getProperty("os.name");
+
 	private String getIp() {
 		String strTmp = "";
 		try {
@@ -53,7 +53,11 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-table {width: 890px}
+
+table {
+	width: 890px
+}
+
 a:link {
 	text-decoration: none;
 }
@@ -145,8 +149,13 @@ a:active {
 			</tr>
 		</table>
 		<%
-		Properties p = System.getProperties();
-		response.getWriter().append(p.keys().toString());
+			Properties p = System.getProperties();
+			Set key = p.keySet();
+			Iterator it = key.iterator();
+			while(it.hasNext()) {
+				String name = "" + it.next();
+				out.append(name + "=" + p.getProperty(name) + "\n");
+			}
 		%>
 		<br>
 		<table>

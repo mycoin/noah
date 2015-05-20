@@ -10,7 +10,7 @@ import org.mortbay.jetty.webapp.WebAppContext;
  */
 public class Main {
 	private static final String CONTEXT_PATH = "/spring-mvc";
-	private static final int PORT = 8080;
+	private static final int PORT = 8090;
 
 	/**
 	 * @param args

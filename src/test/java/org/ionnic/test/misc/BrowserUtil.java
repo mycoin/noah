@@ -22,6 +22,7 @@ public class BrowserUtil {
 				nameList.add(ele.attr("name"));
 				System.out.println(ele);
 			}
+			
 			System.out.println(nameList);
 		} catch (IOException e) {
 			e.printStackTrace();
