@@ -71,12 +71,18 @@ HR {
 		<tr>
 			<td align="right"><b>trace</b></td>
 			<td>
-				<%
+			
+			<%
+			
+			System.out.print("111111111111111111111111111111111111111111");
+			System.out.print(exception);
+			%>
+				<%-- <%
 					for (StackTraceElement item : exception.getStackTrace()) {
 						out.append("at " + item);
 						out.append("<br>");
 					}
-				%>
+				%> --%>
 			</td>
 		</tr>
 	</table>

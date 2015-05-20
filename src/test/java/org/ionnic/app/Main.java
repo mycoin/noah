@@ -40,6 +40,7 @@ public class Main {
 
 			server.stop();
 			server.join();
+
 		} catch (Exception e) {
 			System.exit(100);
 		}
