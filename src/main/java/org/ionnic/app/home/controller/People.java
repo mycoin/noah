@@ -33,16 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class People {
 
-	/**
-	 * A service that provides operations around managing people. Spring will
-	 * automatically wire in an implementation of the IPeopleService interface.
-	 * Since the only implementation is the PeopleService class, this will be
-	 * used. The autowiring is done when the controller is loaded, which happens
-	 * when the line <br />
-	 * {@code <context:component-scan base-package="com.spidertracks.demo.rest.api" />}
-	 * <br />
-	 * is run in the rest-servlet.xml.
-	 */
 	@Autowired
 	private IPeopleService peopleService;
 

@@ -57,33 +57,34 @@ HR {
 	<HR size="1" noshade="noshade">
 	<table>
 		<tr>
-			<td align="right"><b>status</b></td>
+			<td align="right"><b>status</b>
+			</td>
 			<td>500</td>
 		</tr>
 		<tr>
-			<td align="right"><b>request</b></td>
+			<td align="right"><b>request</b>
+			</td>
 			<td><%=request.getRequestURI()%></td>
 		</tr>
 		<tr>
-			<td align="right"><b>message</b></td>
+			<td align="right"><b>message</b>
+			</td>
 			<td><%=exception%></td>
 		</tr>
 		<tr>
-			<td align="right"><b>trace</b></td>
-			<td>
-			
-			<%
-			
-			System.out.print("111111111111111111111111111111111111111111");
-			System.out.print(exception);
-			%>
-				<%-- <%
+			<td align="right"><b>trace</b>
+			</td>
+			<td><%
+				if (null != exception) {
 					for (StackTraceElement item : exception.getStackTrace()) {
 						out.append("at " + item);
 						out.append("<br>");
 					}
-				%> --%>
-			</td>
+				} else {
+					out.append("N/A");
+				}
+			%>
+			
 		</tr>
 	</table>
 	<HR size="1" noshade="noshade">
