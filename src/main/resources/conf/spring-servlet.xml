@@ -4,13 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:property-placeholder location="classpath:conf/local/servlet.properties" />
 	
-	<context:property-placeholder location="classpath:conf/local/servlet.properties"/>
+	<context:annotation-config/>
 	
 	<!-- Velocity Configuration -->
-	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath">
+			<value>/META-INF/velocity/</value>
+		</property>
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
-		<property name="resourceLoaderPath" value="/" />
 	</bean>
 
 	<!-- Create the XStream marshaller bean -->
@@ -85,16 +89,31 @@
 
 		<property name="viewResolvers">
 			<list>
+				<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+					<property name="suffix" value=".vm" />
+					<property name="layoutKey" value="layout" />
+					<property name="layoutUrl" value="/layout/default.vm" />
+					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="screenContentKey" value="SCREEN" />
+					<property name="requestContextAttribute" value="requestContext" />
+					<property name="exposeRequestAttributes" value="true" />
+					<property name="exposeSpringMacroHelpers" value="true" />
+					<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+
+					<property name="order" value="1" />
+				</bean>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+					<property name="order" value="2" />
+				</bean>
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 					<property name="prefix" value="/META-INF/jsp/" />
 					<property name="suffix" value=".jsp" />
 					<property name="contentType" value="text/html;charset=UTF-8" />
-					<property name="order" value="1" />
 					<property name="alwaysInclude" value="true" />
+
+					<property name="order" value="3" />
 				</bean>
-				<!-- <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"> <property name="prefix" value=""
-					/> <property name="suffix" value=".vm" /> </bean> -->
 			</list>
 		</property>
 
