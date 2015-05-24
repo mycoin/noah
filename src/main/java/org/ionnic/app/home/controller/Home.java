@@ -8,28 +8,29 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+//http://my.oschina.net/bosscheng/blog/126941
 @Controller
+@RequestMapping("/home")
 public class Home {
 
 	Logger log = LoggerFactory.getLogger(Home.class);
 
-	@RequestMapping("/home/about")
-	public ModelAndView about() {
-		ModelAndView view = new ModelAndView("home/a");
-		view.addObject("about", "about");
-		return view;
+	@RequestMapping("/about")
+	public void about(Model model) {
+		model.addAttribute("about", this);
 	}
 
-	@RequestMapping("/home/join")
+	@RequestMapping("/join")
 	public void join(Result[] params) {
 		System.out.println(params);
 	}
 
-	@RequestMapping("/home")
+	@RequestMapping(value = { "", "/index" })
 	public ModelAndView index(HttpServletRequest req, WebRequest request) {
 
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -46,16 +47,15 @@ public class Home {
 		return new ModelAndView("home/index", map);
 	}
 
-	@RequestMapping("/home/install")
+	@RequestMapping("/install")
 	public ModelAndView install() {
-		return new ModelAndView("/home/install");
+		return new ModelAndView();
 	}
 
 	class Result {
 		String id;
 		String name;
-		
-		
+
 		public String getId() {
 			return id;
 		}

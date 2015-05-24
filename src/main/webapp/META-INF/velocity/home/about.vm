@@ -1,0 +1,1 @@
+#set($layout = "layout/blank.vm")$about<hr />$context.getModel()<hr />innerHTML

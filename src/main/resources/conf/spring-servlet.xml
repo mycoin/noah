@@ -5,14 +5,14 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+	<!-- requestDataValueProcessor -->
 	<context:property-placeholder location="classpath:conf/local/servlet.properties" />
-	
-	<context:annotation-config/>
-	
+	<context:annotation-config />
+
 	<!-- Velocity Configuration -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath">
-			<value>/META-INF/velocity/</value>
+			<value>/META-INF/velocity</value>
 		</property>
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 	</bean>
@@ -70,12 +70,12 @@
 		<property name="parameterName" value="format" />
 
 		<!-- Accept-Header -->
-		<property name="ignoreAcceptHeader" value="true" />
+		<property name="ignoreAcceptHeader" value="false" />
 
 		<!-- Suffix matching support -->
 		<property name="favorPathExtension" value="true" />
 
-		<!-- if no content type is specified, return json. -->
+		<!-- if no content type is specified, return html. -->
 		<property name="defaultContentType" value="text/html" />
 
 		<!-- the mapping from file extensions to media types. -->
@@ -92,10 +92,10 @@
 				<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
 					<property name="suffix" value=".vm" />
 					<property name="layoutKey" value="layout" />
-					<property name="layoutUrl" value="/layout/default.vm" />
+					<property name="layoutUrl" value="/layout/blank.vm" />
 					<property name="contentType" value="text/html;charset=UTF-8" />
 					<property name="screenContentKey" value="SCREEN" />
-					<property name="requestContextAttribute" value="requestContext" />
+					<property name="requestContextAttribute" value="context" />
 					<property name="exposeRequestAttributes" value="true" />
 					<property name="exposeSpringMacroHelpers" value="true" />
 					<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
