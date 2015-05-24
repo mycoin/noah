@@ -842,26 +842,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- The JSP page compiler and execution servlet -->
-	<servlet>
-		<servlet-name>JspServlet</servlet-name>
-		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-		<init-param>
-			<param-name>fork</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<init-param>
-			<param-name>xpoweredBy</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>3</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>JspServlet</servlet-name>
-		<url-pattern>/page/</url-pattern>
-	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -874,10 +854,6 @@
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/page/common/error.jsp</location>
-	</error-page>
-	<error-page>
-		<exception-type>java.lang.Exception</exception-type>
 		<location>/page/common/error.jsp</location>
 	</error-page>
 

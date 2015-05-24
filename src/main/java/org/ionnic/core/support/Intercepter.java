@@ -1,4 +1,4 @@
-package org.ionnic.core;
+package org.ionnic.core.support;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class Interceptor implements HandlerInterceptor {
+public class Intercepter implements HandlerInterceptor {
 	private Object control;
 
 	@Override
@@ -15,7 +15,7 @@ public class Interceptor implements HandlerInterceptor {
 
 		System.out.println(handler.getClass());
 		control = this.getClass().getName();
-		
+
 		return true;
 	}
 
@@ -30,7 +30,7 @@ public class Interceptor implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		System.out.println("afterCompletion()");
-		
+
 	}
 
 }
