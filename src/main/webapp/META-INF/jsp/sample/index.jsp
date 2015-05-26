@@ -6,32 +6,30 @@
 <html>
 <head>
 <title>sample/index</title>
-<link rel="stylesheet" href="<%=baseDir%>/page/static/sample.css">
+<link rel="stylesheet" href="<%=baseDir%>/static/sample.css">
 </head>
 <body>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
-			<td colspan="2">
-			<pre><code class="java">@RequestMapping("/sample/index")
+			<td colspan="2"><pre class="java">@RequestMapping("/sample/index")
 public void index(Model model) {
     model.addAttribute("data", this);
-}
-</code></pre></td>
+}</pre></td>
 		</tr>
 		<tr>
 			<td width="80">baseDir:</td>
-			<td data-value="/spring-mvc"><%=baseDir%></td>
+			<td data-value="^/"><%=baseDir%></td>
 		</tr>
 		<tr>
 			<td>控制器:</td>
-			<td data-value="org.ionnic.app.home.controller.Sample">${data.class.name}</td>
+			<td data-value="^org.ionnic">${data}</td>
 		</tr>
 		<tr>
 			<td>拦截器:</td>
-			<td data-value="org.ionnic.core.support.Intercepter">${control}</td>
+			<td data-value="^[a-z0-9-]{36}$"></td>
 		</tr>
 	</table>
-	<script src="<%=baseDir%>/page/static/sample.js"></script>
+	<script src="<%=baseDir%>/static/sample.js"></script>
 </body>
 </html>
 

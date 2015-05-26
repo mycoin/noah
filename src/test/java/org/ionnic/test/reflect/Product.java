@@ -49,7 +49,8 @@ public class Product {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Product {id: " + id;
+		
+		return "id: " + id + "produectName: " + produectName + "price: " + price + "isOnline: " + isOnline;
 	}
 
 }

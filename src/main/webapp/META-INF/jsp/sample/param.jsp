@@ -6,17 +6,17 @@
 <html>
 <head>
 <title>sample/param</title>
-<link rel="stylesheet" href="<%=baseDir%>/page/static/sample.css">
+<link rel="stylesheet" href="<%=baseDir%>/static/sample.css">
 </head>
 <body>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
 			<td colspan="2">
-			<pre><code class="java">@RequestMapping("/sample/param")
+			<pre class="java">@RequestMapping("/sample/param")
 public void (Model model) {
     model.addAttribute("data", this);
 }
-</code></pre></td>
+</pre></td>
 		</tr>
 		<tr>
 			<td width="80">baseDir:</td>
@@ -31,7 +31,7 @@ public void (Model model) {
 			<td data-value="org.ionnic.core.support.Intercepter">${control}</td>
 		</tr>
 	</table>
-	<script src="<%=baseDir%>/page/static/sample.js"></script>
+	<script src="<%=baseDir%>/static/sample.js"></script>
 	<script type="text/javascript">
 		
 	</script>

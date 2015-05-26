@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>sample/rest</title>
-<link rel="stylesheet" href="<%=baseDir%>/page/static/sample.css">
+<link rel="stylesheet" href="<%=baseDir%>/static/sample.css">
 </head>
 <body>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
@@ -31,7 +31,7 @@ public void rest(Model model) {
 			<td data-value="org.ionnic.core.support.Intercepter">${control}</td>
 		</tr>
 	</table>
-	<script src="<%=baseDir%>/page/static/sample.js"></script>
+	<script src="<%=baseDir%>/static/sample.js"></script>
 </body>
 </html>
 

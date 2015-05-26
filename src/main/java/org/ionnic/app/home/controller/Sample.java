@@ -10,26 +10,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/sample")
 public class Sample {
 	Logger logger = LoggerFactory.getLogger(Sample.class);
 
-	@RequestMapping("/sample/index")
+	@RequestMapping("/index")
 	public void index(Model model) {
-		model.addAttribute("data", this);
+		model.addAttribute("data", this.getClass().getName());
 	}
 
-	@RequestMapping("/sample/param")
+	@RequestMapping("/param")
 	public void param(String name, Model model) {
 		model.addAttribute("data", name);
 	}
 
-	@RequestMapping("/sample/rest")
+	@RequestMapping("/velocity")
+	public String velocity(Model model) {
+		model.addAttribute("data", "1");
+		return "sample/velocity";
+	}
+
+	@RequestMapping("/rest")
 	public void rest(Model model) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("id", 83961);
 		data.put("website", "http://home.ionnic.org/");
 		data.put("age", 25);
-		
+
 		model.addAttribute("status", 0);
 		model.addAttribute("statusInfo", "OK");
 		model.addAttribute("data", data);

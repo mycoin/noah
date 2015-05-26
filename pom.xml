@@ -101,6 +101,7 @@
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
@@ -171,7 +172,6 @@
 			<artifactId>jsp-2.1</artifactId>
 			<scope>provided</scope>
 			<version>7.0.0pre2</version>
-
 		</dependency>
 
 		<!-- Logging -->

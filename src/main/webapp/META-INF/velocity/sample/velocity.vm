@@ -1,0 +1,6 @@
+#set($layout = "layout/default.vm")
+
+dede
+$context
+
+##springBind("command.email")

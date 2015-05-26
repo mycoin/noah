@@ -15,14 +15,7 @@
 			</list>
 		</constructor-arg>
 	</bean>
-	<bean id="cacheManager" class="com.hqhop.framework.common.cache.memcached.MemcachedCacheManager">
-		<property name="memcachedClient">
-			<bean factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown" />
-		</property>
-		<property name="configMap">
-			<map>
-				<entry key="typeList" value="3600" />
-			</map>
-		</property>
-	</bean> -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="cacheManagerFactory" />
+    </bean> -->
 </beans>

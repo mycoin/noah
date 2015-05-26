@@ -841,7 +841,7 @@
 			In our case, there is only one servlet, so we might as well load it straight away. -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	
 	<servlet-mapping>
 		<servlet-name>DispatherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
