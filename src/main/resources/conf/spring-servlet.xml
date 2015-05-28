@@ -18,6 +18,7 @@
 		</property>
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 	</bean>
+
 	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true" />
 		<!-- Set some properties to make the outputted xml look nicer -->
@@ -39,7 +40,6 @@
 	<context:component-scan base-package="org.ionnic.app" />
 
 	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
-	<!-- <mvc:annotation-driven /> -->
 	<mvc:annotation-driven>
 		<!-- <mvc:message-converters></mvc:message-converters> -->
 		<mvc:return-value-handlers>
@@ -66,7 +66,7 @@
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json" />
-				<!-- <entry key="xml" value="application/xml" /> -->
+				<entry key="xml" value="application/xml" />
 				<entry key="html" value="text/html" />
 			</map>
 		</property>
@@ -84,13 +84,14 @@
 					<property name="exposeSpringMacroHelpers" value="true" />
 					<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 				</bean>
-				
+
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="order" value="2" />
-					<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> -->
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 					<property name="prefix" value="/META-INF/jsp/" />
 					<property name="suffix" value=".jsp" />
 					<property name="contentType" value="text/html;charset=UTF-8" />
+					<property name="requestContextAttribute" value="context" />
 					<property name="alwaysInclude" value="true" />
 				</bean>
 			</list>
@@ -116,6 +117,6 @@
 	<!-- Configuration: access to static resource -->
 	<mvc:resources location="/page/" mapping="/page/**" />
 	<mvc:resources location="/static/" mapping="/static/**" />
-	
+
 	<mvc:default-servlet-handler />
 </beans>

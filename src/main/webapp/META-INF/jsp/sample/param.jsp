@@ -23,8 +23,8 @@ public void (Model model) {
 			<td data-value="/spring-mvc"><%=baseDir%></td>
 		</tr>
 		<tr>
-			<td>控制器:</td>
-			<td data-value="org.ionnic.app.home.controller.Sample">${data}</td>
+			<td>@name:</td>
+			<td data-value="2345">${data}</td>
 		</tr>
 		<tr>
 			<td>拦截器:</td>

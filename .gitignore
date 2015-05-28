@@ -1,0 +1,10 @@
+*.bak
+*.db
+*.dump
+*.edpproj
+*.ini
+*.sw
+*.tmp
+.idea
+.git
+./target/

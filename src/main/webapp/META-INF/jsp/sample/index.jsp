@@ -26,7 +26,7 @@ public void index(Model model) {
 		</tr>
 		<tr>
 			<td>拦截器:</td>
-			<td data-value="^[a-z0-9-]{36}$"></td>
+			<td data-value="^org.ionnic"><%=request.getAttribute("intercepter")%></td>
 		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>

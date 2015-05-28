@@ -13,6 +13,7 @@ public class Intercepter implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		request.setAttribute("intercepter", this.getClass().getName());
 		return true;
 	}
 
@@ -21,13 +22,13 @@ public class Intercepter implements HandlerInterceptor {
 		if (null != modelAndView) {
 			boolean hasToken = false;
 			String uuid = UUID.randomUUID().toString();
-			String key = "token";
 
 			Cookie cookies[] = request.getCookies();
 			if (cookies != null) {
 				for (int i = 0; i < cookies.length; i++) {
-					if (key.equals(cookies[i].getName())) {
+					if ("token".equals(cookies[i].getName())) {
 						hasToken = true;
+						uuid = cookies[i].getValue();
 						break;
 					}
 				}
@@ -35,15 +36,13 @@ public class Intercepter implements HandlerInterceptor {
 			if (!hasToken) {
 				response.addCookie(new Cookie("token", uuid));
 			}
-			
-			response.setHeader("CSRF-Key", "token");
-			response.setHeader("CSRF-Token", uuid);
+			response.setHeader("X-Token", uuid);
 		}
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		
+
 	}
 
 }
