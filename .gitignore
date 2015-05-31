@@ -7,4 +7,6 @@
 *.tmp
 .idea
 .git
-./target/
+target/
+.project
+.settings

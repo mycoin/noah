@@ -12,9 +12,9 @@
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
 			<td colspan="2">
-			<pre class="java">@RequestMapping("/sample/param")
-public void (Model model) {
-    model.addAttribute("data", this);
+			<pre class="java">@RequestMapping("/param")
+public void param(String name, Model model) {
+    model.addAttribute("data", name);
 }
 </pre></td>
 		</tr>
