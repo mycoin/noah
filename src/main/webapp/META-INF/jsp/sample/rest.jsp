@@ -49,23 +49,12 @@ public void rest(Model model) {
 		                        if(text.indexOf("</entry>") > -1) {
 		                        	jQuery("#format").removeClass("error");
 		                        }
-		                    	
 		                    }
 		                });
 		            }
 		        }
 		    });
 		}
-	});
-	
-	1||jQuery.get("rest", {format: "json"}, function(data){
-		 if(data.data.id == 83961) {
-			 jQuery.get("rest.xml", function(data){
-				  if(jQuery(data).children().get(0).tagName == "map") {
-					  jQuery("#format").removeClass("error");
-				  }
-			 });
-		 }
 	});
 	</script>
 </body>
