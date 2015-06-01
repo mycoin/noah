@@ -16,6 +16,7 @@ public class Sample {
 
 	@RequestMapping("/index")
 	public void index(Model model) {
+		this.getClass().getDeclaredMethods();
 		model.addAttribute("data", this.getClass().getName());
 	}
 

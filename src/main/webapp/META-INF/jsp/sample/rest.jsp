@@ -25,7 +25,7 @@ public void rest(Model model) {
 		</tr>
 		<tr class="error" id="format">
 			<td width="80">favorParam:</td>
-			<td><a href="rest.json">json</a>, <a href="rest.xml">xml</a>, <a href="?format=json">json</a>, <a href="?format=xml">xml</a></td>
+			<td><a href="rest.json">rest.json</a>, <a href="rest.xml">rest.xml</a>, <a href="?format=json">json</a>, <a href="?format=xml">xml</a></td>
 		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>
@@ -55,6 +55,16 @@ public void rest(Model model) {
 		        }
 		    });
 		}
+	});
+
+	jQuery('[href]').mousedown(function (e) {
+		jQuery.ajax({
+			url: this.href,
+			dataType: "html",
+			success: function (data) {
+	            alert(data);
+	        }	
+		});
 	});
 	</script>
 </body>
