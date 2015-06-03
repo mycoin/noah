@@ -26,8 +26,8 @@
 		</port-mappings>
 
 		<!-- Any resources under the people url require the user role, all other resources are accessible to everyone. -->
-		<intercept-url pattern="/people/*" access="ROLE_USER" requires-channel="any" />
-		<intercept-url pattern="/page/*" access="ROLE_USER" requires-channel="any" />
+		<intercept-url pattern="/people/**" access="ROLE_USER" requires-channel="any" />
+		<intercept-url pattern="/page/**" access="ROLE_USER" requires-channel="any" />
 
 		<!-- Configures basic auth. -->
 		<http-basic />

@@ -13,11 +13,21 @@
 
 	<!-- Velocity Configuration -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/META-INF/velocity" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">utf-8</prop>
+				<prop key="output.encoding">utf-8</prop>
+			</props>
+		</property>
+	</bean>
+	<!--
+		<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath">
-			<value>/META-INF/velocity</value>
+		<value>/META-INF/velocity</value>
 		</property>
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
-	</bean>
+		</bean> -->
 
 	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true" />
@@ -49,10 +59,7 @@
 
 	<!-- interceptors' configure -->
 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="org.ionnic.core.support.Intercepter" />
-		</mvc:interceptor>
+		<bean class="org.ionnic.core.support.Intercepter" />
 	</mvc:interceptors>
 
 	<!-- Configures the different content types the servlet can handle. -->
@@ -113,10 +120,6 @@
 			</list>
 		</property>
 	</bean>
-
-	<!-- Configuration: access to static resource -->
-	<mvc:resources location="/page/" mapping="/page/**" />
-	<mvc:resources location="/static/" mapping="/static/**" />
 
 	<mvc:default-servlet-handler />
 </beans>
