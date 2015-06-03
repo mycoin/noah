@@ -5,7 +5,7 @@
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
-	<bean name="springSecurityFilterChain" class="org.ionnic.core.support.Filter">
-
+	<bean name="delegatingFilterProxy" class="org.ionnic.core.support.Filter">
+		<property name="encoding" value="UTF-8" />
 	</bean>
 </beans>

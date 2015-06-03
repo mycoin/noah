@@ -8,26 +8,13 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- requestDataValueProcessor -->
-	<context:property-placeholder location="classpath:conf/local/servlet.properties" />
-
-	<!-- Velocity Configuration -->
+	<!-- Velocity配置项 -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/META-INF/velocity" />
-		<property name="velocityProperties">
-			<props>
-				<prop key="input.encoding">utf-8</prop>
-				<prop key="output.encoding">utf-8</prop>
-			</props>
-		</property>
-	</bean>
-	<!--
-		<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath">
-		<value>/META-INF/velocity</value>
+			<value>/META-INF/velocity</value>
 		</property>
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
-		</bean> -->
+	</bean>
 
 	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
 		<property name="autodetectAnnotations" value="true" />
@@ -46,18 +33,29 @@
 			</property> -->
 	</bean>
 
-	<!-- Configuration: automatically scan the package name -->
-	<context:component-scan base-package="org.ionnic.app" />
+	<!-- 扫描组件 -->
+	<context:component-scan base-package="org.ionnic.app">
+		<context:exclude-filter type="regex" expression="org.ionnic.test.*" />
+		<context:exclude-filter type="regex" expression="org.ionnic.core.*" />
+	</context:component-scan>
 
-	<!-- Activates support for XML and JSON mapping if they are on the class path. -->
+	<!-- 映射关系 -->
 	<mvc:annotation-driven>
-		<!-- <mvc:message-converters></mvc:message-converters> -->
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
 		<mvc:return-value-handlers>
 			<bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
 		</mvc:return-value-handlers>
 	</mvc:annotation-driven>
 
-	<!-- interceptors' configure -->
+	<!-- 全局拦截器 -->
 	<mvc:interceptors>
 		<bean class="org.ionnic.core.support.Intercepter" />
 	</mvc:interceptors>
@@ -121,5 +119,10 @@
 		</property>
 	</bean>
 
+	<!-- 默认配置 -->
 	<mvc:default-servlet-handler />
 </beans>
+
+
+
+<!-- http://zachary-guo.iteye.com/blog/1318597 -->

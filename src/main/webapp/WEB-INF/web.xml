@@ -29,7 +29,7 @@
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
 			<param-name>targetBeanName</param-name>
-			<param-value>springSecurityFilterChain</param-value>
+			<param-value>delegatingFilterProxy</param-value>
 		</init-param>
 		<init-param>
 			<param-name>targetFilterLifecycle</param-name>
