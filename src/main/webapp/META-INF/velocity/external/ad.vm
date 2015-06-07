@@ -1,0 +1,5 @@
+<script type="text/javascript">
+var tongjiConfig = {
+    id: "$util.escapeInJ($html)"
+};
+</script>

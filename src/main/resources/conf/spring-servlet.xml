@@ -1,128 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc 
 		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
         http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- Velocity配置项 -->
-	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath">
-			<value>/META-INF/velocity</value>
-		</property>
-		<property name="configLocation" value="/WEB-INF/velocity.properties" />
-	</bean>
+	<!-- VM配置项 -->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="configLocation" value="/WEB-INF/velocity.properties" />
+        <property name="resourceLoaderPath">
+            <value>/META-INF/velocity</value>
+        </property>
+    </bean>
+    
+    <!-- Freemarker配置 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="configLocation" value="/WEB-INF/freemarker.properties" />
+        <property name="templateLoaderPath">
+            <value>/META-INF/freemarker</value>
+        </property>
+    </bean>
 
-	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
-		<property name="autodetectAnnotations" value="true" />
-		<!-- Set some properties to make the outputted xml look nicer -->
-		<!-- <property name="aliases">
-			<map>
-			<entry key="people" value="org.ionnic.app.model.PeopleWrapper" />
-			<entry key="apimessage" value="org.ionnic.app.model.ApiMessage" />
-			<entry key="person" value="org.ionnic.app.model.Person" />
-			</map>
-			</property>
-			<property name="implicitCollections">
-			<map>
-			<entry key="org.ionnic.app.model.PeopleWrapper" value="people" />
-			</map>
-			</property> -->
-	</bean>
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <property name="autodetectAnnotations" value="true" />
+        <property name="aliases">
+            <map>
+                <entry key="message" value="org.ionnic.app.home.model.ApiMessage" />
+            </map>
+        </property>
+        <!-- <property name="implicitCollections">
+            <map>
+                <entry key="org.ionnic.app.home.model.Person" value="organisation" />
+            </map>
+        </property> -->
+    </bean>
 
 	<!-- 扫描组件 -->
-	<context:component-scan base-package="org.ionnic.app">
-		<context:exclude-filter type="regex" expression="org.ionnic.test.*" />
-		<context:exclude-filter type="regex" expression="org.ionnic.core.*" />
-	</context:component-scan>
+    <context:component-scan base-package="org.ionnic.app" />
 
 	<!-- 映射关系 -->
-	<mvc:annotation-driven>
-		<mvc:message-converters register-defaults="true">
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>text/plain;charset=UTF-8</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:message-converters>
-		<mvc:return-value-handlers>
-			<bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
-		</mvc:return-value-handlers>
-	</mvc:annotation-driven>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+        <mvc:return-value-handlers>
+            <bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
+        </mvc:return-value-handlers>
+    </mvc:annotation-driven>
+    
+    <!-- 视图 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1" />
 
+        <property name="favorParameter" value="true" />
+        <property name="parameterName" value="format" />
+        <property name="ignoreAcceptHeader" value="true" />
+        <property name="favorPathExtension" value="true" />
+        <property name="defaultContentType" value="text/html" />
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json" />
+                <entry key="xml" value="application/xml" />
+                <entry key="html" value="text/html" />
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+                    <property name="order" value="1" />
+
+                    <property name="contentType" value="text/html;charset=UTF-8" />
+                    <property name="suffix" value=".vm" />
+                    <property name="layoutKey" value="layout" />
+                    <property name="layoutUrl" value="/layout/blank.vm" />
+                    <property name="screenContentKey" value="screen" />
+                    <property name="requestContextAttribute" value="context" />
+                    <property name="exposeRequestAttributes" value="true" />
+                    <property name="exposeSpringMacroHelpers" value="true" />
+                    <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+                    <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
+                </bean>
+                <!-- 
+                <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+                    <property name="order" value="2" />
+
+                    <property name="suffix" value=".ftl" />
+                    <property name="contentType" value="text/html;charset=UTF-8" />
+                    <property name="requestContextAttribute" value="context" />
+                    <property name="exposeSpringMacroHelpers" value="true" />
+                    <property name="exposeRequestAttributes" value="true" />
+                    <property name="exposeSessionAttributes" value="true" />
+                </bean> -->
+
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="order" value="3" />
+
+                    <property name="prefix" value="/META-INF/jsp/" />
+                    <property name="suffix" value=".jsp" />
+                    <property name="contentType" value="text/html;charset=UTF-8" />
+                    <property name="requestContextAttribute" value="context" />
+                    <property name="alwaysInclude" value="true" />
+                </bean>
+            </list>
+        </property>
+
+        <property name="defaultViews">
+            <list>
+                <!-- JSON -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+                    <property name="extractValueFromSingleKeyModel" value="true" />
+                    <property name="contentType" value="application/json;charset=UTF-8" />
+                </bean>
+
+                <!-- JAXB XML -->
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <constructor-arg ref="xstreamMarshaller" />
+                    <property name="modelKey" value="data" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
 	<!-- 全局拦截器 -->
-	<mvc:interceptors>
-		<bean class="org.ionnic.core.support.Intercepter" />
-	</mvc:interceptors>
-
-	<!-- Configures the different content types the servlet can handle. -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="order" value="1" />
-		<property name="favorParameter" value="true" />
-		<property name="parameterName" value="format" />
-		<property name="ignoreAcceptHeader" value="false" />
-		<property name="favorPathExtension" value="true" />
-		<property name="defaultContentType" value="text/html" />
-		<property name="mediaTypes">
-			<map>
-				<entry key="json" value="application/json" />
-				<entry key="xml" value="application/xml" />
-				<entry key="html" value="text/html" />
-			</map>
-		</property>
-		<property name="viewResolvers">
-			<list>
-				<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-					<property name="order" value="1" />
-					<property name="suffix" value=".vm" />
-					<property name="layoutKey" value="layout" />
-					<property name="layoutUrl" value="/layout/blank.vm" />
-					<property name="contentType" value="text/html;charset=UTF-8" />
-					<property name="screenContentKey" value="SCREEN" />
-					<property name="requestContextAttribute" value="context" />
-					<property name="exposeRequestAttributes" value="true" />
-					<property name="exposeSpringMacroHelpers" value="true" />
-					<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
-				</bean>
-
-				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-					<property name="order" value="2" />
-					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-					<property name="prefix" value="/META-INF/jsp/" />
-					<property name="suffix" value=".jsp" />
-					<property name="contentType" value="text/html;charset=UTF-8" />
-					<property name="requestContextAttribute" value="context" />
-					<property name="alwaysInclude" value="true" />
-				</bean>
-			</list>
-		</property>
-
-		<property name="defaultViews">
-			<list>
-				<!-- JSON -->
-				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-					<property name="extractValueFromSingleKeyModel" value="true" />
-					<property name="contentType" value="application/json;charset=UTF-8" />
-				</bean>
-
-				<!-- JAXB XML -->
-				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-					<constructor-arg ref="xstreamMarshaller" />
-					<property name="modelKey" value="data" />
-				</bean>
-			</list>
-		</property>
-	</bean>
+    <mvc:interceptors>
+        <bean class="org.ionnic.core.support.Intercepter" />
+    </mvc:interceptors>
 
 	<!-- 默认配置 -->
-	<mvc:default-servlet-handler />
+    <mvc:default-servlet-handler />
 </beans>
-
-
-
-<!-- http://zachary-guo.iteye.com/blog/1318597 -->

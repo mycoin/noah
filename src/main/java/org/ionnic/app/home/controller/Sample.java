@@ -1,5 +1,9 @@
 package org.ionnic.app.home.controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,6 +23,7 @@ public class Sample {
 	public void index(Model model) {
 		this.getClass().getDeclaredMethods();
 		model.addAttribute("data", this.getClass().getName());
+		model.addAttribute("this", this);
 	}
 
 	@RequestMapping("/param")
@@ -26,9 +32,18 @@ public class Sample {
 	}
 
 	@RequestMapping("/velocity")
-	public String velocity(Model model) {
-		model.addAttribute("data", "1");
-		return "sample/velocity";
+	public void velocity(Model model) throws Exception {
+		model.addAttribute("data", 1);
+
+		String html = "";
+		File file = ResourceUtils.getFile("classpath:conf/spring-servlet.xml");
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file));// 考虑到编码格式
+		BufferedReader bufferedReader = new BufferedReader(read);
+		String lineTxt = null;
+		while ((lineTxt = bufferedReader.readLine()) != null) {
+			html += lineTxt + "\n";
+		}
+		model.addAttribute("html", html);
 	}
 
 	@RequestMapping("/rest")

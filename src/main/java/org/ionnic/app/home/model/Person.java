@@ -1,15 +1,9 @@
 package org.ionnic.app.home.model;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class Person {
 
 	private int id;
 
-	@NotNull
-	@NotEmpty
 	private String name;
 
 	private String organisation;
@@ -74,6 +68,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return String.format("name=%s, organisation=%s", this.name, this.organisation);
+		return String.format("name=%s, organisation=%s", this.name,
+				this.organisation);
 	}
 }
