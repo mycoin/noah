@@ -17,8 +17,8 @@ public void index(Model model) {
 }</pre></td>
 		</tr>
 		<tr>
-			<td width="80">baseDir:</td>
-			<td data-value="^/"><%=baseDir%></td>
+			<td width="80">过滤器:</td>
+			<td data-value="^org.ionnic"><%=request.getAttribute("filter")%></td>
 		</tr>
 		<tr>
 			<td>控制器:</td>
@@ -26,7 +26,19 @@ public void index(Model model) {
 		</tr>
 		<tr>
 			<td>拦截器:</td>
-			<td data-value="^org.ionnic"><%=request.getAttribute("intercepter")%></td>
+			<td data-value="^org.ionnic">
+			    <%=request.getAttribute("intercepter")%>
+                <form method="POST" STYLE="display:inline">
+                    <select name="method">
+                        <option value="DELETE">DELETE</option>
+                        <option value="GET">GET</option>
+                        <option value="PUT">PUT</option>
+                        <option value="POST">POST</option>
+                    </select>
+                    <input type="submit" value="提交"/>
+                    <%=request.getAttribute("hidden")%>
+                </form>
+			</td>
 		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>

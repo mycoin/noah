@@ -57,4 +57,22 @@ public class Sample {
 		model.addAttribute("statusInfo", "OK");
 		model.addAttribute("data", data);
 	}
+
+	@RequestMapping("/security")
+	public void security(Model model) {
+		model.addAttribute("status", 0);
+		model.addAttribute("statusInfo", "OK");
+	}
 }
+//
+//class Test {
+//	public static void main(String[] args) {
+//		WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+//		wac.getServletContext();
+//		wac.getClassLoader().getResource("");
+//
+//		for (String item : wac.getBeanDefinitionNames()) {
+//			System.out.println(item);
+//		}
+//	}
+//}

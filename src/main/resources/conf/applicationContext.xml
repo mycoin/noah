@@ -19,8 +19,7 @@
         configuration files:
         - security-context.xml
     </description>
-
-    <import resource="classpath:conf/applicationContext-filter.xml" />
+    
     <import resource="classpath:conf/applicationContext-config.xml" />
     <import resource="classpath:conf/applicationContext-security.xml" />
     <import resource="classpath:conf/applicationContext-cache.xml" />

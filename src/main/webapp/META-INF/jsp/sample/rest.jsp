@@ -11,17 +11,15 @@
 <body>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
-			<td colspan="2">
-			<pre><code class="java">@RequestMapping("/rest")
+			<td colspan="2"><pre><code class="java">@RequestMapping("/rest")
 public void rest(Model model) {
-    Map<String, Object> data = new HashMap<String, Object>();
+    Map<String , Object> data = new HashMap<String , Object>();
     data.put("id", 83961);
     ...
     model.addAttribute("status", 0);
     model.addAttribute("statusInfo", "OK");
     model.addAttribute("data", data);
-}
-</code></pre></td>
+}</code></pre></td>
 		</tr>
 		<tr class="error" id="format">
 			<td width="80">favorParam:</td>
@@ -30,42 +28,43 @@ public void rest(Model model) {
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>
 	<script>
-	jQuery.ajax({
-		url: "rest",
-		data: {
-			format: "json"
-		},
-		dataType: "text",
-		success: function(text){
-			jQuery.ajax({
-		        url: "rest.json",
-		        dataType: "text",
-		        success: function(inner){
-		            if(inner == text && text.indexOf("home.ionnic.org") > -1) {
-		            	jQuery.ajax({
-		                    url: "rest.xml",
-		                    dataType: "text",
-		                    success: function(text){
-		                        if(text.indexOf("</entry>") > -1) {
-		                        	jQuery("#format").removeClass("error");
-		                        }
-		                    }
-		                });
-		            }
-		        }
-		    });
-		}
-	});
-
-	jQuery('[href]').mousedown(function (e) {
 		jQuery.ajax({
-			url: this.href,
-			dataType: "html",
-			success: function (data) {
-	            alert(data);
-	        }	
+			url : "rest",
+			data : {
+				format : "json"
+			},
+			dataType : "text",
+			success : function(text) {
+				jQuery.ajax({
+					url : "rest.json",
+					dataType : "text",
+					success : function(inner) {
+						if (inner == text
+								&& text.indexOf("home.ionnic.org") > -1) {
+							jQuery.ajax({
+								url : "rest.xml",
+								dataType : "text",
+								success : function(text) {
+									if (text.indexOf("</entry>") > -1) {
+										jQuery("#format").removeClass("error");
+									}
+								}
+							});
+						}
+					}
+				});
+			}
 		});
-	});
+
+		jQuery('[href]').mousedown(function(e) {
+			jQuery.ajax({
+				url : this.href,
+				dataType : "html",
+				success : function(data) {
+					alert(data);
+				}
+			});
+		});
 	</script>
 </body>
 </html>

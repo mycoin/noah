@@ -44,13 +44,9 @@
 
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/plain;charset=UTF-8</value>
-                    </list>
-                </property>
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.ionnic.core.support.layer.JsonHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json" />
             </bean>
         </mvc:message-converters>
         <mvc:return-value-handlers>

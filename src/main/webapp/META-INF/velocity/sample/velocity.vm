@@ -24,10 +24,7 @@ public String velocity(Model model) {
         <tr>
             <td>拦截器:</td>
             <td>
-                <form method="POST">
-                    <input type="text" name="method" value="put" /> 
-                    <input type="submit" value="提交"/>
-                </form>
+                
             </td>
         </tr>
     </table>
