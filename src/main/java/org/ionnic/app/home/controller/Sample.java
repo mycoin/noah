@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,15 @@ public class Sample {
 	Logger logger = LoggerFactory.getLogger(Sample.class);
 
 	@RequestMapping("/index")
-	public void index(Model model) {
-		this.getClass().getDeclaredMethods();
-		model.addAttribute("data", this.getClass().getName());
-		model.addAttribute("this", this);
+	public void index(Model model, HttpServletRequest req) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("method", req.getMethod());
+		data.put("filter", req.getAttribute("filter"));
+		data.put("intercepter", req.getAttribute("intercepter"));
+		data.put("controller", this.getClass().getName());
+		
+		model.addAttribute("data", data);
 	}
 
 	@RequestMapping("/param")
@@ -65,14 +72,14 @@ public class Sample {
 	}
 }
 //
-//class Test {
-//	public static void main(String[] args) {
-//		WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
-//		wac.getServletContext();
-//		wac.getClassLoader().getResource("");
+// class Test {
+// public static void main(String[] args) {
+// WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+// wac.getServletContext();
+// wac.getClassLoader().getResource("");
 //
-//		for (String item : wac.getBeanDefinitionNames()) {
-//			System.out.println(item);
-//		}
-//	}
-//}
+// for (String item : wac.getBeanDefinitionNames()) {
+// System.out.println(item);
+// }
+// }
+// }

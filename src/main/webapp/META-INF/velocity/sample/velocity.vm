@@ -8,12 +8,6 @@
 <body>
     <table class="c-table" border="1" cellspacing="1" cellpadding="2">
         <tr>
-            <td colspan="2"><pre class="java">@RequestMapping("/velocity")
-public String velocity(Model model) {
-    model.addAttribute("data", "1");
-}</pre></td>
-        </tr>
-        <tr>
             <td width="80">Tools:</td>
             <td data-value="[\w-]{36}">$util.getGuid()</td>
         </tr>
@@ -28,33 +22,27 @@ public String velocity(Model model) {
             </td>
         </tr>
     </table>
+<pre>
+    $view.getRequest()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</pre>
     <script src="$context.getContextUrl('/static/sample.js')"></script>
-    #includeExternal("ad")
+    ##includeExternal("ad")
 </body>
 </html>
-
-#*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$page.addStyleSheet("http://style.c.aliimg.com/fdevlib/css/lofty/ui/theme/1.0/back/variables.css")
-$page.addStyleSheet("http://style.c.aliimg.com/fdevlib/css/lofty/ui/button/1.0/front/button-min.css")
-
-$page.addScript("http://style.c.aliimg.com/app/baoming/power-join/page/open/index.js")
-$page.addScript("http://style.c.aliimg.com/app/baoming/power-join/page/open/global.js")
-$page.addScript("http://style.c.aliimg.com/app/baoming/power-join/page/is.js")
-
-$page.showScript()
-$page.showStylesheet()
-*#

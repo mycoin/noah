@@ -11,37 +11,49 @@
 <body>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
-			<td colspan="2"><pre class="java">@RequestMapping("/sample/index")
-public void index(Model model) {
-    model.addAttribute("data", this);
-}</pre></td>
-		</tr>
-		<tr>
 			<td width="80">过滤器:</td>
-			<td data-value="^org.ionnic"><%=request.getAttribute("filter")%></td>
+			<td data-value="^org.ionnic">${data.filter}</td>
 		</tr>
 		<tr>
 			<td>控制器:</td>
-			<td data-value="^org.ionnic">${data}</td>
+			<td data-value="^org.ionnic">${data.controller}</td>
 		</tr>
 		<tr>
 			<td>拦截器:</td>
 			<td data-value="^org.ionnic">
-			    <%=request.getAttribute("intercepter")%>
-                <form method="POST" STYLE="display:inline">
-                    <select name="method">
-                        <option value="DELETE">DELETE</option>
+			    ${data.intercepter}
+			    <form method="POST" id="form" STYLE="display:inline">
+                    <select name="method" id="method">
                         <option value="GET">GET</option>
-                        <option value="PUT">PUT</option>
                         <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
                     </select>
-                    <input type="submit" value="提交"/>
-                    <%=request.getAttribute("hidden")%>
+                    method is "${data.method}"
                 </form>
 			</td>
 		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+			url : 'index.json',
+			type : 'DELETE',
+			success: function(data){
+			    if(data.method !== "DELETE") {
+			    	$('#method').css('background', 'red');
+			    }
+			},
+			error : function() {
+			    $('#method').css('background', 'red');
+			}
+		});
+		
+		$('#method').val('${data.method}');
+		$('#method').change(function() {
+			$('#form').submit();
+		});
+	</script>
 </body>
 </html>
 
