@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.velocity.tools.generic.RenderTool;
 
-public class pageTool extends RenderTool {
+public class PageTool extends RenderTool {
 	private Map<String, List<Object>> cacheMap = new HashMap<String, List<Object>>();
 
 	/**
