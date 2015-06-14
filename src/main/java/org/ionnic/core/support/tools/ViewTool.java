@@ -1,5 +1,6 @@
 package org.ionnic.core.support.tools;
 
+import java.io.File;
 import java.io.StringWriter;
 import java.util.Properties;
 
@@ -7,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.context.Context;
+import org.ionnic.core.support.Config;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -17,7 +20,22 @@ public class ViewTool {
 
 	private HttpServletRequest request;
 
-	private static Properties config;
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getConfig(String key) {
+		return getConfig(key, "");
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getConfig(String key, String defaultValue) {
+		Properties p = Config.getViewConfig();
+		return p.getProperty(key, defaultValue);
+	}
 
 	/**
 	 * @return
@@ -30,14 +48,6 @@ public class ViewTool {
 			request = servletRequestAttr.getRequest();
 		}
 		return request;
-	}
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public String getConfig(String key) {
-		return config.getProperty(key, "");
 	}
 
 	/**
@@ -55,7 +65,7 @@ public class ViewTool {
 	 * @return
 	 * @throws Exception
 	 */
-	protected String internalEval(Context context, String content) throws Exception {
+	public String internalEval(Context context, String content) throws Exception {
 		if (content == null) {
 			return null;
 		}

@@ -16,14 +16,6 @@
             <value>/META-INF/velocity</value>
         </property>
     </bean>
-    
-    <!-- Freemarker配置 -->
-    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="configLocation" value="/WEB-INF/freemarker.properties" />
-        <property name="templateLoaderPath">
-            <value>/META-INF/freemarker</value>
-        </property>
-    </bean>
 
     <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
         <property name="autodetectAnnotations" value="true" />
@@ -86,17 +78,6 @@
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                     <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
                 </bean>
-                <!-- 
-                <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-                    <property name="order" value="2" />
-
-                    <property name="suffix" value=".ftl" />
-                    <property name="contentType" value="text/html;charset=UTF-8" />
-                    <property name="requestContextAttribute" value="context" />
-                    <property name="exposeSpringMacroHelpers" value="true" />
-                    <property name="exposeRequestAttributes" value="true" />
-                    <property name="exposeSessionAttributes" value="true" />
-                </bean> -->
 
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="order" value="3" />

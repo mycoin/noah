@@ -23,6 +23,10 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+ 
 
 	<!-- 过滤器 -->
     <filter>
@@ -50,7 +54,7 @@
         <filter-name>ControlFilter</filter-name>
         <servlet-name>DispatherServlet</servlet-name>
     </filter-mapping>
-    
+
     <filter-mapping>
         <filter-name>DispatherFilter</filter-name>
         <servlet-name>DispatherServlet</servlet-name>

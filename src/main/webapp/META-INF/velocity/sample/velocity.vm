@@ -12,8 +12,10 @@
             <td data-value="[\w-]{36}">$util.getGuid()</td>
         </tr>
         <tr>
-            <td>控制器:</td>
-            <td data-value="1">${data}</td>
+            <td>配置项:</td>
+            <td data-value="ionnic">
+                $view.getConfig("domain")
+            </td>
         </tr>
         <tr>
             <td>拦截器:</td>
@@ -22,16 +24,6 @@
             </td>
         </tr>
     </table>
-<pre>
-    $view.getRequest().getContextPath()
-    $view.getUrl("page/utl")
-    
-    $view.getConfig("domain")
-    
-    
-    
-    
-</pre>
     <script src="$context.getContextUrl('/static/sample.js')"></script>
     ##includeExternal("ad")
 </body>
