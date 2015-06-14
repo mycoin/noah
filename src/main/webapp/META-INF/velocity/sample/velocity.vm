@@ -23,20 +23,10 @@
         </tr>
     </table>
 <pre>
-    $view.getRequest()
+    $view.getRequest().getContextPath()
+    $view.getUrl("page/utl")
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    $view.getConfig("domain")
     
     
     
