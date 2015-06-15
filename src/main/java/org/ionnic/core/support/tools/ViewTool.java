@@ -1,15 +1,14 @@
 package org.ionnic.core.support.tools;
 
-import java.io.File;
 import java.io.StringWriter;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.context.Context;
 import org.ionnic.core.support.Config;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,6 +18,8 @@ public class ViewTool {
 	public static final String DEFAULT_KEY = "view";
 
 	private HttpServletRequest request;
+
+	private HttpSession session;
 
 	/**
 	 * @param key
@@ -35,6 +36,14 @@ public class ViewTool {
 	public String getConfig(String key, String defaultValue) {
 		Properties p = Config.getViewConfig();
 		return p.getProperty(key, defaultValue);
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String get(String key) {
+		return getConfig(key, null);
 	}
 
 	/**
@@ -77,5 +86,16 @@ public class ViewTool {
 			return sw.toString();
 		}
 		return null;
+	}
+
+	/**
+	 * @return
+	 */
+	public HttpSession getSession() {
+		if (null == session) {
+			HttpServletRequest req = getRequest();
+			session = req.getSession();
+		}
+		return session;
 	}
 }
