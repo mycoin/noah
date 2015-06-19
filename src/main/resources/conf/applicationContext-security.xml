@@ -18,8 +18,7 @@
         file can be copied to replicate the security configuration.
     </beans:description>
  
-	<!-- Create the auth restrictions. create-session="stateless" means that a session will never be created, the user will
-		have to send auth credentials each time. -->
+	<!-- 安全配置 -->
     <http create-session="stateless" auto-config="true">
         <port-mappings>
             <port-mapping http="8080" https="8443" />
@@ -32,7 +31,7 @@
         <http-basic />
     </http>
 
-	<!-- Manages users. -->
+	<!-- 认证管理 -->
     <authentication-manager>
         <authentication-provider>
 			<!-- Lists the user names, password, and authorities of our users. In a real app, this would be linked to a database of
@@ -45,4 +44,5 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
+    
 </beans:beans>

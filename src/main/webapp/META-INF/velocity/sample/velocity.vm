@@ -8,25 +8,21 @@
 <body>
     <table class="c-table" border="1" cellspacing="1" cellpadding="2">
         <tr>
-            <td width="80">Tools:</td>
+            <td width="80">getGuid:</td>
             <td data-value="[\w-]{36}">$util.getGuid()</td>
         </tr>
         <tr>
             <td>配置项:</td>
             <td data-value="ionnic">
-                $view.getConfig("domain")
-                $view.request
-                $view.session
+                $view.getConfig("domain"), $view.site
             </td>
         </tr>
         <tr>
-            <td>拦截器:</td>
-            <td>
-                
-            </td>
+            <td>外部模板:</td>
+            <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
     <script src="$context.getContextUrl('/static/sample.js')"></script>
-    ##includeExternal("ad")
+    
 </body>
 </html>

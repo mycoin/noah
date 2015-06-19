@@ -43,7 +43,7 @@ public class Sample {
 		model.addAttribute("data", 1);
 
 		String html = "";
-		File file = ResourceUtils.getFile("classpath:conf/spring-servlet.xml");
+		File file = ResourceUtils.getFile("classpath:conf/README.txt");
 		InputStreamReader read = new InputStreamReader(new FileInputStream(file));// 考虑到编码格式
 		BufferedReader bufferedReader = new BufferedReader(read);
 		String lineTxt = null;

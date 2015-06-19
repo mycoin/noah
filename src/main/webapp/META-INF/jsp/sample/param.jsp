@@ -22,12 +22,8 @@ public void param(String name, Model model) {
 			<td data-value="/spring-mvc"><%=baseDir%></td>
 		</tr>
 		<tr>
-			<td>@name:</td>
+			<td>[name]:</td>
 			<td data-value="2345">${data}</td>
-		</tr>
-		<tr>
-			<td>拦截器:</td>
-			<td data-value="org.ionnic.core.support.Intercepter">${control}</td>
 		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>

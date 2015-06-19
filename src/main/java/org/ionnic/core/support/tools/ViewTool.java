@@ -20,6 +20,8 @@ public class ViewTool {
 	private HttpServletRequest request;
 
 	private HttpSession session;
+	
+	Config config = Config.getInstance();
 
 	/**
 	 * @param key
@@ -34,7 +36,7 @@ public class ViewTool {
 	 * @return
 	 */
 	public String getConfig(String key, String defaultValue) {
-		Properties p = Config.getViewConfig();
+		Properties p = config.getViewConfig();
 		return p.getProperty(key, defaultValue);
 	}
 

@@ -2,11 +2,9 @@ package org.ionnic.core.support.layer;
 
 import org.springframework.core.io.Resource;
 
-public class InternalConfig {
+public class ConfigInitWrapper {
 
 	private Resource[] viewConfig;
-
-	private String encoding;
 
 	public Resource[] getViewConfig() {
 		return viewConfig;
@@ -24,4 +22,5 @@ public class InternalConfig {
 		this.encoding = encoding;
 	}
 
+	private String encoding;
 }
