@@ -14,7 +14,7 @@
         <tr>
             <td>配置项:</td>
             <td data-value="ionnic">
-                $view.getConfig("domain"), $view.site
+                $view.getConfig("domain"), $view.mail
             </td>
         </tr>
         <tr>
