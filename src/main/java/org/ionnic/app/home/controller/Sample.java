@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.support.ServletContextResource;
 
 @Controller
 @RequestMapping("/sample")
@@ -24,12 +27,12 @@ public class Sample {
 	@RequestMapping("/index")
 	public void index(Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();
-		
+
 		data.put("method", req.getMethod());
 		data.put("filter", req.getAttribute("filter"));
 		data.put("intercepter", req.getAttribute("intercepter"));
 		data.put("controller", this.getClass().getName());
-		
+
 		model.addAttribute("data", data);
 	}
 
