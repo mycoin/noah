@@ -1,4 +1,4 @@
-package org.ionnic.core.support.layer;
+package org.ionnic.core.support.filter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

@@ -24,27 +24,12 @@ public class VelocityTool {
 	 * @param {String} string
 	 * @return string
 	 */
-	public static String encodeUrl(String string) {
+	public static String encodeUrl(Object string) {
 		try {
 			return URLEncoder.encode(trim(string), "utf-8");
 		} catch (Exception e) {
 			return "";
 		}
-	}
-	
-	/**
-	 * 字符串替换函数
-	 * 
-	 * @public
-	 * @param {String} source 目标字符串
-	 * @param {String} pattern 正则源码
-	 * @param {String} dest 替换值
-	 * @return string result
-	 */
-	public static String replaceAll(String source, String pattern, String dest) {
-		Matcher match = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(source);
-		source = match.replaceAll(dest);
-		return source;
 	}
 
 	/**
@@ -53,16 +38,20 @@ public class VelocityTool {
 	 * @param {String} source
 	 * @return
 	 */
-	public static String escapeInH(String source) {
-		if (null == source) {
+	public static String escapeInH(String subject) {
+		if (null == subject) {
 			return "";
-		}
-		source = source.replaceAll("\\&", "&amp;");
-		source = source.replaceAll("\\\"", "&quot;");
-		source = source.replaceAll("\\<", "&lt;");
-		source = source.replaceAll("\\>", "&gt;");
+		} else {
+			String source = subject.toString();
 
-		return source;
+			source = source.replaceAll("\\&", "&amp;");
+			source = source.replaceAll("\\\"", "&quot;");
+			source = source.replaceAll("\\<", "&lt;");
+			source = source.replaceAll("\\>", "&gt;");
+
+			return source;
+		}
+
 	}
 
 	/**
@@ -76,7 +65,7 @@ public class VelocityTool {
 		if (null == subject) {
 			return "";
 		} else {
-			StringBuffer sb = new StringBuffer();
+			StringBuffer buffer = new StringBuffer();
 			String source = subject.toString();
 			int length = source.length();
 
@@ -84,29 +73,29 @@ public class VelocityTool {
 				char c = source.charAt(i);
 				switch (c) {
 				case 39:
-					sb.append("\\'");
+					buffer.append("\\'");
 					break;
 				case 34:
-					sb.append("\\\"");
+					buffer.append("\\\"");
 					break;
 				case 47:
-					sb.append("\\/");
+					buffer.append("\\/");
 					break;
 				case 92:
-					sb.append("\\\\");
+					buffer.append("\\\\");
 					break;
 				case 13:
-					sb.append("\\r");
+					buffer.append("\\r");
 					break;
 				case 10:
-					sb.append("\\n");
+					buffer.append("\\n");
 					break;
 				default:
-					sb.append(c);
+					buffer.append(c);
 					break;
 				}
 			}
-			return sb + "";
+			return buffer.toString();
 		}
 	}
 
@@ -121,17 +110,18 @@ public class VelocityTool {
 		String format = null;
 		if ("now".equalsIgnoreCase(string)) {
 			return new Date();
-		}
-		if (string.indexOf(':') > 0) {
-			format = "yyyy-MM-dd HH:mm:ss";
 		} else {
-			format = "yyyy-MM-dd";
-		}
-		string = string.replaceAll("/", "-");
-		try {
-			return new SimpleDateFormat(format, Locale.CHINA).parse(string);
-		} catch (ParseException e) {
-			return null;
+			if (string.indexOf(':') > 0) {
+				format = "yyyy-MM-dd HH:mm:ss";
+			} else {
+				format = "yyyy-MM-dd";
+			}
+			string = string.replaceAll("/", "-");
+			try {
+				return new SimpleDateFormat(format).parse(string);
+			} catch (ParseException e) {
+				return null;
+			}
 		}
 	}
 
@@ -157,16 +147,32 @@ public class VelocityTool {
 	}
 
 	/**
+	 * 字符串替换函数
+	 * 
+	 * @public
+	 * @param {String} source 目标字符串
+	 * @param {String} pattern 正则源码
+	 * @param {String} dest 替换值
+	 * @return string result
+	 */
+	public static String replaceAll(String source, String pattern, String dest) {
+		Matcher match = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(source);
+		source = match.replaceAll(dest);
+		return source;
+	}
+
+	/**
 	 * 从字符串中去除 HTML标记
 	 * 
 	 * @public
 	 * @param {String} html
 	 * @return text
 	 */
-	public static String stripTags(String source) {
-		if (null == source) {
+	public static String stripTags(Object subject) {
+		if (null == subject) {
 			return "";
 		}
+		String source = subject.toString();
 		return source.replaceAll("\\<.*?>", "");
 	}
 
@@ -219,7 +225,8 @@ public class VelocityTool {
 	 * @param {String} tail 追加字符串
 	 * @return string
 	 */
-	public static String truncate(String target, int maxLength, String tail) {
+	public static String truncate(Object subject, int maxLength, String tail) {
+		String target = subject.toString();
 		if (target == null || target.length() <= maxLength) {
 			return target;
 		}

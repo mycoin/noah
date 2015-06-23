@@ -20,7 +20,7 @@ public class ViewTool {
 	private HttpServletRequest request;
 
 	private HttpSession session;
-	
+
 	Config config = Config.getInstance();
 
 	/**

@@ -1,4 +1,4 @@
-package org.ionnic.core.support.layer;
+package org.ionnic.core.support.converters;
 
 import java.io.IOException;
 
@@ -12,20 +12,16 @@ public class JsonHttpMessageConverter extends AbstractHttpMessageConverter<Objec
 
 	@Override
 	protected boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

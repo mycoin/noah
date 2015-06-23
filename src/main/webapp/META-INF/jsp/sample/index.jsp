@@ -33,6 +33,10 @@
                 </form>
 			</td>
 		</tr>
+		<tr id="security">
+            <td>安全配置:</td>
+            <td id="security-text"></td>
+        </tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>
 	<script type="text/javascript">
@@ -52,6 +56,21 @@
 		$('#method').val('${data.method}');
 		$('#method').change(function() {
 			$('#form').submit();
+		});
+		
+		$.ajax({
+			url : 'security.json',
+			username : 'local',
+			dataType : 'html',
+			password : '1',
+			type : "GET",
+			success : function(data) {
+				console.log(data)
+				$('#security-text').html(data);
+				if (data.indexOf("statusInfo") == -1) {
+					$('#security').css('background', 'red');
+				}
+			}
 		});
 	</script>
 </body>

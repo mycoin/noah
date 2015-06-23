@@ -37,7 +37,7 @@
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
-            <bean class="org.ionnic.core.support.layer.JsonHttpMessageConverter">
+            <bean class="org.ionnic.core.support.converters.JsonHttpMessageConverter">
                 <property name="supportedMediaTypes" value="application/json" />
             </bean>
         </mvc:message-converters>
@@ -112,7 +112,7 @@
     <mvc:interceptors>
         <bean class="org.ionnic.core.support.Intercepter" />
     </mvc:interceptors>
-
+    
 	<!-- 默认配置 -->
     <mvc:default-servlet-handler />
 </beans>

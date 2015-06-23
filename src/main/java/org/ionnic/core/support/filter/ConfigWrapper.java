@@ -1,11 +1,11 @@
-package org.ionnic.core.support.layer;
+package org.ionnic.core.support.filter;
 
 /**
  * 过滤器配置信息
  * 
  * @author apple
  */
-public class FilterProxyConfig {
+public class ConfigWrapper {
 
 	private boolean ignoreHiddenMethod = true;
 

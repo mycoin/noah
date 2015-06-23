@@ -23,6 +23,5 @@
         </tr>
     </table>
     <script src="$context.getContextUrl('/static/sample.js')"></script>
-    
 </body>
 </html>

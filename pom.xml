@@ -69,11 +69,6 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springSecurityVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>4.0.0.RELEASE</version>
-        </dependency>
         
 		<!-- MySql Connector -->
         <dependency>

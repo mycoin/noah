@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/security/spring-security-3.0.xsd">
     
     <!-- 全局过滤器 -->
-    <bean name="internalFilter" class="org.ionnic.core.support.layer.FilterProxyConfig">
+    <bean name="internalFilter" class="org.ionnic.core.support.filter.ConfigWrapper">
         <property name="ignoreHiddenMethod" value="false" />
         <property name="hiddenMethodParam" value="method" />
         <property name="encoding" value="utf-8" />
