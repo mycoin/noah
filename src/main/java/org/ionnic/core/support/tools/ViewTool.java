@@ -22,7 +22,7 @@ public class ViewTool {
 	private HttpSession session;
 
 	Config config = Config.getInstance();
-
+	
 	/**
 	 * @param key
 	 * @return
@@ -30,6 +30,11 @@ public class ViewTool {
 	public String getConfig(String key) {
 		return getConfig(key, "");
 	}
+	
+	public void init(String r) {
+	    // TODO Auto-generated method stub
+		System.out.println(r);
+    }
 
 	/**
 	 * @param key

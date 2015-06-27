@@ -18,10 +18,21 @@
             </td>
         </tr>
         <tr>
+            <td>上下文:</td>
+            <td data-value="ionnic">
+                $context.getRequestUri()
+            </td>
+        </tr>
+        <tr>
             <td>外部模板:</td>
             <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
+    <pre>
+    $request
+    $context.getWebApplicationContext().getNamespace()
+    $request.getSession()
+    </pre>
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>

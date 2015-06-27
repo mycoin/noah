@@ -69,22 +69,19 @@
 
                     <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="suffix" value=".vm" />
-                    <property name="layoutKey" value="layout" />
-                    <property name="layoutUrl" value="/layout/blank.vm" />
                     <property name="screenContentKey" value="screen" />
                     <property name="requestContextAttribute" value="context" />
                     <property name="exposeRequestAttributes" value="true" />
                     <property name="exposeSpringMacroHelpers" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
-                    <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
                 </bean>
 
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="order" value="3" />
+                    <property name="contentType" value="text/html;charset=UTF-8" />
 
                     <property name="prefix" value="/META-INF/jsp/" />
                     <property name="suffix" value=".jsp" />
-                    <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="requestContextAttribute" value="context" />
                     <property name="alwaysInclude" value="true" />
                 </bean>
