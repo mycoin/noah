@@ -13,7 +13,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public class ViewTool {
+public class ViewUtil {
 
 	public static final String DEFAULT_KEY = "view";
 
@@ -22,7 +22,7 @@ public class ViewTool {
 	private HttpSession session;
 
 	Config config = Config.getInstance();
-	
+
 	/**
 	 * @param key
 	 * @return
@@ -30,11 +30,11 @@ public class ViewTool {
 	public String getConfig(String key) {
 		return getConfig(key, "");
 	}
-	
+
 	public void init(String r) {
-	    // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		System.out.println(r);
-    }
+	}
 
 	/**
 	 * @param key
@@ -104,5 +104,10 @@ public class ViewTool {
 			session = req.getSession();
 		}
 		return session;
+	}
+
+	@Override
+	public String toString() {
+		return "";
 	}
 }

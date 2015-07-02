@@ -1,10 +1,11 @@
-#setLayout('blank')
+#startup()
 <!doctype html>
 <html>
 <head>
 <title>sample/index</title>
 <link rel="stylesheet" href="$context.getContextUrl('/static/sample.css')">
 </head>
+##block("end")
 <body>
     <table class="c-table" border="1" cellspacing="1" cellpadding="2">
         <tr>
@@ -14,7 +15,7 @@
         <tr>
             <td>配置项:</td>
             <td data-value="ionnic">
-                $view.getConfig("domain"), $view.mail
+                $page.getConfig("domain"), $page.mail
             </td>
         </tr>
         <tr>
@@ -28,11 +29,12 @@
             <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
-    <pre>
-    $request
-    $context.getWebApplicationContext().getNamespace()
-    $request.getSession()
-    </pre>
+    配置 $page.getConfig("domain")
+    ##$page.getResponse().getWriter().append("2")
+    
+    ## $request
+    ## $context.getWebApplicationContext().getNamespace()
+    ## $request.getSession()
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>

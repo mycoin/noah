@@ -11,12 +11,17 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.ionnic.core.support.Config;
+
 /**
  * 模板用到的基本函数
  * 
  * @author apple
+ * @param <E>
  */
-public class VelocityTool {
+public class StringUtil {
+
+	public static String DEFAULT_CHARSET = Config.CHARSET;
 
 	/**
 	 * 编码 URL 字符串
@@ -26,7 +31,7 @@ public class VelocityTool {
 	 */
 	public static String encodeUrl(Object string) {
 		try {
-			return URLEncoder.encode(trim(string), "utf-8");
+			return URLEncoder.encode(trim(string), DEFAULT_CHARSET);
 		} catch (Exception e) {
 			return "";
 		}
@@ -38,7 +43,7 @@ public class VelocityTool {
 	 * @param {String} source
 	 * @return
 	 */
-	public static String escapeInH(String subject) {
+	public static String escapeInH(Object subject) {
 		if (null == subject) {
 			return "";
 		} else {
@@ -135,15 +140,30 @@ public class VelocityTool {
 	}
 
 	/**
+	 * 判空自动填充功能
+	 * 
+	 * @public
+	 * @param string
+	 * @return
+	 */
+	public static Object getValue(Object value, Object defaultValue) {
+		if (null == value) {
+			return defaultValue;
+		} else {
+			return value;
+		}
+	}
+
+	/**
 	 * 判断是否空字符串，无效字符串
 	 * 
 	 * @public
 	 * @param string
 	 * @return
 	 */
-	public static boolean isBlank(String source) {
-		source = trim(source);
-		return "".equals(source);
+	public static boolean isBlank(Object source) {
+		String tmp = trim(source);
+		return tmp.length() > 0;
 	}
 
 	/**

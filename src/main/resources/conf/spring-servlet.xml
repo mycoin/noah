@@ -13,7 +13,7 @@
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/META-INF/velocity</value>
+            <value>/META-INF/velocity,/META-INF/velocity/common</value>
         </property>
     </bean>
 

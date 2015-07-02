@@ -50,6 +50,7 @@ public class Sample {
 		while ((lineTxt = bufferedReader.readLine()) != null) {
 			html += lineTxt + "\n";
 		}
+		
 		model.addAttribute("html", html);
 	}
 

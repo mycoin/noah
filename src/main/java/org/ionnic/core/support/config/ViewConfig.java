@@ -2,7 +2,7 @@ package org.ionnic.core.support.config;
 
 import org.springframework.core.io.Resource;
 
-public class InitWrapper {
+public class ViewConfig {
 
 	private Resource[] viewConfig;
 
