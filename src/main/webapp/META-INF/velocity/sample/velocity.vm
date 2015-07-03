@@ -29,7 +29,19 @@
             <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
-    配置 $page.getConfig("domain")
+    
+    
+    $util
+    
+    
+    $page.getConfig("domain")
+    $page.external("ad")
+    $page.eval(
+        '#foreach($item in $array)\n\n$util.getDate("now")\n#end', {
+        "array": [1,2,3,4],
+        "name" : 12
+    })
+    
     ##$page.getResponse().getWriter().append("2")
     
     ## $request
