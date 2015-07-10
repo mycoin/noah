@@ -30,7 +30,10 @@ public class PageUtil {
 	 * @return
 	 */
 	private String escapeTemplate(String template) {
-
+		template = template.replace("\\\"", "'");
+		template = template.replace("\\n", "\n");
+		template = template.replace("\\'", "\"");
+		template = template.replace("\\t", "\t");
 		return template;
 	}
 
@@ -46,7 +49,6 @@ public class PageUtil {
 		// auto escape template
 		if (viewConfig.getTripMode() == ViewConfig.AUTO_ESCAPE) {
 			template = escapeTemplate(template);
-			System.out.println(template);
 		}
 
 		if (true == internalEval(writer, context, template, false)) {

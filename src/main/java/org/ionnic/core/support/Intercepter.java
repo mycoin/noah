@@ -1,5 +1,6 @@
 package org.ionnic.core.support;
 
+import java.io.Writer;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -46,7 +47,9 @@ public class Intercepter implements HandlerInterceptor {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
+		Writer e = response.getWriter();
+		
+		System.out.println(e.toString());
 	}
 
 }

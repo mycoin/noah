@@ -18,7 +18,7 @@ mvn jetty:run
 or 
 
 Import the project as a maven project into your IDE of choice. 
-Run the class `org.ionnic.app.Main`. 
+Run the class `org.ionnic.app.Main`
 
 then open <http://localhost:8080/spring-mvc/>
 
@@ -36,30 +36,11 @@ There are three ways of requesting a specific type of response:
 URLs the servlet responds to:
 
 + `/hello` - responds with the text Hello.
-+ `/welcome` - Either a get or post request will work. If there is a name parameter in the request, the value of the name parameter will be 
-		included in the welcome response. 
-+ `/people` - This path will only respond to GET requests. The response format can be changed from the default of json to xml by using one of the 
++ `/welcome` - Either a get or post request will work. If there is a name parameter in the request, the value of the name parameter will be included in the welcome response. 
++ `/secure` - This path will only respond to GET requests. The response format can be changed from the default of json to xml by using one of the 
 	three methods listed above. The response is a description of a person object in json or xml.  
 	The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `admin` and the password is `12345`.
 
-	Example URLs:
-
-* <http://localhost:8088/spring-mvc/people/search?name=doe>
-* <http://localhost:8088/spring-mvc/people/search.xml?name=doe>
-* <http://localhost:8088/spring-mvc/people/search.json?name=doe>
-* <http://localhost:8088/spring-mvc/people>
-* <http://localhost:8088/spring-mvc/people.json>
-* <http://localhost:8088/spring-mvc/people.xml>
-* <http://localhost:8088/spring-mvc/people/1>
-* <http://localhost:8088/spring-mvc/people/1.xml>
-* <http://localhost:8088/spring-mvc/people/1.json>
-* <http://localhost:8088/spring-mvc/people> - Use POST with a body and appropriate content type to create a new person.
-* <http://localhost:8088/spring-mvc/people/1> - with PUT request and a updated person object
-* <http://localhost:8088/spring-mvc/people/1.xml> - with PUT request and a updated person object    
-* <http://localhost:8088/spring-mvc/people/1.json> - with PUT request and a updated person object
-* <http://localhost:8088/spring-mvc/people/1> - DELETE request
-* <http://localhost:8088/spring-mvc/people/1.json> - DELETE request
-* <http://localhost:8088/spring-mvc/people/1.xml> - DELETE request
 
 ### Features
 
@@ -71,12 +52,6 @@ URLs the servlet responds to:
 * Security configuration isolated to a single file.
 * Comments with explanations of why some features were implemented a certain way.
 
-
-### JSR-303 Bean Validation API
-
-This project uses the hibernate implementation of JSR-303. In the WelcomeController class, the addPerson method includes a @Valid annotation in front of the person parameter. This tells Spring that it should validate the new person object using the validation annotations on the Person class. 
-
-
 ### HttpMessageConverters
 
 HttpMessageConverters is the magic that provides automatic conversion of Java objects to XML and JSON. In the rest-demo-servlet.xml, the 
@@ -87,19 +62,6 @@ Jackson library is on the classpath, then a JSON converter will be created. We a
 ### Main.java
 
 This is the class that runs an embedded Jetty server with the servlet. 
-
-### WelcomeController.java
-
-This is responsible for handling the various requests. Methods are annotated with `@RequestMapping` which indicates which url paths each method can handle, as well as what http request methods are supported. Each `@RequestMapping` method has logic to handle a particular operation on the people service. 
-There are also two error handling methods (annotated with `@ExceptionHandler`) to deal with the situation where the input data is not valid and we need to show the user a description of the error.
-
-How to check the Controller method
-----------------------------------
-
-The URL paths are hard to explore in a browser as you cannot easily control the type of request made and the request body. Firefox and Chrome both have plugins to assist with making requests to REST services. 
-
-The client used to test this demo during development is rest-client, available from http://code.google.com/p/rest-client/. It is written in Java, and is cross platform. It has support for all HTTP request methods, as well as custom headers and setting the request body.
-
 
 
 TODO
