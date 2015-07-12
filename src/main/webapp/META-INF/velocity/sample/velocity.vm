@@ -5,8 +5,6 @@
 <title>sample/index</title>
 <link rel="stylesheet" href="$context.getContextUrl('/static/sample.css')">
 </head>
-##block("end")
-$context
 <body>
     <table class="c-table" border="1" cellspacing="1" cellpadding="2">
         <tr>
@@ -31,21 +29,23 @@ $context
         </tr>
     </table>
     
-    $util
-    
     $page.getConfig("domain")
     $page.external("ad")
+
+    #*
     $page.eval(
         '#foreach($item in $array)\t$name:$util.toLocateDate("default")\n#end', {
         "array": [1,2,3,4],
         "name" : 12
     })
+    *#
+    ---------
+    $context
+    $page
+    $response
+    $session
+    $application
     
-    ##$page.getResponse().getWriter().append("2")
-    
-    ## $request
-    ## $context.getWebApplicationContext().getNamespace()
-    ## $request.getSession()
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>

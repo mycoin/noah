@@ -68,12 +68,17 @@ public class RestUrlRewriteFilter extends OncePerRequestFilter implements Filter
 	private Set<String> excludeExtentions = new HashSet<String>();
 	private String[] excludePrefixes = new String[0];
 
-	protected void initFilterBean() throws ServletException {
-		try {
-			initParameter(getFilterConfig());
-		} catch (IOException e) {
-			throw new ServletException("init paramerter error", e);
+	private boolean getBooleanParameter(FilterConfig filterConfig, String name, boolean defaultValue) {
+		String value = getStringParameter(filterConfig, name, String.valueOf(defaultValue));
+		return Boolean.parseBoolean(value);
+	}
+
+	private String getStringParameter(FilterConfig filterConfig, String name, String defaultValue) {
+		String value = filterConfig.getInitParameter(name);
+		if (value == null || "".equals(value.trim())) {
+			return defaultValue;
 		}
+		return value;
 	}
 
 	private void initParameter(FilterConfig filterConfig) throws IOException {
@@ -93,24 +98,6 @@ public class RestUrlRewriteFilter extends OncePerRequestFilter implements Filter
 		System.out.println("RestUrlRewriteFilter.excludePrefixes=[" + excludePrefixsString + "] will not rewrite url");
 		System.out.println("RestUrlRewriteFilter.debug=" + debug);
 		System.out.println();
-	}
-
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
-	        IOException {
-
-		String from = request.getRequestURI().substring(request.getContextPath().length());
-		if (rewriteURL(from)) {
-			final String to = prefix + from;
-			if (debug) {
-				System.out.println("RestUrlRewriteFilter: forward request from " + from + " to " + to);
-			}
-			request.getRequestDispatcher(to).forward(request, response);
-		} else {
-			if (debug) {
-				System.out.println("RestUrlRewriteFilter: not rewrite url:" + request.getRequestURI());
-			}
-			filterChain.doFilter(request, response);
-		}
 	}
 
 	private boolean rewriteURL(String from) {
@@ -136,17 +123,30 @@ public class RestUrlRewriteFilter extends OncePerRequestFilter implements Filter
 		return true;
 	}
 
-	private String getStringParameter(FilterConfig filterConfig, String name, String defaultValue) {
-		String value = filterConfig.getInitParameter(name);
-		if (value == null || "".equals(value.trim())) {
-			return defaultValue;
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException,
+	        IOException {
+
+		String from = request.getRequestURI().substring(request.getContextPath().length());
+		if (rewriteURL(from)) {
+			final String to = prefix + from;
+			if (debug) {
+				System.out.println("RestUrlRewriteFilter: forward request from " + from + " to " + to);
+			}
+			request.getRequestDispatcher(to).forward(request, response);
+		} else {
+			if (debug) {
+				System.out.println("RestUrlRewriteFilter: not rewrite url:" + request.getRequestURI());
+			}
+			filterChain.doFilter(request, response);
 		}
-		return value;
 	}
 
-	private boolean getBooleanParameter(FilterConfig filterConfig, String name, boolean defaultValue) {
-		String value = getStringParameter(filterConfig, name, String.valueOf(defaultValue));
-		return Boolean.parseBoolean(value);
+	protected void initFilterBean() throws ServletException {
+		try {
+			initParameter(getFilterConfig());
+		} catch (IOException e) {
+			throw new ServletException("init paramerter error", e);
+		}
 	}
 
 }

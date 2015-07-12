@@ -14,12 +14,10 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
 public class Intercepter implements HandlerInterceptor {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		request.setAttribute("intercepter", this.getClass().getName());
-		if (handler instanceof DefaultServletHttpRequestHandler) {
-			return true;
-		}
-		return true;
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+		Writer e = response.getWriter();
+		
+		System.out.println(e.toString());
 	}
 
 	@Override
@@ -46,10 +44,12 @@ public class Intercepter implements HandlerInterceptor {
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		Writer e = response.getWriter();
-		
-		System.out.println(e.toString());
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		request.setAttribute("intercepter", this.getClass().getName());
+		if (handler instanceof DefaultServletHttpRequestHandler) {
+			return true;
+		}
+		return true;
 	}
 
 }

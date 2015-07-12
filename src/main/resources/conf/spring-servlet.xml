@@ -71,8 +71,8 @@
                     <property name="suffix" value=".vm" />
                     <property name="screenContentKey" value="screen" />
                     <property name="requestContextAttribute" value="context" />
-                    <property name="exposeRequestAttributes" value="true" />
-                    <property name="exposeSpringMacroHelpers" value="true" />
+                    <!-- <property name="exposeRequestAttributes" value="true" /> -->
+                    <!-- <property name="exposeSpringMacroHelpers" value="true" /> -->
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
 
@@ -87,7 +87,6 @@
                 </bean>
             </list>
         </property>
-
         <property name="defaultViews">
             <list>
                 <!-- JSON -->

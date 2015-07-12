@@ -12,25 +12,6 @@ import org.apache.velocity.runtime.parser.node.Node;
 
 public class UnsetDirective extends Directive {
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean render(InternalContextAdapter context, Writer writer, Node node) throws IOException, ResourceNotFoundException,
-	        ParseErrorException, MethodInvocationException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	/**
 	 * 获取指令的参数值
 	 * 
@@ -50,5 +31,24 @@ public class UnsetDirective extends Directive {
 			return (T) n.value(context);
 		}
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean render(InternalContextAdapter context, Writer writer, Node node) throws IOException, ResourceNotFoundException,
+	        ParseErrorException, MethodInvocationException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

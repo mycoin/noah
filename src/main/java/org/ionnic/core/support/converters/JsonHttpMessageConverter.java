@@ -11,13 +11,13 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 public class JsonHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	@Override
-	protected boolean supports(Class<?> clazz) {
-		return false;
+	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+		return null;
 	}
 
 	@Override
-	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-		return null;
+	protected boolean supports(Class<?> clazz) {
+		return false;
 	}
 
 	@Override

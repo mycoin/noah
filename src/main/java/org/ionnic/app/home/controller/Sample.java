@@ -38,22 +38,6 @@ public class Sample {
 		model.addAttribute("data", name);
 	}
 
-	@RequestMapping("/velocity")
-	public void velocity(Model model) throws Exception {
-		model.addAttribute("data", 1);
-
-		String html = "";
-		File file = ResourceUtils.getFile("classpath:conf/README.txt");
-		InputStreamReader read = new InputStreamReader(new FileInputStream(file));// 考虑到编码格式
-		BufferedReader bufferedReader = new BufferedReader(read);
-		String lineTxt = null;
-		while ((lineTxt = bufferedReader.readLine()) != null) {
-			html += lineTxt + "\n";
-		}
-		
-		model.addAttribute("html", html);
-	}
-
 	@RequestMapping("/rest")
 	public void rest(Model model) {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -70,6 +54,22 @@ public class Sample {
 	public void security(Model model) {
 		model.addAttribute("status", 0);
 		model.addAttribute("statusInfo", "OK");
+	}
+
+	@RequestMapping("/velocity")
+	public void velocity(Model model) throws Exception {
+		model.addAttribute("data", 1);
+
+		String html = "";
+		File file = ResourceUtils.getFile("classpath:conf/README.txt");
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file));// 考虑到编码格式
+		BufferedReader bufferedReader = new BufferedReader(read);
+		String lineTxt = null;
+		while ((lineTxt = bufferedReader.readLine()) != null) {
+			html += lineTxt + "\n";
+		}
+		
+		model.addAttribute("html", html);
 	}
 
 }

@@ -27,18 +27,6 @@ public class PageUtil {
 
 	/**
 	 * @param template
-	 * @return
-	 */
-	private String escapeTemplate(String template) {
-		template = template.replace("\\\"", "'");
-		template = template.replace("\\n", "\n");
-		template = template.replace("\\'", "\"");
-		template = template.replace("\\t", "\t");
-		return template;
-	}
-
-	/**
-	 * @param template
 	 * @param contextMap
 	 * @return
 	 */
@@ -102,8 +90,19 @@ public class PageUtil {
 		if (null == config) {
 			config = Config.getInstance();
 			viewConfig = config.getViewConfig();
-
 		}
+	}
+
+	/**
+	 * @param template
+	 * @return
+	 */
+	private String escapeTemplate(String template) {
+		template = template.replace("\\\"", "'");
+		template = template.replace("\\n", "\n");
+		template = template.replace("\\'", "\"");
+		template = template.replace("\\t", "\t");
+		return template;
 	}
 
 	/**
@@ -145,9 +144,5 @@ public class PageUtil {
 			logger.error("internalEval() error.", e);
 		}
 		return result;
-	}
-
-	public String toString() {
-		return "";
 	}
 }
