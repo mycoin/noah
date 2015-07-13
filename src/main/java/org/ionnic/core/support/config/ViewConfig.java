@@ -5,7 +5,14 @@ import org.springframework.core.io.Resource;
 public class ViewConfig {
 
 	public static final int AUTO_ESCAPE = 0;
-	
+
+	/**
+	 * @return the autoEscape
+	 */
+	public static int getAutoEscape() {
+		return AUTO_ESCAPE;
+	}
+
 	private Resource[] configPath;
 
 	private String charset;
@@ -37,10 +44,16 @@ public class ViewConfig {
 		return externalPath;
 	}
 
+	/**
+	 * @return the layoutPath
+	 */
 	public Resource getLayoutPath() {
 		return layoutPath;
 	}
 
+	/**
+	 * @return the tripMode
+	 */
 	public int getTripMode() {
 		return tripMode;
 	}
@@ -69,12 +82,19 @@ public class ViewConfig {
 		this.externalPath = externalPath;
 	}
 
+	/**
+	 * @param layoutPath
+	 *            the layoutPath to set
+	 */
 	public void setLayoutPath(Resource layoutPath) {
 		this.layoutPath = layoutPath;
 	}
 
+	/**
+	 * @param tripMode
+	 *            the tripMode to set
+	 */
 	public void setTripMode(int tripMode) {
 		this.tripMode = tripMode;
 	}
-
 }

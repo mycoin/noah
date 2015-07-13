@@ -5,7 +5,7 @@ package org.ionnic.core.support.filter;
  * 
  * @author apple
  */
-public class ConfigWrapper {
+public class FilterConfig {
 
 	private boolean ignoreHiddenMethod = true;
 

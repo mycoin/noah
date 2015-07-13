@@ -1,23 +1,20 @@
 package org.ionnic.core.support;
 
-import java.io.Writer;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 
-public class Intercepter implements HandlerInterceptor {
+public class Intercepter extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		Writer e = response.getWriter();
-		
-		System.out.println(e.toString());
+
 	}
 
 	@Override
