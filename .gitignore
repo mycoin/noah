@@ -1,6 +1,7 @@
 *.bak
 *.db
 *.dump
+*.log
 *.edpproj
 *.ini
 *.sw
