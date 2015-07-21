@@ -62,7 +62,7 @@ public class Sample {
 
 		String html = "";
 		File file = ResourceUtils.getFile("classpath:conf/README.txt");
-		InputStreamReader read = new InputStreamReader(new FileInputStream(file));// 考虑到编码格式
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file), "utf-8");
 		BufferedReader bufferedReader = new BufferedReader(read);
 		String lineTxt = null;
 		while ((lineTxt = bufferedReader.readLine()) != null) {
