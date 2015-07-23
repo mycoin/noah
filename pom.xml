@@ -13,6 +13,7 @@
         <jettyVersion>6.1.26</jettyVersion>
         <slf4jVersion>1.6.1</slf4jVersion>
         <log4jVersion>1.2.16</log4jVersion>
+        <charset>utf-8</charset>
     </properties>
 
     <dependencies>
@@ -225,13 +226,14 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
-                    <encoding>utf-8</encoding>
+                    <encoding>${charset}</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <encoding>${charset}</encoding>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.ionnic.core.support.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -62,7 +63,7 @@ public class Sample {
 
 		String html = "";
 		File file = ResourceUtils.getFile("classpath:conf/README.txt");
-		InputStreamReader read = new InputStreamReader(new FileInputStream(file), "utf-8");
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file), Config.CHARSET);
 		BufferedReader bufferedReader = new BufferedReader(read);
 		String lineTxt = null;
 		while ((lineTxt = bufferedReader.readLine()) != null) {

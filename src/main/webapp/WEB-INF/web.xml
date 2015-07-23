@@ -43,10 +43,6 @@
     <filter>
         <filter-name>ControlFilter</filter-name>
         <filter-class>org.ionnic.core.support.Filter</filter-class>
-        <init-param>
-            <param-name>configLocation</param-name>
-            <param-value>classpath:conf/applicationContext-filter.xml</param-value>
-        </init-param>
     </filter>
 
     <filter-mapping>
