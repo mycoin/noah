@@ -66,10 +66,15 @@ public class Sample {
 		InputStreamReader read = new InputStreamReader(new FileInputStream(file), Config.CHARSET);
 		BufferedReader bufferedReader = new BufferedReader(read);
 		String lineTxt = null;
+		boolean firstRow = true;
 		while ((lineTxt = bufferedReader.readLine()) != null) {
-			html += lineTxt + "\n";
+			if (!firstRow) {
+				html += lineTxt + "\n";
+			} else {
+				html = lineTxt;
+			}
+			firstRow = false;
 		}
-		
 		model.addAttribute("html", html);
 	}
 

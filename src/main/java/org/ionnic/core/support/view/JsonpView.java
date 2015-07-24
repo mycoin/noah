@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 public class JsonpView extends MappingJacksonJsonView {
@@ -30,19 +31,24 @@ public class JsonpView extends MappingJacksonJsonView {
 	@Override
 	public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String callback;
-		String var;
-
 		// TODO Auto-generated method stub
 		if ("GET".equals(request.getMethod().toUpperCase())) {
 			Map<String, String[]> param = request.getParameterMap();
 			OutputStream out = response.getOutputStream();
-			
-			if(param.containsKey(callbackKey)) {
+
+			String callback = request.getParameter(callbackKey);
+			String var = request.getParameter(varKey);
+
+			if (StringUtils.hasText(callback)) {
+				
+			}
+
+			System.out.println(request.getParameter("callback"));
+
+			if (param.containsKey(callbackKey)) {
 				System.out.println(param.get(callbackKey));
 			}
-			
-			
+
 			if (param.containsKey(varKey)) {
 				out.write(new String("var " + param.get(varKey)[0] + " = (").getBytes());
 				super.render(model, request, response);
@@ -56,24 +62,33 @@ public class JsonpView extends MappingJacksonJsonView {
 				super.render(model, request, response);
 				out.write(new String(");").getBytes());
 			}
-			response.setContentType(DEFAULT_CONTENT_TYPE);
-		} else {
-			super.render(model, request, response);
 		}
 	}
 
+	/**
+	 * @param callbackKey
+	 */
 	public void setCallbackKey(String callbackKey) {
 		this.callbackKey = callbackKey;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDefaultCallback() {
 		return defaultCallback;
 	}
 
+	/**
+	 * @param defaultCallback
+	 */
 	public void setDefaultCallback(String defaultCallback) {
 		this.defaultCallback = defaultCallback;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getVarKey() {
 		return varKey;
 	}

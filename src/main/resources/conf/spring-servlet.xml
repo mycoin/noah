@@ -23,8 +23,12 @@
 				<entry key="message" value="org.ionnic.app.home.model.ApiMessage" />
 			</map>
 		</property>
-		<!-- <property name="implicitCollections"> <map> <entry key="org.ionnic.app.home.model.Person" 
-			value="organisation" /> </map> </property> -->
+
+		<!-- <property name="implicitCollections">
+			<map>
+				<entry key="org.ionnic.app.home.model.Person" value="organisation" />
+			</map>
+		</property> -->
 	</bean>
 
 	<!-- 扫描组件 -->
@@ -77,8 +81,8 @@
 				<bean
 					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 					<property name="order" value="3" />
+					
 					<property name="contentType" value="text/html;charset=UTF-8" />
-
 					<property name="prefix" value="/META-INF/jsp/" />
 					<property name="suffix" value=".jsp" />
 					<property name="requestContextAttribute" value="context" />
@@ -102,8 +106,7 @@
 				</bean>
 				
 				<!-- JSONP -->
-				<bean
-					class="org.ionnic.core.support.view.JsonpView">
+				<bean class="org.ionnic.core.support.view.JsonpView">
 					<property name="callbackKey" value="callback" />
 					<property name="varKey" value="var" />
 					<property name="contentType" value="application/javascript;charset=UTF-8" />
