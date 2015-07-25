@@ -27,7 +27,7 @@ public class BlockDirective extends Directive {
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) throws IOException, ResourceNotFoundException,
 	        ParseErrorException, MethodInvocationException {
-		
+
 		return false;
 	}
 }

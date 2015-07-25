@@ -1,48 +1,46 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
     	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<beans:description>
-		This file defines all of the necessary security
-		configuration.
+    <beans:description>
+        This file defines all of the necessary security
+        configuration.
 
-		It is split from the
-		applicationContext.xml file to make
-		it clearer
-		which beans and configuration elements are related to
-		security. It also
-		makes it more reusable for other projects, as this
-		file can be copied to replicate the security configuration.
-	</beans:description>
+        It is split from the
+        applicationContext.xml file to make
+        it clearer
+        which beans and configuration elements are related to
+        security. It also
+        makes it more reusable for other projects, as this
+        file can be copied to replicate the security configuration.
+    </beans:description>
 
 	<!-- 安全配置 -->
-	<http create-session="stateless" auto-config="true">
-		<port-mappings>
-			<port-mapping http="8080" https="8443" />
-		</port-mappings>
+    <http create-session="stateless" auto-config="true">
+        <port-mappings>
+            <port-mapping http="8080" https="8443" />
+        </port-mappings>
 
 		<!-- Any resources under the people url require the user role, all other 
-			resources are accessible to everyone. -->
-		<intercept-url pattern="/sample/security" access="ROLE_USER"
-			requires-channel="any" />
+             resources are accessible to everyone. -->
+        <intercept-url pattern="/sample/security" access="ROLE_USER" requires-channel="any" />
 
 		<!-- Configures basic auth. -->
-		<http-basic />
-	</http>
+        <http-basic />
+    </http>
 
 	<!-- 认证管理 -->
-	<authentication-manager>
-		<authentication-provider>
+    <authentication-manager>
+        <authentication-provider>
 			<!-- <password-encoder hash="md5" /> -->
-			<user-service>
+            <user-service>
 				<!-- local:1234, admin:12345 -->
-				<user name="local" password="1" authorities="ROLE_USER" />
-				<user name="admin" password="1" authorities="ROLE_ADMIN" />
-			</user-service>
-		</authentication-provider>
-	</authentication-manager>
+                <user name="local" password="1" authorities="ROLE_USER" />
+                <user name="admin" password="1" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 
 </beans:beans>

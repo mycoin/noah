@@ -17,8 +17,11 @@ public class JsonpView extends MappingJacksonJsonView {
 
 	private String varKey;
 
-	private String defaultCallback;
+	private String defaultCallback = "callback";
 
+	/**
+	 * @return
+	 */
 	public String getCallbackKey() {
 		return callbackKey;
 	}
@@ -28,40 +31,44 @@ public class JsonpView extends MappingJacksonJsonView {
 		return DEFAULT_CONTENT_TYPE;
 	}
 
+	/**
+	 * @return
+	 */
+	public String getDefaultCallback() {
+		return defaultCallback;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getVarKey() {
+		return varKey;
+	}
+
 	@Override
 	public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// TODO Auto-generated method stub
+		OutputStream out = response.getOutputStream();
 		if ("GET".equals(request.getMethod().toUpperCase())) {
-			Map<String, String[]> param = request.getParameterMap();
-			OutputStream out = response.getOutputStream();
 
 			String callback = request.getParameter(callbackKey);
 			String var = request.getParameter(varKey);
 
-			if (StringUtils.hasText(callback)) {
-				
-			}
-
-			System.out.println(request.getParameter("callback"));
-
-			if (param.containsKey(callbackKey)) {
-				System.out.println(param.get(callbackKey));
-			}
-
-			if (param.containsKey(varKey)) {
-				out.write(new String("var " + param.get(varKey)[0] + " = (").getBytes());
+			if (StringUtils.hasText(var)) {
+				out.write(new String(var + " = ").getBytes());
 				super.render(model, request, response);
-				out.write(new String(");").getBytes());
+				out.write(new String(";").getBytes());
 			} else {
-				String callbackName = defaultCallback;
-				if (param.containsKey(callbackKey)) {
-					callbackName = param.get(callbackKey)[0];
+				if (!StringUtils.hasText(callback)) {
+					callback = defaultCallback;
 				}
-				out.write(new String(callbackName + "(").getBytes());
+				out.write(new String(callback + "(").getBytes());
 				super.render(model, request, response);
 				out.write(new String(");").getBytes());
 			}
+		} else {
+			out.write(new String("void(0);").getBytes());
 		}
 	}
 
@@ -73,13 +80,6 @@ public class JsonpView extends MappingJacksonJsonView {
 	}
 
 	/**
-	 * @return
-	 */
-	public String getDefaultCallback() {
-		return defaultCallback;
-	}
-
-	/**
 	 * @param defaultCallback
 	 */
 	public void setDefaultCallback(String defaultCallback) {
@@ -87,12 +87,8 @@ public class JsonpView extends MappingJacksonJsonView {
 	}
 
 	/**
-	 * @return
+	 * @param varKey
 	 */
-	public String getVarKey() {
-		return varKey;
-	}
-
 	public void setVarKey(String varKey) {
 		this.varKey = varKey;
 	}

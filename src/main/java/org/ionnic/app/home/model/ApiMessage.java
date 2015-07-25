@@ -68,7 +68,6 @@ public class ApiMessage {
 
 	@Override
 	public String toString() {
-		return String.format("name=%s, organisation=%s", this.name,
-				this.organisation);
+		return String.format("name=%s, organisation=%s", this.name, this.organisation);
 	}
 }

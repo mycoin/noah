@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/sample")
 public class Sample {
+
 	Logger logger = LoggerFactory.getLogger(Sample.class);
 
 	@RequestMapping("/index")
@@ -68,10 +69,10 @@ public class Sample {
 		String lineTxt = null;
 		boolean firstRow = true;
 		while ((lineTxt = bufferedReader.readLine()) != null) {
-			if (!firstRow) {
-				html += lineTxt + "\n";
-			} else {
+			if (firstRow) {
 				html = lineTxt;
+			} else {
+				html += lineTxt + "\n";
 			}
 			firstRow = false;
 		}
