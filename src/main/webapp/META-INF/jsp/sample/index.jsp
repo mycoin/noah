@@ -42,6 +42,7 @@
 	<script type="text/javascript">
 		$.ajax({
 			url : 'index.json',
+			dataType: 'json',
 			type : 'DELETE',
 			success: function(data){
 			    if(data.method !== "DELETE") {
@@ -65,7 +66,6 @@
 			password : '1',
 			type : "GET",
 			success : function(data) {
-				console.log(data)
 				$('#security-text').html(data);
 				if (data.indexOf("statusInfo") == -1) {
 					$('#security').css('background', 'red');
