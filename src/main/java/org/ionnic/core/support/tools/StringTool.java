@@ -19,7 +19,7 @@ import org.ionnic.core.support.Config;
  * @author apple
  * @param <E>
  */
-public class StringUtil {
+public class StringTool {
 
 	public static String DEFAULT_CHARSET = Config.CHARSET;
 

@@ -14,7 +14,7 @@
         <tr>
             <td>配置项:</td>
             <td data-value="ionnic">
-                $page.getConfig("domain"), $page.mail
+                $page.config("domain")
             </td>
         </tr>
         <tr>
@@ -28,17 +28,16 @@
             <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
+    <pre>
+    $page.config("domain")
+    $page.external("ad", {})
     
-    $page.getConfig("domain")
-    $page.external("ad")
-
-    #*
     $page.eval(
-        '#foreach($item in $array)\t$name:$util.toLocateDate("default")\n#end', {
+        '$page.config("domain")#foreach($item in $array)\t<a href="javascript:alert(\"$velocityCount:\")">$name</a>($util.toLocateDate("default"))\n#end', {
         "array": [1,2,3,4],
-        "name" : 12
+        "name" : "index"
     })
-    *#
+    </pre>
     ---------
     $context
     $page

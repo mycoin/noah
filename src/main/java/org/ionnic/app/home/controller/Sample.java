@@ -23,6 +23,11 @@ public class Sample {
 
 	Logger logger = LoggerFactory.getLogger(Sample.class);
 
+	@RequestMapping("/error")
+	public void error(Model model) throws Exception {
+		throw new Exception();
+	}
+
 	@RequestMapping("/index")
 	public void index(Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();

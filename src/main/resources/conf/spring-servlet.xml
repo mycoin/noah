@@ -45,14 +45,12 @@
         </mvc:return-value-handlers>
     </mvc:annotation-driven>
 
-	<!-- 视图 -->
+	<!-- 视图处理 -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="order" value="1" />
 
         <property name="favorParameter" value="true" />
-        <property name="parameterName" value="format" />
         <property name="ignoreAcceptHeader" value="true" />
-        <property name="favorPathExtension" value="true" />
         <property name="defaultContentType" value="text/html" />
         <property name="mediaTypes">
             <map>
@@ -71,13 +69,14 @@
                     <property name="suffix" value=".vm" />
                     <property name="screenContentKey" value="screen" />
                     <property name="requestContextAttribute" value="context" />
+                    <property name="exposeSessionAttributes" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
 
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="order" value="3" />
+                    <property name="order" value="2" />
 
-                    <property name="contentType" value="text/html;charset=utf-8" />                    
+                    <property name="contentType" value="text/html;charset=utf-8" />
                     <property name="prefix" value="/META-INF/jsp/" />
                     <property name="suffix" value=".jsp" />
                     <property name="requestContextAttribute" value="context" />

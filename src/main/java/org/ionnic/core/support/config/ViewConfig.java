@@ -2,33 +2,18 @@ package org.ionnic.core.support.config;
 
 import org.springframework.core.io.Resource;
 
+/**
+ * @author apple
+ */
 public class ViewConfig {
-
-	public static final int AUTO_ESCAPE = 0;
-
-	/**
-	 * @return the autoEscape
-	 */
-	public static int getAutoEscape() {
-		return AUTO_ESCAPE;
-	}
 
 	private Resource[] configPath;
 
-	private String charset;
-
 	private Resource externalPath;
 
-	private Resource layoutPath;
+	public static final String HTML_EXTENSION = ".html";
 
-	private int tripMode = ViewConfig.AUTO_ESCAPE;
-
-	/**
-	 * @return the charset
-	 */
-	public String getCharset() {
-		return charset;
-	}
+	private String suffix = HTML_EXTENSION;
 
 	/**
 	 * @return the configPath
@@ -45,25 +30,10 @@ public class ViewConfig {
 	}
 
 	/**
-	 * @return the layoutPath
+	 * @return the suffix
 	 */
-	public Resource getLayoutPath() {
-		return layoutPath;
-	}
-
-	/**
-	 * @return the tripMode
-	 */
-	public int getTripMode() {
-		return tripMode;
-	}
-
-	/**
-	 * @param charset
-	 *            the charset to set
-	 */
-	public void setCharset(String charset) {
-		this.charset = charset;
+	public String getSuffix() {
+		return suffix;
 	}
 
 	/**
@@ -83,18 +53,10 @@ public class ViewConfig {
 	}
 
 	/**
-	 * @param layoutPath
-	 *            the layoutPath to set
+	 * @param suffix
+	 *            the suffix to set
 	 */
-	public void setLayoutPath(Resource layoutPath) {
-		this.layoutPath = layoutPath;
-	}
-
-	/**
-	 * @param tripMode
-	 *            the tripMode to set
-	 */
-	public void setTripMode(int tripMode) {
-		this.tripMode = tripMode;
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
 	}
 }

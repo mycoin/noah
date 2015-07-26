@@ -1,88 +1,63 @@
 <%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>500 - Internal Server Error</title>
-<style>
-H1,H2,H3 {
-	padding: 5px;
+<style type="text/css">
+::selection {
+    background-color: #E13300;
+    color: white;
 }
 
-H1 {
-	color: white;
-	background-color: #525D76;
-	font-size: 22px;
+::moz-selection {
+    background-color: #E13300;
+    color: white;
 }
 
-H2 {
-	color: white;
-	background-color: #525D76;
-	font-size: 16px;
+::webkit-selection {
+    background-color: #E13300;
+    color: white;
 }
 
-H3 {
-	color: white;
-	background-color: #525D76;
-	font-size: 12px;
-	font-weight: normal;
+body {
+    background-color: #fff;
+    margin: 40px;
+    font: 13px/20px normal Helvetica, Arial, sans-serif;
+    color: #4F5155;
 }
 
-TABLE TR TD {
-	vertical-align: text-top;
-	font-size: 12px;
-	line-height: 16px;
-	padding-right: 10px;
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
 }
 
-BODY {
-	font-family: Tahoma, Arial, sans-serif;
-	color: black;
-	background-color: white;
+h1 {
+    color: #444;
+    background-color: transparent;
+    border-bottom: 1px solid #D0D0D0;
+    font-size: 19px;
+    font-weight: normal;
+    margin: 0 0 14px 0;
+    padding: 14px 15px 10px 15px;
 }
 
-B {
-	color: white;
-	background-color: #525D76;
-	display: inline-block;
-	padding: 2px 5px;
+#container {
+    margin: 10px;
+    border: 1px solid #D0D0D0;
+    -webkit-box-shadow: 0 0 8px #D0D0D0;
 }
 
-HR {
-	color: #525D76;
+p {
+    margin: 12px 15px 12px 15px;
 }
 </style>
 </head>
 <body>
-	<h1>Internal Server Error</h1>
-	<HR size="1" noshade="noshade">
-	<table>
-		<tr>
-			<td align="right"><b>status</b></td>
-			<td>500</td>
-		</tr>
-		<tr>
-			<td align="right"><b>request</b></td>
-			<td><%=request.getRequestURI()%></td>
-		</tr>
-		<tr>
-			<td align="right"><b>message</b></td>
-			<td><%=exception%></td>
-		</tr>
-		<tr>
-			<td align="right"><b>trace</b></td>
-			<td>
-				<%
-				if (exception == null) {
-					for (StackTraceElement item : exception.getStackTrace()) {
-						out.append("at " + item);
-						out.append("<br>");
-					}
-				}
-			%>
-			
-		</tr>
-	</table>
-	<HR size="1" noshade="noshade">
-	<h3>home.ionnic.org</h3>
+    <div id="container">
+        <h1>500 - Internal Server Error</h1>
+        <p><%=exception%></p>    
+    </div>
+    <!--<%=request.getAttribute("javax.servlet.forward.request_uri")%>-->
 </body>
 </html>

@@ -17,7 +17,7 @@ public class Intercepter extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		response.flushBuffer();
+
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class Intercepter extends HandlerInterceptorAdapter {
 		if (handler instanceof DefaultServletHttpRequestHandler) {
 			return true;
 		}
+
 		return true;
 	}
-
 }
