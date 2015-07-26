@@ -105,6 +105,18 @@ public class StringTool {
 	}
 
 	/**
+	 * @param template
+	 * @return
+	 */
+	public static String escapeSymbol(String template) {
+		template = template.replace("\\\"", "'");
+		template = template.replace("\\n", "\n");
+		template = template.replace("\\'", "\"");
+		template = template.replace("\\t", "\t");
+		return template;
+	}
+
+	/**
 	 * 格式化string为Date
 	 * 
 	 * @param datestr

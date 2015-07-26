@@ -19,7 +19,7 @@
                 $control.setTemplate("nav.vm");
             </div>
             <div class="main">
-                $screen
+                $screen_content
             </div>
             <div class="footer"></div>
         </div>

@@ -11,7 +11,7 @@
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/META-INF/velocity,/META-INF/velocity/common</value>
+            <value>META-INF/velocity,META-INF/velocity/global</value>
         </property>
     </bean>
 
@@ -54,10 +54,10 @@
         <property name="defaultContentType" value="text/html" />
         <property name="mediaTypes">
             <map>
-                <entry key="json" value="application/json" />
-                <entry key="xml" value="application/xml" />
-                <entry key="jsonp" value="application/javascript" />
                 <entry key="html" value="text/html" />
+                <entry key="xml" value="application/xml" />
+                <entry key="json" value="application/json" />
+                <entry key="jsonp" value="application/javascript" />
             </map>
         </property>
         <property name="viewResolvers">
@@ -67,7 +67,6 @@
 
                     <property name="contentType" value="text/html;charset=utf-8" />
                     <property name="suffix" value=".vm" />
-                    <property name="screenContentKey" value="screen" />
                     <property name="requestContextAttribute" value="context" />
                     <property name="exposeSessionAttributes" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />

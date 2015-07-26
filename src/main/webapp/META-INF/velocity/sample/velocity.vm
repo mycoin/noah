@@ -12,39 +12,38 @@
             <td data-value="[\w-]{36}">$util.getGuid()</td>
         </tr>
         <tr>
-            <td>配置项:</td>
-            <td data-value="ionnic">
-                $page.config("domain")
+            <td>获取配置</td>
+            <td data-value="ionnic">$page.config("domain")</td>
+        </tr>
+        <tr>
+            <td>外部模板</td>
+            <td data-value="AD">
+                <pre>$page.external("ad")</pre>
+                <pre>$page.external("inc", {"status": 0})</pre>
             </td>
         </tr>
         <tr>
-            <td>上下文:</td>
-            <td data-value="ionnic">
-                $context.getRequestUri()
+            <td>内部模板</td>
+            <td data-value="[\S]{1,}">
+                <pre>#includeInternal("ad")</pre>
+                <pre>#includeInternal("ad", {})</pre>
             </td>
-        </tr>
-        <tr>
-            <td>外部模板:</td>
-            <td data-value="[\S]{1,}">#includeExternal("ad")</td>
         </tr>
     </table>
-    <pre>
+    <!--
     $page.config("domain")
     $page.external("ad", {})
-    
     $page.eval(
         '$page.config("domain")#foreach($item in $array)\t<a href="javascript:alert(\"$velocityCount:\")">$name</a>($util.toLocateDate("default"))\n#end', {
         "array": [1,2,3,4],
         "name" : "index"
     })
-    </pre>
-    ---------
-    $context
-    $page
-    $response
-    $session
-    $application
-    
+    context: $context
+    page: $page
+    response: $response
+    session: $session
+    application: $application
+    -->
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>

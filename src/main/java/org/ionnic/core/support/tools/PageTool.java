@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -30,18 +29,6 @@ public class PageTool {
 	private static Config config = Config.getInstance();
 
 	private static ViewConfig viewConfig;
-
-	/**
-	 * @param template
-	 * @return
-	 */
-	private static String escapeSymbol(String template) {
-		template = template.replace("\\\"", "'");
-		template = template.replace("\\n", "\n");
-		template = template.replace("\\'", "\"");
-		template = template.replace("\\t", "\t");
-		return template;
-	}
 
 	/**
 	 * @param filename
@@ -161,18 +148,17 @@ public class PageTool {
 		StringWriter writer = new StringWriter();
 		Context context = new VelocityContext(contextMap);
 
-		// auto escape template
-		template = escapeSymbol(template);
+		// auto escape symbol
+		template = StringTool.escapeSymbol(template);
 
 		if (innerEvaluate(this, writer, context, template, false)) {
 			return writer.toString();
 		}
-		return "<!-- error -->";
+		return "<!-- eval:exception -->";
 	}
 
 	public String external(String externalName) {
-		Map<String, ?> contextMap = new HashMap<String, Object>();
-		return external(externalName, contextMap);
+		return external(externalName, null);
 	}
 
 	/**

@@ -1,0 +1,1 @@
+$util.escapeInH("<script>var ad = '$util.escapeInJ($html)';</script>")
