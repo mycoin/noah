@@ -34,7 +34,6 @@ public class PageTool {
 	 * @param filename
 	 * @return
 	 * @throws IOException
-	 * @throws
 	 */
 	private static String getTemplate(File filename) throws IOException {
 		FileInputStream fis = null;
@@ -157,6 +156,10 @@ public class PageTool {
 		return "<!-- eval:exception -->";
 	}
 
+	/**
+	 * @param externalName
+	 * @return
+	 */
 	public String external(String externalName) {
 		return external(externalName, null);
 	}
