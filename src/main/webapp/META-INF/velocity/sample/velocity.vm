@@ -19,7 +19,7 @@
             <td>外部模板</td>
             <td data-value="AD">
                 <pre>$page.external("ad")</pre>
-                <pre>$page.external("inc", {"status": 0})</pre>
+                <pre>$page.external("eval", {"status": 0})</pre>
             </td>
         </tr>
         <tr>

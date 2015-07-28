@@ -12,6 +12,7 @@ import java.util.Properties;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.tools.view.ViewToolContext;
 import org.ionnic.core.support.Config;
 import org.ionnic.core.support.config.ViewConfig;
@@ -20,6 +21,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.util.ResourceUtils;
 
+/**
+ * @author apple
+ * 
+ */
 public class PageTool {
 
 	private Logger logger = LoggerFactory.getLogger(PageTool.class);
@@ -31,34 +36,44 @@ public class PageTool {
 	private static ViewConfig viewConfig;
 
 	/**
-	 * @param filename
+	 * 内部渲染函数
+	 * 
+	 * @param writer
+	 * @param contextMap
+	 * @param stringValue
+	 * @param threadSafe
+	 * @param escape
 	 * @return
-	 * @throws IOException
 	 */
-	private static String getTemplate(File filename) throws IOException {
-		FileInputStream fis = null;
-		InputStreamReader read = null;
-		String html = "";
-		try {
-			fis = new FileInputStream(filename);
-			read = new InputStreamReader(fis, Config.CHARSET);
-			BufferedReader br = new BufferedReader(read);
+	private static boolean innerEvaluate(PageTool page, StringWriter writer, Map<String, ?> dataMap, String stringValue, boolean threadSafe,
+	        boolean escape) {
+		VelocityEngine engine = null;
 
-			String line = null;
-			boolean first = true;
-			while ((line = br.readLine()) != null) {
-				if (first) {
-					html = line;
-				} else {
-					html += line + "\n";
-				}
-				first = false;
-			}
-		} finally {
-			read.close();
-			fis.close();
+		// Whether to share a VelocityEngine instance
+		if (threadSafe == true) {
+			engine = new VelocityEngine();
+		} else {
+			engine = page.context.getVelocityEngine();
 		}
-		return html;
+
+		Map<String, Object> toolbox = page.context.getToolbox();
+		Context contextMap = new VelocityContext(dataMap);
+
+		if (viewConfig.isShareTools()) {
+			for (String key : toolbox.keySet()) {
+				Object value = toolbox.get(key);
+				if (value instanceof PageTool) {
+					contextMap.put(key, page);
+				} else {
+					contextMap.put(key, toolbox.get(key));
+				}
+			}
+		}
+
+		if (escape) {
+			stringValue = StringTool.escapeSymbol(stringValue);
+		}
+		return engine.evaluate(contextMap, writer, "PageTool.eval()", stringValue);
 	}
 
 	/**
@@ -67,57 +82,38 @@ public class PageTool {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	private static File getTemplate(String templateName) {
+	private static String loadExternal(String templateName) throws IOException {
 		Resource path = viewConfig.getExternalPath();
-		try {
-			File file = ResourceUtils.getFile(path.getFile().getAbsoluteFile() + "/" + templateName);
-			if (file.exists() && file.canRead()) {
-				return file;
-			}
-		} catch (Exception e) {
-			// do nothing
-		}
-		return null;
-	}
-
-	/**
-	 * 内部渲染函数
-	 * 
-	 * @param writer
-	 * @param dataMap
-	 * @param stringValue
-	 * @param threadSafe
-	 * @return
-	 */
-	private static boolean innerEvaluate(PageTool instance, StringWriter writer, Context dataMap, String stringValue, boolean threadSafe) {
-		VelocityEngine engine;
-
-		if (stringValue == null || "".equals(stringValue)) {
-			return false;
-		}
-
-		// Whether to share a VelocityEngine instance
-		if (threadSafe == true) {
-			engine = new VelocityEngine();
-		} else {
-			engine = instance.context.getVelocityEngine();
-		}
+		File templateFile = null;
+		String html = null;
 
 		try {
-			Map<String, Object> toolbox = instance.context.getToolbox();
-			for (String key : toolbox.keySet()) {
-				Object value = toolbox.get(key);
-				if (value instanceof PageTool) {
-					dataMap.put(key, instance);
-				} else {
-					dataMap.put(key, toolbox.get(key));
+			String filename = path.getFile().getAbsoluteFile() + "/" + templateName;
+			templateFile = ResourceUtils.getFile(filename);
+
+			if (templateFile.exists() && templateFile.canRead()) {
+				InputStreamReader read = null;
+				try {
+					read = new InputStreamReader(new FileInputStream(templateFile), Config.CHARSET);
+					BufferedReader br = new BufferedReader(read);
+					String line = "";
+					boolean first = true;
+					while ((line = br.readLine()) != null) {
+						if (first) {
+							html = line;
+						} else {
+							html += line + "\n";
+						}
+						first = false;
+					}
+				} finally {
+					read.close();
 				}
 			}
-			return engine.evaluate(dataMap, writer, "PageTool.eval()", stringValue);
-		} catch (Exception e) {
-			instance.logger.error("internalEval() error.");
+		} catch (IOException e) {
+			throw e;
 		}
-		return false;
+		return html;
 	}
 
 	/**
@@ -143,14 +139,10 @@ public class PageTool {
 	 * @param contextMap
 	 * @return
 	 */
-	public String eval(String template, Map<String, ?> contextMap) {
+	public String eval(String template, Map<String, Object> contextMap) {
 		StringWriter writer = new StringWriter();
-		Context context = new VelocityContext(contextMap);
 
-		// auto escape symbol
-		template = StringTool.escapeSymbol(template);
-
-		if (innerEvaluate(this, writer, context, template, false)) {
+		if (innerEvaluate(this, writer, contextMap, template, false, true)) {
 			return writer.toString();
 		}
 		return "<!-- eval:exception -->";
@@ -171,13 +163,18 @@ public class PageTool {
 	 * @throws Exception
 	 */
 	public String external(String externalName, Map<String, ?> contextMap) {
-		String filename = externalName + viewConfig.getSuffix();
+		String filename = externalName + viewConfig.getExternalExtension();
 		try {
-			File file = getTemplate(filename);
-			String content = getTemplate(file);
-			return eval(content, contextMap);
+			StringWriter writer = new StringWriter();
+			String template = loadExternal(filename);
+
+			if (innerEvaluate(this, writer, contextMap, template, false, false)) {
+				return writer.toString();
+			} else {
+				throw new VelocityException("");
+			}
 		} catch (Exception e) {
-			logger.error("Unable to find external '" + externalName + "', " + viewConfig.getExternalPath(), e);
+			logger.error("Failed to render external template named '" + externalName + "'", e);
 		}
 		return "<!-- external: " + externalName + " -->";
 	}
@@ -198,6 +195,11 @@ public class PageTool {
 		if (logger.isDebugEnabled()) {
 			logger.debug("PageTool.init() invoked.");
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "";
 	}
 
 }

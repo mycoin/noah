@@ -11,9 +11,9 @@ public class ViewConfig {
 
 	private Resource externalPath;
 
-	public static final String HTML_EXTENSION = ".html";
+	private String externalExtension = ".html";
 
-	private String suffix = HTML_EXTENSION;
+	private boolean shareTools;
 
 	/**
 	 * @return the configPath
@@ -27,13 +27,6 @@ public class ViewConfig {
 	 */
 	public Resource getExternalPath() {
 		return externalPath;
-	}
-
-	/**
-	 * @return the suffix
-	 */
-	public String getSuffix() {
-		return suffix;
 	}
 
 	/**
@@ -53,10 +46,32 @@ public class ViewConfig {
 	}
 
 	/**
-	 * @param suffix
-	 *            the suffix to set
+	 * @return the externalExtension
 	 */
-	public void setSuffix(String suffix) {
-		this.suffix = suffix;
+	public String getExternalExtension() {
+		return externalExtension;
+	}
+
+	/**
+	 * @param externalExtension
+	 *            the externalExtension to set
+	 */
+	public void setExternalExtension(String externalExtension) {
+		this.externalExtension = externalExtension;
+	}
+
+	/**
+	 * @return the shareTools
+	 */
+	public boolean isShareTools() {
+		return shareTools;
+	}
+
+	/**
+	 * @param shareTools
+	 *            the shareTools to set
+	 */
+	public void setShareTools(boolean shareTools) {
+		this.shareTools = shareTools;
 	}
 }

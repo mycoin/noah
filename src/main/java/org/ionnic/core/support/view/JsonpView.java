@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
+/**
+ * @author apple
+ */
 public class JsonpView extends MappingJacksonJsonView {
 
 	public static final String DEFAULT_CONTENT_TYPE = "application/javascript";
@@ -67,8 +70,6 @@ public class JsonpView extends MappingJacksonJsonView {
 				super.render(model, request, response);
 				out.write(new String(");").getBytes());
 			}
-		} else {
-			out.write(new String("void(0);").getBytes());
 		}
 	}
 
