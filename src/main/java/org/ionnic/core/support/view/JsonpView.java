@@ -22,32 +22,6 @@ public class JsonpView extends MappingJacksonJsonView {
 
 	private String defaultCallback = "callback";
 
-	/**
-	 * @return
-	 */
-	public String getCallbackKey() {
-		return callbackKey;
-	}
-
-	@Override
-	public String getContentType() {
-		return DEFAULT_CONTENT_TYPE;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getDefaultCallback() {
-		return defaultCallback;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getVarKey() {
-		return varKey;
-	}
-
 	@Override
 	public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 

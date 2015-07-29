@@ -30,6 +30,10 @@
             </td>
         </tr>
     </table>
+    
+    #set($safe = "12")
+    
+    
     <!--
     $page.config("domain")
     $page.external("ad", {})

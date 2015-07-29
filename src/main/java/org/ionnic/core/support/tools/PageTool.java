@@ -168,7 +168,7 @@ public class PageTool {
 			StringWriter writer = new StringWriter();
 			String template = loadExternal(filename);
 
-			if (innerEvaluate(this, writer, contextMap, template, false, false)) {
+			if (innerEvaluate(this, writer, contextMap, template, true, false)) {
 				return writer.toString();
 			} else {
 				throw new VelocityException("");
