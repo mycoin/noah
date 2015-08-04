@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 
 /**
  * @author apple
@@ -46,11 +45,6 @@ public class Intercepter extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		request.setAttribute("intercepter", this.getClass().getName());
-
-		if (handler instanceof DefaultServletHttpRequestHandler) {
-			return true;
-		}
-
 		return true;
 	}
 }

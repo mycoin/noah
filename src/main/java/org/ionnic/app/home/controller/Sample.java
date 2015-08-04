@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,7 @@ public class Sample {
 		data.put("id", 83961);
 		data.put("website", "http://home.ionnic.org/");
 		data.put("age", 25);
+		data.put("name", new Date());
 
 		model.addAttribute("status", 0);
 		model.addAttribute("statusInfo", "OK");

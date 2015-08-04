@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 /**
  * @author apple
  */
-public class JsonpView extends MappingJacksonJsonView {
+public class JsonpView extends JsonView {
 
 	public static final String DEFAULT_CONTENT_TYPE = "application/javascript";
 
