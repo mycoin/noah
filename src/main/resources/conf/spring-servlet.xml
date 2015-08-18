@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="
@@ -11,7 +11,7 @@
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>META-INF/velocity,META-INF/velocity/global</value>
+            <value>META-INF/velocity,META-INF/velocity/common,WEB-INF/external</value>
         </property>
     </bean>
 
@@ -65,7 +65,7 @@
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
                     <property name="order" value="1" />
 
-                    <property name="contentType" value="text/html;charset=utf-8" />
+                    <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="suffix" value=".vm" />
                     <property name="requestContextAttribute" value="context" />
                     <property name="exposeSessionAttributes" value="true" />
@@ -75,7 +75,7 @@
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="order" value="2" />
 
-                    <property name="contentType" value="text/html;charset=utf-8" />
+                    <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="prefix" value="/META-INF/jsp/" />
                     <property name="suffix" value=".jsp" />
                     <property name="requestContextAttribute" value="context" />
@@ -86,9 +86,9 @@
         <property name="defaultViews">
             <list>
 				<!-- JSON -->
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+                <bean class="org.ionnic.core.support.view.JsonView">
                     <property name="extractValueFromSingleKeyModel" value="true" />
-                    <property name="contentType" value="application/json;charset=utf-8" />
+                    <property name="contentType" value="application/json;charset=UTF-8" />
                 </bean>
 
 				<!-- JAXB XML -->
@@ -102,7 +102,7 @@
                     <property name="callbackKey" value="callback" />
                     <property name="varKey" value="var" />
                     <property name="defaultCallback" value="callback" />
-                    <property name="contentType" value="application/javascript;charset=utf-8" />
+                    <property name="contentType" value="application/javascript;charset=UTF-8" />
                 </bean>
             </list>
         </property>

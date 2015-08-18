@@ -29,7 +29,7 @@
  
 	<!-- 过滤器 -->
     <filter>
-        <filter-name>DispatherFilter</filter-name>
+        <filter-name>filter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         <init-param>
             <param-name>targetBeanName</param-name>
@@ -41,23 +41,23 @@
         </init-param>
     </filter>
     <filter>
-        <filter-name>ControlFilter</filter-name>
+        <filter-name>control</filter-name>
         <filter-class>org.ionnic.core.support.Filter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>ControlFilter</filter-name>
-        <servlet-name>DispatherServlet</servlet-name>
+        <filter-name>control</filter-name>
+        <servlet-name>servlet</servlet-name>
     </filter-mapping>
-    
+
     <filter-mapping>
-        <filter-name>DispatherFilter</filter-name>
-        <servlet-name>DispatherServlet</servlet-name>
+        <filter-name>filter</filter-name>
+        <servlet-name>servlet</servlet-name>
     </filter-mapping>
 
 	<!-- servlet -->
     <servlet>
-        <servlet-name>DispatherServlet</servlet-name>
+        <servlet-name>servlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -72,7 +72,7 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>DispatherServlet</servlet-name>
+        <servlet-name>servlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

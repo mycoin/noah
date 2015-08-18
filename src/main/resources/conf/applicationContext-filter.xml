@@ -13,5 +13,12 @@
 
         <property name="charset" value="UTF-8" />
         <property name="forceEncoding" value="true" />
+
+        <property name="safeDomain">
+            <list>
+                <value>www.ionnic.org</value>
+                <value>public.ionnic.org</value>
+            </list>
+        </property>
     </bean>
 </beans>

@@ -15,6 +15,8 @@ public class FilterConfig {
 
 	private boolean forceEncoding = false;
 
+	private String[] safeDomain;
+
 	/**
 	 * @return the charset
 	 */
@@ -27,6 +29,13 @@ public class FilterConfig {
 	 */
 	public String getMethodField() {
 		return methodField;
+	}
+
+	/**
+	 * @return the safeDomain
+	 */
+	public String[] getSafeDomain() {
+		return safeDomain;
 	}
 
 	/**
@@ -73,5 +82,13 @@ public class FilterConfig {
 	 */
 	public void setMethodField(String methodField) {
 		this.methodField = methodField;
+	}
+
+	/**
+	 * @param safeDomain
+	 *            the safeDomain to set
+	 */
+	public void setSafeDomain(String[] safeDomain) {
+		this.safeDomain = safeDomain;
 	}
 }
