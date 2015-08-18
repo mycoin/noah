@@ -148,12 +148,8 @@ public class PageTool {
 		return "<!-- eval:exception -->";
 	}
 
-	/**
-	 * @param externalName
-	 * @return
-	 */
-	public String external(String externalName) {
-		return external(externalName, null);
+	public String external(String external) {
+		return external(external, null);
 	}
 
 	/**

@@ -24,6 +24,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ionnic.core.support.tools.StringTool;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.View;
@@ -66,108 +67,6 @@ public class JsonView extends AbstractView {
 	}
 
 	/**
-	 * Set the attribute in the model that should be rendered by this view. When
-	 * set, all other model attributes will be ignored.
-	 */
-	public void setModelKey(String modelKey) {
-		this.modelKeys = Collections.singleton(modelKey);
-	}
-
-	/**
-	 * Set the attributes in the model that should be rendered by this view.
-	 * When set, all other model attributes will be ignored.
-	 */
-	public void setModelKeys(Set<String> modelKeys) {
-		this.modelKeys = modelKeys;
-	}
-
-	/**
-	 * Return the attributes in the model that should be rendered by this view.
-	 */
-	public Set<String> getModelKeys() {
-		return this.modelKeys;
-	}
-
-	/**
-	 * Set whether to serialize models containing a single attribute as a map or
-	 * whether to extract the single value from the model and serialize it
-	 * directly.
-	 * <p>
-	 * The effect of setting this flag is similar to using
-	 * {@code MappingJacksonHttpMessageConverter} with an {@code @ResponseBody}
-	 * request-handling method.
-	 * <p>
-	 * Default is {@code false}.
-	 */
-	public void setExtractValueFromSingleKeyModel(boolean extractValueFromSingleKeyModel) {
-		this.extractValueFromSingleKeyModel = extractValueFromSingleKeyModel;
-	}
-
-	/**
-	 * Disables caching of the generated JSON.
-	 * <p>
-	 * Default is {@code true}, which will prevent the client from caching the
-	 * generated JSON.
-	 */
-	public void setDisableCaching(boolean disableCaching) {
-		this.disableCaching = disableCaching;
-	}
-
-	@Override
-	protected void prepareResponse(HttpServletRequest request, HttpServletResponse response) {
-		response.setContentType(getContentType());
-		if (this.disableCaching) {
-			response.addHeader("Pragma", "no-cache");
-			response.addHeader("Cache-Control", "no-cache, no-store, max-age=0");
-			response.addDateHeader("Expires", 1L);
-		}
-	}
-
-	/**
-	 * @param str
-	 * @return
-	 */
-	public String chinaToUnicode(String str) {
-		String result = "";
-		for (int i = 0; i < str.length(); i++) {
-			int chr1 = (char) str.charAt(i);
-			if (chr1 >= 19968 && chr1 <= 171941) {
-				result += "\\u" + Integer.toHexString(chr1);
-			} else {
-				result += str.charAt(i);
-			}
-		}
-		return result;
-	}
-
-	@Override
-	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		Gson gson = new GsonBuilder()
-
-		.enableComplexMapKeySerialization()
-
-		.serializeNulls()
-		
-		.setDateFormat("yyyy-MM-dd H:mm:ss")
-		
-		.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-
-		.setVersion(1.0)
-
-		.create();
-
-		Object value = filterModel(model);
-		String result = gson.toJson(value);
-		result = chinaToUnicode(result);
-		response.getOutputStream().write(result.getBytes());
-		// JsonGenerator generator =
-		// this.objectMapper.getJsonFactory().createJsonGenerator(response.getOutputStream(),
-		// this.encoding);
-		// this.objectMapper.writeValue(generator, value);/
-	}
-
-	/**
 	 * Filters out undesired attributes from the given model. The return value
 	 * can be either another {@link Map} or a single value object.
 	 * <p>
@@ -188,6 +87,76 @@ public class JsonView extends AbstractView {
 			}
 		}
 		return (this.extractValueFromSingleKeyModel && result.size() == 1 ? result.values().iterator().next() : result);
+	}
+
+	/**
+	 * Return the attributes in the model that should be rendered by this view.
+	 */
+	public Set<String> getModelKeys() {
+		return this.modelKeys;
+	}
+
+	@Override
+	protected void prepareResponse(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType(getContentType());
+		if (this.disableCaching) {
+			response.addHeader("Pragma", "no-cache");
+			response.addHeader("Cache-Control", "no-cache, no-store, max-age=0");
+			response.addDateHeader("Expires", 1L);
+		}
+	}
+
+	@Override
+	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().serializeNulls().setDateFormat("yyyy-MM-dd H:mm:ss")
+		        .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).setVersion(1.0).create();
+
+		Object value = filterModel(model);
+		String result = gson.toJson(value);
+		result = StringTool.encodeUnicode(result);
+		response.getOutputStream().write(result.getBytes());
+	}
+
+	/**
+	 * Disables caching of the generated JSON.
+	 * <p>
+	 * Default is {@code true}, which will prevent the client from caching the
+	 * generated JSON.
+	 */
+	public void setDisableCaching(boolean disableCaching) {
+		this.disableCaching = disableCaching;
+	}
+
+	/**
+	 * Set whether to serialize models containing a single attribute as a map or
+	 * whether to extract the single value from the model and serialize it
+	 * directly.
+	 * <p>
+	 * The effect of setting this flag is similar to using
+	 * {@code MappingJacksonHttpMessageConverter} with an {@code @ResponseBody}
+	 * request-handling method.
+	 * <p>
+	 * Default is {@code false}.
+	 */
+	public void setExtractValueFromSingleKeyModel(boolean extractValueFromSingleKeyModel) {
+		this.extractValueFromSingleKeyModel = extractValueFromSingleKeyModel;
+	}
+
+	/**
+	 * Set the attribute in the model that should be rendered by this view. When
+	 * set, all other model attributes will be ignored.
+	 */
+	public void setModelKey(String modelKey) {
+		this.modelKeys = Collections.singleton(modelKey);
+	}
+
+	/**
+	 * Set the attributes in the model that should be rendered by this view.
+	 * When set, all other model attributes will be ignored.
+	 */
+	public void setModelKeys(Set<String> modelKeys) {
+		this.modelKeys = modelKeys;
 	}
 
 }

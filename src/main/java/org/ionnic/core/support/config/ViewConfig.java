@@ -23,10 +23,24 @@ public class ViewConfig {
 	}
 
 	/**
+	 * @return the externalExtension
+	 */
+	public String getExternalExtension() {
+		return externalExtension;
+	}
+
+	/**
 	 * @return the externalPath
 	 */
 	public Resource getExternalPath() {
 		return externalPath;
+	}
+
+	/**
+	 * @return the shareTools
+	 */
+	public boolean isShareTools() {
+		return shareTools;
 	}
 
 	/**
@@ -38,21 +52,6 @@ public class ViewConfig {
 	}
 
 	/**
-	 * @param externalPath
-	 *            the externalPath to set
-	 */
-	public void setExternalPath(Resource externalPath) {
-		this.externalPath = externalPath;
-	}
-
-	/**
-	 * @return the externalExtension
-	 */
-	public String getExternalExtension() {
-		return externalExtension;
-	}
-
-	/**
 	 * @param externalExtension
 	 *            the externalExtension to set
 	 */
@@ -61,10 +60,11 @@ public class ViewConfig {
 	}
 
 	/**
-	 * @return the shareTools
+	 * @param externalPath
+	 *            the externalPath to set
 	 */
-	public boolean isShareTools() {
-		return shareTools;
+	public void setExternalPath(Resource externalPath) {
+		this.externalPath = externalPath;
 	}
 
 	/**

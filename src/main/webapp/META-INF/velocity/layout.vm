@@ -1,1 +1,5 @@
-<!-- NO LAYOUT -->
+$screen_content
+
+#block("top")
+
+#end

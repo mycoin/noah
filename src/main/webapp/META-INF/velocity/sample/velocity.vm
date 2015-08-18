@@ -1,4 +1,4 @@
-#startup()
+#extend()
 <!doctype html>
 <html>
 <head>
@@ -24,8 +24,7 @@
         </tr>
         <tr>
             <td>内部模板</td>
-            <td data-value="[\S]{1,}">
-                <pre>#includeInternal("ad")</pre>
+            <td data-value="ad">
                 <pre>#includeInternal("ad", {})</pre>
             </td>
         </tr>
@@ -48,6 +47,9 @@
     session: $session
     application: $application
     -->
+    $application.class
+    $context.class
+    
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>

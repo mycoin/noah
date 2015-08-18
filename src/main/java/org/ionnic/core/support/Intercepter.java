@@ -39,6 +39,8 @@ public class Intercepter extends HandlerInterceptorAdapter {
 				response.addCookie(new Cookie("token", uuid));
 			}
 			response.setHeader("X-Token", uuid);
+			response.setHeader("X-Frame-Options", "SAMEORIGIN");
+			response.setHeader("X-XSS-Protection", "1; mode=block");
 		}
 	}
 
