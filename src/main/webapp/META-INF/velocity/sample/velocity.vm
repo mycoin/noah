@@ -29,27 +29,6 @@
             </td>
         </tr>
     </table>
-    
-    #set($safe = "12")
-    
-    
-    <!--
-    $page.config("domain")
-    $page.external("ad", {})
-    $page.eval(
-        '$page.config("domain")#foreach($item in $array)\t<a href="javascript:alert(\"$velocityCount:\")">$name</a>($util.toLocateDate("default"))\n#end', {
-        "array": [1,2,3,4],
-        "name" : "index"
-    })
-    context: $context
-    page: $page
-    response: $response
-    session: $session
-    application: $application
-    -->
-    $application.class
-    $context.class
-    
     <script src="$context.getContextUrl('/static/sample.js')"></script>
 </body>
 </html>
