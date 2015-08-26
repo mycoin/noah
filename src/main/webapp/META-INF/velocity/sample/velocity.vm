@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td>获取配置</td>
-            <td data-value="ionnic">$page.config("domain")</td>
+            <td data-value="ionnic">$config.get("domain")</td>
         </tr>
         <tr>
             <td>外部模板</td>
