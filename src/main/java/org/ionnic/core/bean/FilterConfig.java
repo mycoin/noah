@@ -1,4 +1,4 @@
-package org.ionnic.core.config;
+package org.ionnic.core.bean;
 
 /**
  * 过滤器配置信息

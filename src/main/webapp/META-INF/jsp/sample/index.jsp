@@ -20,45 +20,43 @@
 		</tr>
 		<tr>
 			<td>拦截器:</td>
-			<td data-value="^org.ionnic">
-			    ${data.intercepter}
-			    <form method="POST" id="form" STYLE="display:inline">
-                    <select name="method" id="method">
-                        <option value="GET">GET</option>
-                        <option value="POST">POST</option>
-                        <option value="PUT">PUT</option>
-                        <option value="DELETE">DELETE</option>
-                    </select>
-                    method is "${data.method}"
-                </form>
+			<td data-value="^org.ionnic">${data.intercepter}
+				<form method="POST" id="form" STYLE="display: inline">
+					<select name="method" id="method">
+						<option value="GET">GET</option>
+						<option value="POST">POST</option>
+						<option value="PUT">PUT</option>
+						<option value="DELETE">DELETE</option>
+					</select> method is "${data.method}"
+				</form>
 			</td>
 		</tr>
 		<tr id="security">
-            <td>安全配置:</td>
-            <td id="security-text"></td>
-        </tr>
+			<td>安全配置:</td>
+			<td id="security-text"></td>
+		</tr>
 	</table>
 	<script src="<%=baseDir%>/static/sample.js"></script>
 	<script type="text/javascript">
 		$.ajax({
 			url : 'index.json',
-			dataType: 'json',
+			dataType : 'json',
 			type : 'DELETE',
-			success: function(data){
-			    if(data.method !== "DELETE") {
-			    	$('#method').css('background', 'red');
-			    }
+			success : function(data) {
+				if (data.method !== "DELETE") {
+					$('#method').css('background', 'red');
+				}
 			},
 			error : function() {
-			    $('#method').css('background', 'red');
+				$('#method').css('background', 'red');
 			}
 		});
-		
+
 		$('#method').val('${data.method}');
 		$('#method').change(function() {
 			$('#form').submit();
 		});
-		
+
 		$.ajax({
 			url : 'security.json',
 			username : 'local',

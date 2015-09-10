@@ -68,7 +68,7 @@
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/static/*</url-pattern>
+        <url-pattern>/(static|public|page)/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

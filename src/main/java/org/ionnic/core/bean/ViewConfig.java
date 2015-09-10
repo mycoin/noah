@@ -1,4 +1,4 @@
-package org.ionnic.core.config;
+package org.ionnic.core.bean;
 
 import org.springframework.core.io.Resource;
 

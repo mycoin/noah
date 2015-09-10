@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 	<!-- 全局过滤器 -->
-    <bean class="org.ionnic.core.config.FilterConfig">
+    <bean class="org.ionnic.core.bean.FilterConfig">
         <property name="ignoreMethod" value="false" />
         <property name="methodField" value="method" />
 

@@ -1,4 +1,4 @@
-#extend()
+##setLayout("main")
 <!doctype html>
 <html>
 <head>
@@ -18,8 +18,9 @@
         <tr>
             <td>外部模板</td>
             <td data-value="AD">
-                <pre>$page.external("ad")</pre>
-                <pre>$page.external("eval", {"status": 0})</pre>
+                #external("ad", {
+                    "wd": 2345234567
+                })
             </td>
         </tr>
         <tr>

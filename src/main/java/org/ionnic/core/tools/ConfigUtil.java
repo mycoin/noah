@@ -3,13 +3,13 @@ package org.ionnic.core.tools;
 import java.util.Properties;
 
 import org.ionnic.core.Config;
-import org.ionnic.core.config.ViewConfig;
+import org.ionnic.core.bean.ViewConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConfigTool {
+public class ConfigUtil {
 
-	private Logger logger = LoggerFactory.getLogger(ConfigTool.class);
+	private Logger logger = LoggerFactory.getLogger(ConfigUtil.class);
 
 	private static Config config = Config.getInstance();
 
@@ -46,7 +46,7 @@ public class ConfigTool {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("PageTool.init() invoked.");
+			logger.debug("PageUtil.init() invoked.");
 		}
 	}
 

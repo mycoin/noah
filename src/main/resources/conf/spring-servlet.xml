@@ -32,7 +32,10 @@
 
 	<!-- 扫描组件 -->
     <context:component-scan base-package="org.ionnic.app" />
-
+    
+    <!-- 根地址跳转 -->
+    <mvc:view-controller path="/" view-name="redirect:/index.html" />
+    
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
@@ -114,8 +117,14 @@
 	<!-- 全局拦截器 -->
     <mvc:interceptors>
         <bean class="org.ionnic.core.Intercepter" />
+        <mvc:interceptor>
+            <mvc:mapping path="/forum/post" />
+            <mvc:mapping path="/forum/reply/*" />
+            <bean class="org.ionnic.core.Intercepter" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
 	<!-- 默认配置 -->
     <mvc:default-servlet-handler />
+    
 </beans>

@@ -24,7 +24,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.core.tools.StringTool;
+import org.ionnic.core.tools.StringUtil;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.View;
@@ -114,7 +114,7 @@ public class JsonView extends AbstractView {
 
 		Object value = filterModel(model);
 		String result = gson.toJson(value);
-		result = StringTool.encodeUnicode(result);
+		result = StringUtil.encodeUnicode(result);
 		response.getOutputStream().write(result.getBytes());
 	}
 

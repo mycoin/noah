@@ -9,7 +9,7 @@ import org.mortbay.jetty.webapp.WebAppContext;
  * Starts an embedded Jetty server running our application.
  */
 public class Main {
-	private static final String CONTEXT_PATH = "/spring-mvc";
+	private static final String CONTEXT_PATH = "/";
 
 	/**
 	 * @param args
