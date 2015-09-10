@@ -21,6 +21,7 @@
 
     <import resource="classpath:conf/applicationContext-config.xml" />
     <import resource="classpath:conf/applicationContext-security.xml" />
+    <import resource="classpath:conf/applicationContext-db.xml" />
     <import resource="classpath:conf/applicationContext-cache.xml" />
     <import resource="classpath:conf/applicationContext-filter.xml" />
 </beans>

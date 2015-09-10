@@ -19,13 +19,13 @@
         <property name="autodetectAnnotations" value="true" />
         <property name="aliases">
             <map>
-                <entry key="message" value="org.ionnic.app.home.model.ApiMessage" />
+                <entry key="message" value="org.ionnic.app.model.ApiMessage" />
             </map>
         </property>
 
 		<!-- <property name="implicitCollections">
 			<map>
-				<entry key="org.ionnic.app.home.model.Person" value="organisation" />
+				<entry key="org.ionnic.app.model.Person" value="organisation" />
 			</map>
 		</property> -->
     </bean>
@@ -36,7 +36,7 @@
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.core.support.converters.JsonHttpMessageConverter">
+            <bean class="org.ionnic.core.converters.JsonHttpMessageConverter">
                 <property name="supportedMediaTypes" value="application/json" />
             </bean>
         </mvc:message-converters>
@@ -86,7 +86,7 @@
         <property name="defaultViews">
             <list>
 				<!-- JSON -->
-                <bean class="org.ionnic.core.support.view.JsonView">
+                <bean class="org.ionnic.core.view.JsonView">
                     <property name="extractValueFromSingleKeyModel" value="true" />
                     <property name="contentType" value="application/json;charset=UTF-8" />
                 </bean>
@@ -98,7 +98,7 @@
                 </bean>
 				
 				<!-- JSONP -->
-                <bean class="org.ionnic.core.support.view.JsonpView">
+                <bean class="org.ionnic.core.view.JsonpView">
                     <property name="callbackKey" value="callback" />
                     <property name="varKey" value="var" />
                     <property name="defaultCallback" value="callback" />
@@ -113,7 +113,7 @@
     
 	<!-- 全局拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.core.support.Intercepter" />
+        <bean class="org.ionnic.core.Intercepter" />
     </mvc:interceptors>
 
 	<!-- 默认配置 -->

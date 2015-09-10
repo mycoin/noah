@@ -195,7 +195,7 @@
             <artifactId>xmemcached</artifactId>
             <version>1.4.3</version>
         </dependency>
-
+ 
 		<!-- Testing -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -233,6 +233,13 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.10</version>
                 <configuration>
+                    <contextPath>/</contextPath>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>productionMode</name>
+                            <value>false</value>
+                        </systemProperty>
+                    </systemProperties>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                 </configuration>
             </plugin>

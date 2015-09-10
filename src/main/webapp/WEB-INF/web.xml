@@ -42,7 +42,7 @@
     </filter>
     <filter>
         <filter-name>control</filter-name>
-        <filter-class>org.ionnic.core.support.Filter</filter-class>
+        <filter-class>org.ionnic.core.Filter</filter-class>
     </filter>
 
     <filter-mapping>
