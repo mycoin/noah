@@ -1,53 +1,59 @@
-<!doctype html>
 <html>
 <head>
-<title>sample/index</title>
-<link rel="stylesheet" href="static/sample.css">
-<style type="text/css">
-.c-table {float: left;}
-</style>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="public/lib.css" />
 </head>
 <body>
-	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
-		<tr class="gray">
-			<td width="100">基本功能</td>
-			<td><a href="sample/index">sample/index</a></td>
-		</tr>
-		<tr>
-			<td colspan="2"><iframe class="c-iframe" src="sample/index" height="190"></iframe></td>
-		</tr>
-	</table>
 
-	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
-		<tr class="gray">
-			<td width="100">URL传参情况</td>
-			<td><a href="sample/param?name=2345">sample/param</a></td>
-		</tr>
-		<tr>
-			<td colspan="2"><iframe class="c-iframe" src="sample/param?name=2345" height="190"></iframe></td>
-		</tr>
-	</table>
+<h2>测试用例</h2>
+<div class="col">
+    <ul>
+        <li data-task="x-search">
+            <i>1</i>
+            <a class="link normal" href="i/search/杭州天气" target="_blank">@RequestParam()</a>
+        </li>
+        <li data-task="x-matches">
+            <i>2</i>
+            <a class="link normal" href="i/security" target="_blank">security</a>
+        </li>
+        <li data-task="x-matches">
+            <i>2</i>
+            <a class="link normal" href="i/security" target="_blank">security</a>
+        </li>
+    </ul>
+</div>
 
-	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
-		<tr class="gray">
-			<td width="100">REST测试案例</td>
-			<td><a href="sample/rest">sample/rest</a></td>
-		</tr>
-		<tr>
-			<td colspan="2"><iframe class="c-iframe" src="sample/rest" height="220"></iframe></td>
-		</tr>
-	</table>
 
-	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
-		<tr class="gray">
-			<td width="100">velocity测试案例</td>
-			<td><a href="sample/velocity">sample/velocity</a></td>
-		</tr>
-		<tr>
-			<td colspan="2"><iframe class="c-iframe" src="sample/velocity" height="220"></iframe></td>
-		</tr>
-	</table>
-	<script src="static/sample.js"></script>
+<script type="text/javascript" src="public/lib.js"></script>
+<script type="text/javascript">
+var task = {
+    'x-search': {
+        dataType: 'json',
+        method: 'post'
+    }
+};
+jQuery('li').each(function() {
+    var el = jQuery(this);
+    var type = el.data('task');
+    var link = jQuery('.link', el);
+
+    if (link[0]) {
+        var config = task[type];
+        var opt = jQuery.extend(true, {
+            dataType: 'html',
+            data: {
+                app: '百度'
+            }
+        }, config);
+        jQuery.ajax(link[0].href, opt).always(function(data, _, xhr) {
+            if (data.status == 0) {
+                el.append('<span class="ok">' + (xhr.responseText) + '</span>');
+            } else {
+                el.append('<span class="error">' + (data.statusInfo || '未知异常') + '</span>');
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>
-

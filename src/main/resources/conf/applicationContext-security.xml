@@ -18,14 +18,14 @@
     </beans:description>
 
 	<!-- 安全配置 -->
-    <http create-session="stateless" auto-config="true">
+    <http create-session="ifRequired" auto-config="true">
         <port-mappings>
             <port-mapping http="8080" https="8443" />
         </port-mappings>
 
 		<!-- Any resources under the people url require the user role, all other 
              resources are accessible to everyone. -->
-        <intercept-url pattern="/sample/security*" access="ROLE_USER" requires-channel="any" />
+        <intercept-url pattern="/sample/security*" access="ROLE_ADMIN" requires-channel="any" />
 
 		<!-- Configures basic auth. -->
         <http-basic />
@@ -34,11 +34,9 @@
 	<!-- 认证管理 -->
     <authentication-manager>
         <authentication-provider>
-			<!-- <password-encoder hash="md5" /> -->
+			<password-encoder hash="md5" />
             <user-service>
-				<!-- local:1234, admin:12345 -->
-                <user name="local" password="1" authorities="ROLE_USER" />
-                <user name="admin" password="1" authorities="ROLE_ADMIN" />
+                <user name="admin" authorities="ROLE_ADMIN" password="21232f297a57a5a743894a0e4a801fc3" />
             </user-service>
         </authentication-provider>
     </authentication-manager>

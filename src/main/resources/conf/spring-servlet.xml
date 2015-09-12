@@ -29,19 +29,17 @@
 			</map>
 		</property> -->
     </bean>
+    
+    <!-- 启用注解 -->
+    <context:annotation-config />
 
 	<!-- 扫描组件 -->
     <context:component-scan base-package="org.ionnic.app" />
     
-    <!-- 根地址跳转 -->
-    <mvc:view-controller path="/" view-name="redirect:/index.html" />
-    
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.core.converters.JsonHttpMessageConverter">
-                <property name="supportedMediaTypes" value="application/json" />
-            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
         </mvc:message-converters>
         <mvc:return-value-handlers>
             <bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
@@ -78,30 +76,40 @@
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="order" value="2" />
 
+                    <property name="alwaysInclude" value="true" />
                     <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="prefix" value="/META-INF/jsp/" />
                     <property name="suffix" value=".jsp" />
                     <property name="requestContextAttribute" value="context" />
-                    <property name="alwaysInclude" value="true" />
                 </bean>
+                
+                <bean class="org.ionnic.core.view.ExceptionViewResolver">
+                    <property name="order" value="3" />
+
+                    <property name="contentType" value="text/html;charset=UTF-8" />
+                    <property name="prefix" value="/META-INF/jsp/" />
+                    <property name="suffix" value=".jsp" />
+                </bean>
+                
+                
             </list>
         </property>
         <property name="defaultViews">
             <list>
-				<!-- JSON -->
-                <bean class="org.ionnic.core.view.JsonView">
+                <!-- JSON -->
+                <bean class="org.ionnic.core.view.JsonViewer">
                     <property name="extractValueFromSingleKeyModel" value="true" />
                     <property name="contentType" value="application/json;charset=UTF-8" />
                 </bean>
 
-				<!-- JAXB XML -->
+                <!-- JAXB XML -->
                 <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
                     <constructor-arg ref="xstreamMarshaller" />
                     <property name="modelKey" value="data" />
                 </bean>
-				
-				<!-- JSONP -->
-                <bean class="org.ionnic.core.view.JsonpView">
+                
+                <!-- JSONP -->
+                <bean class="org.ionnic.core.view.JsonpViewer">
                     <property name="callbackKey" value="callback" />
                     <property name="varKey" value="var" />
                     <property name="defaultCallback" value="callback" />
@@ -123,8 +131,22 @@
             <bean class="org.ionnic.core.Intercepter" />
         </mvc:interceptor>
     </mvc:interceptors>
+    
+    <!-- 异常处理 -->
+    <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="/auth/commons/error" />
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">/auth/commons/error</prop>
+                <prop key="java.lang.RuntimeException">/auth/commons/error</prop>
+            </props>
+        </property>
+    </bean>
+
+    
+    <!-- 根地址跳转 -->
+    <mvc:view-controller path="/" view-name="redirect:/index.html" />
 
 	<!-- 默认配置 -->
     <mvc:default-servlet-handler />
-    
 </beans>

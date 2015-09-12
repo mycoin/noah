@@ -15,10 +15,17 @@
         security config, database config, etc.
 
         Imports the following
-        configuration files:
-        - security-context.xml
+        configuration files: - security-context.xml
     </description>
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:local/config.properties</value>
+                <value>classpath*:local/config.properties</value>
+            </list>
+        </property>
+    </bean>
     <import resource="classpath:conf/applicationContext-config.xml" />
     <import resource="classpath:conf/applicationContext-security.xml" />
     <import resource="classpath:conf/applicationContext-db.xml" />

@@ -2,7 +2,7 @@ package org.ionnic.core.tools;
 
 import java.util.Properties;
 
-import org.ionnic.core.Config;
+import org.ionnic.core.GlobalConfig;
 import org.ionnic.core.bean.ViewConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ public class ConfigUtil {
 
 	private Logger logger = LoggerFactory.getLogger(ConfigUtil.class);
 
-	private static Config config = Config.getInstance();
+	private static GlobalConfig globalConfig = GlobalConfig.getInstance();
 
 	private static ViewConfig viewConfig;
 
@@ -29,7 +29,7 @@ public class ConfigUtil {
 	 * @return
 	 */
 	public String config(String key, String defaultValue) {
-		Properties p = config.getViewMap();
+		Properties p = globalConfig.getViewMap();
 		return p.getProperty(key, defaultValue);
 	}
 
@@ -42,7 +42,7 @@ public class ConfigUtil {
 	public void init(Object context) {
 
 		if (null == viewConfig) {
-			viewConfig = config.getViewConfig();
+			viewConfig = globalConfig.getViewConfig();
 		}
 
 		if (logger.isDebugEnabled()) {

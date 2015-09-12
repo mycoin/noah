@@ -44,7 +44,7 @@ import com.google.gson.GsonBuilder;
  * @since 3.0
  * @see org.springframework.http.converter.json.MappingJacksonHttpMessageConverter
  */
-public class JsonView extends AbstractView {
+public class JsonViewer extends AbstractView {
 
 	/**
 	 * Default content type. Overridable as bean property.
@@ -61,7 +61,7 @@ public class JsonView extends AbstractView {
 	 * Construct a new {@code JacksonJsonView}, setting the content type to
 	 * {@code application/json}.
 	 */
-	public JsonView() {
+	public JsonViewer() {
 		setContentType(DEFAULT_CONTENT_TYPE);
 		setExposePathVariables(false);
 	}

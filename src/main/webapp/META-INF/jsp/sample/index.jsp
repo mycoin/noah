@@ -9,6 +9,13 @@
 <link rel="stylesheet" href="<%=baseDir%>/static/sample.css">
 </head>
 <body>
+    
+    <form method="post" action="">
+        <input name="token" />
+        <input name="token" /> 
+        
+        <input type="submit" value="submit" />
+    </form>
 	<table class="c-table" border="1" cellspacing="1" cellpadding="2">
 		<tr>
 			<td width="80">过滤器:</td>
@@ -59,9 +66,9 @@
 
 		$.ajax({
 			url : 'security.json',
-			username : 'local',
+			username : 'admin',
 			dataType : 'html',
-			password : '1',
+			password : 'admin',
 			type : "GET",
 			success : function(data) {
 				$('#security-text').html(data);

@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 /**
  * @author apple
  */
-public class JsonpView extends JsonView {
+public class JsonpViewer extends JsonViewer {
 
 	public static final String DEFAULT_CONTENT_TYPE = "application/javascript";
 

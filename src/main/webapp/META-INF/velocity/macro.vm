@@ -9,12 +9,12 @@
 #end
 
 ## 获取内部模板
-#macro(external $templateName, $data)
-    #if($data == 1)
-        #parse("${templateName}.html")
+#macro(external $name, $data)#*
+ *##if($data == 1)
+        #parse("${name}.html")
     #else
-        #set($templateName = "#include(${templateName}.html)")
-        $page.eval($templateName, $data)
-    #end
+        #set($name = "${name}.html")
+        #set($name = "#include(${name})")#*
+      *#$page.eval($name, $data)#*
+  *##end
 #end
-

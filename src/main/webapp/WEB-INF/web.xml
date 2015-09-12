@@ -13,7 +13,7 @@
 
     <context-param>
         <param-name>log4jConfigLocation</param-name>
-        <param-value>classpath:conf/local/log.properties</param-value>
+        <param-value>classpath:local/log.properties</param-value>
     </context-param>
 
 	<!-- 监听器 -->
@@ -42,7 +42,7 @@
     </filter>
     <filter>
         <filter-name>control</filter-name>
-        <filter-class>org.ionnic.core.Filter</filter-class>
+        <filter-class>org.ionnic.core.GeneralFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -89,6 +89,8 @@
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    
+    <async-supported>true</async-supported>
 
 	<!-- 欢迎页面 -->
     <welcome-file-list>

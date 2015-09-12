@@ -7,8 +7,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.view.ViewToolContext;
-import org.ionnic.core.Config;
-import org.ionnic.core.bean.ViewConfig;
+import org.ionnic.core.GlobalConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,8 +21,6 @@ public class PageUtil {
 
 	private ViewToolContext context;
 
-	private static ViewConfig viewConfig;
-
 	/**
 	 * 内部渲染函数
 	 * 
@@ -34,7 +31,7 @@ public class PageUtil {
 	 * @param escape
 	 * @return
 	 */
-	private boolean evaluateString(StringWriter writer, Map<String, ?> dataMap, String stringValue, boolean threadSafe, boolean escape) {
+	private boolean evaluateString(StringWriter writer, Map<String, Object> dataMap, String stringValue, boolean threadSafe, boolean escape) {
 		VelocityEngine engine = null;
 
 		// Whether to share a VelocityEngine instance
@@ -43,21 +40,10 @@ public class PageUtil {
 		} else {
 			engine = context.getVelocityEngine();
 		}
-
 		Map<String, Object> toolbox = context.getToolbox();
+
+		dataMap.putAll(toolbox);
 		Context contextMap = new VelocityContext(dataMap);
-
-		if (viewConfig.isShareTools()) {
-			for (String key : toolbox.keySet()) {
-				Object value = toolbox.get(key);
-				if (value instanceof PageUtil) {
-					contextMap.put(key, this);
-				} else {
-					contextMap.put(key, toolbox.get(key));
-				}
-			}
-		}
-
 		if (escape) {
 			stringValue = StringUtil.escapeSymbol(stringValue);
 		}
@@ -91,7 +77,7 @@ public class PageUtil {
 			logger.debug("PageUtil.init() invoked.");
 		}
 
-		viewConfig = Config.getInstance().getViewConfig();
+		GlobalConfig.getInstance().getViewConfig();
 	}
 
 	@Override

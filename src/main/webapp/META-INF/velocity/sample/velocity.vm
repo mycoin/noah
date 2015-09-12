@@ -17,11 +17,7 @@
         </tr>
         <tr>
             <td>外部模板</td>
-            <td data-value="AD">
-                #external("ad", {
-                    "wd": 2345234567
-                })
-            </td>
+            <td data-value="AD">#external("ad", {"wd": "百度"})</td>
         </tr>
         <tr>
             <td>内部模板</td>

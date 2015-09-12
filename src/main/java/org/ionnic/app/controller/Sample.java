@@ -4,18 +4,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.core.Config;
+import org.ionnic.core.GlobalConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,7 +30,7 @@ public class Sample {
 	}
 
 	@RequestMapping("/index")
-	public void index(Model model, HttpServletRequest req) {
+	public void index(@RequestBody String reqBody, Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();
 
 		data.put("method", req.getMethod());
@@ -52,7 +52,7 @@ public class Sample {
 		data.put("id", 83961);
 		data.put("website", "http://home.ionnic.org/");
 		data.put("age", 25);
-		data.put("name", new Date());
+		data.put("name", "阿里巴巴");
 
 		model.addAttribute("status", 0);
 		model.addAttribute("statusInfo", "OK");
@@ -71,7 +71,7 @@ public class Sample {
 
 		String html = "";
 		File file = ResourceUtils.getFile("classpath:conf/README.txt");
-		InputStreamReader read = new InputStreamReader(new FileInputStream(file), Config.CHARSET);
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file), GlobalConfig.CHARSET);
 		BufferedReader bufferedReader = new BufferedReader(read);
 		String lineTxt = null;
 		boolean firstRow = true;
