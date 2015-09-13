@@ -82,16 +82,6 @@
                     <property name="suffix" value=".jsp" />
                     <property name="requestContextAttribute" value="context" />
                 </bean>
-                
-                <bean class="org.ionnic.core.view.ExceptionViewResolver">
-                    <property name="order" value="3" />
-
-                    <property name="contentType" value="text/html;charset=UTF-8" />
-                    <property name="prefix" value="/META-INF/jsp/" />
-                    <property name="suffix" value=".jsp" />
-                </bean>
-                
-                
             </list>
         </property>
         <property name="defaultViews">
@@ -125,24 +115,25 @@
 	<!-- 全局拦截器 -->
     <mvc:interceptors>
         <bean class="org.ionnic.core.Intercepter" />
-        <mvc:interceptor>
+        <!-- <mvc:interceptor>
             <mvc:mapping path="/forum/post" />
             <mvc:mapping path="/forum/reply/*" />
             <bean class="org.ionnic.core.Intercepter" />
-        </mvc:interceptor>
+        </mvc:interceptor> -->
     </mvc:interceptors>
     
     <!-- 异常处理 -->
-    <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="defaultErrorView" value="/auth/commons/error" />
+    <bean class="org.ionnic.core.view.ExceptionResolver">
+        <property name="exceptionAttribute" value="exception" />
         <property name="exceptionMappings">
             <props>
-                <prop key="java.lang.Exception">/auth/commons/error</prop>
-                <prop key="java.lang.RuntimeException">/auth/commons/error</prop>
+                <prop key="Exception">common/error</prop>
+                <prop key="NullPointerException">common/error</prop>
             </props>
         </property>
+        <property name="defaultErrorView" value="common/error" />
+        <property name="defaultStatusCode" value="500" />
     </bean>
-
     
     <!-- 根地址跳转 -->
     <mvc:view-controller path="/" view-name="redirect:/index.html" />

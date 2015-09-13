@@ -1,0 +1,7 @@
+#setLayout("blank")
+{
+    "getGuid": "$util.getGuid()",
+    "wd": "#external("ad", {"wd": "百度"})",
+    "config": "$config.get("domain")"
+}
+<!-- STATUS_OK -->

@@ -29,17 +29,7 @@ public class Sample {
 		throw new Exception();
 	}
 
-	@RequestMapping("/index")
-	public void index(@RequestBody String reqBody, Model model, HttpServletRequest req) {
-		Map<String, Object> data = new HashMap<String, Object>();
-
-		data.put("method", req.getMethod());
-		data.put("filter", req.getAttribute("filter"));
-		data.put("intercepter", req.getAttribute("intercepter"));
-		data.put("controller", this.getClass().getName());
-
-		model.addAttribute("data", data);
-	}
+	
 
 	@RequestMapping("/param")
 	public void param(String name, Model model) {
