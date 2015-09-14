@@ -1,0 +1,6 @@
+builder.enableComplexMapKeySerialization();
+builder.serializeNulls();
+builder.setDateFormat("yyyy-MM-dd H:mm:ss");
+builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
+builder.setVersion(1.0);
+builder.create();;

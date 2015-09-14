@@ -4,4 +4,7 @@
     "wd": "#external("ad", {"wd": "百度"})",
     "config": "$config.get("domain")"
 }
-<!-- STATUS_OK -->
+
+#if($data.method && $data.filter && $data.intercepter && $data.controller && $data.body)
+    <!-- STATUS_OK -->
+#end

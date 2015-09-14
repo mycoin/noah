@@ -23,7 +23,15 @@
         </li>
         <li data-task="x-rest">
             <i>4</i>
-            <a class="link normal" href="i/rest.json" target="_blank">rest test</a>
+            <a class="link normal" href="i/rest.json" target="_blank">restful.json</a>
+        </li>
+        <li data-task="x-exception">
+            <i>5</i>
+            <a class="link normal" href="i/exception.json" target="_blank">exception</a>
+        </li>
+        <li data-task="x-security">
+            <i>6</i>
+            <a class="link normal" href="i/security/admin" target="_blank">security</a>
         </li>
     </ul>
 </div>
@@ -36,6 +44,14 @@ var taskMap = {
         dataType: 'json',
         method: 'post',
         contentType: 'javascript/json'
+    },
+    'x-basic': {
+        contentType: 'javascript/json',
+        type: 'post'
+    },
+    'x-security': {
+        username: 'admin',
+        password: 'admin'
     }
 };
 </script>

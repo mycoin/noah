@@ -24,15 +24,11 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.core.tools.StringUtil;
+import org.ionnic.core.util.StringUtil;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.AbstractView;
-
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 /**
  * Spring MVC {@link View} that renders JSON content by serializing the model
@@ -108,13 +104,8 @@ public class JsonViewer extends AbstractView {
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().serializeNulls().setDateFormat("yyyy-MM-dd H:mm:ss")
-		        .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).setVersion(1.0).create();
-
 		Object value = filterModel(model);
-		String result = gson.toJson(value);
-		result = StringUtil.encodeUnicode(result);
+		String result = StringUtil.toJSON(value);
 		response.getOutputStream().write(result.getBytes());
 	}
 

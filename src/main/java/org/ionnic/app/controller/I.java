@@ -20,16 +20,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/i")
 public class I extends BaseController {
 
-	@RequestMapping("/basic")
+	@RequestMapping("basic")
 	public void basic(@RequestBody String reqBody, Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();
-
+		
 		data.put("method", req.getMethod());
 		data.put("filter", req.getAttribute("filter"));
 		data.put("intercepter", req.getAttribute("intercepter"));
 		data.put("controller", this.getClass().getName());
+		data.put("body", reqBody);
 
 		model.addAttribute("data", data);
+	}
+
+	@RequestMapping(value = "exception", produces = "application/json")
+	public void exception() throws Exception {
+		throw new Exception("STATUS_OK");
 	}
 
 	@RequestMapping("primitive")
@@ -39,6 +45,16 @@ public class I extends BaseController {
 		data.addAttribute("data", app);
 
 		return data;
+	}
+
+	@RequestMapping(value = "/rest")
+	public void rest(Model model, @RequestParam() String app) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("id", new Date());
+		data.put("app", app);
+
+		model.addAttribute("status", 0);
+		model.addAttribute("data", data);
 	}
 
 	@RequestMapping(value = "search/{search}", produces = "application/json", method = RequestMethod.POST)
@@ -51,15 +67,11 @@ public class I extends BaseController {
 		return result(0, data);
 	}
 
-	@RequestMapping(value = "/rest")
-	public void rest(Model model, @RequestParam() String app) {
+	@RequestMapping(value = "security/{username}")
+	@ResponseBody
+	public Object security(@RequestParam(required = false) String app) {
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("id", new Date());
-		data.put("app", app);
-
-		model.addAttribute("status", 0);
-		model.addAttribute("data", data);
-		
-		throw new RuntimeException(app);
+		data.put("biz", app);
+		return result(0, data);
 	}
 }

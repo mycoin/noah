@@ -68,7 +68,8 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springSecurityVersion}</version>
         </dependency>
-
+    
+        <!-- Aspect -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -79,6 +80,7 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.12</version>
         </dependency>
+        
 		<!-- MySql Connector -->
         <dependency>
             <groupId>mysql</groupId>

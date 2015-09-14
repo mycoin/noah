@@ -1,4 +1,4 @@
-package org.ionnic.core.tools;
+package org.ionnic.core.util;
 
 import java.util.Properties;
 
