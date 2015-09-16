@@ -3,7 +3,7 @@ package org.ionnic.core;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BaseController {
+public abstract class BasicController {
 
 	/**
 	 * @param status
@@ -19,5 +19,24 @@ public abstract class BaseController {
 			result.put("statusInfo", dataMap);
 		}
 		return result;
+	}
+
+	/**
+	 * @param data
+	 * @return
+	 */
+	public static Object success(Object data) {
+
+		return null;
+	}
+
+	/**
+	 * @param status
+	 * @param statusInfo
+	 * @return
+	 */
+	public static Object failed(int status, Object statusInfo) {
+
+		return null;
 	}
 }

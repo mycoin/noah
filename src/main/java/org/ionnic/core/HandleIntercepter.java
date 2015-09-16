@@ -4,14 +4,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.core.util.StringUtil;
+import org.ionnic.core.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
  */
-public class Intercepter extends HandlerInterceptorAdapter {
+public class HandleIntercepter extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
@@ -21,7 +21,7 @@ public class Intercepter extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		boolean hasToken = false;
-		String uuid = StringUtil.getGuid();
+		String uuid = StringUtils.getGuid();
 
 		Cookie cookies[] = request.getCookies();
 		if (cookies != null) {

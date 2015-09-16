@@ -26,8 +26,6 @@ public class Sample {
 		throw new Exception();
 	}
 
-	
-
 	@RequestMapping("/param")
 	public void param(String name, Model model) {
 		model.addAttribute("data", name);

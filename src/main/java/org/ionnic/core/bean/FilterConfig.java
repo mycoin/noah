@@ -7,15 +7,27 @@ package org.ionnic.core.bean;
  */
 public class FilterConfig {
 
-	private boolean ignoreMethod = true;
+	// 隐藏HTTP method 的隐藏域名称
+	private String hiddenMethodName;
 
-	private String methodField = "method";
+	// 默认的编码方式
+	private String charset;
 
-	private String charset = "UTF-8";
+	// refer 白名单
+	private String[] allowFromDomain;
 
-	private boolean forceEncoding = false;
+	// 开启隐藏HTTP方式隐藏字段
+	private boolean enableHiddenMethod = true;
 
-	private String[] safeDomain;
+	// 强制转换编码方式
+	private boolean forceEncoding;
+
+	/**
+	 * @return the allowFromDomain
+	 */
+	public String[] getAllowFromDomain() {
+		return allowFromDomain;
+	}
 
 	/**
 	 * @return the charset
@@ -25,17 +37,17 @@ public class FilterConfig {
 	}
 
 	/**
-	 * @return the methodField
+	 * @return the hiddenMethodName
 	 */
-	public String getMethodField() {
-		return methodField;
+	public String getHiddenMethodName() {
+		return hiddenMethodName;
 	}
 
 	/**
-	 * @return the safeDomain
+	 * @return the enableHiddenMethod
 	 */
-	public String[] getSafeDomain() {
-		return safeDomain;
+	public boolean isEnableHiddenMethod() {
+		return enableHiddenMethod;
 	}
 
 	/**
@@ -46,10 +58,11 @@ public class FilterConfig {
 	}
 
 	/**
-	 * @return the ignoreMethod
+	 * @param allowFromDomain
+	 *            the allowFromDomain to set
 	 */
-	public boolean isIgnoreMethod() {
-		return ignoreMethod;
+	public void setAllowFromDomain(String[] allowFromDomain) {
+		this.allowFromDomain = allowFromDomain;
 	}
 
 	/**
@@ -61,6 +74,14 @@ public class FilterConfig {
 	}
 
 	/**
+	 * @param enableHiddenMethod
+	 *            the enableHiddenMethod to set
+	 */
+	public void setEnableHiddenMethod(boolean enableHiddenMethod) {
+		this.enableHiddenMethod = enableHiddenMethod;
+	}
+
+	/**
 	 * @param forceEncoding
 	 *            the forceEncoding to set
 	 */
@@ -69,26 +90,10 @@ public class FilterConfig {
 	}
 
 	/**
-	 * @param ignoreMethod
-	 *            the ignoreMethod to set
+	 * @param hiddenMethodName
+	 *            the hiddenMethodName to set
 	 */
-	public void setIgnoreMethod(boolean ignoreMethod) {
-		this.ignoreMethod = ignoreMethod;
-	}
-
-	/**
-	 * @param methodField
-	 *            the methodField to set
-	 */
-	public void setMethodField(String methodField) {
-		this.methodField = methodField;
-	}
-
-	/**
-	 * @param safeDomain
-	 *            the safeDomain to set
-	 */
-	public void setSafeDomain(String[] safeDomain) {
-		this.safeDomain = safeDomain;
+	public void setHiddenMethodName(String hiddenMethodName) {
+		this.hiddenMethodName = hiddenMethodName;
 	}
 }

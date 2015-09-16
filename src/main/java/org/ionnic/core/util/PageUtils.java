@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
  * @author apple
  * 
  */
-public class PageUtil {
+public class PageUtils {
 
-	private Logger logger = LoggerFactory.getLogger(PageUtil.class);
+	private Logger logger = LoggerFactory.getLogger(PageUtils.class);
 
 	private ViewToolContext context;
 
@@ -45,9 +45,9 @@ public class PageUtil {
 		dataMap.putAll(toolbox);
 		Context contextMap = new VelocityContext(dataMap);
 		if (escape) {
-			stringValue = StringUtil.escapeSymbol(stringValue);
+			stringValue = StringUtils.escapeSymbol(stringValue);
 		}
-		return engine.evaluate(contextMap, writer, "PageUtil.eval()", stringValue);
+		return engine.evaluate(contextMap, writer, "PageUtils.eval()", stringValue);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class PageUtil {
 		this.context = (ViewToolContext) context;
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("PageUtil.init() invoked.");
+			logger.debug("PageUtils.init() invoked.");
 		}
 
 		GlobalConfig.getInstance().getViewConfig();

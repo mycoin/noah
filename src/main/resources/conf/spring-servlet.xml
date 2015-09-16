@@ -114,12 +114,12 @@
     
 	<!-- 全局拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.core.Intercepter" />
-        <!-- <mvc:interceptor>
+        <bean class="org.ionnic.core.HandleIntercepter" />
+        <mvc:interceptor>
             <mvc:mapping path="/forum/post" />
             <mvc:mapping path="/forum/reply/*" />
-            <bean class="org.ionnic.core.Intercepter" />
-        </mvc:interceptor> -->
+            <bean class="org.ionnic.core.HandleIntercepter" />
+        </mvc:interceptor>
     </mvc:interceptors>
     
     <!-- 异常处理 -->

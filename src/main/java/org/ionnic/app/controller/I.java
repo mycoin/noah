@@ -6,7 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.core.BaseController;
+import org.ionnic.core.BasicController;
+import org.ionnic.core.util.RequestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/i")
-public class I extends BaseController {
+public class I extends BasicController {
 
-	@RequestMapping("basic")
+	@RequestMapping("/basic")
 	public void basic(@RequestBody String reqBody, Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();
-		
+
 		data.put("method", req.getMethod());
 		data.put("filter", req.getAttribute("filter"));
 		data.put("intercepter", req.getAttribute("intercepter"));
@@ -33,12 +34,12 @@ public class I extends BaseController {
 		model.addAttribute("data", data);
 	}
 
-	@RequestMapping(value = "exception", produces = "application/json")
+	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
 		throw new Exception("STATUS_OK");
 	}
 
-	@RequestMapping("primitive")
+	@RequestMapping("/primitive")
 	@ResponseBody
 	public Object primitive(@RequestParam(required = false) String app, Model data) {
 		data.addAttribute("status", 0);
@@ -57,7 +58,7 @@ public class I extends BaseController {
 		model.addAttribute("data", data);
 	}
 
-	@RequestMapping(value = "search/{search}", produces = "application/json", method = RequestMethod.POST)
+	@RequestMapping(value = "/search/{search}", produces = "application/json", method = RequestMethod.POST)
 	@ResponseBody
 	public Object search(@PathVariable() String search, @RequestParam(required = false) String app) {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -67,11 +68,32 @@ public class I extends BaseController {
 		return result(0, data);
 	}
 
-	@RequestMapping(value = "security/{username}")
+	@RequestMapping(value = "/security/{username}")
 	@ResponseBody
 	public Object security(@RequestParam(required = false) String app) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("biz", app);
 		return result(0, data);
 	}
+
+	@RequestMapping(value = "/header")
+	@ResponseBody
+	public Object header(HttpServletRequest req) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("ip", RequestUtils.getRemoteAddr(req));
+		data.put("search", null);
+
+		return result(0, data);
+	}
+
+	/**
+	 * @param args
+	 */
+	// public static void main(String[] args) {
+	// new Thread(new Runnable() {
+	// public void run() {
+	// System.out.println(778);
+	// }
+	// }).start();
+	// }
 }

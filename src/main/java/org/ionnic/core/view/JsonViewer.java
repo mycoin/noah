@@ -24,7 +24,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.core.util.StringUtil;
+import org.ionnic.core.util.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.View;
@@ -105,7 +105,7 @@ public class JsonViewer extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Object value = filterModel(model);
-		String result = StringUtil.toJSON(value);
+		String result = StringUtils.toJSON(value);
 		response.getOutputStream().write(result.getBytes());
 	}
 

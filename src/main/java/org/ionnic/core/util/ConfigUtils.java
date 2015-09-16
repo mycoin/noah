@@ -7,9 +7,9 @@ import org.ionnic.core.bean.ViewConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ConfigUtil {
+public class ConfigUtils {
 
-	private Logger logger = LoggerFactory.getLogger(ConfigUtil.class);
+	private Logger logger = LoggerFactory.getLogger(ConfigUtils.class);
 
 	private static GlobalConfig globalConfig = GlobalConfig.getInstance();
 
@@ -46,7 +46,7 @@ public class ConfigUtil {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("PageUtil.init() invoked.");
+			logger.debug("PageUtils.init() invoked.");
 		}
 	}
 

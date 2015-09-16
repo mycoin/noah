@@ -8,13 +8,13 @@
 
 	<!-- 全局过滤器 -->
     <bean class="org.ionnic.core.bean.FilterConfig">
-        <property name="ignoreMethod" value="false" />
-        <property name="methodField" value="method" />
+        <property name="hiddenMethodName" value="method" />
+        <property name="enableHiddenMethod" value="true" />
 
         <property name="charset" value="UTF-8" />
         <property name="forceEncoding" value="true" />
 
-        <property name="safeDomain">
+        <property name="allowFromDomain">
             <list>
                 <value>www.ionnic.org</value>
                 <value>public.ionnic.org</value>
