@@ -42,7 +42,7 @@
     </filter>
     <filter>
         <filter-name>controlFilter</filter-name>
-        <filter-class>org.ionnic.core.GeneralFilter</filter-class>
+        <filter-class>org.ionnic.core.http.filter.InternalFilterProxy</filter-class>
     </filter>
 
     <filter-mapping>
@@ -68,7 +68,12 @@
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/(static|public|page)/*</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/public/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

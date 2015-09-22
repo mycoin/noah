@@ -1,0 +1,26 @@
+view {
+    tools
+    directive
+    config
+    resource
+    validator
+}
+
+bean
+http {
+    filter
+    intercepter
+    converters
+    handlers
+    views
+}
+web {
+    db
+    action
+    model
+}
+tools
+
+
+
+

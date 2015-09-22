@@ -2,7 +2,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.ionnic</groupId>
-    <artifactId>spring-mvc</artifactId>
+    <artifactId>app</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <url>http://home.ionnic.org</url>
@@ -17,7 +17,7 @@
     </properties>
 
     <dependencies>
-		<!-- Spring -->
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -81,14 +81,14 @@
             <version>1.6.12</version>
         </dependency>
         
-		<!-- MySql Connector -->
+        <!-- MySql Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
         </dependency>
         
-		<!-- Velocity -->
+        <!-- Velocity -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
@@ -112,7 +112,7 @@
             <version>2.3.22</version>
         </dependency>
 
-		<!-- Jackson JSON Mapper -->
+        <!-- Jackson JSON Mapper -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
@@ -124,7 +124,7 @@
             <version>2.3.1</version>
         </dependency>
 
-		<!-- XML Mapper -->
+        <!-- XML Mapper -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
@@ -132,7 +132,7 @@
             <optional>false</optional>
         </dependency>
 
-		<!-- JSP view -->
+        <!-- JSP view -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -156,7 +156,7 @@
             <version>1.2</version>
         </dependency>
 
-		<!-- Jetty -->
+        <!-- Jetty -->
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
@@ -194,14 +194,14 @@
             <type>jar</type>
         </dependency>
 
-		<!-- Cache -->
+        <!-- Cache -->
         <dependency>
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
             <version>1.4.3</version>
         </dependency>
  
-		<!-- Testing -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-mock</artifactId>

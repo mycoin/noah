@@ -1,0 +1,20 @@
+#setLayout("blank")
+{
+    "getGuid": "$util.getGuid()",
+    "wd": "#external("ad", {"wd": "百度"})",
+    "config": "$config.get("domain")",
+    "token": "$page.getToken()"
+}
+
+<!--
+$request
+$session
+$response
+$context
+$data
+-->
+
+#if($data.method && $data.filter && $data.intercepter && $data.controller && $data.body)
+    <!-- STATUS_OK -->
+#end
+

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8"%>
+<%@ page contentType="text/html;charset=utf-8" errorPage="true"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +35,7 @@ a {
 h1 {
 	color: #444;
 	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
+	border-bottom: 1px solid #CCC;
 	font-size: 19px;
 	font-weight: normal;
 	margin: 0 0 14px 0;
@@ -44,8 +44,8 @@ h1 {
 
 #container {
 	margin: 10px;
-	border: 1px solid #D0D0D0;
-	-webkit-box-shadow: 0 0 8px #D0D0D0;
+	border: 1px solid #CCC;
+	-webkit-box-shadow: 0 0 8px #CCC;
 }
 
 p {

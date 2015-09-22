@@ -1,6 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
-    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <description>
         Defines the applications context. In this case, its not
@@ -29,6 +29,5 @@
     <import resource="classpath:conf/applicationContext-config.xml" />
     <import resource="classpath:conf/applicationContext-security.xml" />
     <import resource="classpath:conf/applicationContext-db.xml" />
-    <import resource="classpath:conf/applicationContext-cache.xml" />
-    <import resource="classpath:conf/applicationContext-filter.xml" />
+    <!-- <import resource="classpath:conf/applicationContext-cache.xml" /> -->
 </beans>
