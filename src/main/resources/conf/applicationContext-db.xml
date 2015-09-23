@@ -9,9 +9,8 @@
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/local" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/app" />
         <property name="username" value="local" />
         <property name="password" value="123456" />
     </bean>
-
 </beans>

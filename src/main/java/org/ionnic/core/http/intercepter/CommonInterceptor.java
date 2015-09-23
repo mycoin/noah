@@ -22,6 +22,43 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 
 	private Logger logger = LoggerFactory.getLogger(CommonInterceptor.class);
 
+	/**
+	 * @param request
+	 * @throws ServletException
+	 */
+	protected void checkExtension(HttpServletRequest request) throws ServletException {
+		String path = request.getServletPath();
+		if (path.indexOf(".") > -1) {
+			for (String ext : allowedExtension) {
+				if (path.endsWith(ext)) {
+					return;
+				}
+			}
+			ServletException exception = new ServletException("Not Acceptable");
+			logger.error("not acceptable extension, url: " + path, exception);
+			throw exception;
+		}
+
+	}
+
+	/**
+	 * @return the allowedExtension
+	 */
+	public String[] getAllowedExtension() {
+		return allowedExtension;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+		if (!response.isCommitted()) {
+			String token = StringUtils.getGuid();
+
+			response.setHeader("X-Token", token);
+			response.setHeader("X-Frame-Options", "SAMEORIGIN");
+			response.setHeader("X-XSS-Protection", "1; mode=block");
+		}
+	}
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		request.setAttribute("intercepter", this.getClass().getName());
@@ -32,6 +69,14 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		writeTokenHeader(request, response);
 
 		return true;
+	}
+
+	/**
+	 * @param allowedExtension
+	 *            the allowedExtension to set
+	 */
+	public void setAllowedExtension(String[] allowedExtension) {
+		this.allowedExtension = allowedExtension;
 	}
 
 	/**
@@ -52,51 +97,6 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			cookie.setPath("/");
 			response.addCookie(cookie);
 		}
-	}
-
-	/**
-	 * @param request
-	 * @throws ServletException
-	 */
-	protected void checkExtension(HttpServletRequest request) throws ServletException {
-		String path = request.getServletPath();
-		if (path.indexOf(".") > -1) {
-			for (String ext : allowedExtension) {
-				if (path.endsWith(ext)) {
-					return;
-				}
-			}
-			ServletException exception = new ServletException("Not Acceptable");
-			logger.error("not acceptable extension, url: " + path, exception);
-			throw exception;
-		}
-
-	}
-
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		if (!response.isCommitted()) {
-			String token = StringUtils.getGuid();
-
-			response.setHeader("X-Token", token);
-			response.setHeader("X-Frame-Options", "SAMEORIGIN");
-			response.setHeader("X-XSS-Protection", "1; mode=block");
-		}
-	}
-
-	/**
-	 * @return the allowedExtension
-	 */
-	public String[] getAllowedExtension() {
-		return allowedExtension;
-	}
-
-	/**
-	 * @param allowedExtension
-	 *            the allowedExtension to set
-	 */
-	public void setAllowedExtension(String[] allowedExtension) {
-		this.allowedExtension = allowedExtension;
 	}
 
 }

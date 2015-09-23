@@ -201,6 +201,11 @@
             <artifactId>xmemcached</artifactId>
             <version>1.4.3</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.0</version>
+        </dependency>
  
         <!-- Testing -->
         <dependency>

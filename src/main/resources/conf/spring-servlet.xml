@@ -11,7 +11,7 @@
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>META-INF/view,META-INF/external,META-INF/view/common</value>
+            <value>META-INF/views,META-INF/external,META-INF/views/common</value>
         </property>
     </bean>
 
@@ -30,12 +30,26 @@
     
 	<!-- 映射关系 -->
     <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-        </mvc:message-converters>
-        <mvc:return-value-handlers>
+        <!-- <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters> -->
+        <!-- <mvc:return-value-handlers>
             <bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
-        </mvc:return-value-handlers>
+            <bean class="org.ionnic.core.http.handler.JsonResultReturnValueHandler" />
+        </mvc:return-value-handlers> -->
     </mvc:annotation-driven>
 
 	<!-- 视图处理 -->
@@ -60,7 +74,6 @@
 
                     <property name="contentType" value="text/html;charset=UTF-8" />
                     <property name="suffix" value=".vm" />
-                    <property name="requestContextAttribute" value="context" />
                     <property name="exposeSessionAttributes" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
@@ -70,7 +83,7 @@
 
                     <property name="alwaysInclude" value="true" />
                     <property name="contentType" value="text/html;charset=UTF-8" />
-                    <property name="prefix" value="/META-INF/view/" />
+                    <property name="prefix" value="/META-INF/views/" />
                     <property name="suffix" value=".jsp" />
                     <property name="requestContextAttribute" value="context" />
                 </bean>

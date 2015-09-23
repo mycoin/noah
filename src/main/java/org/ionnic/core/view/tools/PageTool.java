@@ -10,6 +10,14 @@ public class PageTool {
 	private ViewContext context;
 
 	/**
+	 * @return
+	 */
+	public String getToken() {
+		HttpServletRequest req = context.getRequest();
+		return SecuritySupport.getToken(req);
+	}
+
+	/**
 	 * 请求级别的初始化函数
 	 * 
 	 * @param obj
@@ -19,13 +27,5 @@ public class PageTool {
 		if (object instanceof ViewContext) {
 			context = (ViewContext) object;
 		}
-	}
-
-	/**
-	 * @return
-	 */
-	public String getToken() {
-		HttpServletRequest req = context.getRequest();
-		return SecuritySupport.getToken(req);
 	}
 }

@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.rubyeye.xmemcached.MemcachedClient;
+
+import org.ionnic.core.CacheSupport;
 import org.ionnic.core.utils.RequestUtils;
 import org.ionnic.core.web.action.ActionSupport;
 import org.springframework.stereotype.Controller;
@@ -37,6 +40,33 @@ public class Test extends ActionSupport {
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
 		throw new Exception("STATUS_OK");
+	}
+
+	@RequestMapping(value = "/header")
+	@ResponseBody
+	public Object header(HttpServletRequest req) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("ip", RequestUtils.getRemoteAddr(req));
+		data.put("search", null);
+
+		return result(0, data);
+	}
+
+	@RequestMapping(value = "/memcached", produces = "application/json")
+	@ResponseBody
+	public Object memcached() throws Exception {
+		MemcachedClient client = CacheSupport.getClient();
+		String value = client.get("www");
+		int number = 0;
+		if (value != null) {
+			number = Integer.valueOf(value);
+		}
+		number++;
+		client.set("www", 0, "" + number);
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("count", number);
+		return result(0, data);
 	}
 
 	@RequestMapping("/primitive")
@@ -73,16 +103,6 @@ public class Test extends ActionSupport {
 	public Object security(@RequestParam(required = false) String app) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("biz", app);
-		return result(0, data);
-	}
-
-	@RequestMapping(value = "/header")
-	@ResponseBody
-	public Object header(HttpServletRequest req) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("ip", RequestUtils.getRemoteAddr(req));
-		data.put("search", null);
-
 		return result(0, data);
 	}
 }

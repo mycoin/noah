@@ -23,6 +23,9 @@ public class WebConfig {
 	// force Encoding
 	private boolean forceEncoding;
 
+	// default DEFAULT_METHOD_NAME
+	private String secretKey = DEFAULT_METHOD_NAME;
+
 	/**
 	 * @return the charset
 	 */
@@ -35,6 +38,13 @@ public class WebConfig {
 	 */
 	public String getMethodField() {
 		return methodField;
+	}
+
+	/**
+	 * @return the secretKey
+	 */
+	public String getSecretKey() {
+		return secretKey;
 	}
 
 	/**
@@ -80,6 +90,14 @@ public class WebConfig {
 	 */
 	public void setMethodField(String methodField) {
 		this.methodField = methodField;
+	}
+
+	/**
+	 * @param secretKey
+	 *            the secretKey to set
+	 */
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
 	}
 
 	/**

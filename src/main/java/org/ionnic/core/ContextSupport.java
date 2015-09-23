@@ -13,6 +13,24 @@ import org.springframework.web.context.WebApplicationContext;
 public class ContextSupport {
 
 	/**
+	 * @param name
+	 * @param requiredType
+	 * @return
+	 * @throws BeansException
+	 */
+	public static <T> T getBean(Class<T> requiredType) throws BeansException {
+		return getContext().getBean(requiredType);
+	}
+
+	/**
+	 * @param name
+	 * @return
+	 */
+	public static Object getBean(String name) {
+		return getContext().getBean(name);
+	}
+
+	/**
 	 * @return
 	 */
 	public static WebApplicationContext getContext() {
@@ -24,15 +42,5 @@ public class ContextSupport {
 	 */
 	public static ServletContext getServletContext() {
 		return getContext().getServletContext();
-	}
-
-	/**
-	 * @param name
-	 * @param requiredType
-	 * @return
-	 * @throws BeansException
-	 */
-	public static <T> T getBean(Class<T> requiredType) throws BeansException {
-		return getContext().getBean(requiredType);
 	}
 }

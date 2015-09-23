@@ -13,16 +13,14 @@ public class ConfigTool {
 
 	private Logger logger = LoggerFactory.getLogger(ConfigTool.class);
 
-	private static ViewConfig viewConfig;
-
-	private Properties data = new Properties();;
+	private static Properties config = new Properties();;
 
 	/**
 	 * @param key
 	 * @return
 	 */
 	public String get(String key) {
-		return config(key, "");
+		return get(key, "");
 	}
 
 	/**
@@ -30,8 +28,8 @@ public class ConfigTool {
 	 * @param defaultValue
 	 * @return
 	 */
-	public String config(String key, String defaultValue) {
-		return data.getProperty(key, defaultValue);
+	public String get(String key, String defaultValue) {
+		return config.getProperty(key, defaultValue);
 	}
 
 	/**
@@ -42,24 +40,23 @@ public class ConfigTool {
 	 * @throws Exception
 	 */
 	public void init(Object context) throws IOException {
-		if (null == viewConfig) {
-			viewConfig = ContextSupport.getBean(ViewConfig.class);
+		ViewConfig viewConfig = ContextSupport.getBean(ViewConfig.class);
+		config.clear();
 
-			if (viewConfig.getConfigPath() != null) {
-				for (Resource resource : viewConfig.getConfigPath()) {
-					data.load(resource.getInputStream());
-				}
+		if (viewConfig.getConfigPath() != null) {
+			for (Resource resource : viewConfig.getConfigPath()) {
+				config.load(resource.getInputStream());
 			}
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("PageUtils.init() invoked.");
+			logger.debug("ConfigTool.init() invoked.");
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "";
+		return StringTool.toJSON(config);
 	}
 
 }

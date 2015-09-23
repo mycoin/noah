@@ -19,6 +19,6 @@ public class InternalFilterProxy extends GenericFilterBean {
 
 	@Override
 	protected void initFilterBean() throws ServletException {
-		
+
 	}
 }

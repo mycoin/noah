@@ -12,15 +12,15 @@ import javax.servlet.http.HttpSession;
 public class RequestUtils {
 
 	/**
-	 * @param req
+	 * @param request
 	 * @param name
 	 * @return
 	 */
-	public static Cookie getCookie(HttpServletRequest req, String name) {
-		if (req.getCookies() == null) {
+	public static Cookie getCookie(HttpServletRequest request, String name) {
+		if (request.getCookies() == null) {
 			return null;
 		} else {
-			for (Cookie item : req.getCookies()) {
+			for (Cookie item : request.getCookies()) {
 				if (item.getName().equals(name)) {
 					return item;
 				}
@@ -80,12 +80,12 @@ public class RequestUtils {
 	}
 
 	/**
-	 * @param req
+	 * @param request
 	 * @param name
 	 * @return
 	 */
-	public static Object getSession(HttpServletRequest req, String name) {
-		HttpSession session = req.getSession(true);
+	public static Object getSession(HttpServletRequest request, String name) {
+		HttpSession session = request.getSession(true);
 		if (null == session) {
 			return null;
 		} else {
@@ -94,11 +94,11 @@ public class RequestUtils {
 	}
 
 	/**
-	 * @param req
+	 * @param request
 	 * @return
 	 */
-	public static boolean isAjax(HttpServletRequest req) {
-		String requestedWith = req.getHeader("X-Requested-With");
+	public static boolean isAjax(HttpServletRequest request) {
+		String requestedWith = request.getHeader("X-Requested-With");
 		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
 	}
 

@@ -6,38 +6,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.ionnic.core.SecuritySupport;
 import org.ionnic.core.utils.RequestUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AsyncInterceptor extends HandlerInterceptorAdapter {
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-		// check token, check referrer
-		if (RequestUtils.isAjax(request)) {
-			checkUserToken(request);
-			checkFromDomain(request);
+	protected void checkFromDomain(HttpServletRequest request) throws ServletException {
+		if (!SecuritySupport.checkReferDomain(request)) {
+			throw new ServletException("Not Acceptable Referrer");
 		}
-
-		if (handler instanceof HandlerMethod) {
-			HandlerMethod handlerMethod = (HandlerMethod) handler;
-			RequestMapping mapping = handlerMethod.getMethodAnnotation(RequestMapping.class);
-
-			String[] d = mapping.produces();
-			if (d.length > 0) {
-				for (String i : d) {
-					if (i.equals("application/json")) {
-						checkUserToken(request);
-						checkFromDomain(request);
-					}
-				}
-			}
-		}
-
-		return true;
 	}
 
 	/**
@@ -65,9 +43,15 @@ public class AsyncInterceptor extends HandlerInterceptorAdapter {
 		}
 	}
 
-	protected void checkFromDomain(HttpServletRequest request) throws ServletException {
-		if (!SecuritySupport.checkReferDomain(request)) {
-			throw new ServletException("Not Acceptable Referrer");
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+		if (handler instanceof HandlerMethod) {
+			if (RequestUtils.isAjax(request)) {
+				checkUserToken(request);
+				checkFromDomain(request);
+			}
 		}
+		return true;
 	}
 }
