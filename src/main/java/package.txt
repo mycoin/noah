@@ -1,50 +1,26 @@
-.
-├── org
-│   └── ionnic
-│       ├── Main.java
-│       ├── app
-│       │   ├── bean
-│       │   ├── controller
-│       │   │   └── Test.java
-│       │   ├── service
-│       │   └── util
-│       └── core
-│           ├── ContextSupport.java
-│           ├── SecuritySupport.java
-│           ├── bean
-│           │   ├── AppConfig.java
-│           │   ├── ViewConfig.java
-│           │   └── WebConfig.java
-│           ├── http
-│           │   ├── converter
-│           │   ├── filter
-│           │   │   └── InternalFilterProxy.java
-│           │   ├── handler
-│           │   ├── intercepter
-│           │   │   ├── AsyncInterceptor.java
-│           │   │   └── CommonInterceptor.java
-│           │   ├── util
-│           │   └── views
-│           ├── utils
-│           │   ├── RequestUtils.java
-│           │   └── StringUtils.java
-│           ├── view
-│           │   ├── MappingJsonpView.java
-│           │   ├── config
-│           │   ├── directive
-│           │   │   └── BlockDirective.java
-│           │   ├── tools
-│           │   │   ├── ConfigTool.java
-│           │   │   ├── PageTool.java
-│           │   │   └── StringTool.java
-│           │   └── validator
-│           └── web
-│               ├── action
-│               │   └── ActionSupport.java
-│               ├── db
-│               ├── exception
-│               │   └── MappingExceptionResolver.java
-│               └── model
-└── package.txt
+view {
+    tools
+    directive
+    config
+    resource
+    validator
+}
 
-27 directories, 20 files
+bean
+http {
+    filter
+    intercepter
+    converters
+    handlers
+    views
+}
+web {
+    db
+    action
+    model
+}
+tools
+
+
+
+
