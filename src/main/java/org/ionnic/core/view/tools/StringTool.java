@@ -36,7 +36,7 @@ public class StringTool extends StringUtils {
 			return new Date();
 		} else {
 			if (string.indexOf(':') > 0) {
-				format = "yyyy-MM-dd HH:mm:ss";
+				format = DEFAULT_DATEFORMAT;
 			} else {
 				format = "yyyy-MM-dd";
 			}
@@ -174,13 +174,13 @@ public class StringTool extends StringUtils {
 	/**
 	 * @param anyone
 	 */
-	public void init(Object anyone) {
+	public void init(Object anything) {
 		builder = new GsonBuilder();
 
 		builder.enableComplexMapKeySerialization();
 		builder.serializeNulls();
 		builder.setDateFormat(DEFAULT_DATEFORMAT);
-		builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE);
+		builder.setFieldNamingPolicy(FieldNamingPolicy.IDENTITY);
 		builder.setVersion(1.0);
 	}
 }

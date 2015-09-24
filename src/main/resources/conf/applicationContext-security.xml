@@ -16,19 +16,32 @@
         makes it more reusable for other projects, as this
         file can be copied to replicate the security configuration.
     </beans:description>
-
+    
 	<!-- 安全配置 -->
     <http create-session="always" auto-config="true">
         <port-mappings>
             <port-mapping http="8080" https="8443" />
         </port-mappings>
 
-        <intercept-url pattern="/sample/security*" access="ROLE_ADMIN" requires-channel="any" />
-        <intercept-url pattern="/i/security/**" access="ROLE_ADMIN" requires-channel="any" />
-
-		<!-- Configures basic auth. -->
+        <!-- Configures basic auth. -->
         <http-basic />
+
+        <csrf token-repository-ref="HttpSessionCsrfTokenRepository" />
+
+        <security:session-management>
+            <security:concurrency-control />
+        </security:session-management>
+
+        <intercept-url pattern="/test/security/**" access="ROLE_ADMIN" requires-channel="any" />
+        <intercept-url pattern="/test/admin/**" access="ROLE_ADMIN" requires-channel="any" />
+
+        <custom-filter before="BASIC_AUTH_FILTER" ref="refererCheckFilter" />
+        <custom-filter after="BASIC_AUTH_FILTER" ref="uriExtensionFilter" />
+
+        <access-denied-handler ref="accessDeniedHandler" />
     </http>
+
+    <global-method-security secured-annotations="enabled" />
 
 	<!-- 认证管理 -->
     <authentication-manager>
@@ -39,5 +52,16 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
+    
+    <!-- 后缀检查，来源过滤 -->
+    <beans:bean id="uriExtensionFilter" class="org.ionnic.core.http.filter.UriExtensionFilter" />
+    <beans:bean id="refererCheckFilter" class="org.ionnic.core.http.filter.RefererCheckFilter" />
+    <beans:bean id="accessDeniedHandler" class="org.ionnic.core.http.handler.HttpAccessDeniedHandler">
 
+    </beans:bean>
+
+    <beans:bean id="HttpSessionCsrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
+        <beans:property name="parameterName" value="token" />
+        <beans:property name="headerName" value="X-Requested-Token" />
+    </beans:bean>
 </beans:beans>

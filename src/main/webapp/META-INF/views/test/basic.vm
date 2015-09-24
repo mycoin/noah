@@ -18,3 +18,14 @@ $data
     <!-- STATUS_OK -->
 #end
 
+#foreach($item in $request.getAttributeNames())
+
+    $item
+#end
+
+
+<script type="text/javascript">
+var token = $util.toJSON($request.getAttribute("token"));
+</script>
+$request.getAttribute("token").getToken()
+$page.tokenField

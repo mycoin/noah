@@ -26,6 +26,9 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
  
 	<!-- 过滤器 -->
     <filter>
@@ -40,7 +43,7 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
-    <filter>
+    <!-- <filter>
         <filter-name>controlFilter</filter-name>
         <filter-class>org.ionnic.core.http.filter.InternalFilterProxy</filter-class>
     </filter>
@@ -48,7 +51,7 @@
     <filter-mapping>
         <filter-name>controlFilter</filter-name>
         <servlet-name>servlet</servlet-name>
-    </filter-mapping>
+    </filter-mapping> -->
 
     <filter-mapping>
         <filter-name>springFilter</filter-name>
@@ -69,8 +72,9 @@
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/favicon.ico</url-pattern>
+        <url-pattern>/index.html</url-pattern>
     </servlet-mapping>
-    
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/public/*</url-pattern>

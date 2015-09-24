@@ -39,7 +39,7 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
-		throw new Exception("STATUS_OK");
+		throw new Exception("<!-- STATUS_OK -->");
 	}
 
 	@RequestMapping(value = "/header")
@@ -69,7 +69,7 @@ public class Test extends ActionSupport {
 		return result(0, data);
 	}
 
-	@RequestMapping("/primitive")
+	@RequestMapping(value = "/primitive", produces = "application/json")
 	@ResponseBody
 	public Object primitive(@RequestParam(required = false) String app, Model data) {
 		data.addAttribute("status", 0);
@@ -88,7 +88,7 @@ public class Test extends ActionSupport {
 		model.addAttribute("data", data);
 	}
 
-	@RequestMapping(value = "/search/{search}", produces = "application/json", method = { RequestMethod.PUT, RequestMethod.POST })
+	@RequestMapping(value = "/search/{search}", produces = "application/json", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public Object search(@PathVariable() String search, @RequestParam(required = false) String app) {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -100,9 +100,10 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/security/{username}")
 	@ResponseBody
-	public Object security(@RequestParam(required = false) String app) {
+	public Object security(@RequestParam(required = false) String app, @PathVariable() String username) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("biz", app);
+		data.put("username", username);
 		return result(0, data);
 	}
 }

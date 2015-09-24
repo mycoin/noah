@@ -8,6 +8,8 @@ public class WebConfig {
 
 	public static String DEFAULT_CHARSET = "UTF-8";
 
+	private String[] allowedExtension;
+
 	// allow From Domain
 	private String[] trustDomain;
 
@@ -114,5 +116,20 @@ public class WebConfig {
 	 */
 	public void setTrustDomain(String[] trustDomain) {
 		this.trustDomain = trustDomain;
+	}
+
+	/**
+	 * @return the allowedExtension
+	 */
+	public String[] getAllowedExtension() {
+		return allowedExtension;
+	}
+
+	/**
+	 * @param allowedExtension
+	 *            the allowedExtension to set
+	 */
+	public void setAllowedExtension(String[] allowedExtension) {
+		this.allowedExtension = allowedExtension;
 	}
 }

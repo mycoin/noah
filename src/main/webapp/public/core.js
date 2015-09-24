@@ -12,11 +12,14 @@ jQuery(function() {
                         app: '百度'
                     },
                     headers: {
-                        'X-Requested-Token': getCookie('token')
+                        'X-Requested-Token': csrfToken
                     }
                 }, config);
                 jQuery.ajax(link[0].href, opt).always(
                     function(data, _, xhr) {
+
+                        csrfToken = csrfToken || xhr.getResponseHeader("X-Token");
+
                         if (_ === 'error') {
                             xhr = data;
                         }

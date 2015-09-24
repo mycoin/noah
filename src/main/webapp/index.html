@@ -3,6 +3,11 @@
 <head>
 <title>testing web</title>
 <link rel="stylesheet" type="text/css" href="public/lib.css" />
+<style type="text/css">
+body {
+	display: none;
+}
+</style>
 </head>
 <body>
 
@@ -23,15 +28,19 @@
 	<script type="text/javascript" src="public/lib.js"></script>
 	<script type="text/javascript" src="public/core.js"></script>
 	<script type="text/javascript">
+		var csrfToken = "c1ed8ed8-3099-4d14-837e-ec04f7fefc61";
 		var taskMap = {
 			'x-search' : {
 				dataType : 'json',
-				method : 'put',
+				method : 'post',
 				contentType : 'javascript/json'
 			},
 			'x-basic' : {
 				contentType : 'javascript/json',
-				type : 'get'
+				type : 'post',
+				data : {
+					token: 2
+				}
 			},
 			'x-security' : {
 				username : 'admin',
@@ -40,4 +49,12 @@
 		};
 	</script>
 </body>
+
+
+<script type="text/javascript">
+function verifyExtension (argument) {
+	// body...
+}
+</script>
+
 </html>
