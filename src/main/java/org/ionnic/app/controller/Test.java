@@ -25,21 +25,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Test extends ActionSupport {
 
 	@RequestMapping("/basic")
-	public void basic(@RequestBody String reqBody, Model model, HttpServletRequest req) {
+	public void basic(@RequestBody String body, Model model, HttpServletRequest req) {
 		Map<String, Object> data = new HashMap<String, Object>();
 
 		data.put("method", req.getMethod());
 		data.put("filter", req.getAttribute("filter"));
 		data.put("intercepter", req.getAttribute("intercepter"));
 		data.put("controller", this.getClass().getName());
-		data.put("body", reqBody);
+		data.put("body", body);
 
 		model.addAttribute("data", data);
 	}
 
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
-		throw new Exception("<!-- STATUS_OK -->");
+		System.out.println("[Action] org.ionnic.app.controller.Test.exception()");
+		throw new Exception("STATUS_OK");
 	}
 
 	@RequestMapping(value = "/header")
@@ -50,6 +51,11 @@ public class Test extends ActionSupport {
 		data.put("search", null);
 
 		return result(0, data);
+	}
+
+	@RequestMapping(value = "/index", produces = "text/html")
+	public void index() {
+
 	}
 
 	@RequestMapping(value = "/memcached", produces = "application/json")

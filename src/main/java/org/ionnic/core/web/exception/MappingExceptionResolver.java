@@ -3,6 +3,8 @@ package org.ionnic.core.web.exception;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 
@@ -15,13 +17,19 @@ public class MappingExceptionResolver extends AbstractHandlerExceptionResolver {
 
 	private String defaultErrorView;
 
-	private String defaultStatusCode;
+	private int defaultStatusCode;
 
+	private static Logger logger = LoggerFactory.getLogger(MappingExceptionResolver.class);
+
+	@SuppressWarnings("deprecation")
 	@Override
 	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 		ModelAndView mv = new ModelAndView(defaultErrorView);
-		mv.addObject(exceptionAttribute, ex);
-		mv.addObject("status", defaultStatusCode);
+		mv.addObject(exceptionAttribute, ex.getMessage());
+		mv.addObject("status", 500);
+
+		logger.error("resolved exception: ", ex);
+		response.setStatus(defaultStatusCode, ex.getLocalizedMessage());
 
 		return mv;
 	}
@@ -36,7 +44,7 @@ public class MappingExceptionResolver extends AbstractHandlerExceptionResolver {
 	/**
 	 * @return the defaultStatusCode
 	 */
-	public String getDefaultStatusCode() {
+	public int getDefaultStatusCode() {
 		return defaultStatusCode;
 	}
 
@@ -59,7 +67,7 @@ public class MappingExceptionResolver extends AbstractHandlerExceptionResolver {
 	 * @param defaultStatusCode
 	 *            the defaultStatusCode to set
 	 */
-	public void setDefaultStatusCode(String defaultStatusCode) {
+	public void setDefaultStatusCode(int defaultStatusCode) {
 		this.defaultStatusCode = defaultStatusCode;
 	}
 

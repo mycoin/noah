@@ -1,13 +1,18 @@
 package org.ionnic.core.bean;
 
-public class WebConfig {
+import java.io.Serializable;
 
-	private static String DEFAULT_METHOD_NAME = "method";
+public class WebConfig implements Serializable {
 
-	private static String DEFAULT_TOKEN_NAME = "token";
+	private static final long serialVersionUID = 1L;
+
+	public static String DEFAULT_METHOD_NAME = "method";
+
+	public static String DEFAULT_TOKEN_NAME = "token";
 
 	public static String DEFAULT_CHARSET = "UTF-8";
-
+	
+	// allowed ext.
 	private String[] allowedExtension;
 
 	// allow From Domain
@@ -25,7 +30,7 @@ public class WebConfig {
 	// force Encoding
 	private boolean forceEncoding;
 
-	// default DEFAULT_METHOD_NAME
+	// default method name
 	private String secretKey = DEFAULT_METHOD_NAME;
 
 	/**

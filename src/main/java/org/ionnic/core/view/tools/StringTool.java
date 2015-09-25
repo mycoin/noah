@@ -78,7 +78,7 @@ public class StringTool extends StringUtils {
 	 * @param string
 	 * @return
 	 */
-	public static String toLocateDate(String format, Date date) {
+	public static String toLocateDate(Date date, String format) {
 		if ("default".equalsIgnoreCase(format)) {
 			format = "yyyy-MM-dd HH:mm:ss";
 		} else if ("short".equalsIgnoreCase(format)) {

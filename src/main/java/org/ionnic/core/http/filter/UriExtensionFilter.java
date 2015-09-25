@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.ionnic.core.SecuritySupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 
 public class UriExtensionFilter implements Filter {
 
@@ -26,10 +27,11 @@ public class UriExtensionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		System.out.println("[Filter] org.ionnic.core.http.filter.UriExtensionFilter");
 
 		if (!SecuritySupport.checkExtension(req)) {
-			ServletException exception = new ServletException("Not Acceptable");
-			logger.error("not acceptable extension.", exception);
+			AccessDeniedException exception = new AccessDeniedException("Not Acceptable Extension");
+			logger.error("not acceptable extension. ", exception);
 			throw exception;
 		}
 

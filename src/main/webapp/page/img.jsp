@@ -1,4 +1,4 @@
-<%@ page contentType="image/jpeg" import="java.awt.*,java.awt.image.*,java.util.*,javax.imageio.*" pageEncoding="UTF-8"%>
+<%@ page contentType="image/png" import="java.awt.*,java.awt.image.*,java.util.*,javax.imageio.*"%>
 <%!Color getRandColor(int fc, int bc) {//随机获得颜色，RGB格式
 		Random random = new Random();
 		if (fc > 255)
@@ -15,6 +15,7 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setDateHeader("Expires", 0);
+	response.setContentType("image/png");
 
 	// 定义显示图片的宽度和高度
 	int width = 60, height = 20;

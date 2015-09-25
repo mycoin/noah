@@ -2,9 +2,8 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>spring-mvc</display-name>
-
     <description>This project will allow you to start off with spring MVC.</description>
-	<!-- context-param >> listener >> fileter >> servlet -->
+    <!-- context-param >> listener >> fileter >> servlet -->
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -16,21 +15,15 @@
         <param-value>classpath:local/log.properties</param-value>
     </context-param>
 
-	<!-- 监听器 -->
+    <!-- 监听器 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
-    <listener>
-        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
-    </listener>
  
-	<!-- 过滤器 -->
+    <!-- 过滤器 -->
     <filter>
         <filter-name>springFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -38,27 +31,14 @@
             <param-name>targetBeanName</param-name>
             <param-value>springSecurityFilterChain</param-value>
         </init-param>
-        <init-param>
-            <param-name>targetFilterLifecycle</param-name>
-            <param-value>true</param-value>
-        </init-param>
     </filter>
-    <!-- <filter>
-        <filter-name>controlFilter</filter-name>
-        <filter-class>org.ionnic.core.http.filter.InternalFilterProxy</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>controlFilter</filter-name>
-        <servlet-name>servlet</servlet-name>
-    </filter-mapping> -->
 
     <filter-mapping>
         <filter-name>springFilter</filter-name>
         <servlet-name>servlet</servlet-name>
     </filter-mapping>
 
-	<!-- servlet -->
+    <!-- servlet -->
     <servlet>
         <servlet-name>servlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -68,16 +48,12 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/favicon.ico</url-pattern>
-        <url-pattern>/index.html</url-pattern>
-    </servlet-mapping>
-
+    
+    <!-- 静态资源 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/public/*</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -85,7 +61,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-	<!-- 错误页面 -->
+    <!-- 错误页面 -->
     <error-page>
         <error-code>404</error-code>
         <location>/page/common/missing.jsp</location>
@@ -96,12 +72,10 @@
     </error-page>
 
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
 
-    <async-supported>true</async-supported>
-
-	<!-- 欢迎页面 -->
+    <!-- 欢迎页面 -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

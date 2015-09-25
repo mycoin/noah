@@ -5,7 +5,7 @@ jQuery(function() {
             var type = el.data('task');
             var link = jQuery('.link', el);
 
-            if (link[0]) {
+            if (link[0] && link.is('A')) {
                 var config = taskMap[type];
                 var opt = jQuery.extend(true, {
                     data: {

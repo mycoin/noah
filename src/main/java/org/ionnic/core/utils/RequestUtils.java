@@ -99,7 +99,11 @@ public class RequestUtils {
 	 */
 	public static boolean isAjax(HttpServletRequest request) {
 		String requestedWith = request.getHeader("X-Requested-With");
-		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
+		if ("XMLHttpRequest".equals(requestedWith)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

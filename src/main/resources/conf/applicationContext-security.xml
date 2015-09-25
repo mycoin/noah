@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
     xsi:schemaLocation="
@@ -18,30 +19,11 @@
     </beans:description>
     
 	<!-- 安全配置 -->
-    <http create-session="always" auto-config="true">
-        <port-mappings>
-            <port-mapping http="8080" https="8443" />
-        </port-mappings>
-
-        <!-- Configures basic auth. -->
-        <http-basic />
-
-        <csrf token-repository-ref="HttpSessionCsrfTokenRepository" />
-
-        <security:session-management>
-            <security:concurrency-control />
-        </security:session-management>
-
-        <intercept-url pattern="/test/security/**" access="ROLE_ADMIN" requires-channel="any" />
-        <intercept-url pattern="/test/admin/**" access="ROLE_ADMIN" requires-channel="any" />
-
-        <custom-filter before="BASIC_AUTH_FILTER" ref="refererCheckFilter" />
-        <custom-filter after="BASIC_AUTH_FILTER" ref="uriExtensionFilter" />
-
-        <access-denied-handler ref="accessDeniedHandler" />
-    </http>
-
-    <global-method-security secured-annotations="enabled" />
+    <beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+        <filter-chain-map path-type="ant">
+            <filter-chain pattern="/**" filters="firstRequestFilter,lastRequestFilter" />
+        </filter-chain-map>
+    </beans:bean>
 
 	<!-- 认证管理 -->
     <authentication-manager>
@@ -53,12 +35,12 @@
         </authentication-provider>
     </authentication-manager>
     
-    <!-- 后缀检查，来源过滤 -->
-    <beans:bean id="uriExtensionFilter" class="org.ionnic.core.http.filter.UriExtensionFilter" />
-    <beans:bean id="refererCheckFilter" class="org.ionnic.core.http.filter.RefererCheckFilter" />
-    <beans:bean id="accessDeniedHandler" class="org.ionnic.core.http.handler.HttpAccessDeniedHandler">
-
-    </beans:bean>
+    <!-- 定义过滤 -->
+    <beans:bean id="firstRequestFilter" class="org.ionnic.core.http.filter.UriExtensionFilter" />
+    <beans:bean id="lastRequestFilter" class="org.ionnic.core.http.filter.RefererCheckFilter" />
+    
+    <!-- 异常处理 -->
+    <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl" />
 
     <beans:bean id="HttpSessionCsrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
         <beans:property name="parameterName" value="token" />

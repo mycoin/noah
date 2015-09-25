@@ -15,6 +15,6 @@
     #else
         #set($name = "${name}.html")
         #set($name = "#include(${name})")#*
-      *#$page.eval($name, $data)#*
+      *#$page.exec($name, $data)#*
   *##end
 #end

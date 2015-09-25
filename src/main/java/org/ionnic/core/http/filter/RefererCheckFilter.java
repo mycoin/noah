@@ -14,6 +14,7 @@ import org.ionnic.core.SecuritySupport;
 import org.ionnic.core.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 
 public class RefererCheckFilter implements Filter {
 
@@ -21,22 +22,25 @@ public class RefererCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		
+
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		System.out.println("[Filter] org.ionnic.core.http.filter.RefererCheckFilter");
 
 		if (RequestUtils.isAjax(req)) {
 
 			if (!SecuritySupport.checkRefererDomain(req)) {
-				ServletException exception = new ServletException("Not Allowed Referer");
-				logger.error("not acceptable referer.", exception);
+				AccessDeniedException exception = new AccessDeniedException("Not Acceptable Referer");
+				logger.error("not acceptable Referer. ", exception);
 				throw exception;
 			}
 		}
+
 		chain.doFilter(request, response);
+		response.isCommitted();
 	}
 
 	@Override

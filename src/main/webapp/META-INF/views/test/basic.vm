@@ -1,31 +1,31 @@
 #setLayout("blank")
 {
-    "getGuid": "$util.getGuid()",
     "wd": "#external("ad", {"wd": "百度"})",
     "config": "$config.get("domain")",
-    "token": "$page.getToken()"
+    "token": "$page.getToken().token"
 }
 
-<!--
-$request
-$session
-$response
-$context
-$data
--->
-
-#if($data.method && $data.filter && $data.intercepter && $data.controller && $data.body)
-    <!-- STATUS_OK -->
+#if($data.method && $data.controller && $data.body)
+<!-- STATUS_OK -->
 #end
 
+<!--
+Request:
 #foreach($item in $request.getAttributeNames())
-
     $item
 #end
+-->
 
+<!--
+Session:
+#foreach($item in $session.getAttributeNames())
+    $item
+#end
+-->
 
+<!-- 
 <script type="text/javascript">
-var token = $util.toJSON($request.getAttribute("token"));
+var token = $util.toJSON($page.getToken());
+var data = $util.toJSON($data);
 </script>
-$request.getAttribute("token").getToken()
-$page.tokenField
+ -->

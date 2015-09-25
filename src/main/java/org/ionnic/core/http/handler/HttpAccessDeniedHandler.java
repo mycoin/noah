@@ -14,7 +14,10 @@ public class HttpAccessDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException,
 	        ServletException {
-		throw accessDeniedException;
+
+		byte[] content = "error".getBytes();
+		response.getOutputStream().write(content);
+		response.flushBuffer();
 	}
 
 }
