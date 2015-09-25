@@ -21,8 +21,8 @@
         </ul>
     </div>
 
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.0/jquery.js"></script>
     <script type="text/javascript" src="../public/lib.js"></script>
-    <script type="text/javascript" src="../public/core.js"></script>
     <script type="text/javascript">
         var csrfToken = "$page.token.token";
         var taskMap = {
