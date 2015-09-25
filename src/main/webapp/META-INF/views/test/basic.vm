@@ -9,10 +9,6 @@
 <!-- STATUS_OK -->
 #end
 
-#block("cache")
-    <a>true</a>
-#end
-
 <!--
 Request:
 #foreach($item in $request.getAttributeNames())

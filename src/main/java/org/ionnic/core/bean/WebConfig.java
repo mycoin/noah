@@ -11,7 +11,7 @@ public class WebConfig implements Serializable {
 	public static String DEFAULT_TOKEN_NAME = "token";
 
 	public static String DEFAULT_CHARSET = "UTF-8";
-	
+
 	// allowed ext.
 	private String[] allowedExtension;
 
@@ -32,6 +32,10 @@ public class WebConfig implements Serializable {
 
 	// default method name
 	private String secretKey = DEFAULT_METHOD_NAME;
+
+	public void init() {
+
+	}
 
 	/**
 	 * @return the charset
