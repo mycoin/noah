@@ -28,7 +28,7 @@ public class RefererCheckFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		System.out.println("[Filter] org.ionnic.core.http.filter.RefererCheckFilter");
+		// System.out.println("[Filter] org.ionnic.core.http.filter.RefererCheckFilter");
 
 		if (RequestUtils.isAjax(req)) {
 

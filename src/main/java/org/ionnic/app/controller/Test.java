@@ -39,7 +39,7 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
-		System.out.println("[Action] org.ionnic.app.controller.Test.exception()");
+		// System.out.println("[Action] org.ionnic.app.controller.Test.exception()");
 		throw new Exception("STATUS_OK");
 	}
 
