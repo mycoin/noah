@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import net.rubyeye.xmemcached.MemcachedClient;
 
 import org.ionnic.core.CacheSupport;
+import org.ionnic.core.action.ActionSupport;
 import org.ionnic.core.utils.RequestUtils;
-import org.ionnic.core.web.action.ActionSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

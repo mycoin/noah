@@ -36,8 +36,8 @@
     </authentication-manager>
     
     <!-- 定义过滤 -->
-    <beans:bean id="firstRequestFilter" class="org.ionnic.core.http.filter.UriExtensionFilter" />
-    <beans:bean id="lastRequestFilter" class="org.ionnic.core.http.filter.RefererCheckFilter" />
+    <beans:bean id="firstRequestFilter" class="org.ionnic.core.filter.UriExtensionFilter" />
+    <beans:bean id="lastRequestFilter" class="org.ionnic.core.filter.RefererCheckFilter" />
     
     <!-- 异常处理 -->
     <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl" />

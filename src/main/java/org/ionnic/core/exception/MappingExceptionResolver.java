@@ -1,4 +1,4 @@
-package org.ionnic.core.web.exception;
+package org.ionnic.core.exception;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

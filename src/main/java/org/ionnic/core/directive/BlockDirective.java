@@ -1,4 +1,4 @@
-package org.ionnic.core.view.directive;
+package org.ionnic.core.directive;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -27,7 +27,11 @@ public class BlockDirective extends Directive {
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) throws IOException, ResourceNotFoundException,
 	        ParseErrorException, MethodInvocationException {
-
+		
+		Node keyNode = node.jjtGetChild(0);
+		String cacheKey = (String) keyNode.value(context);
+		
+		
 		return false;
 	}
 }

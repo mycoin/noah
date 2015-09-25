@@ -1,4 +1,4 @@
-package org.ionnic.core.web.action;
+package org.ionnic.core.action;
 
 import java.util.HashMap;
 import java.util.Map;

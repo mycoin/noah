@@ -1,4 +1,4 @@
-package org.ionnic.core.http.intercepter;
+package org.ionnic.core.intercepter;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

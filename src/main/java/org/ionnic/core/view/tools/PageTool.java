@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.exception.VelocityException;
+import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.tools.view.ViewToolContext;
 import org.ionnic.core.SecuritySupport;
 import org.slf4j.Logger;
@@ -58,7 +58,7 @@ public class PageTool {
 			if (engine.evaluate(new VelocityContext(data), writer, "PageTool.eval()", content)) {
 				return "" + writer;
 			}
-		} catch (VelocityException e) {
+		} catch (ParseErrorException e) {
 			// noop
 		}
 		return "<!-- ERROR -->";

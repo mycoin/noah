@@ -1,4 +1,4 @@
-package org.ionnic.core.http.handler;
+package org.ionnic.core.handler;
 
 import java.io.Serializable;
 

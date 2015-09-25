@@ -48,7 +48,7 @@
         </mvc:message-converters>
         <mvc:return-value-handlers>
             <bean class="org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler" />
-            <bean class="org.ionnic.core.http.handler.JsonResultReturnValueHandler" />
+            <bean class="org.ionnic.core.handler.JsonResultReturnValueHandler" />
         </mvc:return-value-handlers>
     </mvc:annotation-driven>
 
@@ -124,12 +124,12 @@
     
     <!-- 全局拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.core.http.intercepter.CommonInterceptor" />
-        <bean class="org.ionnic.core.http.intercepter.CSRFInterceptor" />
+        <bean class="org.ionnic.core.intercepter.CommonInterceptor" />
+        <bean class="org.ionnic.core.intercepter.CSRFInterceptor" />
     </mvc:interceptors>
     
     <!-- 异常处理 -->
-    <bean class="org.ionnic.core.web.exception.MappingExceptionResolver">
+    <bean class="org.ionnic.core.exception.MappingExceptionResolver">
         <property name="exceptionAttribute" value="exception" />
         <property name="defaultErrorView" value="/common/error" />
         <property name="defaultStatusCode" value="500" />
