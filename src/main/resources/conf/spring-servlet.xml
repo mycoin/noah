@@ -31,6 +31,7 @@
     <!-- 映射关系 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.FormHttpMessageConverter" />
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>

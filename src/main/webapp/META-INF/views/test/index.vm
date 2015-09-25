@@ -17,6 +17,7 @@
             <li data-task="x-cache"><i>7</i><a class="link normal" href="../test/memcached" target="_blank">memcached</a></li>
             <li data-task="x-refer-check"><i>8</i><a class="link normal" href="../test/header" target="_blank">x-header</a></li>
             <li data-task="x-code"><i>9</i><span class="link normal">verifyCode</span><img src="/page/img.jsp" style="position: relative;top: 5px;"</li>
+            <li data-task="x-refer-check"><i>10</i><a class="link normal" href="../test/jsp-view" target="_blank">jspView</a></li>
         </ul>
     </div>
 
