@@ -112,7 +112,6 @@
                 <!-- JSONP -->
                 <bean class="org.ionnic.core.view.MappingJsonpView">
                     <property name="callbackKey" value="callback" />
-                    <property name="varKey" value="var" />
                     <property name="defaultCallback" value="callback" />
                     <property name="contentType" value="application/javascript;charset=UTF-8" />
                 </bean>
@@ -126,7 +125,7 @@
     <!-- 全局拦截器 -->
     <mvc:interceptors>
         <bean class="org.ionnic.core.intercepter.CommonInterceptor" />
-        <bean class="org.ionnic.core.intercepter.CSRFInterceptor" />
+        <bean class="org.ionnic.core.intercepter.CsrfInterceptor" />
     </mvc:interceptors>
     
     <!-- 异常处理 -->

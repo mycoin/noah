@@ -36,17 +36,6 @@ public class Test extends ActionSupport {
 
 		model.addAttribute("data", data);
 	}
-	
-	@RequestMapping("/jsp-view")
-	public void jspView(@RequestBody String body, Model model, HttpServletRequest req) {
-		Map<String, Object> data = new HashMap<String, Object>();
-
-		data.put("method", req.getMethod());
-		data.put("controller", this.getClass().getName());
-		data.put("body", body);
-
-		model.addAttribute("data", data);
-	}
 
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
@@ -67,6 +56,17 @@ public class Test extends ActionSupport {
 	@RequestMapping(value = "/index", produces = "text/html")
 	public void index() {
 
+	}
+
+	@RequestMapping("/jsp-view")
+	public void jspView(@RequestBody String body, Model model, HttpServletRequest req) {
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		data.put("method", req.getMethod());
+		data.put("controller", this.getClass().getName());
+		data.put("body", body);
+
+		model.addAttribute("data", data);
 	}
 
 	@RequestMapping(value = "/memcached", produces = "application/json")

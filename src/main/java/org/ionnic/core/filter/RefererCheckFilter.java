@@ -28,19 +28,17 @@ public class RefererCheckFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		// System.out.println("[Filter] org.ionnic.core.filter.RefererCheckFilter");
-
 		if (RequestUtils.isAjax(req)) {
 
 			if (!SecuritySupport.checkRefererDomain(req)) {
 				AccessDeniedException exception = new AccessDeniedException("Not Acceptable Referer");
-				logger.error("not acceptable Referer. ", exception);
+				logger.error("not acceptable referer. ", exception);
+				
 				throw exception;
 			}
 		}
 
 		chain.doFilter(request, response);
-		response.isCommitted();
 	}
 
 	@Override

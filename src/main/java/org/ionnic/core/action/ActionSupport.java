@@ -7,16 +7,6 @@ public abstract class ActionSupport {
 
 	/**
 	 * @param status
-	 * @param statusInfo
-	 * @return
-	 */
-	public static Object failed(int status, Object statusInfo) {
-
-		return null;
-	}
-
-	/**
-	 * @param status
 	 * @param dataMap
 	 * @return
 	 */

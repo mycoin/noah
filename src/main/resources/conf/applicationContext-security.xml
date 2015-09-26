@@ -19,11 +19,18 @@
     </beans:description>
     
 	<!-- 安全配置 -->
-    <beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <filter-chain-map path-type="ant">
-            <filter-chain pattern="/**" filters="firstRequestFilter,lastRequestFilter" />
-        </filter-chain-map>
-    </beans:bean>
+    <http auto-config="true" request-matcher="ant">
+        <expression-handler ref="accessDeniedHandler" />
+
+        <custom-filter position="FIRST" ref="FirstFilterBean" />
+        <custom-filter position="CSRF_FILTER" ref="NoopFilterBean" />
+        <custom-filter position="LAST" ref="LastFilterBean" />
+    </http>
+    
+    <!-- 定义过滤 -->
+    <beans:bean id="NoopFilterBean" class="org.ionnic.core.filter.AllowedFilter" />
+    <beans:bean id="FirstFilterBean" class="org.ionnic.core.filter.UriExtensionFilter" />
+    <beans:bean id="LastFilterBean" class="org.ionnic.core.filter.RefererCheckFilter" />
 
 	<!-- 认证管理 -->
     <authentication-manager>
@@ -34,10 +41,6 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
-    
-    <!-- 定义过滤 -->
-    <beans:bean id="firstRequestFilter" class="org.ionnic.core.filter.UriExtensionFilter" />
-    <beans:bean id="lastRequestFilter" class="org.ionnic.core.filter.RefererCheckFilter" />
     
     <!-- 异常处理 -->
     <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl" />

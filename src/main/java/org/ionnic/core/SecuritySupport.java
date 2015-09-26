@@ -80,8 +80,8 @@ public class SecuritySupport {
 	 */
 	public static boolean checkToken(HttpServletRequest request) {
 		CsrfToken csrfToken = getToken(request, false);
-		String actualToken = request.getHeader(csrfToken.getHeaderName());
 
+		String actualToken = request.getHeader(csrfToken.getHeaderName());
 		if (actualToken == null) {
 			actualToken = request.getParameter(csrfToken.getParameterName());
 		}

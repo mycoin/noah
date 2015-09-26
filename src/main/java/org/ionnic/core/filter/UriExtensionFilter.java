@@ -27,7 +27,6 @@ public class UriExtensionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		// System.out.println("[Filter] org.ionnic.core.filter.UriExtensionFilter");
 
 		if (!SecuritySupport.checkExtension(req)) {
 			AccessDeniedException exception = new AccessDeniedException("Not Acceptable Extension");
