@@ -19,16 +19,25 @@
     </beans:description>
 
     <!-- 安全过滤 -->
-    <beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
-        <filter-chain-map request-matcher="ant">
-            <filter-chain pattern="*" filters="GlobalFilter" />
-        </filter-chain-map>
-    </beans:bean>
+    <http create-session="always" auto-config="true">
+        <port-mappings>
+            <port-mapping http="8080" https="8443" />
+        </port-mappings>
+
+        <custom-filter ref="FirstFilter" before="FIRST" />
+        <custom-filter ref="LastFilter" after="LAST" />
+
+        <!-- Any resources under the people url require the user role, all other resources are accessible to everyone. -->
+        <intercept-url pattern="/test/security*" access="ROLE_ADMIN" requires-channel="any" />
+        <intercept-url pattern="/user" access="ROLE_ADMIN" requires-channel="any" />
+
+        <!-- Configures basic auth. -->
+        <http-basic />
+    </http>
 
     <!-- 定义过滤 -->
-    <beans:bean id="NoneFilter" class="org.ionnic.core.filter.NoneOptionFilter" />
-    <beans:bean id="CustomFilter" class="org.ionnic.core.filter.AccessControlFilter" />
-    <beans:bean id="GlobalFilter" class="org.ionnic.core.filter.GlobalFilter" />
+    <beans:bean id="FirstFilter" class="org.ionnic.core.filter.ExceptionResolverFilter" />
+    <beans:bean id="LastFilter" class="org.ionnic.core.filter.PermissionControlFilter" />
 
 	<!-- 认证管理 -->
     <authentication-manager>

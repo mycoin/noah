@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 
-public class GlobalFilter implements Filter {
+public class ExceptionResolverFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -19,7 +19,7 @@ public class GlobalFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("org.ionnic.core.filter.GlobalFilter");
+		System.out.println("org.ionnic.core.filter.ExceptionResolverFilter");
 		chain.doFilter(request, response);
 	}
 
