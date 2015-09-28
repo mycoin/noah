@@ -1,26 +1,42 @@
-view {
-    tools
-    directive
-    config
-    resource
-    validator
-}
+org/
+└── ionnic
+    ├── Main.java
+    ├── app
+    │   └── controller
+    │       └── Test.java
+    └── core
+        ├── CacheSupport.java
+        ├── ContextSupport.java
+        ├── SecuritySupport.java
+        ├── action
+        │   └── ActionSupport.java
+        ├── bean
+        │   ├── ViewConfig.java
+        │   └── WebConfig.java
+        ├── directive
+        │   └── BlockDirective.java
+        ├── exception
+        │   ├── BusinessException.java
+        │   └── MappingExceptionResolver.java
+        ├── filter
+        │   ├── AllowedFilter.java
+        │   ├── RefererCheckFilter.java
+        │   └── UriExtensionFilter.java
+        ├── handler
+        │   ├── HttpAccessDeniedHandler.java
+        │   └── JsonResultReturnValueHandler.java
+        ├── intercepter
+        │   ├── CommonInterceptor.java
+        │   └── CsrfInterceptor.java
+        ├── utils
+        │   ├── DESUtils.java
+        │   ├── RequestUtils.java
+        │   └── StringUtils.java
+        └── view
+            ├── MappingJsonpView.java
+            └── tools
+                ├── ConfigTool.java
+                ├── PageTool.java
+                └── StringTool.java
 
-bean
-http {
-    filter
-    intercepter
-    converters
-    handlers
-    views
-}
-web {
-    db
-    action
-    model
-}
-tools
-
-
-
-
+14 directories, 25 files

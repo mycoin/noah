@@ -17,20 +17,18 @@
         makes it more reusable for other projects, as this
         file can be copied to replicate the security configuration.
     </beans:description>
-    
-	<!-- 安全配置 -->
-    <http auto-config="true" request-matcher="ant">
-        <expression-handler ref="accessDeniedHandler" />
 
-        <custom-filter position="FIRST" ref="FirstFilterBean" />
-        <custom-filter position="CSRF_FILTER" ref="NoopFilterBean" />
-        <custom-filter position="LAST" ref="LastFilterBean" />
-    </http>
-    
+    <!-- 安全过滤 -->
+    <beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+        <filter-chain-map request-matcher="ant">
+            <filter-chain pattern="*" filters="GlobalFilter" />
+        </filter-chain-map>
+    </beans:bean>
+
     <!-- 定义过滤 -->
-    <beans:bean id="NoopFilterBean" class="org.ionnic.core.filter.AllowedFilter" />
-    <beans:bean id="FirstFilterBean" class="org.ionnic.core.filter.UriExtensionFilter" />
-    <beans:bean id="LastFilterBean" class="org.ionnic.core.filter.RefererCheckFilter" />
+    <beans:bean id="NoneFilter" class="org.ionnic.core.filter.NoneOptionFilter" />
+    <beans:bean id="CustomFilter" class="org.ionnic.core.filter.AccessControlFilter" />
+    <beans:bean id="GlobalFilter" class="org.ionnic.core.filter.GlobalFilter" />
 
 	<!-- 认证管理 -->
     <authentication-manager>
@@ -41,12 +39,9 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
-    
-    <!-- 异常处理 -->
-    <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl" />
 
-    <beans:bean id="HttpSessionCsrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
-        <beans:property name="parameterName" value="token" />
-        <beans:property name="headerName" value="X-Requested-Token" />
+    <!-- 异常处理 -->
+    <beans:bean id="AccessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+        <beans:property name="errorPage" value="/page/error.jsp" />
     </beans:bean>
 </beans:beans>

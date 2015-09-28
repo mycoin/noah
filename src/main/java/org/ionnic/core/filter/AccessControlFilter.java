@@ -11,13 +11,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.core.SecuritySupport;
+import org.ionnic.core.utils.RequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
 
-public class UriExtensionFilter implements Filter {
+public class AccessControlFilter implements Filter {
 
-	private Logger logger = LoggerFactory.getLogger(UriExtensionFilter.class);
+	private Logger logger = LoggerFactory.getLogger(AccessControlFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,8 +31,19 @@ public class UriExtensionFilter implements Filter {
 
 		if (!SecuritySupport.checkExtension(req)) {
 			AccessDeniedException exception = new AccessDeniedException("Not Acceptable Extension");
-			logger.error("not acceptable extension. ", exception);
+			request.setAttribute("exception", exception);
+
 			throw exception;
+		}
+
+		if (RequestUtils.isAjax(req)) {
+
+			if (!SecuritySupport.checkRefererDomain(req)) {
+				AccessDeniedException exception = new AccessDeniedException("Not Acceptable Referer");
+				logger.error("not acceptable referer. ", exception);
+
+				throw exception;
+			}
 		}
 
 		chain.doFilter(request, response);
@@ -41,4 +53,5 @@ public class UriExtensionFilter implements Filter {
 	public void destroy() {
 
 	}
+
 }

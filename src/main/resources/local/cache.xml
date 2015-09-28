@@ -4,16 +4,10 @@
     <diskStore path="java.io.tmpdir/lms/ehcache/default" />
 
     <!-- DefaultCache setting. -->
-    <defaultCache maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600"
-        overflowToDisk="true" maxEntriesLocalDisk="100000" />
-    
+    <defaultCache maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600" overflowToDisk="true"
+        maxEntriesLocalDisk="100000" />
+
     <!-- 用户相关缓存 -->
-    <cache 
-        name="userCache" 
-        maxElementsInMemory="1000" 
-        eternal="false" 
-        timeToIdleSeconds="36000" 
-        overflowToDisk="true"
-    />
-        
+    <cache name="userCache" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="36000" overflowToDisk="true" />
+
 </ehcache>

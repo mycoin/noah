@@ -22,7 +22,7 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
- 
+
     <!-- 过滤器 -->
     <filter>
         <filter-name>springFilter</filter-name>
@@ -48,7 +48,7 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
+
     <!-- 静态资源 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -62,18 +62,18 @@
     </servlet-mapping>
 
     <!-- 错误页面 -->
-    <error-page>
+    <!-- <error-page>
         <error-code>404</error-code>
-        <location>/page/common/missing.jsp</location>
+        <location>/page/missing.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/page/common/error.jsp</location>
+        <location>/page/error.jsp</location>
     </error-page>
 
     <session-config>
         <session-timeout>60</session-timeout>
-    </session-config>
+    </session-config> -->
 
     <!-- 欢迎页面 -->
     <welcome-file-list>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,8 +56,9 @@ p {
 <body>
 	<div id="container">
 		<h1>500 - Internal Server Error</h1>
-		<p><%=exception%></p>
+		<p>
+			<%=request.getAttribute("javax.servlet.forward.request_uri")%>
+		</p>
 	</div>
-	<!--<%=request.getAttribute("javax.servlet.forward.request_uri")%>-->
 </body>
 </html>

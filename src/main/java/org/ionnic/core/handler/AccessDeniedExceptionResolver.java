@@ -1,4 +1,4 @@
-package org.ionnic.core.exception;
+package org.ionnic.core.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 /**
  * @author apple
  */
-public class MappingExceptionResolver extends AbstractHandlerExceptionResolver {
+public class AccessDeniedExceptionResolver extends AbstractHandlerExceptionResolver {
 
 	private String exceptionAttribute;
 
@@ -19,39 +19,18 @@ public class MappingExceptionResolver extends AbstractHandlerExceptionResolver {
 
 	private int defaultStatusCode;
 
-	private static Logger logger = LoggerFactory.getLogger(MappingExceptionResolver.class);
+	private static Logger logger = LoggerFactory.getLogger(AccessDeniedExceptionResolver.class);
 
 	@Override
 	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 		ModelAndView mv = new ModelAndView(defaultErrorView);
 		mv.addObject(exceptionAttribute, ex.getMessage());
-		mv.addObject("status", 500);
+		mv.addObject("status", defaultStatusCode);
 
 		logger.error("exception has been caught and resolved, details are:", ex);
 		response.setStatus(200);
 
 		return mv;
-	}
-
-	/**
-	 * @return the defaultErrorView
-	 */
-	public String getDefaultErrorView() {
-		return defaultErrorView;
-	}
-
-	/**
-	 * @return the defaultStatusCode
-	 */
-	public int getDefaultStatusCode() {
-		return defaultStatusCode;
-	}
-
-	/**
-	 * @return the exceptionAttribute
-	 */
-	public String getExceptionAttribute() {
-		return exceptionAttribute;
 	}
 
 	/**

@@ -1,9 +1,21 @@
 package org.ionnic.core.action;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ActionSupport {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.method.HandlerMethod;
+
+/**
+ * @author apple
+ * 
+ */
+public abstract class ActionSupport implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param status
@@ -29,4 +41,13 @@ public abstract class ActionSupport {
 
 		return null;
 	}
+
+	/**
+	 * @param request
+	 * @param response
+	 * @param action
+	 */
+	public void init(HttpServletRequest request, HttpServletResponse response, HandlerMethod action) {
+
+	};
 }

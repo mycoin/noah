@@ -6,9 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.rubyeye.xmemcached.MemcachedClient;
-
-import org.ionnic.core.CacheSupport;
 import org.ionnic.core.action.ActionSupport;
 import org.ionnic.core.utils.RequestUtils;
 import org.springframework.stereotype.Controller;
@@ -22,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/test")
-public class Test extends ActionSupport {
+public class TestAction extends ActionSupport {
+
+    private static final long serialVersionUID = -2285835479010277772L;
 
 	@RequestMapping("/basic")
 	public void basic(@RequestBody String body, Model model, HttpServletRequest req) {
@@ -39,7 +38,7 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/exception", produces = "application/json")
 	public void exception() throws Exception {
-		// System.out.println("[Action] org.ionnic.app.controller.Test.exception()");
+		// System.out.println("[Action] org.ionnic.app.controller.TestAction.exception()");
 		throw new Exception("STATUS_OK");
 	}
 
@@ -67,23 +66,6 @@ public class Test extends ActionSupport {
 		data.put("body", body);
 
 		model.addAttribute("data", data);
-	}
-
-	@RequestMapping(value = "/memcached", produces = "application/json")
-	@ResponseBody
-	public Object memcached() throws Exception {
-		MemcachedClient client = CacheSupport.getClient();
-		String value = client.get("www");
-		int number = 0;
-		if (value != null) {
-			number = Integer.valueOf(value);
-		}
-		number++;
-		client.set("www", 0, "" + number);
-
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("count", number);
-		return result(0, data);
 	}
 
 	@RequestMapping(value = "/primitive", produces = "application/json")

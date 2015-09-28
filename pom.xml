@@ -69,7 +69,7 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springSecurityVersion}</version>
         </dependency>
-    
+
         <!-- Aspect -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -81,14 +81,14 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.12</version>
         </dependency>
-        
+
         <!-- MySql Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
         </dependency>
-        
+
         <!-- Velocity -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
@@ -105,7 +105,7 @@
             <artifactId>spring-context-support</artifactId>
             <version>${springVersion}</version>
         </dependency>
-        
+
         <!-- Freemarker -->
         <dependency>
             <groupId>org.freemarker</groupId>
@@ -197,16 +197,11 @@
 
         <!-- Cache -->
         <dependency>
-            <groupId>com.googlecode.xmemcached</groupId>
-            <artifactId>xmemcached</artifactId>
-            <version>1.4.3</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.6.0.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.10.0</version>
-        </dependency>
- 
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -228,7 +223,7 @@
             <version>4.1.6.RELEASE</version>
             <scope>test</scope>
         </dependency>
-        
+
         <!-- DOM selector -->
         <dependency>
             <groupId>org.jsoup</groupId>

@@ -4,28 +4,4 @@
 	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	    http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-    <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true" />
-    
-    <!-- 缓存管理 -->
-    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-        <property name="cacheManager">
-            <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-                <property name="configLocation" value="classpath:local/cache.xml" />
-            </bean>
-        </property>
-    </bean>
-    
-    <!-- 缓存配置 -->
-    <bean id="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
-        <constructor-arg>
-            <list>
-                <bean class="java.net.InetSocketAddress">
-                    <constructor-arg value="localhost" />
-                    <constructor-arg value="11211" />
-                </bean>
-            </list>
-        </constructor-arg>
-    </bean>
-
-    <bean id="memcachedClient" factory-bean="memcachedClientBuilder" factory-method="build" destroy-method="shutdown" />
 </beans>

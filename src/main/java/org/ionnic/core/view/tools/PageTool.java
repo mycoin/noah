@@ -39,6 +39,8 @@ public class PageTool {
 			return token.getToken();
 		} else if (type == 1) {
 			return token.getParameterName();
+		} else if (type == 2) {
+			return "<input name=\"" + token.getParameterName() + "\" value=\"" + token.getToken() + "\" readonly=\"readonly\" type=\"hidden\" />";
 		}
 		return StringTool.toJSON(token);
 	}
