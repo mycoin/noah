@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.core.action.ActionSupport;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 public class TestAction extends ActionSupport {
 
-    private static final long serialVersionUID = -2285835479010277772L;
+	private static final long serialVersionUID = -2285835479010277772L;
 
 	@RequestMapping("/basic")
 	public void basic(@RequestBody String body, Model model, HttpServletRequest req) {
@@ -36,10 +37,9 @@ public class TestAction extends ActionSupport {
 		model.addAttribute("data", data);
 	}
 
-	@RequestMapping(value = "/exception", produces = "application/json")
-	public void exception() throws Exception {
-		// System.out.println("[Action] org.ionnic.app.controller.TestAction.exception()");
-		throw new Exception("STATUS_OK");
+	@RequestMapping(value = "/exception")
+	public void exception() throws ServletException {
+		throw new ServletException("异常状态 <!-- STATUS_OK -->");
 	}
 
 	@RequestMapping(value = "/header")

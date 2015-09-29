@@ -19,28 +19,30 @@
     </beans:description>
 
     <!-- 安全过滤 -->
-    <http create-session="always" auto-config="true">
+    <http pattern="/" security="none" />
+    <http create-session="always" request-matcher="ant">
         <port-mappings>
             <port-mapping http="8080" https="8443" />
         </port-mappings>
 
-        <custom-filter ref="FirstFilter" before="FIRST" />
-        <custom-filter ref="LastFilter" after="LAST" />
-
-        <!-- Any resources under the people url require the user role, all other resources are accessible to everyone. -->
-        <intercept-url pattern="/test/security*" access="ROLE_ADMIN" requires-channel="any" />
-        <intercept-url pattern="/user" access="ROLE_ADMIN" requires-channel="any" />
+        <intercept-url pattern="/test/security/*" access="ROLE_ADMIN" />
+        <intercept-url pattern="/user/*" access="ROLE_ADMIN" />
 
         <!-- Configures basic auth. -->
         <http-basic />
+
+        <security:custom-filter ref="GlobalFilter" position="FIRST" />
+        <security:custom-filter ref="CustomFilter" position="LAST" />
+
+        <access-denied-handler ref="AccessDeniedHandler" />
     </http>
 
     <!-- 定义过滤 -->
-    <beans:bean id="FirstFilter" class="org.ionnic.core.filter.ExceptionResolverFilter" />
-    <beans:bean id="LastFilter" class="org.ionnic.core.filter.PermissionControlFilter" />
+    <beans:bean id="CustomFilter" class="org.ionnic.core.filter.PermissionControlFilter" />
+    <beans:bean id="GlobalFilter" class="org.ionnic.core.filter.ExceptionResolverFilter" />
 
 	<!-- 认证管理 -->
-    <authentication-manager>
+    <authentication-manager erase-credentials="true">
         <authentication-provider>
             <password-encoder hash="md5" />
             <user-service>
@@ -51,6 +53,6 @@
 
     <!-- 异常处理 -->
     <beans:bean id="AccessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-        <beans:property name="errorPage" value="/page/error.jsp" />
+        <beans:property name="errorPage" value="/page/access.jsp" />
     </beans:bean>
 </beans:beans>

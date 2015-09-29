@@ -123,13 +123,13 @@
     <aop:aspectj-autoproxy />
 
     <!-- 全局拦截器 -->
-    <!-- <mvc:interceptors>
+    <mvc:interceptors>
         <bean class="org.ionnic.core.intercepter.GlobalInterceptor" />
         <bean class="org.ionnic.core.intercepter.CsrfInterceptor" />
-    </mvc:interceptors> -->
+    </mvc:interceptors>
 
     <!-- 异常处理 -->
-    <bean class="org.ionnic.core.handler.ExceptionResolver">
+    <bean class="org.ionnic.core.handler.MappingExceptionResolver">
         <property name="order" value="1" />
         <property name="exceptionMappings">
             <props>
@@ -144,7 +144,7 @@
                 <prop key="/common/error">404</prop>
             </props>
         </property>
-        <property name="warnLogCategory" value="WARN"></property>
+        <property name="warnLogCategory" value="ERROR"></property>
         <property name="defaultErrorView" value="/common/error"></property>
         <property name="defaultStatusCode" value="500"></property>
     </bean>

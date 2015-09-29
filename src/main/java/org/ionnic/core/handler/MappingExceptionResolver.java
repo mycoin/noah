@@ -3,7 +3,7 @@ package org.ionnic.core.handler;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
-public class ExceptionResolver extends SimpleMappingExceptionResolver {
+public class MappingExceptionResolver extends SimpleMappingExceptionResolver {
 
 	@Override
 	protected ModelAndView getModelAndView(String viewName, Exception ex) {
