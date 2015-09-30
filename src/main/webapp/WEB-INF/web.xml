@@ -62,18 +62,18 @@
     </servlet-mapping>
 
     <!-- 错误页面 -->
-    <error-page>
+    <!-- <error-page>
         <error-code>404</error-code>
         <location>/page/missing.jsp</location>
     </error-page>
     <error-page>
         <error-code>403</error-code>
-        <location>/page/error.jsp</location>
+        <location>/page/access.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/page/error.jsp</location>
-    </error-page>
+    </error-page> -->
 
     <session-config>
         <session-timeout>60</session-timeout>

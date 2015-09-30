@@ -17,4 +17,5 @@
         #set($name = "#include(${name})")#*
       *#$page.exec($name, $data)#*
   *##end
+  #set($name = $unknown)
 #end

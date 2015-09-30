@@ -56,9 +56,8 @@ p {
 <body>
 	<div id="container">
 		<h1>500 - Internal Server Error</h1>
-		<p>
-			<%=request.getAttribute("javax.servlet.forward.request_uri")%>
-		</p>
+		<p><%=request.getAttribute("javax.servlet.forward.request_uri")%></p>
+		<p><%=request.getAttribute("exception")%></p>
 	</div>
 </body>
 </html>

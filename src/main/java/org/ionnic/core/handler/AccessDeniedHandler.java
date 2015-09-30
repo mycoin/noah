@@ -20,11 +20,7 @@ public class AccessDeniedHandler extends AccessDeniedHandlerImpl {
 	        ServletException {
 
 		if (RequestUtils.isAjax(request)) {
-			String result = "{}";
-
 			response.setStatus(403);
-			response.getOutputStream().write(result.getBytes());
-
 		} else {
 			super.handle(request, response, accessDeniedException);
 		}

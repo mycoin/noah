@@ -23,9 +23,6 @@ Session:
 #end
 -->
 
-<!-- 
 <script type="text/javascript">
 var token = $util.toJSON($page.getToken());
-var data = $util.toJSON($data);
 </script>
- -->

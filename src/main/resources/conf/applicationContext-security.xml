@@ -19,8 +19,7 @@
     </beans:description>
 
     <!-- 安全过滤 -->
-    <http pattern="/" security="none" />
-    <http create-session="always" request-matcher="ant">
+    <http auto-config="true" create-session="stateless" request-matcher="ant">
         <port-mappings>
             <port-mapping http="8080" https="8443" />
         </port-mappings>
@@ -31,15 +30,15 @@
         <!-- Configures basic auth. -->
         <http-basic />
 
-        <security:custom-filter ref="GlobalFilter" position="FIRST" />
-        <security:custom-filter ref="CustomFilter" position="LAST" />
+        <custom-filter ref="GlobalAccessFilter" before="FIRST" />
+        <custom-filter ref="RequestContextFilter" after="LAST" />
 
         <access-denied-handler ref="AccessDeniedHandler" />
     </http>
 
     <!-- 定义过滤 -->
-    <beans:bean id="CustomFilter" class="org.ionnic.core.filter.PermissionControlFilter" />
-    <beans:bean id="GlobalFilter" class="org.ionnic.core.filter.ExceptionResolverFilter" />
+    <beans:bean id="GlobalAccessFilter" class="org.ionnic.core.filter.GlobalAccessFilter" />
+    <beans:bean id="RequestContextFilter" class="org.ionnic.core.filter.RequestContextFilter" />
 
 	<!-- 认证管理 -->
     <authentication-manager erase-credentials="true">
@@ -52,7 +51,7 @@
     </authentication-manager>
 
     <!-- 异常处理 -->
-    <beans:bean id="AccessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+    <beans:bean id="AccessDeniedHandler" class="org.ionnic.core.handler.AccessDeniedHandler">
         <beans:property name="errorPage" value="/page/access.jsp" />
     </beans:bean>
 </beans:beans>

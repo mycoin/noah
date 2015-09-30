@@ -1,5 +1,6 @@
 package org.ionnic.core.action;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import org.springframework.web.method.HandlerMethod;
 
 /**
  * @author apple
- * 
+ *
  */
 public abstract class ActionSupport implements Serializable {
 
@@ -40,6 +41,21 @@ public abstract class ActionSupport implements Serializable {
 	public static Object success(Object data) {
 
 		return null;
+	}
+
+	/**
+	 * @param response
+	 * @param message
+	 */
+	public void writeMessage(HttpServletResponse response, String message) {
+		try {
+			response.setContentType("application/json;charset=UTF-8");
+			response.getWriter().write(message);
+			response.getWriter().flush();
+			response.getWriter().close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

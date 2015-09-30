@@ -1,1 +1,1 @@
-#if($status != 0)    $util.escapeInH("<!-- ERROR -->")#end$page.eval(    '$page.config("domain")<br>#foreach($item in $array)<a href="javascript:alert(\"$velocityCount:\")">$name</a>($util.toLocateDate("default"))\n#end', {    "array": [1, 3],    "name" : "index"})
+#if($status != 0)    $util.escapeInH("<!-- ERROR -->")#end

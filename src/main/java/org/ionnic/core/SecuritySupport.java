@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.core.bean.WebConfig;
-import org.ionnic.core.exception.BusinessException;
+import org.ionnic.core.exception.ServiceException;
 import org.ionnic.core.utils.RequestUtils;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
@@ -60,7 +60,7 @@ public class SecuritySupport {
 	/**
 	 * @param request
 	 * @return
-	 * @throws BusinessException
+	 * @throws ServiceException
 	 */
 	public static boolean checkCsrfToken(HttpServletRequest request) {
 		CsrfToken csrfToken = getToken(request, false);
