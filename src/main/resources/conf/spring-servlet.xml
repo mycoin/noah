@@ -125,7 +125,7 @@
     <!-- 全局拦截器 -->
     <mvc:interceptors>
         <bean class="org.ionnic.core.intercepter.GlobalInterceptor" />
-        <bean class="org.ionnic.core.intercepter.CsrfInterceptor" />
+        <bean class="org.ionnic.core.intercepter.CSRFInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>testing web</title>
+<title>test web</title>
 <link rel="stylesheet" type="text/css" href="../public/css/lib.css" />
 </head>
 <body>
@@ -15,7 +15,7 @@
             <li data-task="x-exception"><i>5</i><a class="link normal" href="../test/exception.json" target="_blank">exception</a></li>
             <li data-task="x-security"><i>6</i><a class="link normal" href="../test/security/admin" target="_blank">security</a></li>
             <li data-task="x-header"><i>8</i><a class="link normal" href="../test/header" target="_blank">x-header</a></li>
-            <li data-task="x-code"><i>9</i><span class="link normal">verifyCode</span><img src="/page/img.jsp" style="position: relative;top: 5px;"</li>
+            ##<li data-task="x-code"><i>9</i><span class="link normal">verifyCode</span><img src="/page/img.jsp" style="position: relative;top: 5px;"</li>
             <li data-task="x-jsp-view"><i>10</i><a class="link normal" href="../test/jsp-view" target="_blank">jsp-view</a></li>
         </ul>
     </div>
