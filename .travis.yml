@@ -8,4 +8,4 @@ jdk:
 before_script:
   - export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
 
-script: 'mvn clean install -DskipTests=true'
+script: 'mvn install -DskipTests=true'
