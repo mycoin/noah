@@ -1,7 +1,6 @@
 package org.ionnic.core.filter;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 
 public class GlobalAccessFilter implements Filter {
 
