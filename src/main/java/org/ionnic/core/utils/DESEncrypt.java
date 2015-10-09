@@ -7,7 +7,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-public class DESUtils {
+public class DESEncrypt {
 
 	private final static String DES = "DES";
 
@@ -29,7 +29,7 @@ public class DESUtils {
 
 	/**
 	 * 二行制转字符串
-	 * 
+	 *
 	 * @param b
 	 * @return
 	 */
@@ -48,7 +48,7 @@ public class DESUtils {
 
 	/**
 	 * 解密
-	 * 
+	 *
 	 * @param src
 	 *            数据源
 	 * @param key
@@ -79,7 +79,7 @@ public class DESUtils {
 
 	/**
 	 * 数据解密
-	 * 
+	 *
 	 * @param data
 	 * @param key
 	 *            密钥
@@ -92,7 +92,7 @@ public class DESUtils {
 
 	/**
 	 * 加密
-	 * 
+	 *
 	 * @param src
 	 *            数据源
 	 * @param key
@@ -122,7 +122,7 @@ public class DESUtils {
 
 	/**
 	 * 数据加密
-	 * 
+	 *
 	 * @param data
 	 * @param key
 	 *            密钥

@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../public/js/jquery.js"></script>
     <script type="text/javascript" src="../public/js/lib.js"></script>
     <script type="text/javascript">
-    var csrfToken = "$page.token.token";
+    var csrfToken = "$page.token";
     var taskMap = {
         'x-search': {
             dataType: 'json',

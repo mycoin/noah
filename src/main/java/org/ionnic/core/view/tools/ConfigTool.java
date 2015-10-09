@@ -34,14 +34,13 @@ public class ConfigTool {
 
 	/**
 	 * 请求级别的初始化函数
-	 * 
+	 *
 	 * @param obj
 	 * @throws IOException
 	 * @throws Exception
 	 */
 	public void init(Object context) throws IOException {
 		ViewConfig viewConfig = ContextSupport.getBean(ViewConfig.class);
-		config.clear();
 
 		if (viewConfig.getConfigPath() != null) {
 			for (Resource resource : viewConfig.getConfigPath()) {

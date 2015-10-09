@@ -21,31 +21,6 @@ public class PageTool {
 	private ViewToolContext context;
 
 	/**
-	 * @return
-	 */
-	public CsrfToken getToken() {
-		HttpServletRequest request = context.getRequest();
-		return SecuritySupport.getToken(request, true);
-	}
-
-	/**
-	 * @param type
-	 * @return
-	 */
-	public String getToken(int type) {
-		CsrfToken token = getToken();
-
-		if (type == 0) {
-			return token.getToken();
-		} else if (type == 1) {
-			return token.getParameterName();
-		} else if (type == 2) {
-			return "<input name=\"" + token.getParameterName() + "\" value=\"" + token.getToken() + "\" readonly=\"readonly\" type=\"hidden\" />";
-		}
-		return StringTool.toJSON(token);
-	}
-
-	/**
 	 * @param name
 	 * @param data
 	 * @return
@@ -67,8 +42,32 @@ public class PageTool {
 	}
 
 	/**
+	 * @return
+	 */
+	public CsrfToken getToken() {
+		HttpServletRequest request = context.getRequest();
+		return SecuritySupport.getToken(request, true);
+	}
+
+	/**
+	 * @return
+	 */
+	public String getTokenField() {
+		CsrfToken token = getToken();
+		return "<input name=\"" + token.getParameterName() + "\" value=\"" + token.getToken() + "\" readonly=\"readonly\" type=\"hidden\" />";
+	}
+
+	/**
+	 * @return
+	 */
+	public String getTokenName() {
+		CsrfToken token = getToken();
+		return token.getParameterName();
+	}
+
+	/**
 	 * 请求级别的初始化函数
-	 * 
+	 *
 	 * @param obj
 	 * @throws Exception
 	 */
