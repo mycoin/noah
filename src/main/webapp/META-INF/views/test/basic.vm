@@ -1,13 +1,20 @@
-#setLayout("blank")
+##setLayout()
 {
-    "wd": "#external("ad", {"wd": "百度"})",
     "config": "$config.get("domain")",
-    "token": "$page.getToken().token"
+    "token": "$page.token"
 }
-
-#if($data.method && $data.controller && $data.body)
-<!-- STATUS_OK -->
+#block("sce")
+    <script type="text/javascript">
+        var token = $util.toJSON($page.getToken());
+    </script>
 #end
+#block("sce")
+    #if($data.method && $data.controller && $data.body)
+        <!-- STATUS_OK -->
+    #end
+#end
+
+#external("ad", {"wd": 2})
 
 <!--
 Request:
@@ -22,8 +29,4 @@ Session:
     $item
 #end
 -->
-
-<script type="text/javascript">
-var token = $util.toJSON($page.getToken());
-</script>
 
