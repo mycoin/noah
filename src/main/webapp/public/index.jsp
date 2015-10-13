@@ -1,1 +1,49 @@
-<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*"%><!doctype html><html><head><title>test web</title><link rel="stylesheet" type="text/css" href="css/lib.css" /></head><body>    <h2>测试用例</h2>    <div class="col">        <ul>            <li data-task="x-search"><i>1</i><a class="link normal" href="/service/test/search/杭州天气" target="_blank">RequestParam</a></li>            <li data-task="x-basic"><i>3</i><a class="link normal" href="/service/test/basic" target="_blank">basic</a></li>            <li data-task="x-rest"><i>4</i><a class="link normal" href="/service/test/rest.json" target="_blank">restful.json</a></li>            <li data-task="x-exception"><i>5</i><a class="link normal" href="/service/test/exception.json" target="_blank">exception</a></li>            <li data-task="x-security"><i>6</i><a class="link normal" href="/service/test/security/admin" target="_blank">security</a></li>            <li data-task="x-header"><i>8</i><a class="link normal" href="/service/test/header" target="_blank">x-header</a></li>            <li data-task="x-jsp-view"><i>10</i><a class="link normal" href="/service/test/jsp-view" target="_blank">jsp-view</a></li>        </ul>    </div>    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>    <script type="text/javascript" src="js/lib.js"></script>    <script type="text/javascript">    var csrfToken = "$page.token.token";    var taskMap = {        'x-search': {            dataType: 'json',            method: 'post',            contentType: 'javascript/json'        },        'x-header': {            method: 'post'        },        'x-basic': {            contentType: 'javascript/json',            type: 'post',            data: {                token: 2            }        },        'x-security': {            username: 'admin',            password: 'admin'        }    };    </script></body></html>
+<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*,org.ionnic.config.support.TokenRepository"%>
+<!doctype html>
+<html>
+<head>
+<title>test web</title>
+<link rel="stylesheet" type="text/css" href="css/lib.css" />
+</head>
+<body>
+    <h2>测试用例</h2>
+    <div class="col">
+        <ul>
+            <li data-task="x-search"><i>1</i><a class="link normal" href="/service/test/search/杭州天气" target="_blank">search</a></li>
+            <li data-task="x-basic"><i>3</i><a class="link normal" href="/service/test/basic" target="_blank">basic</a></li>
+            <li data-task="x-exception"><i>5</i><a class="link normal" href="/service/test/exception" target="_blank">exception</a></li>
+        </ul>
+    </div>
+    <script src="//macbook-air.local/jQuery.js"></script>
+    <script src="js/lib.js"></script>
+    <script>
+    var csrfToken = '<%=TokenRepository.generateToken(request)%>';
+	var taskMap = {
+		'x-search' : {
+			dataType : 'json',
+			type : 'post',
+			contentType : 'javascript/json'
+		},
+
+		'x-header' : {
+			type : 'post'
+		},
+
+		'x-basic' : {
+			contentType : 'javascript/json',
+			type : 'post',
+			data : {
+				token : 2
+			}
+		},
+		'x-security' : {
+			username : 'admin',
+			password : 'admin'
+		},
+		'x-exception': {
+			dataType : 'json'
+		}
+	};
+</script>
+</body>
+</html>

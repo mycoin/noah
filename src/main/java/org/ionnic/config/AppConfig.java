@@ -11,17 +11,19 @@ import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 @Configuration
 public class AppConfig {
 
-	public static final String VELOCITY_CONF = "/WEB-INF/conf/velocity.properties";
+	public static final String CHARSET = "UTF-8";
 
-	public static final String[] TEMPLATE_PATHS = { "/META-INF/views", "/META-INF/external", "/META-INF/views/common" };
+	public static final String DEFAULT_DATEFORMAT = "";
 
 	@Bean
 	public VelocityConfigurer volocityConfig() throws IOException {
 		VelocityConfigurer config = new VelocityConfigurer();
-		Resource configFile = ContextSupport.getResource(VELOCITY_CONF);
+		Resource configFile = ContextSupport.getResource("/WEB-INF/conf/velocity.properties");
 
 		config.setConfigLocation(configFile);
-		config.setResourceLoaderPath(StringUtils.arrayToCommaDelimitedString(TEMPLATE_PATHS));
+
+		String[] templateDirs = new String[] { "/META-INF/views", "/META-INF/external", "/META-INF/views/common" };
+		config.setResourceLoaderPath(StringUtils.arrayToCommaDelimitedString(templateDirs));
 
 		return config;
 	}

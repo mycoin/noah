@@ -1,20 +1,20 @@
-##setLayout()
 {
     "config": "$config.get("domain")",
     "token": "$page.token"
 }
+
 #block("sce")
     <script type="text/javascript">
-        var token = $util.toJSON($page.getToken());
+        var token = $util.toJSON($page.token);
+        var token_value = '$page.token';
     </script>
 #end
 #block("sce")
     #if($data.method && $data.controller && $data.body)
-        <!-- STATUS_OK -->
+        <!-- status-ok -->
     #end
 #end
-
-#external("ad", {"wd": 2})
+#external("ad", {"wd": 'ad'})
 
 <!--
 Request:
@@ -29,4 +29,3 @@ Session:
     $item
 #end
 -->
-

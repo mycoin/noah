@@ -23,7 +23,7 @@ jQuery(function() {
                         if (_ === 'error') {
                             xhr = data;
                         }
-                        if (data.status == 0 || xhr.responseText.indexOf('STATUS_OK') > -1) {
+                        if (data.status == 0 || xhr.responseText.indexOf('status-ok') > -1) {
                             el.append('<span class="ok">' + (xhr.responseText) + '</span>');
                         } else {
                             el.append('<span class="error">' + (data.statusInfo || xhr.responseText || '未知异常') + '</span>');
@@ -32,12 +32,3 @@ jQuery(function() {
             }
         });
 });
-
-function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
-        return unescape(arr[2]);
-    } else {
-        return null;
-    }
-}

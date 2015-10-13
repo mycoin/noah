@@ -6,25 +6,33 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- 文件扫描 -->
     <context:component-scan base-package="org.ionnic" />
 
+    <!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.ionnic.config.view.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!-- 视图配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <property name="suffix" value=".vm" />
-        <property name="toolboxConfigLocation" value="/WEB-INF/conf/toolbox.xml" />
         <property name="exposeSessionAttributes" value="true" />
         <property name="requestContextAttribute" value="context" />
+        <property name="suffix" value=".vm" />
+        <property name="toolboxConfigLocation" value="/WEB-INF/conf/toolbox.xml" />
     </bean>
 
+    <!-- 拦截过滤 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.config.web.RequestInterceptor" />
-        <bean class="org.ionnic.config.web.SecurityInterceptor" />
+        <bean class="org.ionnic.config.support.HttpContextInterceptor" />
+        <bean class="org.ionnic.config.support.HttpSecurityInterceptor" />
     </mvc:interceptors>
 
+    <!-- 异常处理 -->
+    <bean class="org.ionnic.config.view.ExceptionResolver" />
+
+    <!-- 首页跳转 -->
     <mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />
 </beans>
