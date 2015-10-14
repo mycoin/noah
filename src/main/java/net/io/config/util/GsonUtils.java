@@ -1,4 +1,4 @@
-package org.ionnic.config.util;
+package net.io.config.util;
 
 import java.lang.reflect.Type;
 
@@ -10,7 +10,7 @@ import com.google.gson.JsonSyntaxException;
  * @author apple
  *
  */
-public class GsonUtils {
+public abstract class GsonUtils {
 
 	private static Gson gson;
 
@@ -37,7 +37,7 @@ public class GsonUtils {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T fromJson(String json, Type typeOfT) {
+	public static <T> T fromJson(String json, Type typeOfT) {
 		if (json == null) {
 			return null;
 		}

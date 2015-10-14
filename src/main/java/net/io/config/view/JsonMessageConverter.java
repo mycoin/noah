@@ -1,55 +1,25 @@
-package org.ionnic.config.view;
+package net.io.config.view;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.nio.charset.Charset;
 
-import org.ionnic.config.AppConfig;
-import org.ionnic.config.util.GsonUtils;
+import net.io.config.AppConfig;
+import net.io.config.util.GsonUtils;
+
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.util.StreamUtils;
 
 import com.google.gson.JsonSyntaxException;
 
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	private static final MediaType contentType = new MediaType("application", "json", Charset.forName("UTF-8"));
-
-	// TODO: move this to a more appropriated utils class
-	private static String convert(InputStream is) throws IOException {
-		/*
-		 * To convert the InputStream to String we use the Reader.read(char[]
-		 * buffer) method. We iterate until the Reader return -1 which means
-		 * there's no more data to read. We use the StringWriter class to
-		 * produce the string.
-		 */
-		if (is != null) {
-			Writer writer = new StringWriter();
-
-			char[] buffer = new char[1024];
-			try {
-				Reader reader = new BufferedReader(new InputStreamReader(is, AppConfig.CHARSET));
-				int n;
-				while ((n = reader.read(buffer)) != -1) {
-					writer.write(buffer, 0, n);
-				}
-			} finally {
-				is.close();
-			}
-			return writer.toString();
-		} else {
-			return "";
-		}
-	}
 
 	public JsonMessageConverter() {
 		// TODO Auto-generated constructor stub
@@ -59,7 +29,9 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 	@Override
 	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 		try {
-			String requestBody = convert(inputMessage.getBody());
+			InputStream stream = inputMessage.getBody();
+
+			String requestBody = StreamUtils.copyToString(stream, AppConfig.CHARSET);
 			return GsonUtils.fromJson(requestBody, clazz);
 		} catch (JsonSyntaxException e) {
 			throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);

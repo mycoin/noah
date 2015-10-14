@@ -1,4 +1,4 @@
-package org.ionnic.app.controller;
+package net.io.app.action;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -6,7 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.config.ActionSupport;
+import net.io.config.ActionSupport;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,10 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Test extends ActionSupport {
 
 	@RequestMapping("/basic")
-	public void basic(@RequestBody String body, Model model, HttpServletRequest req) {
+	public void basic(@RequestBody String body, Model model, HttpServletRequest request) {
 		ModelMap data = new ModelMap();
 
-		data.addAttribute("method", req.getMethod());
+		data.addAttribute("method", request.getMethod());
 		data.addAttribute("controller", this.getClass().getName());
 		data.addAttribute("body", body);
 		data.addAttribute("html", "<a>测试中文</a>");
@@ -34,7 +35,7 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/error")
 	public Map<String, Object> error() throws Exception {
-		System.out.println("[DEBUG] org.ionnic.app.controller.Test.error()");
+		System.out.println("[DEBUG] net.io.app.action.Test.error()");
 		throw new Exception("<!-- status-ok --> PageException");
 	}
 
@@ -45,7 +46,7 @@ public class Test extends ActionSupport {
 	}
 
 	@RequestMapping(value = "/index")
-	public Object index(HttpServletRequest req) {
+	public Object index(HttpServletRequest request) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("ip", "11");
 		data.put("search", new Date());

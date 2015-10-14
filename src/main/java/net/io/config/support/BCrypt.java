@@ -1,4 +1,4 @@
-package org.ionnic.config;
+package net.io.config.support;
 
 import java.security.MessageDigest;
 import java.util.Random;

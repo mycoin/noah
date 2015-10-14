@@ -1,4 +1,4 @@
-package org.ionnic.config.util;
+package net.io.config.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -6,35 +6,37 @@ import java.net.UnknownHostException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.util.Assert;
+import net.io.config.Context;
+
 import org.springframework.web.bind.ServletRequestUtils;
 
-public class ServletUtils extends ServletRequestUtils {
+public abstract class ServletUtils extends ServletRequestUtils {
 
 	/**
-	 * @param req
-	 * @param requiredType
+	 * @param request
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T getAttribute(HttpServletRequest req, Class<T> requiredType) {
+	public static Context getContext(HttpServletRequest request) {
+		Object object = request.getAttribute(Context.CONTEXT_ATTRIBUTE);
+		Context context = null;
 
-		try {
-			return (T) req.getAttribute(requiredType.getName());
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			return null;
+		if (object == null) {
+			context = new Context(request);
+			request.setAttribute(Context.CONTEXT_ATTRIBUTE, context);
+		} else {
+			context = (Context) object;
 		}
+
+		return context;
 	}
 
 	/**
-	 * @param req
+	 * @param request
 	 * @param name
 	 * @return
 	 */
-	public static Cookie getCookie(HttpServletRequest req, String name) {
-		for (Cookie item : req.getCookies()) {
+	public static Cookie getCookie(HttpServletRequest request, String name) {
+		for (Cookie item : request.getCookies()) {
 			if (item.getName().equals(name)) {
 				return item;
 			}
@@ -43,7 +45,7 @@ public class ServletUtils extends ServletRequestUtils {
 	}
 
 	/**
-	 * @param req
+	 * @param request
 	 * @return
 	 */
 	public static String getRemoteAddr(HttpServletRequest request) {
@@ -86,18 +88,5 @@ public class ServletUtils extends ServletRequestUtils {
 		String requestedWith = request.getHeader("X-Requested-With");
 		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
 	}
-
-	/**
-	 * @param req
-	 * @param requiredType
-	 * @param value
-	 */
-	public static void setAttribute(HttpServletRequest req, Class<?> requiredType, Object value) {
-		Assert.isInstanceOf(requiredType, value, "value not instance of " + requiredType);
-		String key = requiredType.getName();
-
-		req.setAttribute(key, value);
-	}
-
 
 }

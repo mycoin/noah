@@ -7,12 +7,12 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 文件扫描 -->
-    <context:component-scan base-package="org.ionnic" />
+    <context:component-scan base-package="net.io" />
 
     <!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.ionnic.config.view.JsonMessageConverter" />
+            <bean class="net.io.config.view.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -26,12 +26,12 @@
 
     <!-- 拦截过滤 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.config.support.HttpContextInterceptor" />
-        <bean class="org.ionnic.config.support.HttpSecurityInterceptor" />
+        <bean class="net.io.config.support.HttpContextInterceptor" />
+        <bean class="net.io.config.support.HttpSecurityInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->
-    <bean class="org.ionnic.config.view.ExceptionResolver" />
+    <bean class="net.io.config.view.ExceptionResolver" />
 
     <!-- 首页跳转 -->
     <mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />

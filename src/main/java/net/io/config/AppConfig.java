@@ -1,6 +1,9 @@
-package org.ionnic.config;
+package net.io.config;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+
+import net.io.config.util.ContextUtils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +14,18 @@ import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 @Configuration
 public class AppConfig {
 
-	public static final String CHARSET = "UTF-8";
+	public static final String CHARSET_NAME = "UTF-8";
+
+	public static final Charset CHARSET = Charset.forName(CHARSET_NAME);
 
 	public static final String DEFAULT_DATEFORMAT = "";
+
+	public static final int REQUEST_AS_JSON = 1;
 
 	@Bean
 	public VelocityConfigurer volocityConfig() throws IOException {
 		VelocityConfigurer config = new VelocityConfigurer();
-		Resource configFile = ContextSupport.getResource("/WEB-INF/conf/velocity.properties");
+		Resource configFile = ContextUtils.getResource("/WEB-INF/conf/velocity.properties");
 
 		config.setConfigLocation(configFile);
 
@@ -27,5 +34,4 @@ public class AppConfig {
 
 		return config;
 	}
-
 }
