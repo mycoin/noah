@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*,net.io.config.support.TokenRepository"%>
+<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*,net.io.config.support.Security"%>
 <!doctype html>
 <html>
 <head>
@@ -17,12 +17,16 @@
     <script src="//macbook-air.local/jQuery.js"></script>
     <script src="js/lib.js"></script>
     <script>
-    var csrfToken = '<%=TokenRepository.generateToken(request)%>';
+    var csrfToken = '<%=Security.generateToken(request)%>';
 	var taskMap = {
 		'x-search' : {
 			dataType : 'json',
 			type : 'post',
-			contentType : 'javascript/json'
+			contentType : 'application/json;charset=UTF-8',
+			data : JSON.stringify({
+				data: 1,
+				vale: '阿里巴巴'
+			})
 		},
 
 		'x-header' : {
@@ -30,11 +34,17 @@
 		},
 
 		'x-basic' : {
-			contentType : 'javascript/json',
+			contentType : 'application/json;charset=UTF-8',
 			type : 'post',
-			data : {
-				token : 2
-			}
+			dataType: 'text',
+			data : JSON.stringify({
+                data: {
+                    app: "百度一下",
+                    time: new Date
+                },
+                status: 0,
+                statusInfo: "OK",
+            })
 		},
 		'x-security' : {
 			username : 'admin',

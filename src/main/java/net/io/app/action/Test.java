@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.io.config.ActionSupport;
+import net.io.config.Context.ResponseData;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Test extends ActionSupport {
 
 	@RequestMapping("/basic")
-	public void basic(@RequestBody String body, Model model, HttpServletRequest request) {
+	public void basic(@RequestBody ResponseData body, Model model, HttpServletRequest request) {
 		ModelMap data = new ModelMap();
 
 		data.addAttribute("method", request.getMethod());
 		data.addAttribute("controller", this.getClass().getName());
-		data.addAttribute("body", body);
-		data.addAttribute("html", "<a>测试中文</a>");
 
+		model.addAttribute("body", body);
 		model.addAttribute("data", data);
 	}
 
@@ -55,7 +55,7 @@ public class Test extends ActionSupport {
 
 	@RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
 	@ResponseBody
-	public Object search(@RequestBody String body, Model model, @PathVariable() String search) throws Exception {
+	public Object search(@RequestBody Map<String, Object> body, Model model, @PathVariable() String search) throws Exception {
 		ModelMap data = new ModelMap();
 
 		data.addAttribute("biz", body);

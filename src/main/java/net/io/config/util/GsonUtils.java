@@ -1,6 +1,9 @@
 package net.io.config.util;
 
 import java.lang.reflect.Type;
+import java.util.Map;
+
+import net.io.config.AppConfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,11 +11,22 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- *
+ * 
  */
 public abstract class GsonUtils {
 
+	private static final String DEFAULT_JSON = "{}";
+
 	private static Gson gson;
+
+	/**
+	 * @param json
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> fromJson(String json) {
+		return fromJson(json, Map.class);
+	}
 
 	/**
 	 * @param json
@@ -33,16 +47,16 @@ public abstract class GsonUtils {
 
 	/**
 	 * @param json
-	 * @param typeOfT
+	 * @param type
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T fromJson(String json, Type typeOfT) {
+	public static <T> T fromJson(String json, Type type) {
 		if (json == null) {
 			return null;
 		}
 		try {
-			return (T) getGson().fromJson(json, typeOfT);
+			return (T) getGson().fromJson(json, type);
 		} catch (JsonSyntaxException e) {
 			// TODO: handle exception
 		}
@@ -54,7 +68,12 @@ public abstract class GsonUtils {
 	 */
 	public static Gson getGson() {
 		if (gson == null) {
-			gson = new GsonBuilder().create();
+			GsonBuilder gb = new GsonBuilder();
+			gb.serializeNulls();
+			gb.disableHtmlEscaping();
+			gb.setDateFormat(AppConfig.DEFAULT_DATEFORMAT);
+
+			gson = gb.create();
 		}
 		return gson;
 	}
@@ -69,6 +88,6 @@ public abstract class GsonUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return DEFAULT_JSON;
 	}
 }

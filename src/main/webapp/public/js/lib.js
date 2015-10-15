@@ -1,3 +1,18 @@
+// JSON问题
+Date.prototype.toJSON = function() {
+    return isFinite(this.valueOf()) ? this.getFullYear() + '-' +
+        pad(this.getMonth() + 1) + '-' +
+        pad(this.getDate()) + ' ' +
+        pad(this.getHours()) + ':' +
+        pad(this.getMinutes()) + ':' +
+        pad(this.getSeconds()) : null;
+};
+
+function pad(n) {
+    // Format integers to have at least two digits.
+    return n < 10 ? '0' + n : n;
+}
+
 jQuery(function() {
     jQuery('li').each(
         function() {

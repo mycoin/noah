@@ -1,5 +1,6 @@
 {
-    "config": "$config.get("domain")",
+    "config": $body.status,
+    "status": $body.data.time,
     "token": "$page.token"
 }
 
@@ -7,14 +8,17 @@
     <script type="text/javascript">
         var token = $util.toJSON($page.token);
         var token_value = '$page.token';
+        var data = $util.toJSON($data);
     </script>
 #end
+
+
 #block("sce")
-    #if($data.method && $data.controller && $data.body)
+    #if($body.getData().time)
         <!-- status-ok -->
     #end
 #end
-#external("ad", {"wd": 'ad'})
+#external("ad", {"wd": $body.getData().app})
 
 <!--
 Request:

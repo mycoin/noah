@@ -1,14 +1,15 @@
 package net.io.config.view;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.io.config.Context;
+import net.io.config.Context.ResponseData;
 import net.io.config.util.GsonUtils;
 import net.io.config.util.ServletUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
+
+	private static Log logger = LogFactory.getLog(ExceptionResolver.class);
 
 	private String errorView = "/common/error";
 
@@ -27,27 +30,27 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 		if (obj == null || ex == null) {
 			return null;
 		}
-
 		Context context = ServletUtils.getContext(request);
 		try {
 
-			// 判断异常有无提交
-			if (!context.isCommit()) {
-				context.commit(500, "Internal Server Error", ex);
+			ResponseData result = context.getResponseData();
+			if (result == null) {
+				result = new ResponseData(statusCode, ex);
+				context.setResponseData(result);
 			}
-			// 很据媒体类型响应
-			Map<String, Object> data = context.get();
+
+			// output exception
 			if (context.getAccept() == null || context.getAccept() == Context.HTML) {
 				respones.setStatus(statusCode);
-				return new ModelAndView(errorView, data);
+				return new ModelAndView(errorView, result.get());
 			} else {
-				String json = GsonUtils.toJson(data);
-
+				String json = GsonUtils.toJson(result);
+				respones.setContentType("" + Context.JSON);
 				respones.getOutputStream().write(json.getBytes());
 				return new ModelAndView();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Not catch exception by exceptionResolver:", ex);
 		}
 		return null;
 	}

@@ -18,6 +18,7 @@
 
     <!-- 视图配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="contentType" value="text/html;charset=UTF-8" />
         <property name="exposeSessionAttributes" value="true" />
         <property name="requestContextAttribute" value="context" />
         <property name="suffix" value=".vm" />
@@ -26,8 +27,7 @@
 
     <!-- 拦截过滤 -->
     <mvc:interceptors>
-        <bean class="net.io.config.support.HttpContextInterceptor" />
-        <bean class="net.io.config.support.HttpSecurityInterceptor" />
+        <bean class="net.io.config.support.HttpInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->

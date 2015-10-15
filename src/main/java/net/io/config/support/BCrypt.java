@@ -5,13 +5,13 @@ import java.util.Random;
 
 /**
  * @author apple
- *
+ * 
  */
 public class BCrypt {
 
 	/**
 	 * @author apple
-	 *
+	 * 
 	 */
 	private static class BCBC extends BECB {
 
