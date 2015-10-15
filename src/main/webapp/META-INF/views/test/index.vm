@@ -1,1 +1,14 @@
-d测试
+#setLayout("main")
+
+#override("header")
+    测试
+#end
+
+#override("script")
+    <!--[if lt IE 9]>
+    <link href="http://style.c.aliimg.com/app/baoming/power-join/module/for-ie7-8.css" rel="stylesheet" />
+    <![endif]-->
+    <script type="text/javascript">
+    document.domain = 'baidu.com';
+    </script>
+#end

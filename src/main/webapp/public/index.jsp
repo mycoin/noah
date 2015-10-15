@@ -39,7 +39,7 @@
 			dataType: 'text',
 			data : JSON.stringify({
                 data: {
-                    app: "百度一下",
+                    app: "百度中国",
                     time: new Date
                 },
                 status: 0,

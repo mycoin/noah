@@ -1,10 +1,5 @@
-{
-    "config": $body.status,
-    "status": $body.data.time,
-    "token": "$page.token"
-}
-
-#block("sce")
+#set($data.body = $body)
+#block("tpl")
     <script type="text/javascript">
         var token = $util.toJSON($page.token);
         var token_value = '$page.token';
@@ -12,12 +7,12 @@
     </script>
 #end
 
-
-#block("sce")
+#block("tpl")
     #if($body.getData().time)
         <!-- status-ok -->
     #end
 #end
+
 #external("ad", {"wd": $body.getData().app})
 
 <!--
@@ -33,3 +28,12 @@ Session:
     $item
 #end
 -->
+
+#request("tpl")
+
+{
+    "config": $body.status,
+    "status": "$body.getData().time",
+    "token": "$page.token"
+}
+}

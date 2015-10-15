@@ -5,18 +5,12 @@
         <meta name="renderer" content="webkit|ie-stand|ie-comp" />
         <title>$title</title>
         <link rel="stylesheet" href="http://style.c.aliimg.com/fdevlib/css/lofty/port/lofty.css"/>
-        <!--[if lt IE 9]>
-        <link href="http://style.c.aliimg.com/app/baoming/power-join/module/for-ie7-8.css" rel="stylesheet" />
-        <![endif]-->
-        <script type="text/javascript">
-        document.domain = 'baidu.com';
-        </script>
-        #showStylesheet()
+        #request("script")
     </head>
     <body>
         <div class="doc">
             <div class="header">
-                $control.setTemplate("nav.vm");
+                #request("header")
             </div>
             <div class="main">
                 $screen_content
