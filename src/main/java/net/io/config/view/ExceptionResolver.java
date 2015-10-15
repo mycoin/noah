@@ -1,15 +1,18 @@
 package net.io.config.view;
 
+import java.lang.reflect.Method;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.io.config.Context;
-import net.io.config.Context.ResponseData;
-import net.io.config.util.GsonUtils;
-import net.io.config.util.ServletUtils;
+import net.io.config.support.HttpInterceptor;
+import net.io.config.util.JsonUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,24 +33,31 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 		if (obj == null || ex == null) {
 			return null;
 		}
-		Context context = ServletUtils.getContext(request);
 		try {
+			ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
 
-			ResponseData result = context.getResponseData();
-			if (result == null) {
-				result = new ResponseData(statusCode, ex);
-				context.setResponseData(result);
+			if (errorModel == null) {
+				errorModel = new ErrorModel(500, "Internal Server Error");
+				errorModel.setException(ex);
 			}
 
-			// output exception
-			if (context.getAccept() == null || context.getAccept() == Context.HTML) {
-				respones.setStatus(statusCode);
-				return new ModelAndView(errorView, result.get());
-			} else {
-				String json = GsonUtils.toJson(result);
-				respones.setContentType("" + Context.JSON);
+			ResponseBody anno = null;
+
+			try {
+				Method method = ((HandlerMethod) obj).getMethod();
+				anno = AnnotationUtils.findAnnotation(method, ResponseBody.class);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			if (anno != null || HttpInterceptor.isAjax(request)) {
+
+				String json = JsonUtils.toJson(errorModel);
 				respones.getOutputStream().write(json.getBytes());
 				return new ModelAndView();
+			} else {
+				respones.setStatus(statusCode);
+				return new ModelAndView(errorView, errorModel.getModelAsMap());
 			}
 		} catch (Exception e) {
 			logger.error("Not catch exception by exceptionResolver:", ex);

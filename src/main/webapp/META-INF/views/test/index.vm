@@ -1,10 +1,8 @@
 #setLayout("main")
-
-#override("header")
+#block("header")
     测试
 #end
-
-#override("script")
+#block("script")
     <!--[if lt IE 9]>
     <link href="http://style.c.aliimg.com/app/baoming/power-join/module/for-ie7-8.css" rel="stylesheet" />
     <![endif]-->
@@ -12,3 +10,7 @@
     document.domain = 'baidu.com';
     </script>
 #end
+
+$config.domain
+$config.mail
+

@@ -6,10 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.io.config.Context;
-import net.io.config.Context.ResponseData;
 import net.io.config.Security;
-import net.io.config.util.ServletUtils;
+import net.io.config.view.ErrorModel;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,37 +22,43 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
-	private static Log logger = LogFactory.getLog(Context.class);
+	private static Log logger = LogFactory.getLog(HttpInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 		// 获取上下文对象
-		Context context = ServletUtils.getContext(request);
 		ResponseBody anno = null;
 
 		try {
 			Method method = ((HandlerMethod) handler).getMethod();
 			anno = AnnotationUtils.findAnnotation(method, ResponseBody.class);
 
-			if (anno != null) {
-				context.setAccept(Context.JSON);
-			}
 		} catch (Exception e) {
 			logger.warn("HttpInterceptor when findAnnotation.", e);
 		}
 
 		// If it is an ajax request, a csrftoken is required.
-		if (context.getAccept() == Context.JSON) {
+		if (isAjax(request) || anno != null) {
 			if (!Security.checkToken(request)) {
-
 				ServletException exception = new ServletException("Unacceptable Token");
-				context.setResponseData(new ResponseData(403, exception));
+				ErrorModel model = new ErrorModel(500, "Unacceptable Token");
 
+				// remember the error
+				request.setAttribute(ErrorModel.ERROR_MODEL_KEY, model);
 				throw exception;
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param request
+	 * @return
+	 */
+	public static boolean isAjax(HttpServletRequest request) {
+		String requestedWith = request.getHeader("X-Requested-With");
+		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
 	}
 }

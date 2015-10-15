@@ -30,6 +30,8 @@
         <bean class="net.io.config.support.HttpInterceptor" />
     </mvc:interceptors>
 
+    <mvc:default-servlet-handler />
+
     <!-- 异常处理 -->
     <bean class="net.io.config.view.ExceptionResolver" />
 

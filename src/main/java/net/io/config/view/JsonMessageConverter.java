@@ -3,12 +3,12 @@ package net.io.config.view;
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.io.config.Context;
 import net.io.config.support.AppConfig;
-import net.io.config.util.GsonUtils;
+import net.io.config.util.JsonUtils;
 
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
@@ -20,7 +20,7 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	public JsonMessageConverter() {
 		// TODO Auto-generated constructor stub
-		super(Context.JSON);
+		super(MediaType.APPLICATION_JSON);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 		try {
 			InputStream stream = inputMessage.getBody();
 			String requestBody = StreamUtils.copyToString(stream, AppConfig.CHARSET);
-			return GsonUtils.fromJson(requestBody, clazz);
+			return JsonUtils.fromJson(requestBody, clazz);
 		} catch (JsonSyntaxException e) {
 			throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);
 		}
@@ -41,9 +41,9 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	@Override
 	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-		String result = GsonUtils.toJson(t);
+		String result = JsonUtils.toJson(t);
 
-		outputMessage.getHeaders().setContentType(Context.JSON);
+		outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 		outputMessage.getBody().write(result.getBytes());
 	}
 }

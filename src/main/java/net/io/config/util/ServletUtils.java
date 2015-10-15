@@ -6,28 +6,25 @@ import java.net.UnknownHostException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import net.io.config.Context;
-
+import org.springframework.beans.BeansException;
 import org.springframework.web.bind.ServletRequestUtils;
 
 public abstract class ServletUtils extends ServletRequestUtils {
 
 	/**
-	 * @param request
+	 * @param name
+	 * @param requiredType
 	 * @return
+	 * @throws BeansException
 	 */
-	public static Context getContext(HttpServletRequest request) {
-		Object object = request.getAttribute(Context.CONTEXT_ATTRIBUTE);
-		Context context = null;
-
-		if (object == null) {
-			context = new Context(request);
-			request.setAttribute(Context.CONTEXT_ATTRIBUTE, context);
-		} else {
-			context = (Context) object;
+	@SuppressWarnings("unchecked")
+	public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType) throws BeansException {
+		try {
+			return (T) request.getAttribute(name);
+		} catch (Exception e) {
 		}
+		return null;
 
-		return context;
 	}
 
 	/**

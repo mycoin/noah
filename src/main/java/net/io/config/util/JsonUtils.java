@@ -13,7 +13,7 @@ import com.google.gson.JsonSyntaxException;
  * @author apple
  * 
  */
-public abstract class GsonUtils {
+public abstract class JsonUtils {
 
 	private static final String DEFAULT_JSON = "{}";
 

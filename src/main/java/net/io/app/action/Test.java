@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.io.config.ActionSupport;
-import net.io.config.Context.ResponseData;
+import net.io.config.support.OutputModel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +32,7 @@ public class Test extends ActionSupport {
 	 * @param request
 	 */
 	@RequestMapping("/basic")
-	public void basic(@RequestBody ResponseData body, Model model, HttpServletRequest request) {
+	public void basic(@RequestBody OutputModel body, Model model, HttpServletRequest request) {
 		ModelMap data = new ModelMap();
 
 		data.addAttribute("method", request.getMethod());
