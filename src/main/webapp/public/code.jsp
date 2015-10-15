@@ -65,7 +65,7 @@
 
 	//转换成一张图片，格式为JPEG
 	ImageIO.write(image, "JPEG", response.getOutputStream());
-	out.clear();//清空缓存的内容。
+	out.clear();//清空缓存的内容
 
 	pageContext.pushBody();
 %>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.io.config.Context;
 import net.io.config.Context.ResponseData;
+import net.io.config.Security;
 import net.io.config.util.ServletUtils;
 
 import org.apache.commons.logging.Log;

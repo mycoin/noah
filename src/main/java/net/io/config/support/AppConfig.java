@@ -1,4 +1,4 @@
-package net.io.config;
+package net.io.config.support;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

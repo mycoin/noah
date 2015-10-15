@@ -3,8 +3,8 @@ package net.io.config.view;
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.io.config.AppConfig;
 import net.io.config.Context;
+import net.io.config.support.AppConfig;
 import net.io.config.util.GsonUtils;
 
 import org.springframework.http.HttpInputMessage;
