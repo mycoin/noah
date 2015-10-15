@@ -46,7 +46,7 @@
 		'x-exception': {
 			dataType : 'json'
 		},
-		
+
 		'x-api': {
 			contentType : 'application/json;charset=UTF-8',
             type : 'post',
