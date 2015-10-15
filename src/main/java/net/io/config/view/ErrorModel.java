@@ -25,6 +25,13 @@ public class ErrorModel {
 	}
 
 	/**
+	 * @return the exception
+	 */
+	public Exception getException() {
+		return exception;
+	}
+
+	/**
 	 * @return
 	 */
 	public Map<String, Object> getModelAsMap() {
@@ -45,33 +52,10 @@ public class ErrorModel {
 	}
 
 	/**
-	 * @param status
-	 *            the status to set
-	 */
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	/**
 	 * @return the statusInfo
 	 */
 	public String getStatusInfo() {
 		return statusInfo;
-	}
-
-	/**
-	 * @param statusInfo
-	 *            the statusInfo to set
-	 */
-	public void setStatusInfo(String statusInfo) {
-		this.statusInfo = statusInfo;
-	}
-
-	/**
-	 * @return the exception
-	 */
-	public Exception getException() {
-		return exception;
 	}
 
 	/**
@@ -80,5 +64,21 @@ public class ErrorModel {
 	 */
 	public void setException(Exception exception) {
 		this.exception = exception;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	/**
+	 * @param statusInfo
+	 *            the statusInfo to set
+	 */
+	public void setStatusInfo(String statusInfo) {
+		this.statusInfo = statusInfo;
 	}
 }
