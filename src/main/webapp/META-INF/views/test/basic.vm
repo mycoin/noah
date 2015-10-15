@@ -8,7 +8,7 @@
 #end
 
 #block("tpl")
-    #if($body.getData().time)
+    #if($data.body.getData().time)
         <!-- status-ok -->
     #end
 #end

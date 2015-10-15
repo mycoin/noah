@@ -18,10 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * @author apple
+ *
+ */
 @Controller
 @RequestMapping("/test")
 public class Test extends ActionSupport {
 
+	/**
+	 * @param body
+	 * @param model
+	 * @param request
+	 */
 	@RequestMapping("/basic")
 	public void basic(@RequestBody ResponseData body, Model model, HttpServletRequest request) {
 		ModelMap data = new ModelMap();
@@ -33,18 +42,30 @@ public class Test extends ActionSupport {
 		model.addAttribute("data", data);
 	}
 
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/error")
 	public Map<String, Object> error() throws Exception {
 		System.out.println("[DEBUG] net.io.app.action.Test.error()");
 		throw new Exception("<!-- status-ok --> PageException");
 	}
 
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/exception", produces = "application/json")
 	@ResponseBody
 	public Map<String, Object> exception() throws Exception {
 		throw new Exception("<!-- status-ok --> UserException");
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/index")
 	public Object index(HttpServletRequest request) {
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -53,6 +74,13 @@ public class Test extends ActionSupport {
 		return data;
 	}
 
+	/**
+	 * @param body
+	 * @param model
+	 * @param search
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
 	@ResponseBody
 	public Object search(@RequestBody Map<String, Object> body, Model model, @PathVariable() String search) throws Exception {

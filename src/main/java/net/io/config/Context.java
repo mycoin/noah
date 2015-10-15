@@ -186,30 +186,6 @@ public class Context implements Serializable {
 	}
 
 	/**
-	 * @param status
-	 * @param statusInfo
-	 * @param data
-	 */
-	// public void commit(int status, String statusInfo, Object data) {
-	// if (commit == false) {
-	// response = new ModelMap();
-	//
-	// response.put("status", status);
-	// response.put("statusInfo", statusInfo);
-	// response.put("data", data);
-	//
-	// commit = true;
-	// }
-	// }
-
-	/**
-	 * @return
-	 */
-	// public Map<String, Object> get() {
-	// return response;
-	// }
-
-	/**
 	 * @return the accept
 	 */
 	public MediaType getAccept() {

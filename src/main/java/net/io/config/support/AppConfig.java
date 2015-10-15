@@ -18,9 +18,7 @@ public class AppConfig {
 
 	public static final Charset CHARSET = Charset.forName(CHARSET_NAME);
 
-	public static final String DEFAULT_DATEFORMAT = "";
-
-	public static final int REQUEST_AS_JSON = 1;
+	public static final String DEFAULT_DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	@Bean
 	public VelocityConfigurer volocityConfig() throws IOException {

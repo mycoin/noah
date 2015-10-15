@@ -88,5 +88,4 @@ public abstract class ServletUtils extends ServletRequestUtils {
 		String requestedWith = request.getHeader("X-Requested-With");
 		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
 	}
-
 }
