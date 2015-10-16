@@ -1,9 +1,10 @@
-package net.io.config.view;
+package net.io.config.support;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.io.config.ActionSupport;
+import net.io.config.ErrorModel;
 import net.io.config.util.JsonUtils;
 
 import org.apache.commons.logging.Log;

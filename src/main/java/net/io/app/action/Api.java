@@ -3,7 +3,7 @@ package net.io.app.action;
 import javax.servlet.http.HttpServletRequest;
 
 import net.io.config.ActionSupport;
-import net.io.config.support.InputModel;
+import net.io.config.InputModel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,8 +22,10 @@ public class Api extends ActionSupport {
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView index(@RequestBody InputModel model, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("json");
+
 		mv.addObject("data", model);
 		mv.addObject("keyword", model.getParams().get("keyword"));
+
 		return mv;
 	}
 }

@@ -1,4 +1,4 @@
-package net.io.config.view;
+package net.io.config;
 
 import java.util.HashMap;
 import java.util.Map;

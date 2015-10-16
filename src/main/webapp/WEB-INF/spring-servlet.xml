@@ -9,10 +9,17 @@
     <!-- 文件扫描 -->
     <context:component-scan base-package="net.io" />
 
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
+        <property name="resourceLoaderPath">
+            <value>/META-INF/views,/META-INF/external,/META-INF/views/common</value>
+        </property>
+    </bean>
+
     <!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="net.io.config.view.JsonMessageConverter" />
+            <bean class="net.io.config.support.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -33,7 +40,7 @@
     <mvc:default-servlet-handler />
 
     <!-- 异常处理 -->
-    <bean class="net.io.config.view.ExceptionResolver" />
+    <bean class="net.io.config.support.ExceptionResolver" />
 
     <!-- 首页跳转 -->
     <mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />

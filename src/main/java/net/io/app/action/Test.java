@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.io.config.ActionSupport;
-import net.io.config.support.OutputModel;
+import net.io.config.OutputModel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

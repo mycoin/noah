@@ -1,9 +1,8 @@
-package net.io.config.view;
+package net.io.config.support;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.io.config.support.AppConfig;
 import net.io.config.util.JsonUtils;
 
 import org.springframework.http.HttpInputMessage;

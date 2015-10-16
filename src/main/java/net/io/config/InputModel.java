@@ -1,4 +1,4 @@
-package net.io.config.support;
+package net.io.config;
 
 import java.util.Map;
 
