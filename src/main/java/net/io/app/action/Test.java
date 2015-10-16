@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import net.io.config.ActionSupport;
@@ -48,8 +49,7 @@ public class Test extends ActionSupport {
 	 */
 	@RequestMapping(value = "/error")
 	public Map<String, Object> error() throws Exception {
-		System.out.println("[DEBUG] net.io.app.action.Test.error()");
-		throw new Exception("<!-- status-ok --> PageException");
+		throw new ServletException("<!-- status-ok --> PageException");
 	}
 
 	/**
@@ -76,14 +76,13 @@ public class Test extends ActionSupport {
 
 	/**
 	 * @param body
-	 * @param model
 	 * @param search
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
 	@ResponseBody
-	public Object search(@RequestBody Map<String, Object> body, Model model, @PathVariable() String search) throws Exception {
+	public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
 		ModelMap data = new ModelMap();
 
 		data.addAttribute("biz", body);

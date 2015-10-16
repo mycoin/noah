@@ -32,6 +32,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 		}
 		try {
 			ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
+			ModelAndView mv = new ModelAndView();
 
 			if (errorModel == null) {
 				errorModel = new ErrorModel(500, "Internal Server Error");
@@ -39,15 +40,14 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 			}
 
 			if (ActionSupport.isJson((HandlerMethod) obj)) {
-
 				String json = JsonUtils.toJson(errorModel);
 				respones.getOutputStream().write(json.getBytes());
-
-				return new ModelAndView();
 			} else {
 				respones.setStatus(statusCode);
-				return new ModelAndView(errorView, errorModel.getModelAsMap());
+				errorModel.extractTo(mv);
+				mv.setViewName(errorView);
 			}
+			return mv;
 		} catch (Exception e) {
 			logger.error("Not catch exception by exceptionResolver:", ex);
 		}

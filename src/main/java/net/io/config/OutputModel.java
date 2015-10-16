@@ -7,7 +7,12 @@ import net.io.config.util.JsonUtils;
 
 import org.springframework.util.Assert;
 
+/**
+ * @author apple
+ *
+ */
 public class OutputModel {
+
 	private int status = 0;
 
 	private String statusInfo;

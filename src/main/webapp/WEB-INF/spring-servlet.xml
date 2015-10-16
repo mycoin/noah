@@ -9,6 +9,7 @@
     <!-- 文件扫描 -->
     <context:component-scan base-package="net.io" />
 
+    <!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
         <property name="resourceLoaderPath">

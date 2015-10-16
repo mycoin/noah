@@ -30,6 +30,19 @@
             <version>${springVersion}</version>
         </dependency>
 
+        <!-- spring socket -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>${springVersion}</version>
+        </dependency>
+
+
         <!-- javax page -->
         <dependency>
             <groupId>javax.servlet</groupId>
