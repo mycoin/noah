@@ -1,14 +1,14 @@
-package net.io.config.support;
+package org.ionnic.config.support;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.io.config.ActionSupport;
-import net.io.config.ErrorModel;
-import net.io.config.util.JsonUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ionnic.config.ActionSupport;
+import org.ionnic.config.ErrorModel;
+import org.ionnic.config.util.JsonUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;

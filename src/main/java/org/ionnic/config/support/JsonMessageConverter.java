@@ -1,10 +1,10 @@
-package net.io.config.support;
+package org.ionnic.config.support;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import net.io.config.util.JsonUtils;
 
+import org.ionnic.config.util.JsonUtils;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;

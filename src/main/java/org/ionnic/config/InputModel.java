@@ -1,8 +1,9 @@
-package net.io.config;
+package org.ionnic.config;
 
 import java.util.Map;
 
-import net.io.config.util.JsonUtils;
+import org.ionnic.config.util.JsonUtils;
+
 
 /**
  * @author apple

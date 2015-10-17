@@ -1,4 +1,4 @@
-package net.io.app.action;
+package org.ionnic.app.action;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import net.io.config.ActionSupport;
-import net.io.config.OutputModel;
-
+import org.ionnic.config.ActionSupport;
+import org.ionnic.config.OutputModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -27,13 +27,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 public class Test extends ActionSupport {
 
+	@Autowired
+	HttpServletRequest request;
+
 	/**
 	 * @param body
 	 * @param model
-	 * @param request
 	 */
 	@RequestMapping("/basic")
-	public void basic(@RequestBody OutputModel body, Model model, HttpServletRequest request) {
+	public void basic(@RequestBody OutputModel body, Model model) {
 		ModelMap data = new ModelMap();
 
 		data.addAttribute("method", request.getMethod());

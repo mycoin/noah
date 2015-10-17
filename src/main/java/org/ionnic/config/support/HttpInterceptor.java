@@ -1,13 +1,13 @@
-package net.io.config.support;
+package org.ionnic.config.support;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.io.config.ActionSupport;
-import net.io.config.ErrorModel;
-import net.io.config.Security;
 
+import org.ionnic.config.ActionSupport;
+import org.ionnic.config.ErrorModel;
+import org.ionnic.config.Security;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

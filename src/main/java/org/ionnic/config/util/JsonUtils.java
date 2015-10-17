@@ -1,9 +1,10 @@
-package net.io.config.util;
+package org.ionnic.config.util;
 
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import net.io.config.support.AppConfig;
+import org.ionnic.config.support.AppConfig;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

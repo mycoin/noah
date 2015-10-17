@@ -1,4 +1,4 @@
-package net.io.config.support;
+package org.ionnic.config.support;
 
 import java.nio.charset.Charset;
 

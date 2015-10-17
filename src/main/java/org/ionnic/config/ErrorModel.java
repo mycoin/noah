@@ -1,4 +1,4 @@
-package net.io.config;
+package org.ionnic.config;
 
 import javax.servlet.ServletException;
 

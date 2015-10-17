@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*,net.io.config.Security"%>
+<%@ page contentType="text/html;charset=utf-8" import="java.util.regex.*,java.io.*,java.net.*,org.ionnic.config.Security"%>
 <!doctype html>
 <html>
 <head>

@@ -1,10 +1,10 @@
-package net.io.app.action;
+package org.ionnic.app.action;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.io.config.ActionSupport;
-import net.io.config.InputModel;
 
+import org.ionnic.config.ActionSupport;
+import org.ionnic.config.InputModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

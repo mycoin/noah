@@ -1,4 +1,4 @@
-package net.io.config.util;
+package org.ionnic.config.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
