@@ -20,3 +20,4 @@ public class Click extends ActionSupport {
 		model.addAttribute("version", version);
 	}
 }
+
