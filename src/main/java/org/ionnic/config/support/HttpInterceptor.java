@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
- * 
+ *
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
@@ -21,7 +21,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 	 */
 	private void initHeaders(HttpServletResponse response) {
 
-		if (response.containsHeader("X-XSS-Protection")) {
+		if (!response.containsHeader("X-XSS-Protection")) {
 			response.addHeader("X-Frame-Options", "deny");
 			response.addHeader("X-XSS-Protection", "1; mode=block");
 			response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");

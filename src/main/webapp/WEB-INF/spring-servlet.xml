@@ -43,6 +43,4 @@
 
     <!-- 首页跳转 -->
     <mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />
-
-    <mvc:default-servlet-handler />
 </beans>

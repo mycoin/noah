@@ -16,7 +16,7 @@
             <li data-task="x-index"><i>4</i><a class="link normal" href="/service/test/index" target="_blank">index</a></li>
         </ul>
     </div>
-    <script src="//macbook-air.local/jQuery.js"></script>
+    <script src="http://macbook-air.local/jQuery.js"></script>
     <script src="js/lib.js"></script>
     <script>
     var csrfToken = '<%=Security.generateToken(request)%>';
@@ -66,6 +66,9 @@
 
 		}
 	};
+</script>
+<script type="text/javascript">
+document.write(unescape("%3Cscript%20src%3D%27"+(location.protocol=="https:"?"https://www.ionnic.org":"http://macbook-air.local:8080")+"/service/click/log.js%3Fversion%3D0.01%26sid%3D24354214%27%3E%3C/script%3E"));
 </script>
 </body>
 </html>
