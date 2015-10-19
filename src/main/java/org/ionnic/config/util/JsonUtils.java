@@ -11,7 +11,7 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- *
+ * 
  */
 public abstract class JsonUtils {
 

@@ -17,7 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- *
+ * 
  */
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 

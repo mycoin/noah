@@ -8,7 +8,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author apple
- *
+ * 
  */
 public class OutputModel {
 
