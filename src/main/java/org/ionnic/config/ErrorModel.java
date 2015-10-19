@@ -35,13 +35,6 @@ public class ErrorModel {
 	}
 
 	/**
-	 * @return the exception
-	 */
-	public Exception getException() {
-		return exception;
-	}
-
-	/**
 	 * @param result
 	 */
 	public void extractTo(ModelAndView result) {
@@ -49,6 +42,13 @@ public class ErrorModel {
 		result.addObject("data", exception);
 		result.addObject("status", status);
 		result.addObject("statusInfo", statusInfo);
+	}
+
+	/**
+	 * @return the exception
+	 */
+	public Exception getException() {
+		return exception;
 	}
 
 	/**

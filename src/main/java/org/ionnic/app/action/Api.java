@@ -2,7 +2,6 @@ package org.ionnic.app.action;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.ionnic.config.ActionSupport;
 import org.ionnic.config.InputModel;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api")
 public class Api extends ActionSupport {
 
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
 	public ModelAndView index(@RequestBody InputModel model, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("json");
 

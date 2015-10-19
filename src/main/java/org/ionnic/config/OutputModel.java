@@ -3,7 +3,6 @@ package org.ionnic.config;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.ionnic.config.util.JsonUtils;
 import org.springframework.util.Assert;
 
@@ -58,19 +57,6 @@ public class OutputModel {
 	}
 
 	/**
-	 * @return
-	 */
-	public Map<String, Object> get() {
-		Map<String, Object> result = new HashMap<String, Object>();
-
-		result.put("status", status);
-		result.put("statusInfo", statusInfo);
-		result.put("data", data);
-
-		return result;
-	}
-
-	/**
 	 * @return the data
 	 */
 	public Map<String, Object> getData() {
@@ -105,6 +91,22 @@ public class OutputModel {
 	 */
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void assign(Map<String, Object> item) {
+		data.putAll(item);
+	}
+
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void assign(String key, Object value) {
+		data.put(key, value);
 	}
 
 	/**

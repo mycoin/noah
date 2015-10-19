@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.ionnic.config.ActionSupport;
 import org.ionnic.config.OutputModel;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author apple
- *
+ * 
  */
 @Controller
 @RequestMapping("/test")
@@ -92,5 +93,11 @@ public class Test extends ActionSupport {
 		data.addAttribute("status", 0);
 
 		return data;
+	}
+
+	@RequestMapping("/status")
+	public void status(HttpServletResponse response) throws Exception {
+		response.addHeader("Content-Type", "text/html; charset=utf-8");
+		response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
 	}
 }

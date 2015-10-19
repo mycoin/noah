@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.BeansException;
 import org.springframework.web.bind.ServletRequestUtils;
 
+/**
+ * @author apple
+ * 
+ */
 public abstract class ServletUtils extends ServletRequestUtils {
 
 	/**
@@ -67,6 +71,7 @@ public abstract class ServletUtils extends ServletRequestUtils {
 				ip = inet.getHostAddress();
 			}
 		}
+
 		// For the case of multiple agents, the first IP for the client to real
 		// IP, multiple IP according to ',' segmentation
 		if (ip != null && ip.length() > 15) {
@@ -77,12 +82,4 @@ public abstract class ServletUtils extends ServletRequestUtils {
 		return ip;
 	}
 
-	/**
-	 * @param request
-	 * @return
-	 */
-	public static boolean isAjax(HttpServletRequest request) {
-		String requestedWith = request.getHeader("X-Requested-With");
-		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
-	}
 }

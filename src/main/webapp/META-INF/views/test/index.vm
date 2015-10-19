@@ -1,4 +1,4 @@
-#setLayout("main")
+##setLayout("main")
 #block("header")
     测试
 #end
@@ -11,6 +11,9 @@
     </script>
 #end
 
-$config.domain
-$config.mail
+$lang.domain
+$lang.mail
 
+$lang
+
+#request("script")

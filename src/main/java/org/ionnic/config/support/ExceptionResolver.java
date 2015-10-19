@@ -3,7 +3,6 @@ package org.ionnic.config.support;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.config.ActionSupport;
@@ -26,32 +25,37 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 	private int statusCode = 500;
 
 	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse respones, Object obj, Exception ex) {
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
 		if (obj == null || ex == null) {
 			return null;
 		}
+
+		ModelAndView mv = null;
 		try {
 			ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
-			ModelAndView mv = new ModelAndView();
+			mv = new ModelAndView();
 
 			if (errorModel == null) {
 				errorModel = new ErrorModel(500, "Internal Server Error");
 				errorModel.setException(ex);
 			}
 
-			if (ActionSupport.isJson((HandlerMethod) obj)) {
+			if (ActionSupport.isJsonMethod((HandlerMethod) obj)) {
 				String json = JsonUtils.toJson(errorModel);
-				respones.getOutputStream().write(json.getBytes());
+
+				response.setStatus(200);
+				response.addHeader("Content-Type", "application/json; charset=UTF-8");
+				response.getOutputStream().write(json.getBytes());
 			} else {
-				respones.setStatus(statusCode);
+				response.setStatus(statusCode);
 				errorModel.extractTo(mv);
 				mv.setViewName(errorView);
 			}
-			return mv;
 		} catch (Exception e) {
 			logger.error("Not catch exception by exceptionResolver:", ex);
 		}
-		return null;
+
+		return mv;
 	}
 
 	/**

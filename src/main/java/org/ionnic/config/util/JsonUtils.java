@@ -5,14 +5,13 @@ import java.util.Map;
 
 import org.ionnic.config.support.AppConfig;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- * 
+ *
  */
 public abstract class JsonUtils {
 
@@ -72,7 +71,7 @@ public abstract class JsonUtils {
 			GsonBuilder gb = new GsonBuilder();
 			gb.serializeNulls();
 			gb.disableHtmlEscaping();
-			gb.setDateFormat(AppConfig.DEFAULT_DATEFORMAT);
+			gb.setDateFormat(AppConfig.DATE_FORMAT);
 
 			gson = gb.create();
 		}
