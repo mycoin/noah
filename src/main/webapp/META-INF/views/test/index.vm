@@ -13,7 +13,7 @@
 
 $lang.domain
 $lang.mail
-
-$lang
+$lang.status
 
 #request("script")
+<img src="$lang.code" style="position: relative;top: 4px;left:90px">

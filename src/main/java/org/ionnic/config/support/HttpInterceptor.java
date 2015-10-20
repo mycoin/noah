@@ -4,15 +4,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.config.ActionSupport;
 import org.ionnic.config.ErrorModel;
 import org.ionnic.config.Security;
+import org.ionnic.config.util.ServletUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
- *
+ * 
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
@@ -34,8 +34,8 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 		// init response headers
 		initHeaders(response);
 
-		// If it is an ajax request, a csrftoken is required.
-		if (ActionSupport.isAjax(request) || ActionSupport.isJsonMethod((HandlerMethod) handler)) {
+		// If it is an ajax request, a csrfToken is required.
+		if (ServletUtils.isAjax(request) || ServletUtils.isJsonMethod((HandlerMethod) handler)) {
 			if (!Security.checkToken(request)) {
 				ServletException exception = new ServletException("Unacceptable Token");
 				ErrorModel model = new ErrorModel(500, "Unacceptable Token");

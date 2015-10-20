@@ -8,8 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ionnic.app.util.CreateImage;
+import org.ionnic.app.util.OutputModel;
 import org.ionnic.config.ActionSupport;
-import org.ionnic.config.OutputModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author apple
- * 
+ *
  */
 @Controller
 @RequestMapping("/test")
@@ -44,6 +46,20 @@ public class Test extends ActionSupport {
 
 		model.addAttribute("body", body);
 		model.addAttribute("data", data);
+	}
+
+	@RequestMapping("/code")
+	public void code(HttpServletResponse response) throws Exception {
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", 0);
+		response.setContentType("image/jpg");
+
+		CreateImage vCode = new CreateImage(75, 20, 4, 4);
+		response.addHeader("Content-Type", "image/png");
+
+		vCode.write(response.getOutputStream());
+		request.getSession(true).setAttribute(CreateImage.class.getName() + ".IMAGE_NAME", vCode.getCode());
 	}
 
 	/**
@@ -77,6 +93,12 @@ public class Test extends ActionSupport {
 		return data;
 	}
 
+	@RequestMapping("log.js")
+	public void index(@RequestParam String version, @RequestParam int sid, Model model) {
+		model.addAttribute("siteId", sid);
+		model.addAttribute("version", version);
+	}
+
 	/**
 	 * @param body
 	 * @param search
@@ -100,4 +122,5 @@ public class Test extends ActionSupport {
 		response.addHeader("Content-Type", "text/html; charset=utf-8");
 		response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
 	}
+
 }

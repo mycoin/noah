@@ -1,4 +1,4 @@
-package org.ionnic.config;
+package org.ionnic.app.util;
 
 import java.util.HashMap;
 import java.util.Map;

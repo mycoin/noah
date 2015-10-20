@@ -6,13 +6,12 @@
     <name>spring-mvc</name>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <url>http://home.ionnic.org</url>
-
+    <url>https://github.com/mycoin/spring-mvc</url>
     <properties>
         <springVersion>4.0.0.RELEASE</springVersion>
     </properties>
-    <dependencies>
 
+    <dependencies>
         <!-- spring core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -28,13 +27,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${springVersion}</version>
-        </dependency>
-
-        <!-- urlrewrite -->
-        <dependency>
-            <groupId>org.tuckey</groupId>
-            <artifactId>urlrewritefilter</artifactId>
-            <version>4.0.3</version>
         </dependency>
 
         <!-- spring socket -->
@@ -82,7 +74,7 @@
             <version>2.4</version>
         </dependency>
 
-        <!-- Jetty -->
+        <!-- jetty -->
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
@@ -93,7 +85,6 @@
             <artifactId>jetty-util</artifactId>
             <version>6.1.26</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
