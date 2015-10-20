@@ -1,5 +1,6 @@
 package org.ionnic.config.util;
 
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -7,7 +8,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeansException;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.method.HandlerMethod;
 
 /**
  * @author apple
@@ -82,4 +86,34 @@ public abstract class ServletUtils extends ServletRequestUtils {
 		return ip;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
+	public static boolean isAjax(HttpServletRequest request) {
+		String requestedWith = request.getHeader("X-Requested-With");
+		if (requestedWith == null) {
+			return false;
+		} else {
+			return "XMLHttpRequest".equals(requestedWith);
+		}
+	}
+
+	/**
+	 * @param method
+	 * @param request
+	 * @return
+	 */
+	public static boolean isJsonMethod(HandlerMethod method) {
+
+		ResponseBody anno = null;
+		try {
+			Method me = method.getMethod();
+			anno = AnnotationUtils.findAnnotation(me, ResponseBody.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return anno != null;
+	}
 }

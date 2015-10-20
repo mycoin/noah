@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.config.ActionSupport;
 import org.ionnic.config.ErrorModel;
 import org.ionnic.config.util.JsonUtils;
+import org.ionnic.config.util.ServletUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +40,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 				errorModel.setException(ex);
 			}
 
-			if (ActionSupport.isJsonMethod((HandlerMethod) obj)) {
+			if (ServletUtils.isJsonMethod((HandlerMethod) obj)) {
 				String json = JsonUtils.toJson(errorModel);
 
 				response.setStatus(200);

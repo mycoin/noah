@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author apple
- *
+ * 
  */
 @Controller
 @RequestMapping("/click")
@@ -20,4 +20,3 @@ public class Click extends ActionSupport {
 		model.addAttribute("version", version);
 	}
 }
-
