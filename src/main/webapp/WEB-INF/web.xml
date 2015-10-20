@@ -20,6 +20,8 @@
     <filter-mapping>
         <filter-name>filterProxy</filter-name>
         <servlet-name>spring</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
     <servlet>
