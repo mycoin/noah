@@ -16,7 +16,8 @@
             <li data-task="x-index"><i>4</i><a class="link normal" href="/service/test/index" target="_blank">index</a></li>
         </ul>
     </div>
-    <script src="http://macbook-air.local/jQuery.js"></script>
+    <script src="http://macbook-air.local/jquery.js"></script>
+    <script src="http://macbook-air.local/require.js"></script>
     <script src="js/lib.js"></script>
     <script>
     var csrfToken = '<%=Security.generateToken(request)%>';
