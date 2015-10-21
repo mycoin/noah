@@ -22,14 +22,11 @@ public class CreateImage {
 	// 验证码
 	private String code = null;
 
-<<<<<<< HEAD
 	private Color colors[] = new Color[] { new Color(0, 255, 0), new Color(0, 139, 0), new Color(0, 0, 255), new Color(0, 206, 209),
 	        new Color(255, 215, 0), new Color(255, 106, 106), new Color(178, 34, 34), new Color(255, 0, 0), new Color(255, 20, 147),
 	        new Color(238, 44, 44), new Color(138, 43, 226), new Color(72, 118, 255), new Color(255, 0, 255), new Color(0, 191, 255),
 	        new Color(34, 139, 34) };
 
-=======
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 	// 验证码图片Buffer
 	private BufferedImage buffImg = null;
 
@@ -74,13 +71,8 @@ public class CreateImage {
 	// 生成图片
 	private void creatImage() {
 		int fontWidth = width / codeCount;// 字体的宽度
-<<<<<<< HEAD
 		int fontHeight = height - 2;// 字体的高度
 		int codeY = height - 4;
-=======
-		int fontHeight = height - 5;// 字体的高度
-		int codeY = height - 8;
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 
 		// 图像buffer
 		buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -92,11 +84,6 @@ public class CreateImage {
 
 		// 设置干扰线
 		for (int i = 0; i < lineCount; i++) {
-<<<<<<< HEAD
-=======
-
-			// 设置字体
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 			Font font = getFont(fontHeight);
 			g.setFont(font);
 
@@ -104,26 +91,17 @@ public class CreateImage {
 			int ys = random.nextInt(height);
 			int xe = xs + random.nextInt(width);
 			int ye = ys + random.nextInt(height);
-<<<<<<< HEAD
 
 			g.setColor(getRandColor());
-=======
-			g.setColor(getRandColor(50, 225));
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 			g.drawLine(xs, ys, xe, ye);
 		}
 
 		// 添加噪点
-<<<<<<< HEAD
 		float yawpRate = 0.01F;
-=======
-		float yawpRate = 0.01F;// 噪声率
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 		int area = (int) (yawpRate * width * height);
 		for (int i = 0; i < area; i++) {
 			int x = random.nextInt(width);
 			int y = random.nextInt(height);
-<<<<<<< HEAD
 			buffImg.setRGB(x, y, random.nextInt(255));
 		}
 
@@ -132,23 +110,11 @@ public class CreateImage {
 		this.code = str1;
 		for (int i = 0; i < codeCount; i++) {
 			String strRand = str1.substring(i, i + 1);
-			g.setColor(getRandColor());
-=======
-
-			buffImg.setRGB(x, y, random.nextInt(255));
-		}
-
-		String str1 = randomStr(codeCount);// 得到随机字符
-		this.code = str1;
-		for (int i = 0; i < codeCount; i++) {
-			String strRand = str1.substring(i, i + 1);
 			g.setColor(getRandColor(1, 255));
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 			g.drawString(strRand, i * fontWidth + 3, codeY);
 		}
 	}
 
-<<<<<<< HEAD
 	/**
 	 * @return
 	 */
@@ -159,11 +125,6 @@ public class CreateImage {
 	// 得到随机字符
 	private String randomStr(int n) {
 		String str1 = "abcdefghijklmnopqrstuvwxyz";
-=======
-	// 得到随机字符
-	private String randomStr(int n) {
-		String str1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 		String str2 = "";
 		int len = str1.length() - 1;
 		double r;
@@ -174,8 +135,6 @@ public class CreateImage {
 		return str2;
 	}
 
-<<<<<<< HEAD
-=======
 	// 得到随机颜色
 	private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
 		if (fc > 255)
@@ -188,7 +147,6 @@ public class CreateImage {
 		return new Color(r, g, b);
 	}
 
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 	/**
 	 * 产生随机字体
 	 */
@@ -201,10 +159,6 @@ public class CreateImage {
 		font[2] = new Font("Fixedsys", Font.BOLD, size);
 		font[3] = new Font("Wide Latin", Font.BOLD, size);
 		font[4] = new Font("Gill Sans Ultra Bold", Font.BOLD, size);
-<<<<<<< HEAD
-
-=======
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 		return font[random.nextInt(5)];
 	}
 
@@ -218,12 +172,9 @@ public class CreateImage {
 
 	}
 
-<<<<<<< HEAD
 	/**
 	 * @return
 	 */
-=======
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 	public String getCode() {
 		return code.toLowerCase();
 	}

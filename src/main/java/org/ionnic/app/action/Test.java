@@ -55,11 +55,7 @@ public class Test extends ActionSupport {
 		response.setDateHeader("Expires", 0);
 		response.setContentType("image/jpg");
 
-<<<<<<< HEAD
 		CreateImage vCode = new CreateImage(75, 20, 4, 4);
-=======
-		CreateImage vCode = new CreateImage(120, 30, 4, 10);
->>>>>>> bf55ed2f25c1483f4e3cf87ded6aa6aa299016cf
 		response.addHeader("Content-Type", "image/png");
 
 		vCode.write(response.getOutputStream());
