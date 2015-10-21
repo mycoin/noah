@@ -69,7 +69,7 @@
 	};
 </script>
 <script type="text/javascript">
-document.write(unescape("%3Cscript%20src%3D%27"+(location.protocol=="https:"?"https://www.ionnic.org":"http://macbook-air.local:8080")+"/service/test/log.js%3Fversion%3D0.01%26sid%3D24354214%27%3E%3C/script%3E"));
+document.write(unescape("%3Cscript%20src%3D%27"+(location.protocol=="https:"?"https://www.ionnic.org":"http://macbook-air.local:8080")+"/service/test/log%3Fversion%3D0.01%26sid%3D24354214%27%3E%3C/script%3E"));
 </script>
 </body>
 </html>

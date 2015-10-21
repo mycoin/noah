@@ -8,11 +8,12 @@ import org.ionnic.config.ErrorModel;
 import org.ionnic.config.Security;
 import org.ionnic.config.util.ServletUtils;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
- * 
+ *
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
@@ -47,5 +48,10 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		return true;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
 	}
 }

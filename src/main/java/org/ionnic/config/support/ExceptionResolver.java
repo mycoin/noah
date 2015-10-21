@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- * 
+ *
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
 

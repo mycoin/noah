@@ -93,10 +93,14 @@ public class Test extends ActionSupport {
 		return data;
 	}
 
-	@RequestMapping("log.js")
-	public void index(@RequestParam String version, @RequestParam int sid, Model model) {
+	@RequestMapping(value = "/log")
+	public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
+		response.addHeader("Content-Type", "text/javascript; charset=utf-8");
+
 		model.addAttribute("siteId", sid);
 		model.addAttribute("version", version);
+
+		return model;
 	}
 
 	/**

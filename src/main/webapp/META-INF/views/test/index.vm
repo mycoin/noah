@@ -2,7 +2,7 @@
 #block("header")
     测试
 #end
-<img src="/service/test/code" />
+测试
 #block("script")
     <!--[if lt IE 9]>
     <link href="http://style.c.aliimg.com/app/baoming/power-join/module/for-ie7-8.css" rel="stylesheet" />
