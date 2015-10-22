@@ -17,7 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- * 
+ *
  */
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
@@ -39,7 +39,6 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	@Override
 	protected boolean supports(Class<?> clazz) {
-		System.out.println(clazz);
 		return true;
 	}
 
