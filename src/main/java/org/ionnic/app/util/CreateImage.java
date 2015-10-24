@@ -9,8 +9,10 @@ import java.io.OutputStream;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 public class CreateImage {
+	private static final String SESSION_KEY = CreateImage.class.getName() + ".IMAGE_NAME";
 	// 图片的宽度。
 	private int width = 160;
 	// 图片的高度。
@@ -116,35 +118,17 @@ public class CreateImage {
 	}
 
 	/**
+	 * @param session
+	 * @param code
 	 * @return
 	 */
-	private Color getRandColor() {
-		return colors[random.nextInt(colors.length)];
-	}
-
-	// 得到随机字符
-	private String randomStr(int n) {
-		String str1 = "abcdefghijklmnopqrstuvwxyz";
-		String str2 = "";
-		int len = str1.length() - 1;
-		double r;
-		for (int i = 0; i < n; i++) {
-			r = (Math.random()) * len;
-			str2 = str2 + str1.charAt((int) r);
+	public boolean check(HttpSession session, String code) {
+		String sessionCode = (String) session.getAttribute(SESSION_KEY);
+		if (sessionCode == null) {
+			return false;
+		} else {
+			return sessionCode.equals(code);
 		}
-		return str2;
-	}
-
-	// 得到随机颜色
-	private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
-		if (fc > 255)
-			fc = 255;
-		if (bc > 255)
-			bc = 255;
-		int r = fc + random.nextInt(bc - fc);
-		int g = fc + random.nextInt(bc - fc);
-		int b = fc + random.nextInt(bc - fc);
-		return new Color(r, g, b);
 	}
 
 	/**
@@ -163,19 +147,45 @@ public class CreateImage {
 	}
 
 	/**
-	 * @param sos
-	 * @throws IOException
+	 * @return
 	 */
-	public void write(OutputStream sos) throws IOException {
-		ImageIO.write(buffImg, "png", sos);
-		sos.close();
+	private Color getRandColor() {
+		return colors[random.nextInt(colors.length)];
+	}
 
+	// 得到随机颜色
+	private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
+		if (fc > 255)
+			fc = 255;
+		if (bc > 255)
+			bc = 255;
+		int r = fc + random.nextInt(bc - fc);
+		int g = fc + random.nextInt(bc - fc);
+		int b = fc + random.nextInt(bc - fc);
+		return new Color(r, g, b);
+	}
+
+	// 得到随机字符
+	private String randomStr(int n) {
+		String str1 = "abcdefghijklmnopqrstuvwxyz";
+		String str2 = "";
+		int len = str1.length() - 1;
+		double r;
+		for (int i = 0; i < n; i++) {
+			r = (Math.random()) * len;
+			str2 = str2 + str1.charAt((int) r);
+		}
+		return str2;
 	}
 
 	/**
-	 * @return
+	 * @param httpSession
+	 * @param sos
+	 * @throws IOException
 	 */
-	public String getCode() {
-		return code.toLowerCase();
+	public void write(HttpSession httpSession, OutputStream sos) throws IOException {
+		ImageIO.write(buffImg, "png", sos);
+		httpSession.setAttribute(SESSION_KEY, code);
+		sos.close();
 	}
 }

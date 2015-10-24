@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.ionnic.app.util.CreateImage;
 import org.ionnic.app.util.OutputModel;
@@ -49,16 +50,16 @@ public class Test extends ActionSupport {
 	}
 
 	@RequestMapping("/code")
-	public void code(HttpServletResponse response) throws Exception {
+	public void code(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
 		response.setContentType("image/jpg");
 
-		CreateImage vCode = new CreateImage(75, 20, 4, 10);
+		CreateImage vCode = new CreateImage(75, 20, 4, 4);
 		response.addHeader("Content-Type", "image/png");
-		vCode.write(response.getOutputStream());
-		request.getSession(true).setAttribute(CreateImage.class.getName() + ".IMAGE_NAME", vCode.getCode());
+
+		vCode.write(session, response.getOutputStream());
 	}
 
 	/**

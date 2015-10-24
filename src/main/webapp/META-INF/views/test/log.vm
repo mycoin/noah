@@ -479,3 +479,43 @@
         });
     }
 })(window);
+
+
+
+#stop
+CREATE TABLE IF NOT EXISTS `common_log` (
+  `type` int(2) DEFAULT NULL,
+  `os` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `app` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `cl` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `charset` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `scr` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `lang` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `tz` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `domain` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `je` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `ce` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `se` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `sword` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `refer` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `dt` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `rt` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `lt` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `title` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `sid` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `cid` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `u` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `v` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `xpath` varchar(512) CHARACTER SET latin1 DEFAULT NULL,
+  `url` varchar(512) CHARACTER SET latin1 DEFAULT NULL,
+  `fm` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `text` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `pos` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `et` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `F` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `F1` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `F2` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `F3` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `rsvJSON` varchar(512) CHARACTER SET latin1 DEFAULT NULL,
+  `g` varchar(16) CHARACTER SET latin1 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

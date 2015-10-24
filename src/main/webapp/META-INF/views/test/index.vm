@@ -17,4 +17,6 @@ $lang.mail
 $lang.status
 
 #request("script")
-<img src="$lang.code" style="position: relative;top: 4px;left:90px">
+<span style="position: relative; display:inline-block; padding: 0;cursor: pointer;">
+    <img onclick="this.src='/service/test/code?_t=' + new Date().getTime()" src="/service/test/code" style="position: absolute;top: -12px;left: 14px;">
+</span>
