@@ -57,6 +57,22 @@ public class OutputModel {
 	}
 
 	/**
+	 * @param key
+	 * @param value
+	 */
+	public void assign(Map<String, Object> item) {
+		data.putAll(item);
+	}
+
+	/**
+	 * @param key
+	 * @param value
+	 */
+	public void assign(String key, Object value) {
+		data.put(key, value);
+	}
+
+	/**
 	 * @return the data
 	 */
 	public Map<String, Object> getData() {
@@ -91,22 +107,6 @@ public class OutputModel {
 	 */
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void assign(Map<String, Object> item) {
-		data.putAll(item);
-	}
-
-	/**
-	 * @param key
-	 * @param value
-	 */
-	public void assign(String key, Object value) {
-		data.put(key, value);
 	}
 
 	/**

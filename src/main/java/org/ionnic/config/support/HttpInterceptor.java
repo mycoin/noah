@@ -17,41 +17,44 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
-	/**
-	 * @param response
-	 */
-	private void initHeaders(HttpServletResponse response) {
+    /**
+     * @param response
+     */
+    private void initHeaders(HttpServletResponse response) {
+        if (!response.containsHeader("X-XSS-Protection")) {
+            response.addHeader("X-Frame-Options", "deny");
+            response.addHeader("X-XSS-Protection", "1; mode=block");
+            response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
+        }
+    }
 
-		if (!response.containsHeader("X-XSS-Protection")) {
-			response.addHeader("X-Frame-Options", "deny");
-			response.addHeader("X-XSS-Protection", "1; mode=block");
-			response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
-		}
-	}
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+            ModelAndView modelAndView) throws Exception {
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (response.getContentType() == null) {
+            response.setContentType("text/html; charset=UTF-8");
+        }
+    }
 
-		// init response headers
-		initHeaders(response);
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-		// If it is an ajax request, a csrfToken is required.
-		if (ServletUtils.isAjax(request) || ServletUtils.isJsonMethod((HandlerMethod) handler)) {
-			if (!Security.checkToken(request)) {
-				ServletException exception = new ServletException("Unacceptable Token");
-				ErrorModel model = new ErrorModel(500, "Unacceptable Token");
+        // init response headers
+        initHeaders(response);
 
-				// remember the error
-				request.setAttribute(ErrorModel.ERROR_MODEL_KEY, model);
-				throw exception;
-			}
-		}
+        // If it is an ajax request, a csrfToken is required.
+        if (ServletUtils.isAjax(request) || ServletUtils.isJsonMethod((HandlerMethod) handler)) {
+            if (!Security.checkToken(request)) {
+                ServletException exception = new ServletException("Unacceptable Token");
+                ErrorModel model = new ErrorModel(500, "Unacceptable Token");
 
-		return true;
-	}
+                // remember the error
+                request.setAttribute(ErrorModel.ERROR_MODEL_KEY, model);
+                throw exception;
+            }
+        }
 
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		response.setContentType("text/html; charset=UTF-8");
-	}
+        return true;
+    }
 }

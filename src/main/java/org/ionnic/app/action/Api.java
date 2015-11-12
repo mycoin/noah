@@ -12,19 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- * 
+ *
  */
 @Controller
 @RequestMapping("/api")
 public class Api extends ActionSupport {
 
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
-	public ModelAndView index(@RequestBody InputModel model, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("json");
+    @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
+    public ModelAndView index(@RequestBody InputModel model, HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("json");
 
-		mv.addObject("data", model);
-		mv.addObject("keyword", model.getParams().get("keyword"));
+        mv.addObject("data", model);
+        mv.addObject("keyword", model.getParams().get("keyword"));
 
-		return mv;
-	}
+        return mv;
+    }
 }

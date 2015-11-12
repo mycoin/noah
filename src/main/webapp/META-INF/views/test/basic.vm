@@ -1,4 +1,5 @@
 #set($data.body = $body)
+
 #block("tpl")
     <script type="text/javascript">
         var token = $util.toJSON($page.token);

@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="renderer" content="webkit|ie-stand|ie-comp" />
         <title>$title</title>
-        <link rel="stylesheet" href="http://style.c.aliimg.com/fdevlib/css/lofty/port/lofty.css"/>
+        <link rel="stylesheet" href="//astyle-src.alicdn.com/fdevlib/css/lofty/port/lofty.css"/>
         #request("script")
     </head>
     <body>
@@ -18,7 +18,7 @@
             <div class="footer"></div>
         </div>
     </body>
-    <script data-sc-pos="footer" src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
-    <script data-sc-pos="footer" src="http://style.c.aliimg.com/app/baoming/app.config.js"></script>
-    <script data-sc-pos="footer" src="http://style.c.aliimg.com/fdevlib/js/gallery/jquery/jquery-latest.js"></script>
+    <script data-sc-pos="footer" src="//astyle-src.alicdn.com/fdevlib/js/lofty/port/lofty.js"></script>
+    <script data-sc-pos="footer" src="//astyle-src.alicdn.com/app/baoming/app.config.js"></script>
+    <script data-sc-pos="footer" src="//astyle-src.alicdn.com/fdevlib/js/gallery/jquery/jquery-latest.js"></script>
 </html>

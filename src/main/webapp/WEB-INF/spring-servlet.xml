@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 文件扫描 -->
-    <context:component-scan base-package="org.ionnic" />
+	<!-- 文件扫描 -->
+	<context:component-scan base-package="org.ionnic" />
 
-    <!-- 模板配置 -->
-    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
-        <property name="resourceLoaderPath">
-            <value>/META-INF/views,/META-INF/external,/META-INF/views/common</value>
-        </property>
-    </bean>
+	<!-- 模板配置 -->
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
+		<property name="resourceLoaderPath">
+			<value>/META-INF/views,/META-INF/external,/META-INF/views/common</value>
+		</property>
+	</bean>
 
-    <!-- 注解支持 -->
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.ionnic.config.support.JsonMessageConverter" />
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+	<!-- 注解支持 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.ionnic.config.support.JsonMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
-    <!-- 视图配置 -->
-    <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <property name="contentType" value="text/html;charset=UTF-8" />
-        <property name="exposeSessionAttributes" value="true" />
-        <property name="requestContextAttribute" value="context" />
-        <property name="suffix" value=".vm" />
-        <property name="toolboxConfigLocation" value="/WEB-INF/conf/toolbox.xml" />
-    </bean>
+	<!-- 视图配置 -->
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="context" />
+		<property name="suffix" value=".vm" />
+		<property name="toolboxConfigLocation" value="/WEB-INF/conf/toolbox.xml" />
+	</bean>
 
-    <!-- 拦截过滤 -->
-    <mvc:interceptors>
-        <bean class="org.ionnic.config.support.HttpInterceptor" />
-    </mvc:interceptors>
+	<!-- 消息资源 -->
+	<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>META-INF/conf/message</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="60" />
+	</bean> -->
+	<!-- 拦截过滤 -->
+	<mvc:interceptors>
+		<bean class="org.ionnic.config.support.HttpInterceptor" />
+	</mvc:interceptors>
 
-    <!-- 异常处理 -->
-    <bean class="org.ionnic.config.support.ExceptionResolver" />
+	<!-- 异常处理 -->
+	<bean class="org.ionnic.config.support.ExceptionResolver" />
 
-    <!-- 首页跳转 -->
-    <mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />
+	<!-- 首页跳转 -->
+	<mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />
 </beans>

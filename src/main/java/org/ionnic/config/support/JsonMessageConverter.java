@@ -17,7 +17,7 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- *
+ * 
  */
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
@@ -27,7 +27,8 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 	}
 
 	@Override
-	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException,
+			HttpMessageNotReadableException {
 		try {
 			InputStream stream = inputMessage.getBody();
 			String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
@@ -43,7 +44,8 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 	}
 
 	@Override
-	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException,
+			HttpMessageNotWritableException {
 		String result = JsonUtils.toJson(t);
 		outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 		outputMessage.getBody().write(result.getBytes());

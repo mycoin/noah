@@ -24,10 +24,11 @@ public class CreateImage {
 	// 验证码
 	private String code = null;
 
-	private Color colors[] = new Color[] { new Color(0, 0, 0), new Color(0, 255, 0), new Color(0, 139, 0), new Color(0, 0, 255),
-	        new Color(0, 206, 209), new Color(255, 215, 0), new Color(255, 106, 106), new Color(178, 34, 34), new Color(255, 0, 0),
-	        new Color(255, 20, 147), new Color(238, 44, 44), new Color(138, 43, 226), new Color(72, 118, 255), new Color(255, 0, 255),
-	        new Color(0, 191, 255), new Color(34, 139, 34) };
+	private Color colors[] = new Color[] { new Color(0, 0, 0), new Color(0, 255, 0), new Color(0, 139, 0),
+			new Color(0, 0, 255), new Color(0, 206, 209), new Color(255, 215, 0), new Color(255, 106, 106),
+			new Color(178, 34, 34), new Color(255, 0, 0), new Color(255, 20, 147), new Color(238, 44, 44),
+			new Color(138, 43, 226), new Color(72, 118, 255), new Color(255, 0, 255), new Color(0, 191, 255),
+			new Color(34, 139, 34) };
 
 	// 验证码图片Buffer
 	private BufferedImage buffImg = null;
@@ -68,6 +69,20 @@ public class CreateImage {
 		this.codeCount = codeCount;
 		this.lineCount = lineCount;
 		creatImage();
+	}
+
+	/**
+	 * @param session
+	 * @param code
+	 * @return
+	 */
+	public boolean check(HttpSession session, String code) {
+		String sessionCode = (String) session.getAttribute(SESSION_KEY);
+		if (sessionCode == null) {
+			return false;
+		} else {
+			return sessionCode.equals(code);
+		}
 	}
 
 	// 生成图片
@@ -118,20 +133,6 @@ public class CreateImage {
 	}
 
 	/**
-	 * @param session
-	 * @param code
-	 * @return
-	 */
-	public boolean check(HttpSession session, String code) {
-		String sessionCode = (String) session.getAttribute(SESSION_KEY);
-		if (sessionCode == null) {
-			return false;
-		} else {
-			return sessionCode.equals(code);
-		}
-	}
-
-	/**
 	 * 产生随机字体
 	 */
 	private Font getFont(int size) {
@@ -155,10 +156,6 @@ public class CreateImage {
 
 	// 得到随机颜色
 	private Color getRandColor(int fc, int bc) {// 给定范围获得随机颜色
-		if (fc > 255)
-			fc = 255;
-		if (bc > 255)
-			bc = 255;
 		int r = fc + random.nextInt(bc - fc);
 		int g = fc + random.nextInt(bc - fc);
 		int b = fc + random.nextInt(bc - fc);
@@ -167,7 +164,7 @@ public class CreateImage {
 
 	// 得到随机字符
 	private String randomStr(int n) {
-		String str1 = "abcdefghijklmnopqrstuvwxyz";
+		String str1 = "1234567890";
 		String str2 = "";
 		int len = str1.length() - 1;
 		double r;

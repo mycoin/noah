@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- *
+ * 
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
 
@@ -25,7 +25,8 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 	private int statusCode = 500;
 
 	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
+			Exception ex) {
 		if (obj == null || ex == null) {
 			return null;
 		}
