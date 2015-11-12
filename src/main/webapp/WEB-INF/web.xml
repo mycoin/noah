@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>spring</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.ionnic.config.support.HttpDispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 

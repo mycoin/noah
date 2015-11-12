@@ -14,64 +14,65 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- * 
+ *
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
 
-	private static Log logger = LogFactory.getLog(ExceptionResolver.class);
+    private static Log logger = LogFactory.getLog(ExceptionResolver.class);
 
-	private String errorView = "/common/error";
+    private String errorView = "/common/error";
 
-	private int statusCode = 500;
+    private int statusCode = 500;
 
-	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
-			Exception ex) {
-		if (obj == null || ex == null) {
-			return null;
-		}
+    @Override
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
+            Exception ex) {
+        if (ex == null) {
+            return null;
+        }
 
-		ModelAndView mv = null;
-		try {
-			ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
-			mv = new ModelAndView();
+        ModelAndView mv = null;
+        try {
+            ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
+            mv = new ModelAndView();
 
-			if (errorModel == null) {
-				errorModel = new ErrorModel(500, "Internal Server Error");
-				errorModel.setException(ex);
-			}
+            if (errorModel == null) {
+                errorModel = new ErrorModel(500, "Internal Server Error");
+                errorModel.setException(ex);
+            }
 
-			if (ServletUtils.isJsonMethod((HandlerMethod) obj)) {
-				String json = JsonUtils.toJson(errorModel);
+            if (obj == null || ServletUtils.isJsonMethod((HandlerMethod) obj)) {
+                String json = JsonUtils.toJson(errorModel);
 
-				response.setStatus(200);
-				response.addHeader("Content-Type", "application/json; charset=UTF-8");
-				response.getOutputStream().write(json.getBytes());
-			} else {
-				response.setStatus(statusCode);
-				errorModel.extractTo(mv);
-				mv.setViewName(errorView);
-			}
-		} catch (Exception e) {
-			logger.error("Not catch exception by exceptionResolver:", ex);
-		}
+                response.setStatus(200);
+                response.addHeader("Content-Type", "application/json; charset=UTF-8");
+                response.getOutputStream().write(json.getBytes());
+                response.flushBuffer();
+            } else {
+                response.setStatus(statusCode);
+                mv.setViewName(errorView);
+                errorModel.extractTo(mv);
+            }
+        } catch (Exception e) {
+            logger.error("Not catch exception by exceptionResolver:", ex);
+        }
 
-		return mv;
-	}
+        return mv;
+    }
 
-	/**
-	 * @param errorView
-	 *            the errorView to set
-	 */
-	public void setErrorView(String errorView) {
-		this.errorView = errorView;
-	}
+    /**
+     * @param errorView
+     *            the errorView to set
+     */
+    public void setErrorView(String errorView) {
+        this.errorView = errorView;
+    }
 
-	/**
-	 * @param statusCode
-	 *            the statusCode to set
-	 */
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
+    /**
+     * @param statusCode
+     *            the statusCode to set
+     */
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 }

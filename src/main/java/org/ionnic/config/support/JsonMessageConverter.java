@@ -21,33 +21,33 @@ import com.google.gson.JsonSyntaxException;
  */
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
-	public JsonMessageConverter() {
-		// TODO Auto-generated constructor stub
-		super(MediaType.APPLICATION_JSON);
-	}
+    public JsonMessageConverter() {
+        // TODO Auto-generated constructor stub
+        super(MediaType.APPLICATION_JSON);
+    }
 
-	@Override
-	protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException,
-			HttpMessageNotReadableException {
-		try {
-			InputStream stream = inputMessage.getBody();
-			String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
-			return JsonUtils.fromJson(requestBody, clazz);
-		} catch (JsonSyntaxException e) {
-			throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);
-		}
-	}
+    @Override
+    protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException,
+            HttpMessageNotReadableException {
+        try {
+            InputStream stream = inputMessage.getBody();
+            String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
+            return JsonUtils.fromJson(requestBody, clazz);
+        } catch (JsonSyntaxException e) {
+            throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);
+        }
+    }
 
-	@Override
-	protected boolean supports(Class<?> clazz) {
-		return true;
-	}
+    @Override
+    protected boolean supports(Class<?> clazz) {
+        return true;
+    }
 
-	@Override
-	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException,
-			HttpMessageNotWritableException {
-		String result = JsonUtils.toJson(t);
-		outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-		outputMessage.getBody().write(result.getBytes());
-	}
+    @Override
+    protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException,
+            HttpMessageNotWritableException {
+        String result = JsonUtils.toJson(t);
+        outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        outputMessage.getBody().write(result.getBytes());
+    }
 }
