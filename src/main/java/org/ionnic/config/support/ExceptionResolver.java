@@ -8,7 +8,6 @@ import org.apache.commons.logging.LogFactory;
 import org.ionnic.config.ErrorModel;
 import org.ionnic.config.util.JsonUtils;
 import org.ionnic.config.util.ServletUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +21,8 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
     private String errorView = "/common/error";
 
-    private int statusCode = 500;
+    // JSON request, default statusCode is 200
+    private int statusCode = 200;
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
@@ -34,23 +34,21 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         ModelAndView mv = null;
         try {
             ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
-            mv = new ModelAndView();
+
 
             if (errorModel == null) {
-                errorModel = new ErrorModel(500, "Internal Server Error");
+                errorModel = new ErrorModel(request, 500, ex.getMessage());
                 errorModel.setException(ex);
             }
 
-            if (obj == null || ServletUtils.isJsonMethod((HandlerMethod) obj)) {
-                String json = JsonUtils.toJson(errorModel);
-
-                response.setStatus(200);
-                response.addHeader("Content-Type", "application/json; charset=UTF-8");
-                response.getOutputStream().write(json.getBytes());
-                response.flushBuffer();
-            } else {
+            if (ServletUtils.isJSONResponse(obj)) {
                 response.setStatus(statusCode);
-                mv.setViewName(errorView);
+                response.addHeader("Content-Type", "application/json; charset=UTF-8");
+                response.getOutputStream().write(JsonUtils.toJson(errorModel).getBytes());
+                response.getOutputStream().close();
+            } else {
+                response.setStatus(errorModel.getStatus());
+                mv = new ModelAndView(errorView);
                 errorModel.extractTo(mv);
             }
         } catch (Exception e) {

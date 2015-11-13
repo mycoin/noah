@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.ionnic.config.ErrorModel;
 import org.ionnic.config.Security;
 import org.ionnic.config.util.ServletUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -31,7 +30,6 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
-
         if (response.getContentType() == null) {
             response.setContentType("text/html; charset=UTF-8");
         }
@@ -44,13 +42,10 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
         initHeaders(response);
 
         // If it is an ajax request, a csrfToken is required.
-        if (ServletUtils.isAjax(request) || ServletUtils.isJsonMethod((HandlerMethod) handler)) {
+        if (ServletUtils.isAjax(request) || ServletUtils.isJSONResponse(handler)) {
             if (!Security.checkToken(request)) {
                 ServletException exception = new ServletException("Unacceptable Token");
-                ErrorModel model = new ErrorModel(500, "Unacceptable Token");
-
-                // remember the error
-                request.setAttribute(ErrorModel.ERROR_MODEL_KEY, model);
+                new ErrorModel(request, 500, exception);
                 throw exception;
             }
         }

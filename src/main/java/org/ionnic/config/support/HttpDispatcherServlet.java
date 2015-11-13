@@ -1,8 +1,10 @@
 package org.ionnic.config.support;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ionnic.config.ErrorModel;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -10,6 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 @SuppressWarnings("serial")
 public class HttpDispatcherServlet extends DispatcherServlet {
+
+    @Override
+    protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        new ErrorModel(request, 404, "Page Not Found");
+        throw new ServletException();
+    }
+
+    @Override
+    protected void render(ModelAndView mv, HttpServletRequest resuest, HttpServletResponse response) throws Exception {
+        if (response.getContentType() == null) {
+            response.setContentType("text/html; charset=UTF-8");
+        }
+        super.render(mv, resuest, response);
+    }
 
     @Override
     protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,

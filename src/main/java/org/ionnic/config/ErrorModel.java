@@ -1,6 +1,7 @@
 package org.ionnic.config;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,17 +22,38 @@ public class ErrorModel {
     /**
      * @param exception
      */
-    public ErrorModel(Exception exception) {
+    public ErrorModel(HttpServletRequest request, Exception exception) {
         setException(exception);
+        if (request != null) {
+            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
+        }
+    }
+
+    /**
+     * @param request
+     * @param status
+     * @param exception
+     */
+    public ErrorModel(HttpServletRequest request, int status, Exception exception) {
+        setStatus(status);
+        setStatusInfo(exception.getMessage());
+        setException(exception);
+
+        if (request != null) {
+            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
+        }
     }
 
     /**
      * @param status
      * @param statusInfo
      */
-    public ErrorModel(int status, String statusInfo) {
+    public ErrorModel(HttpServletRequest request, int status, String statusInfo) {
         setStatus(status);
         setStatusInfo(statusInfo);
+        if (request != null) {
+            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
+        }
     }
 
     /**

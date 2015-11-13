@@ -16,8 +16,6 @@ $lang.domain
 $lang.mail
 $lang.status
 
-$lang
-
 #request("script")
 
 <span style="position: relative; display:inline-block; padding: 0;cursor: pointer;">

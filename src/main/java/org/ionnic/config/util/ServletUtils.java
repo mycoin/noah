@@ -105,12 +105,12 @@ public abstract class ServletUtils extends ServletRequestUtils {
      * @param request
      * @return
      */
-    public static boolean isJsonMethod(HandlerMethod method) {
-
+    public static boolean isJSONResponse(Object handle) {
         ResponseBody anno = null;
         try {
-            Method me = method.getMethod();
+            Method me = ((HandlerMethod) handle).getMethod();
             anno = AnnotationUtils.findAnnotation(me, ResponseBody.class);
+            anno.annotationType();
         } catch (Exception e) {
 
         }
