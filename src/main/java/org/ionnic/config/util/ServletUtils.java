@@ -15,7 +15,7 @@ import org.springframework.web.method.HandlerMethod;
 
 /**
  * @author apple
- *
+ * 
  */
 public abstract class ServletUtils extends ServletRequestUtils {
 
@@ -26,8 +26,7 @@ public abstract class ServletUtils extends ServletRequestUtils {
      * @throws BeansException
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType)
-            throws BeansException {
+    public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType) throws BeansException {
         try {
             return (T) request.getAttribute(name);
         } catch (Exception e) {

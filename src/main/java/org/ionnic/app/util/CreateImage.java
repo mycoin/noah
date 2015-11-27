@@ -24,11 +24,10 @@ public class CreateImage {
     // 验证码
     private String code = null;
 
-    private Color colors[] = new Color[] { new Color(0, 0, 0), new Color(0, 255, 0), new Color(0, 139, 0),
-            new Color(0, 0, 255), new Color(0, 206, 209), new Color(255, 215, 0), new Color(255, 106, 106),
-            new Color(178, 34, 34), new Color(255, 0, 0), new Color(255, 20, 147), new Color(238, 44, 44),
-            new Color(138, 43, 226), new Color(72, 118, 255), new Color(255, 0, 255), new Color(0, 191, 255),
-            new Color(34, 139, 34) };
+    private Color colors[] = new Color[] { new Color(0, 0, 0), new Color(0, 255, 0), new Color(0, 139, 0), new Color(0, 0, 255),
+            new Color(0, 206, 209), new Color(255, 215, 0), new Color(255, 106, 106), new Color(178, 34, 34), new Color(255, 0, 0),
+            new Color(255, 20, 147), new Color(238, 44, 44), new Color(138, 43, 226), new Color(72, 118, 255), new Color(255, 0, 255),
+            new Color(0, 191, 255), new Color(34, 139, 34) };
 
     // 验证码图片Buffer
     private BufferedImage buffImg = null;

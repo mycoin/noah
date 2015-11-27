@@ -20,16 +20,8 @@ public class HttpDispatcherServlet extends DispatcherServlet {
     }
 
     @Override
-    protected void render(ModelAndView mv, HttpServletRequest resuest, HttpServletResponse response) throws Exception {
-        if (response.getContentType() == null) {
-            response.setContentType("text/html; charset=UTF-8");
-        }
-        super.render(mv, resuest, response);
-    }
-
-    @Override
-    protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response,
-            Object handler, Exception ex) throws Exception {
+    protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
 
         if (ex instanceof HttpRequestMethodNotSupportedException || ex instanceof HttpMediaTypeNotSupportedException) {
             ExceptionResolver er = new ExceptionResolver();
@@ -42,5 +34,13 @@ public class HttpDispatcherServlet extends DispatcherServlet {
         } else {
             return super.processHandlerException(request, response, handler, ex);
         }
+    }
+
+    @Override
+    protected void render(ModelAndView mv, HttpServletRequest resuest, HttpServletResponse response) throws Exception {
+        if (response.getContentType() == null) {
+            response.setContentType("text/html; charset=UTF-8");
+        }
+        super.render(mv, resuest, response);
     }
 }

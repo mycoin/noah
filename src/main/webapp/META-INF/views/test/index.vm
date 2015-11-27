@@ -19,5 +19,5 @@ $lang.status
 #request("script")
 
 <span style="position: relative; display:inline-block; padding: 0;cursor: pointer;">
-    <img onclick="this.src='/service/test/code?_=' + (+new Date)" src="/service/test/code" style="position: absolute;top: -12px;left: 14px;">
+    <img onclick="this.src='../service/test/code?_=' + (+new Date)" src="../service/test/code" style="position: absolute;top: -12px;left: 14px;">
 </span>

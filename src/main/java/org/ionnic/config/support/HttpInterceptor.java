@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
- *
+ * 
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
 
@@ -28,8 +28,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         if (response.getContentType() == null) {
             response.setContentType("text/html; charset=UTF-8");
         }

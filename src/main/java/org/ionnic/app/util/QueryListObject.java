@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author apple
- *
+ * 
  */
 public class QueryListObject extends JSONObject {
 
@@ -64,42 +64,48 @@ public class QueryListObject extends JSONObject {
     }
 
     /**
-     * @param condition the condition to set
+     * @param condition
+     *            the condition to set
      */
     public void setCondition(Map<String, Object> condition) {
         this.condition = condition;
     }
 
     /**
-     * @param keyword the keyword to set
+     * @param keyword
+     *            the keyword to set
      */
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
     /**
-     * @param orderBy the orderBy to set
+     * @param orderBy
+     *            the orderBy to set
      */
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
 
     /**
-     * @param page the page to set
+     * @param page
+     *            the page to set
      */
     public void setPage(int page) {
         this.page = page;
     }
 
     /**
-     * @param pageSize the pageSize to set
+     * @param pageSize
+     *            the pageSize to set
      */
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
 
     /**
-     * @param total the total to set
+     * @param total
+     *            the total to set
      */
     public void setTotal(int total) {
         this.total = total;

@@ -6,7 +6,7 @@ import org.ionnic.config.util.JsonUtils;
 
 /**
  * @author apple
- *
+ * 
  */
 public class InputModel {
 

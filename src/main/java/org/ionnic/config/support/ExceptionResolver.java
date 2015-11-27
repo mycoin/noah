@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- *
+ * 
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
 
@@ -25,8 +25,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
     private int statusCode = 200;
 
     @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
-            Exception ex) {
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
         if (ex == null) {
             return null;
         }
@@ -34,7 +33,6 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         ModelAndView mv = null;
         try {
             ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
-
 
             if (errorModel == null) {
                 errorModel = new ErrorModel(request, 500, ex.getMessage());
