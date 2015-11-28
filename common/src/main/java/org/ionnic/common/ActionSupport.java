@@ -1,0 +1,1 @@
+package org.ionnic.common;/** * @author apple *  */public abstract class ActionSupport {}
