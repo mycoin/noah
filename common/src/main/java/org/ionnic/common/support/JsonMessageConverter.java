@@ -17,12 +17,11 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * @author apple
- * 
+ *
  */
 public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
 
     public JsonMessageConverter() {
-        // TODO Auto-generated constructor stub
         super(MediaType.APPLICATION_JSON);
     }
 

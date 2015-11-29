@@ -21,8 +21,6 @@ public class CreateImage {
     private int codeCount = 4;
     // 验证码干扰线数
     private int lineCount = 20;
-    // 验证码
-    private String code = null;
 
     private Color colors[] = new Color[] { new Color(0, 0, 0), new Color(0, 255, 0), new Color(0, 139, 0), new Color(0, 0, 255),
             new Color(0, 206, 209), new Color(255, 215, 0), new Color(255, 106, 106), new Color(178, 34, 34), new Color(255, 0, 0),
@@ -41,7 +39,6 @@ public class CreateImage {
     public CreateImage(int width, int height) {
         this.width = width;
         this.height = height;
-        creatImage();
     }
 
     /**
@@ -53,7 +50,6 @@ public class CreateImage {
         this.width = width;
         this.height = height;
         this.codeCount = codeCount;
-        creatImage();
     }
 
     /**
@@ -67,7 +63,6 @@ public class CreateImage {
         this.height = height;
         this.codeCount = codeCount;
         this.lineCount = lineCount;
-        creatImage();
     }
 
     /**
@@ -77,6 +72,8 @@ public class CreateImage {
      */
     public boolean check(HttpSession session, String code) {
         String sessionCode = (String) session.getAttribute(SESSION_KEY);
+        removeSession(session);
+
         if (sessionCode == null) {
             return false;
         } else {
@@ -85,7 +82,7 @@ public class CreateImage {
     }
 
     // 生成图片
-    private void creatImage() {
+    private void creatImage(String code) {
         int fontWidth = width / codeCount;// 字体的宽度
         int fontHeight = height - 2;// 字体的高度
         int codeY = height - 4;
@@ -122,10 +119,8 @@ public class CreateImage {
         }
 
         // 得到随机字符
-        String str1 = randomStr(codeCount);
-        this.code = str1;
         for (int i = 0; i < codeCount; i++) {
-            String strRand = str1.substring(i, i + 1);
+            String strRand = code.substring(i, i + 1);
             g.setColor(getRandColor(1, 255));
             g.drawString(strRand, i * fontWidth + 3, codeY);
         }
@@ -143,6 +138,7 @@ public class CreateImage {
         font[2] = new Font("Fixedsys", Font.BOLD, size);
         font[3] = new Font("Wide Latin", Font.BOLD, size);
         font[4] = new Font("Gill Sans Ultra Bold", Font.BOLD, size);
+
         return font[random.nextInt(5)];
     }
 
@@ -175,11 +171,23 @@ public class CreateImage {
     }
 
     /**
+     * @param session
+     */
+    public void removeSession(HttpSession session) {
+        session.removeAttribute(SESSION_KEY);
+    }
+
+    /**
      * @param httpSession
      * @param sos
      * @throws IOException
      */
     public void write(HttpSession httpSession, OutputStream sos) throws IOException {
+        String code = (String) httpSession.getAttribute(SESSION_KEY);
+        if (code == null) {
+            code = randomStr(codeCount);
+        }
+        creatImage(code);
         ImageIO.write(buffImg, "png", sos);
         httpSession.setAttribute(SESSION_KEY, code);
         sos.close();

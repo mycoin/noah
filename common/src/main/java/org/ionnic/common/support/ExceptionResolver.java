@@ -13,16 +13,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
- * 
+ *
  */
 public class ExceptionResolver implements HandlerExceptionResolver {
 
     private static Log logger = LogFactory.getLog(ExceptionResolver.class);
 
+    private static ExceptionResolver instance = null;
+
     private String errorView = "/common/error";
 
-    // JSON request, default statusCode is 200
+    /**
+     * JSON request, default statusCode is 200
+     */
     private int statusCode = 200;
+
+    public ExceptionResolver() {
+        super();
+        instance = this;
+    }
+
+    /**
+     * @return
+     */
+    public static ExceptionResolver getInstance() {
+        return instance;
+    }
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
@@ -44,6 +60,8 @@ public class ExceptionResolver implements HandlerExceptionResolver {
                 response.addHeader("Content-Type", "application/json; charset=UTF-8");
                 response.getOutputStream().write(JsonUtils.toJson(errorModel).getBytes());
                 response.getOutputStream().close();
+
+                return null;
             } else {
                 response.setStatus(errorModel.getStatus());
                 mv = new ModelAndView(errorView);

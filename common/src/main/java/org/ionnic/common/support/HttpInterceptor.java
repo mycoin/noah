@@ -12,20 +12,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * @author apple
- * 
+ *
  */
 public class HttpInterceptor extends HandlerInterceptorAdapter {
-
-    /**
-     * @param response
-     */
-    private void initHeaders(HttpServletResponse response) {
-        if (!response.containsHeader("X-XSS-Protection")) {
-            response.addHeader("X-Frame-Options", "deny");
-            response.addHeader("X-XSS-Protection", "1; mode=block");
-            response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
-        }
-    }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -37,8 +26,9 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        // init response headers
-        initHeaders(response);
+        response.addHeader("X-Frame-Options", "deny");
+        response.addHeader("X-XSS-Protection", "1; mode=block");
+        response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
 
         // If it is an ajax request, a csrfToken is required.
         if (ServletUtils.isAjax(request) || ServletUtils.isJSONResponse(handler)) {

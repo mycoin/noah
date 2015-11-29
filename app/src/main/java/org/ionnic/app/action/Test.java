@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author apple
- * 
+ *
  */
 @Controller
 @RequestMapping("/test")
@@ -54,11 +54,9 @@ public class Test extends ActionSupport {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpg");
+        response.setContentType("image/png");
 
         CreateImage vCode = new CreateImage(75, 20, 4, 4);
-        response.addHeader("Content-Type", "image/png");
-
         vCode.write(session, response.getOutputStream());
     }
 
