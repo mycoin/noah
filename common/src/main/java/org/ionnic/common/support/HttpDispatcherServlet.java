@@ -51,7 +51,7 @@ public class HttpDispatcherServlet extends DispatcherServlet {
                 || ex instanceof NoHandlerFoundException
                 ) {
 
-            new ErrorModel(request, ex);
+            new ErrorModel(request, 500, ex.getMessage());
             ex = new ServletException();
         }
         return super.processHandlerException(request, response, handler, ex);

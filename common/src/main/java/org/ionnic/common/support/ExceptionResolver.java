@@ -38,7 +38,6 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
             if (errorModel == null) {
                 errorModel = new ErrorModel(request, 500, ex.getMessage());
-                errorModel.setException(ex);
             }
 
             if (ServletUtils.isJSONResponse(obj)) {

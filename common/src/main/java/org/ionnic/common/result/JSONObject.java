@@ -1,10 +1,6 @@
 package org.ionnic.common.result;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.common.util.JsonUtils;
 
@@ -66,18 +62,6 @@ public class JSONObject {
      */
     public boolean hasAttribute(String property) {
         return getAttribute(property) != null;
-    }
-
-    /**
-     * @param req
-     */
-    public void init(HttpServletRequest req) {
-        Map<String, Object> meta = new HashMap<String, Object>();
-        meta.put("method", req.getMethod());
-        meta.put("path", req.getPathInfo());
-        meta.put("protocol", req.getProtocol());
-
-        addAttribute("meta", meta);
     }
 
     /**

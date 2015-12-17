@@ -3,7 +3,6 @@ package org.ionnic.common;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -22,37 +21,12 @@ public class ErrorModel {
 
     private Map<String, Object> data = new HashMap<String, Object>();
 
-    public ErrorModel(HttpServletRequest request, int status, String statusInfo, Exception exception) {
+    public ErrorModel(HttpServletRequest request, int status, String statusInfo) {
         if (request != null) {
             request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
         }
         setStatus(status);
         setStatusInfo(statusInfo);
-        setException(exception);
-    }
-
-    /**
-     * @param exception
-     */
-    public ErrorModel(HttpServletRequest request, Exception exception) {
-        this(request, 500, exception.getMessage(), exception);
-    }
-
-    /**
-     * @param request
-     * @param status
-     * @param exception
-     */
-    public ErrorModel(HttpServletRequest request, int status, Exception exception) {
-        this(request, status, exception.getMessage(), exception);
-    }
-
-    /**
-     * @param status
-     * @param statusInfo
-     */
-    public ErrorModel(HttpServletRequest request, int status, String statusInfo) {
-        this(request, status, statusInfo, new ServletException(statusInfo));
     }
 
     /**
@@ -63,12 +37,13 @@ public class ErrorModel {
         result.addObject("data", data);
         result.addObject("status", status);
         result.addObject("statusInfo", statusInfo);
+
     }
 
     /**
      * @return the exception
      */
-    public Map<String, Object> getException() {
+    public Map<String, Object> getData() {
         return data;
     }
 
@@ -100,12 +75,5 @@ public class ErrorModel {
      */
     public void setStatusInfo(String statusInfo) {
         this.statusInfo = statusInfo;
-    }
-
-    /**
-     * @param ex
-     */
-    public void setException(Exception ex) {
-        data.put("exception", ex);
     }
 }
