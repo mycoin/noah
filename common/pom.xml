@@ -77,4 +77,11 @@
 			<version>2.4</version>
 		</dependency>
 	</dependencies>
+
+	<developers>
+		<developer>
+			<name>mycoin</name>
+			<email>nqliujiangtao@gmail.com</email>
+		</developer>
+	</developers>
 </project>

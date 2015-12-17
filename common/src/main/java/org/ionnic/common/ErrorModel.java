@@ -1,5 +1,8 @@
 package org.ionnic.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,20 +16,26 @@ public class ErrorModel {
 
     public static final String INTERNAL_ERROR = "Internal Error";
 
-    private int status = 500;
+    private int status;
 
-    private String statusInfo = ACCESS_DENIED;
+    private String statusInfo;
 
-    private Exception exception = new ServletException();
+    private Map<String, Object> data = new HashMap<String, Object>();
+
+    public ErrorModel(HttpServletRequest request, int status, String statusInfo, Exception exception) {
+        if (request != null) {
+            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
+        }
+        setStatus(status);
+        setStatusInfo(statusInfo);
+        setException(exception);
+    }
 
     /**
      * @param exception
      */
     public ErrorModel(HttpServletRequest request, Exception exception) {
-        setException(exception);
-        if (request != null) {
-            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
-        }
+        this(request, 500, exception.getMessage(), exception);
     }
 
     /**
@@ -35,13 +44,7 @@ public class ErrorModel {
      * @param exception
      */
     public ErrorModel(HttpServletRequest request, int status, Exception exception) {
-        setStatus(status);
-        setStatusInfo(exception.getMessage());
-        setException(exception);
-
-        if (request != null) {
-            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
-        }
+        this(request, status, exception.getMessage(), exception);
     }
 
     /**
@@ -49,11 +52,7 @@ public class ErrorModel {
      * @param statusInfo
      */
     public ErrorModel(HttpServletRequest request, int status, String statusInfo) {
-        setStatus(status);
-        setStatusInfo(statusInfo);
-        if (request != null) {
-            request.setAttribute(ErrorModel.ERROR_MODEL_KEY, this);
-        }
+        this(request, status, statusInfo, new ServletException(statusInfo));
     }
 
     /**
@@ -61,7 +60,7 @@ public class ErrorModel {
      */
     public void extractTo(ModelAndView result) {
 
-        result.addObject("data", exception);
+        result.addObject("data", data);
         result.addObject("status", status);
         result.addObject("statusInfo", statusInfo);
     }
@@ -69,8 +68,8 @@ public class ErrorModel {
     /**
      * @return the exception
      */
-    public Exception getException() {
-        return exception;
+    public Map<String, Object> getException() {
+        return data;
     }
 
     /**
@@ -88,14 +87,6 @@ public class ErrorModel {
     }
 
     /**
-     * @param exception
-     *            the exception to set
-     */
-    public void setException(Exception exception) {
-        this.exception = new Exception(exception.getMessage());
-    }
-
-    /**
      * @param status
      *            the status to set
      */
@@ -109,5 +100,12 @@ public class ErrorModel {
      */
     public void setStatusInfo(String statusInfo) {
         this.statusInfo = statusInfo;
+    }
+
+    /**
+     * @param ex
+     */
+    public void setException(Exception ex) {
+        data.put("exception", ex);
     }
 }

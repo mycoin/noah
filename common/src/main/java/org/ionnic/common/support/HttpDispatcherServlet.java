@@ -34,7 +34,6 @@ public class HttpDispatcherServlet extends DispatcherServlet {
     @Override
     protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-
         if (ex instanceof HttpMediaTypeNotSupportedException
                 || ex instanceof NoSuchRequestHandlingMethodException
                 || ex instanceof HttpRequestMethodNotSupportedException
@@ -51,15 +50,11 @@ public class HttpDispatcherServlet extends DispatcherServlet {
                 || ex instanceof BindException
                 || ex instanceof NoHandlerFoundException
                 ) {
-            ModelAndView mv = ExceptionResolver.getInstance().resolveException(request, response, handler, ex);
-            if (response.isCommitted()) {
-                return null;
-            } else {
-                return mv;
-            }
-        } else {
-            return super.processHandlerException(request, response, handler, ex);
+
+            new ErrorModel(request, ex);
+            ex = new ServletException();
         }
+        return super.processHandlerException(request, response, handler, ex);
     }
 
     @Override

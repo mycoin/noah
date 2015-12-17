@@ -34,7 +34,14 @@
 
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
-		<bean class="org.ionnic.common.support.HttpInterceptor" />
+		<bean class="org.ionnic.common.interceptor.ContentTypeInterceptor" />
+		<bean class="org.ionnic.common.interceptor.SecurityInterceptor" />
+
+		<mvc:interceptor>
+			<mvc:mapping path="/api" />
+			<mvc:mapping path="/api/**" />
+			<bean class="org.ionnic.common.interceptor.ApiProviderInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- 异常处理 -->

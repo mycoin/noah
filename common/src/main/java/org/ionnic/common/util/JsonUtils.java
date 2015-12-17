@@ -71,7 +71,6 @@ public abstract class JsonUtils {
             GsonBuilder gb = new GsonBuilder();
             gb.serializeNulls();
             gb.disableHtmlEscaping();
-            gb.setPrettyPrinting();
             gb.setDateFormat(AppConfig.DATE_FORMAT);
 
             gson = gb.create();

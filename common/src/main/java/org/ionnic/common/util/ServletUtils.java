@@ -1,5 +1,7 @@
 package org.ionnic.common.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -15,7 +17,7 @@ import org.springframework.web.method.HandlerMethod;
 
 /**
  * @author apple
- * 
+ *
  */
 public abstract class ServletUtils extends ServletRequestUtils {
 
@@ -115,5 +117,20 @@ public abstract class ServletUtils extends ServletRequestUtils {
         }
 
         return anno != null;
+    }
+
+    /**
+     * Reads HTTP request body. Useful only with POST requests. Once body is read, it cannot be read again!
+     */
+    public static String readRequestBody(HttpServletRequest request) throws IOException {
+        BufferedReader br = request.getReader();
+
+        String inputLine;
+        String str = "";
+        while ((inputLine = br.readLine()) != null) {
+            str += inputLine;
+        }
+        br.close();
+        return str;
     }
 }

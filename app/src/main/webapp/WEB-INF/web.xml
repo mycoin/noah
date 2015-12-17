@@ -13,13 +13,13 @@
 	</context-param>
 
 	<servlet>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>spring</servlet-name>
 		<servlet-class>org.ionnic.common.support.HttpDispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>spring</servlet-name>
 		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>

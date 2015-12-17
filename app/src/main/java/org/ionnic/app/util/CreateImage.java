@@ -183,10 +183,7 @@ public class CreateImage {
      * @throws IOException
      */
     public void write(HttpSession httpSession, OutputStream sos) throws IOException {
-        String code = (String) httpSession.getAttribute(SESSION_KEY);
-        if (code == null) {
-            code = randomStr(codeCount);
-        }
+        String code = randomStr(codeCount);
         creatImage(code);
         ImageIO.write(buffImg, "png", sos);
         httpSession.setAttribute(SESSION_KEY, code);

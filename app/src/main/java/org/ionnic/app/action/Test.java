@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.ionnic.app.util.CreateImage;
 import org.ionnic.app.util.OutputModel;
 import org.ionnic.common.ActionSupport;
+import org.ionnic.common.result.JSONExceptionObject;
+import org.ionnic.common.result.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,6 +51,15 @@ public class Test extends ActionSupport {
         model.addAttribute("data", data);
     }
 
+    @RequestMapping(value = "/json")
+    @ResponseBody
+    public Object json(HttpServletRequest request) {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("ip", "11");
+        data.put("search", new Date());
+        return data;
+    }
+
     @RequestMapping("/code")
     public void code(HttpServletResponse response, HttpSession session) throws Exception {
         response.setHeader("Pragma", "No-cache");
@@ -75,8 +86,13 @@ public class Test extends ActionSupport {
      */
     @RequestMapping(value = "/exception", produces = "application/json")
     @ResponseBody
-    public Map<String, Object> exception() throws Exception {
-        throw new Exception("<!-- status-ok --> UserException");
+    public JSONObject exception() throws Exception {
+        JSONExceptionObject data = new JSONExceptionObject();
+        data.init(request);
+
+        data.setStatus(500);
+        data.setException(new ServletException("ERROR"));
+        return data;
     }
 
     /**

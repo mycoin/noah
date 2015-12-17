@@ -14,6 +14,7 @@
             <li data-task="x-exception"><i>3</i><a class="link normal" href="../service/test/exception" target="_blank">exception</a></li>
             <li data-task="x-api"><i>4</i><a class="link normal" href="../service/api" target="_blank">api</a></li>
             <li data-task="x-index"><i>4</i><a class="link normal" href="../service/test/index" target="_blank">index</a></li>
+            <li data-task="x-json"><i>4</i><a class="link normal" href="../service/test/json" target="_blank">json</a></li>
         </ul>
     </div>
     <script src="//macbook-air.local/jquery.js"></script>
