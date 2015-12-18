@@ -1,9 +1,10 @@
-package org.ionnic.common.support;
+package org.ionnic.common.converter;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
+import org.ionnic.common.support.AppConfig;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;

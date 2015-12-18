@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.ionnic.app.util.CreateImage;
 import org.ionnic.app.util.OutputModel;
 import org.ionnic.common.ActionSupport;
-import org.ionnic.common.result.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.ionnic.common.model.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -31,9 +30,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/test")
 public class Test extends ActionSupport {
-
-    @Autowired
-    HttpServletRequest request;
 
     /**
      * @param body
@@ -55,7 +51,7 @@ public class Test extends ActionSupport {
     public JSONObject json(HttpServletRequest request) {
         JSONObject result = new JSONObject();
 
-        result.addAttribute("ip", "11");
+        result.addAttribute("ip", request.getRequestURL());
         result.addAttribute("search", new Date());
         return result;
     }
@@ -97,7 +93,6 @@ public class Test extends ActionSupport {
     @RequestMapping(value = "/index")
     public Object index(HttpServletRequest request) {
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("ip", "11");
         data.put("search", new Date());
         return data;
     }

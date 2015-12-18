@@ -1,16 +1,21 @@
 package org.ionnic.app.action;
 
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-import org.apache.commons.collections.map.HashedMap;
-import org.ionnic.app.util.InputModel;
+import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
+
 import org.ionnic.common.ActionSupport;
+import org.ionnic.common.model.JSONObject;
+import org.ionnic.common.model.JSONParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
@@ -21,18 +26,36 @@ import org.springframework.web.servlet.ModelAndView;
 public class Api extends ActionSupport {
 
     @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
-    public ModelAndView index(@RequestBody InputModel model, HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView("json");
-
-        mv.addObject("data", model);
-        mv.addObject("keyword", model.getParams().get("keyword"));
-
-        return mv;
-    }
-
-    @RequestMapping("/user")
     @ResponseBody
-    public HashedMap user(HttpServletRequest request) {
-        return new HashedMap();
+    public Object index(@RequestBody JSONParameter param, JSONObject data) {
+
+        data.setStatus(0);
+        data.addAllAttributes(param.getParams());
+
+        data.addAttribute("param", param);
+        data.addAttribute("keyword", param.getParams().get("keyword"));
+        data.addAttribute("url", request.getRequestURL());
+
+        return data;
     }
+
+    @RequestMapping("/db")
+    @ResponseBody
+    public void db(HttpServletRequest request) throws SQLException {
+        Connection conn = dataSource.getConnection();
+        String sql = "INSERT INTO CUSTOMER " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, 2);
+        ps.setString(2, "OK");
+        ps.setInt(3, 9);
+        ps.executeUpdate();
+        ps.close();
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Autowired
+    private DataSource dataSource;
 }

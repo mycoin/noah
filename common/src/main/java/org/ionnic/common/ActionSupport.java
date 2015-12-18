@@ -1,1 +1,1 @@
-package org.ionnic.common;/** * @author apple *  */public abstract class ActionSupport {}
+package org.ionnic.common;import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpSession;import org.springframework.beans.factory.annotation.Autowired;/** * @author apple * */public abstract class ActionSupport {    @Autowired    public HttpServletRequest request;    @Autowired    public HttpSession session;}

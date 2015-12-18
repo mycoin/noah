@@ -1,16 +1,16 @@
-package org.ionnic.app.util;
+package org.ionnic.common.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.ionnic.common.util.JsonUtils;
+import org.springframework.http.HttpInputMessage;
 
 /**
  * @author apple
  *
  */
-public class InputModel {
-
-    private String token;
+public class JSONParameter implements JSONMessageType {
 
     private Map<String, Object> params;
 
@@ -24,17 +24,20 @@ public class InputModel {
     }
 
     /**
-     * @return
+     * @param inputMessage
      */
-    public Map<String, Object> getParams() {
-        return params;
+    public void init(HttpInputMessage inputMessage) {
+
     }
 
     /**
-     * @return the token
+     * @return
      */
-    public String getToken() {
-        return token;
+    public Map<String, Object> getParams() {
+        if (params == null) {
+            params = new HashMap<String, Object>();
+        }
+        return params;
     }
 
     /**
@@ -51,14 +54,6 @@ public class InputModel {
      */
     public void setParams(Map<String, Object> params) {
         this.params = params;
-    }
-
-    /**
-     * @param token
-     *            the token to set
-     */
-    public void setToken(String token) {
-        this.token = token;
     }
 
     /**

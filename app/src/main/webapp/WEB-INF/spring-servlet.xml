@@ -11,7 +11,7 @@
 
 	<!-- 模板配置 -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
+		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 		<property name="resourceLoaderPath">
 			<value>/META-INF/views,/META-INF/external,/META-INF/views/common</value>
 		</property>
@@ -19,8 +19,9 @@
 
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<bean class="org.ionnic.common.support.JsonMessageConverter" />
+		<mvc:message-converters register-defaults="false">
+			<bean class="org.ionnic.common.converter.ApiMessageConverter" />
+			<bean class="org.ionnic.common.converter.JsonMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
@@ -29,13 +30,13 @@
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="requestContextAttribute" value="context" />
 		<property name="suffix" value=".vm" />
-		<property name="toolboxConfigLocation" value="/WEB-INF/conf/toolbox.xml" />
+		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 	</bean>
 
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
 		<bean class="org.ionnic.common.interceptor.ContentTypeInterceptor" />
-		<bean class="org.ionnic.common.interceptor.SecurityInterceptor" />
+		<!-- <bean class="org.ionnic.common.interceptor.SecurityInterceptor" /> -->
 
 		<mvc:interceptor>
 			<mvc:mapping path="/api" />
@@ -47,6 +48,6 @@
 	<!-- 异常处理 -->
 	<bean class="org.ionnic.common.support.ExceptionResolver" />
 
-	<!-- 首页跳转 -->
-	<mvc:view-controller path="/" view-name="redirect:/public/index.jsp" />
+	<!-- 静态资源 -->
+	<mvc:default-servlet-handler />
 </beans>
