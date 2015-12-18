@@ -41,7 +41,7 @@ public class Api extends ActionSupport {
 
     @RequestMapping("/db")
     @ResponseBody
-    public void db(HttpServletRequest request) throws SQLException {
+    public Object db(HttpServletRequest request) throws SQLException {
         Connection conn = dataSource.getConnection();
         String sql = "INSERT INTO CUSTOMER " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -50,6 +50,8 @@ public class Api extends ActionSupport {
         ps.setInt(3, 9);
         ps.executeUpdate();
         ps.close();
+
+        return conn;
     }
 
     public void setDataSource(DataSource dataSource) {

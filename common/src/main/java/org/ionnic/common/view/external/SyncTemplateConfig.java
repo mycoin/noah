@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 /**
  * @author apple
  */
-abstract class ExternalTemplateLoader {
+abstract class SyncTemplateConfig {
 
     private Resource externalPath;
 
