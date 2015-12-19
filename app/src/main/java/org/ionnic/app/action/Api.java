@@ -25,19 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/api")
 public class Api extends ActionSupport {
 
-    @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
-    @ResponseBody
-    public Object index(@RequestBody JSONParameter param, JSONObject data) {
-
-        data.setStatus(0);
-        data.addAllAttributes(param.getParams());
-
-        data.addAttribute("param", param);
-        data.addAttribute("keyword", param.getParams().get("keyword"));
-        data.addAttribute("url", request.getRequestURL());
-
-        return data;
-    }
+    @Autowired
+    private DataSource dataSource;
 
     @RequestMapping("/db")
     @ResponseBody
@@ -54,10 +43,21 @@ public class Api extends ActionSupport {
         return conn;
     }
 
+    @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
+    @ResponseBody
+    public Object index(@RequestBody JSONParameter param, JSONObject data) {
+
+        data.setStatus(0);
+        data.addAllAttributes(param.getParams());
+
+        data.addAttribute("param", param);
+        data.addAttribute("keyword", param.getParams().get("keyword"));
+        data.addAttribute("url", request.getRequestURL());
+
+        return data;
+    }
+
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    @Autowired
-    private DataSource dataSource;
 }

@@ -1,0 +1,14 @@
+#setLayout("index")
+#set($title = "这里是标题")
+
+#define("title")
+    search: $data.search
+#end
+#define("header")
+    search: $data.search
+#end
+
+$request.getContextPath()
+$context.class
+
+

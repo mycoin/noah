@@ -7,9 +7,15 @@ import java.util.Map;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.ui.ModelMap;
 
-public class JSONObject implements Serializable {
+public class JSONObject implements Serializable, Cloneable {
 
     private static final long serialVersionUID = -4545992275844080215L;
+
+    private static final String DATA_ARRTIBUTE = "data";
+
+    private static final String STATUS_ATTRIBUTE = "status";
+
+    private static final String STATUS_INFO_ATTRIBUTE = "statusInfo";
 
     private int status = 0;
 
@@ -58,6 +64,15 @@ public class JSONObject implements Serializable {
     public JSONObject addAttribute(String attributeName, Object attributeValue) {
         data.addAttribute(attributeName, attributeValue);
         return this;
+    }
+
+    /**
+     * @param model
+     */
+    public void exposeContext(Map<String, Object> model) {
+        model.put(DATA_ARRTIBUTE, getData());
+        model.put(STATUS_ATTRIBUTE, getStatus());
+        model.put(STATUS_INFO_ATTRIBUTE, getStatusInfo());
     }
 
     /**

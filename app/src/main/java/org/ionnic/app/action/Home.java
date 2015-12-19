@@ -1,7 +1,6 @@
 package org.ionnic.app.action;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -42,16 +41,6 @@ public class Home extends ActionSupport {
         model.addAttribute("data", body);
     }
 
-    @RequestMapping(value = "/json")
-    @ResponseBody
-    public JSONObject json(HttpServletRequest request) {
-        JSONObject result = new JSONObject();
-
-        result.addAttribute("ip", request.getRequestURL());
-        result.addAttribute("search", new Date());
-        return result;
-    }
-
     @RequestMapping("/code")
     public void code(HttpServletResponse response, HttpSession session) throws Exception {
         response.setHeader("Pragma", "No-cache");
@@ -87,10 +76,21 @@ public class Home extends ActionSupport {
      * @return
      */
     @RequestMapping(value = "/index")
-    public Object index(HttpServletRequest request) {
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("search", new Date());
+    public Object index(HttpServletRequest request, JSONObject data) {
+        data.addAttribute("search", "<a>测试</a>");
+        data.addAttribute("url", 1);
+
         return data;
+    }
+
+    @RequestMapping(value = "/json")
+    @ResponseBody
+    public JSONObject json(HttpServletRequest request) {
+        JSONObject result = new JSONObject();
+
+        result.addAttribute("ip", request.getRequestURL());
+        result.addAttribute("search", new Date());
+        return result;
     }
 
     @RequestMapping(value = "/log")

@@ -13,7 +13,7 @@
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 		<property name="resourceLoaderPath">
-			<value>/META-INF/views,/META-INF/external,/META-INF/views/common</value>
+			<value>/WEB-INF/views,/WEB-INF/external,/WEB-INF/views/common</value>
 		</property>
 	</bean>
 
@@ -24,13 +24,17 @@
 			<bean class="org.ionnic.common.converter.JsonMessageConverter" />
 		</mvc:message-converters>
 		<mvc:async-support default-timeout="3000" />
+		<mvc:return-value-handlers>
+			<bean class="org.ionnic.common.converter.JsonReturnValueHandler" />
+		</mvc:return-value-handlers>
 	</mvc:annotation-driven>
 
 	<!-- 视图配置 -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-		<property name="exposeSessionAttributes" value="true" />
 		<property name="suffix" value=".vm" />
-		<property name="screenContentKey" value="screenContent" />
+		<property name="screenContentKey" value="body" />
+		<property name="layoutUrl" value="common/layout/default.vm" />
+		<property name="requestContextAttribute" value="context" />
 		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 	</bean>
 
@@ -42,7 +46,6 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/api" />
 			<mvc:mapping path="/api/**" />
-
 			<bean class="org.ionnic.common.interceptor.ApiProviderInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

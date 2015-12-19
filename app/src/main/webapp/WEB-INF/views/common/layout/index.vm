@@ -1,0 +1,13 @@
+<!doctype html>
+#if($data.search == "<a>测试</a>")
+    <!-- status-ok -->
+#end
+<html>
+<head>
+    <title>$title</title>
+</head>
+<body>
+    <span>$header</span>
+    $body
+</body>
+</html>

@@ -35,17 +35,17 @@ public class InternalServletException extends ServletException {
     }
 
     /**
-     * @param exception
-     */
-    public void setException(Exception exception) {
-        result.addAttribute("error", exception);
-    }
-
-    /**
      * @return
      */
     public JSONObject getObject() {
         return result;
+    }
+
+    /**
+     * @param exception
+     */
+    public void setException(Exception exception) {
+        result.addAttribute("error", exception);
     }
 
     @Override
