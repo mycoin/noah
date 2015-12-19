@@ -1,12 +1,9 @@
 ##{"params":{"page":1.0,"offset":32.0,"keyword":"百度中国"},"method":"GET"}
 
-#block("tpl")
+#define("tpl")
     <script type="text/javascript">
-        var token = $util.toJSON($page.token);
+        var token = "$page.token";
     </script>
-#end
-
-#block("tpl")
     #if($data.getParams().keyword)
         <!-- status-ok -->
     #end
@@ -28,4 +25,5 @@ Session:
 #end
 -->
 
-#request("tpl")
+
+$tpl

@@ -77,6 +77,13 @@ String baseUrl = request.getContextPath();
             })
         }
     };
+
+    jQuery('a').click(function() {
+    	if(!this.getAttribute('data-link')) {
+    		this.setAttribute("data-link", this.href);
+    	    this.href += "?token=" + csrfToken;
+    	};
+    });
 </script>
 <script type="text/javascript">
 

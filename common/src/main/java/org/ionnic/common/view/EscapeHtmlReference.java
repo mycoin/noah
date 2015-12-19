@@ -9,7 +9,7 @@ import org.springframework.web.util.HtmlUtils;
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-    private static String[] escapeVers = new String[] { "util.raw(", "page.", "body", "lang." };
+    private static String[] escapeVers = new String[] { "util.", "page.", "body", "lang.", "statusInfo", "raw_" };
 
     /**
      * @param ref
