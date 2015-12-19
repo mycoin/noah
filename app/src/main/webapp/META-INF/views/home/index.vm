@@ -1,4 +1,4 @@
-##setLayout("main")
+#setLayout("main")
 #block("header")
     测试
 #end

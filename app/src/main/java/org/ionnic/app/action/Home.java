@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ionnic.app.util.CreateImage;
-import org.ionnic.app.util.OutputModel;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.model.JSONObject;
+import org.ionnic.common.model.JSONParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,22 +28,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping("/test")
-public class Test extends ActionSupport {
+@RequestMapping("/home")
+public class Home extends ActionSupport {
 
     /**
      * @param body
      * @param model
      */
     @RequestMapping("/basic")
-    public void basic(@RequestBody OutputModel body, Model model) {
-        ModelMap data = new ModelMap();
-
-        data.addAttribute("method", request.getMethod());
-        data.addAttribute("controller", this.getClass().getName());
-
-        model.addAttribute("body", body);
-        model.addAttribute("data", data);
+    public void basic(@RequestBody JSONParameter body, Model model) {
+        model.addAttribute("method", request.getMethod());
+        model.addAttribute("controller", this.getClass().getName());
+        model.addAttribute("data", body);
     }
 
     @RequestMapping(value = "/json")

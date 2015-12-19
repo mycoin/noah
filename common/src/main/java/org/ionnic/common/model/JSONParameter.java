@@ -1,5 +1,6 @@
 package org.ionnic.common.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,9 @@ import org.springframework.http.HttpInputMessage;
  * @author apple
  *
  */
-public class JSONParameter implements JSONMessageType {
+public class JSONParameter implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Map<String, Object> params;
 
@@ -24,13 +27,6 @@ public class JSONParameter implements JSONMessageType {
     }
 
     /**
-     * @param inputMessage
-     */
-    public void init(HttpInputMessage inputMessage) {
-
-    }
-
-    /**
      * @return
      */
     public Map<String, Object> getParams() {
@@ -38,6 +34,13 @@ public class JSONParameter implements JSONMessageType {
             params = new HashMap<String, Object>();
         }
         return params;
+    }
+
+    /**
+     * @param inputMessage
+     */
+    public void init(HttpInputMessage inputMessage) {
+
     }
 
     /**

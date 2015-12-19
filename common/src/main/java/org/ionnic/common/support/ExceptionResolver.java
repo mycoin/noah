@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.ErrorModel;
-import org.ionnic.common.util.JsonUtils;
 import org.ionnic.common.util.ServletUtils;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,44 +17,54 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
     private static Log logger = LogFactory.getLog(ExceptionResolver.class);
 
-    private String errorView = "/common/error";
+    private String errorAttribute = "error";
 
-    /**
-     * JSON request, default statusCode is 200
-     */
-    private int statusCode = 200;
+    private String errorView = null;
+
+    private int statusCode = 0;
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
+        ModelAndView mv = null;
         if (ex == null) {
             return null;
         }
 
-        ModelAndView mv = null;
+        InternalServletException error;
+        if (ex instanceof InternalServletException) {
+            error = (InternalServletException) ex;
+        } else {
+            error = new InternalServletException(500, "Internal Server Exception");
+            error.setException(ex);
+        }
         try {
-            ErrorModel errorModel = (ErrorModel) request.getAttribute(ErrorModel.ERROR_MODEL_KEY);
-
-            if (errorModel == null) {
-                errorModel = new ErrorModel(request, 500, ex.getMessage());
-            }
-
             if (ServletUtils.isJSONResponse(obj)) {
-                response.setStatus(statusCode);
-                response.addHeader("Content-Type", "application/json; charset=UTF-8");
-                response.getOutputStream().write(JsonUtils.toJson(errorModel).getBytes());
+                response.setContentType("application/json; charset=UTF-8");
+                if (statusCode > 0) {
+                    response.setStatus(statusCode);
+                } else {
+                    response.setStatus(error.getObject().getStatus());
+                }
+                response.getOutputStream().write(error.toString().getBytes());
                 response.getOutputStream().close();
 
                 return null;
             } else {
-                response.setStatus(errorModel.getStatus());
                 mv = new ModelAndView(errorView);
-                errorModel.extractTo(mv);
+                mv.addObject(errorAttribute, error.getObject());
             }
         } catch (Exception e) {
             logger.error("Not catch exception by exceptionResolver:", ex);
         }
 
         return mv;
+    }
+
+    /**
+     * @param errorAttribute the errorAttribute to set
+     */
+    public void setErrorAttribute(String errorAttribute) {
+        this.errorAttribute = errorAttribute;
     }
 
     /**
@@ -69,7 +77,6 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
     /**
      * @param statusCode
-     *            the statusCode to set
      */
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;

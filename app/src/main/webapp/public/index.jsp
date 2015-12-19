@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-<title>test web</title>
+<title>home web</title>
 <link rel="stylesheet" type="text/css" href="css/lib.css" />
 </head>
 <%
@@ -12,13 +12,13 @@ String baseUrl = request.getContextPath();
     <h2>测试用例</h2>
     <div class="col">
         <ul>
-            <li data-task="x-basic"><i>2</i><a class="link normal" href="<%=baseUrl%>/test/basic" target="_blank">basic</a></li>
-            <li data-task="x-search"><i>1</i><a class="link normal" href="<%=baseUrl%>/test/search/杭州天气" target="_blank">search</a></li>
-            <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/test/exception" target="_blank">exception</a></li>
+            <li data-task="x-basic"><i>1</i><a class="link normal" href="<%=baseUrl%>/home/basic" target="_blank">basic</a></li>
+            <li data-task="x-search"><i>2</i><a class="link normal" href="<%=baseUrl%>/home/search/杭州天气" target="_blank">search</a></li>
+            <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/home/exception" target="_blank">exception</a></li>
             <li data-task="x-api"><i>4</i><a class="link normal" href="<%=baseUrl%>/api" target="_blank">api</a></li>
-
-            <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/test/index" target="_blank">index</a></li>
-            <li data-task="x-json"><i>6</i><a class="link normal" href="<%=baseUrl%>/test/json" target="_blank">json</a></li>
+            <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
+            <li data-task="x-json"><i>6</i><a class="link normal" href="<%=baseUrl%>/home/json" target="_blank">json</a></li>
+            <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
         </ul>
     </div>
     <script src="//macbook-air.local/jquery.js"></script>
@@ -31,8 +31,7 @@ String baseUrl = request.getContextPath();
             type : 'post',
             contentType : 'application/json;charset=UTF-8',
             data : JSON.stringify({
-                data: 1,
-                vale: '阿里巴巴'
+
             })
         },
 
@@ -41,14 +40,16 @@ String baseUrl = request.getContextPath();
             type : 'post',
             dataType: 'text',
             data : JSON.stringify({
-                data: {
-                    app: "百度中国",
-                    time: new Date()
-                },
-                status: 0,
-                statusInfo: "OK",
+            	token: csrfToken,
+                service: 'UserService',
+                params: {
+                    page: 1,
+                    offset: 32,
+                    keyword: '百度中国'
+                }
             })
         },
+
         'x-exception': {
             dataType : 'json'
         },
@@ -67,8 +68,13 @@ String baseUrl = request.getContextPath();
                 }
             })
         },
-        'x-index': {
-
+        'x-db': {
+        	contentType : 'application/json;charset=UTF-8',
+            type : 'post',
+            dataType: 'json',
+            data : JSON.stringify({
+                token: csrfToken
+            })
         }
     };
 </script>

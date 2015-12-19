@@ -31,6 +31,7 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
         try {
             InputStream stream = inputMessage.getBody();
             String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
+
             return JsonUtils.fromJson(requestBody, clazz);
         } catch (JsonSyntaxException e) {
             throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);

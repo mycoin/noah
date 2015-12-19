@@ -1,10 +1,8 @@
 package org.ionnic.common.support;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.common.ErrorModel;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -27,42 +25,58 @@ public class HttpDispatcherServlet extends DispatcherServlet {
 
     @Override
     protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        new ErrorModel(request, 404, "Page Not Found");
-        throw new ServletException();
+        new InternalServletException(404, "Page Not Found");
     }
 
     @Override
     protected ModelAndView processHandlerException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        if (ex instanceof HttpMediaTypeNotSupportedException
-                || ex instanceof NoSuchRequestHandlingMethodException
-                || ex instanceof HttpRequestMethodNotSupportedException
-                || ex instanceof HttpMediaTypeNotSupportedException
-                || ex instanceof HttpMediaTypeNotAcceptableException
-                || ex instanceof MissingServletRequestParameterException
-                || ex instanceof ServletRequestBindingException
-                || ex instanceof ConversionNotSupportedException
-                || ex instanceof TypeMismatchException
-                || ex instanceof HttpMessageNotReadableException
-                || ex instanceof HttpMessageNotWritableException
-                || ex instanceof MethodArgumentNotValidException
-                || ex instanceof MissingServletRequestPartException
-                || ex instanceof BindException
-                || ex instanceof NoHandlerFoundException
-                ) {
 
-            new ErrorModel(request, 500, ex.getMessage());
-            ex = new ServletException();
+        int statusCode = 0;
+        boolean found = true;
+
+        try {
+            if (ex instanceof NoSuchRequestHandlingMethodException) {
+                statusCode = HttpServletResponse.SC_NOT_FOUND;
+            } else if (ex instanceof HttpRequestMethodNotSupportedException) {
+                statusCode = HttpServletResponse.SC_METHOD_NOT_ALLOWED;
+            } else if (ex instanceof HttpMediaTypeNotSupportedException) {
+                statusCode = HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
+            } else if (ex instanceof HttpMediaTypeNotAcceptableException) {
+                statusCode = HttpServletResponse.SC_NOT_ACCEPTABLE;
+            } else if (ex instanceof MissingServletRequestParameterException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof ServletRequestBindingException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof ConversionNotSupportedException) {
+                statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+            } else if (ex instanceof TypeMismatchException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof HttpMessageNotReadableException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof HttpMessageNotWritableException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof MethodArgumentNotValidException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof MissingServletRequestPartException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof BindException) {
+                statusCode = HttpServletResponse.SC_BAD_REQUEST;
+            } else if (ex instanceof NoHandlerFoundException) {
+                statusCode = HttpServletResponse.SC_NOT_FOUND;
+            } else {
+                found = false;
+            }
+
+            if (found) {
+                InternalServletException error = new InternalServletException(statusCode, "Forbidden");
+                error.setException(ex);
+
+                ex = error;
+            }
+        } catch (Exception e) {
+
         }
         return super.processHandlerException(request, response, handler, ex);
-    }
-
-    @Override
-    protected void render(ModelAndView mv, HttpServletRequest resuest, HttpServletResponse response) throws Exception {
-        if (response.getContentType() == null) {
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html; charset=UTF-8");
-        }
-        super.render(mv, resuest, response);
     }
 }

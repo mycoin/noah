@@ -54,8 +54,8 @@ p {
 </head>
 <body>
     <div id="container">
-        <h1>500 - Internal Server Error</h1>
-        <p>[$status] $statusInfo</p>
+        <h1>$error.status - $error.statusInfo</h1>
+        <p>[$error.status] $error.data.error.getMessage()</p>
     </div>
 </body>
 </html>

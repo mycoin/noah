@@ -1,5 +1,0 @@
-{
-    "status":0,
-    "data": $data.toJSON(),
-    "keyword": "$keyword"
-}

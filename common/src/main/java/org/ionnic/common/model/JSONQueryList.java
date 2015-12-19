@@ -1,13 +1,15 @@
-package org.ionnic.app.util;
+package org.ionnic.common.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author apple
- * 
+ *
  */
-public class QueryListObject extends JSONObject {
+public class JSONQueryList extends JSONObject {
+
+    private static final long serialVersionUID = 1L;
 
     private int page = 0;
 

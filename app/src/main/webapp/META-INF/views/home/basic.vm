@@ -1,20 +1,18 @@
-#set($data.body = $body)
+##{"params":{"page":1.0,"offset":32.0,"keyword":"百度中国"},"method":"GET"}
 
 #block("tpl")
     <script type="text/javascript">
         var token = $util.toJSON($page.token);
-        var token_value = '$page.token';
-        var data = $util.toJSON($data);
     </script>
 #end
 
 #block("tpl")
-    #if($data.body.getData().time)
+    #if($data.getParams().keyword)
         <!-- status-ok -->
     #end
 #end
 
-#external("ad", {"wd": $body.getData().app})
+#external("ad", {"wd": $data.getParams().keyword})
 
 <!--
 Request:
@@ -31,10 +29,3 @@ Session:
 -->
 
 #request("tpl")
-
-{
-    "config": $body.status,
-    "status": "$body.getData().time",
-    "token": "$page.token"
-}
-}

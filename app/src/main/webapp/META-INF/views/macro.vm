@@ -8,6 +8,11 @@
     #set($layout = "layout.vm")
 #end
 
+## 禁用布局功能
+#macro(default $value, $defaultValue)#*
+ *##if($value)$value#else$defaultValue#end
+#end
+
 ## 获取内部模板
 #macro(external $name, $data)#*
  *##if($data == 1)
