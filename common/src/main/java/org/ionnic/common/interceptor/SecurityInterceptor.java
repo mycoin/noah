@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.ionnic.common.Security;
 import org.ionnic.common.support.InternalServletException;
-import org.ionnic.common.util.ServletUtils;
+import org.ionnic.common.util.WebUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
@@ -18,7 +18,7 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         // If it is an ajax request, a csrfToken is required.
-        if (ServletUtils.isAjax(request) || ServletUtils.isJSONResponse(handler)) {
+        if (WebUtils.isAjax(request) || WebUtils.hasResponseAnnotation(handler)) {
             if (!Security.checkToken(request)) {
                 throw new InternalServletException(403, "Unacceptable Token");
             }

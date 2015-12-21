@@ -12,3 +12,5 @@ $request.getContextPath()
 $context.class
 
 
+$page.include('ad')
+$page.external('error', {})

@@ -19,11 +19,11 @@
 
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
+		<mvc:async-support default-timeout="3000" />
 		<mvc:message-converters register-defaults="false">
 			<bean class="org.ionnic.common.converter.ApiMessageConverter" />
 			<bean class="org.ionnic.common.converter.JsonMessageConverter" />
 		</mvc:message-converters>
-		<mvc:async-support default-timeout="3000" />
 		<mvc:return-value-handlers>
 			<bean class="org.ionnic.common.converter.JsonReturnValueHandler" />
 		</mvc:return-value-handlers>
@@ -53,7 +53,7 @@
 	<!-- 异常处理 -->
 	<bean class="org.ionnic.common.support.ExceptionResolver">
 		<property name="errorView" value="/common/error" />
-		<property name="statusCode" value="500" />
+		<property name="showErrorState" value="false" />
 	</bean>
 
 	<!-- 静态资源 -->

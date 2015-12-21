@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.util.ServletUtils;
+import org.ionnic.common.util.WebUtils;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +21,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
     private String errorView = null;
 
-    private int statusCode = 0;
+    private boolean showErrorState = false;
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj, Exception ex) {
@@ -34,14 +34,16 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         if (ex instanceof InternalServletException) {
             error = (InternalServletException) ex;
         } else {
-            error = new InternalServletException(500, "Internal Server Exception");
+            error = new InternalServletException(500, "Internal Server Error");
             error.setException(ex);
         }
         try {
-            if (ServletUtils.isJSONResponse(obj)) {
+            if (WebUtils.hasResponseAnnotation(obj)) {
                 response.setContentType("application/json; charset=UTF-8");
-                if (statusCode > 0) {
-                    response.setStatus(statusCode);
+
+                // default all ajax responses 200
+                if (!showErrorState) {
+                    response.setStatus(HttpServletResponse.SC_OK);
                 } else {
                     response.setStatus(error.getObject().getStatus());
                 }
@@ -78,7 +80,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
     /**
      * @param statusCode
      */
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public void setShowErrorState(boolean showErrorState) {
+        this.showErrorState = showErrorState;
     }
 }

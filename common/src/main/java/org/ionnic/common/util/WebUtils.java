@@ -19,7 +19,7 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public abstract class ServletUtils extends ServletRequestUtils {
+public abstract class WebUtils extends ServletRequestUtils {
 
     /**
      * @param name
@@ -106,7 +106,7 @@ public abstract class ServletUtils extends ServletRequestUtils {
      * @param request
      * @return
      */
-    public static boolean isJSONResponse(Object handle) {
+    public static boolean hasResponseAnnotation(Object handle) {
         ResponseBody anno = null;
         try {
             Method me = ((HandlerMethod) handle).getMethod();
