@@ -77,7 +77,7 @@ public class Home extends ActionSupport {
      */
     @RequestMapping(value = "/index")
     public Object index(HttpServletRequest request, JSONObject data) {
-        data.addAttribute("search", "<a>测试</a>");
+        data.addAttribute("search", "<a href=\"api\">测试</a>");
         data.addAttribute("url", 1);
 
         return data;

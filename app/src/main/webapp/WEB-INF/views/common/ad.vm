@@ -1,1 +1,12 @@
-$util.escapeInH("<script>var ad = '$util.escapeInJ($html)';</script>")
+<!-- 源码： $util.raw($search) -->
+<!-- 转义： $search -->
+<!-- 强转： $util.escapeInH($search) -->
+
+#set($tpl = '<a href="OK">测试</a>')
+
+<script data-search="$search" data-tpl="$util.escapeInHH($content)">
+    var ad = "$util.escapeInJ($content)";
+    var search = "$search";
+</script>
+
+<p title="$search">status-ok:$tpl</p>

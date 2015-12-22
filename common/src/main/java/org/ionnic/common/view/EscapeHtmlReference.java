@@ -1,8 +1,8 @@
 package org.ionnic.common.view;
 
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
+import org.ionnic.common.view.tool.StringTool;
 import org.springframework.util.StringUtils;
-import org.springframework.web.util.HtmlUtils;
 
 /**
  * HTML转义输出
@@ -34,7 +34,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
                 return value;
             }
         }
-        return HtmlUtils.htmlEscape(value.toString());
+        return StringTool.escapeInH(value);
     }
 
     /**

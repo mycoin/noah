@@ -9,7 +9,9 @@
     #end
 #end
 
-#external("ad", {"wd": $data.getParams().keyword})
+$page.load("misc.vm", {
+    "search": $data.getParams().keyword
+})
 
 <!--
 Request:

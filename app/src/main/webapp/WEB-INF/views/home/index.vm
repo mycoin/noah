@@ -1,16 +1,18 @@
 #setLayout("index")
-#set($title = "这里是标题")
 
-#define("title")
-    search: $data.search
+#set($title = "标题在此")
+
+<script>
+var config = "$page.include('ad')"
+</script>
+
+<!-- 定义多行变量 -->
+#define("content")
+    $page.load("ad.html")
 #end
-#define("header")
-    search: $data.search
-#end
 
-$request.getContextPath()
-$context.class
-
-
-$page.include('ad')
-$page.external('error', {})
+<!-- 应用外部模板 -->
+$page.load("ad.vm", {
+    "search": $data.search,
+    "content": $content
+})
