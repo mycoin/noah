@@ -8,7 +8,7 @@ import org.ionnic.common.model.JSONObject;
  * @author apple
  *
  */
-public class InternalServletException extends ServletException {
+public class ServiceException extends ServletException {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,19 +18,17 @@ public class InternalServletException extends ServletException {
      * @param status
      * @param statusInfo
      */
-    public InternalServletException(int status, String statusInfo) {
+    public ServiceException(int status, String statusInfo) {
         result = new JSONObject();
 
         result.setStatus(status);
         result.setStatusInfo(statusInfo);
-
-        setException(null);
     }
 
     /**
      * @param statusInfo
      */
-    public InternalServletException(String statusInfo) {
+    public ServiceException(String statusInfo) {
         this(500, statusInfo);
     }
 
@@ -45,6 +43,11 @@ public class InternalServletException extends ServletException {
      * @param exception
      */
     public void setException(Exception exception) {
+        if (null == exception) {
+            return;
+        }
+
+        result.addAttribute("message", exception.getMessage());
         result.addAttribute("error", exception);
     }
 

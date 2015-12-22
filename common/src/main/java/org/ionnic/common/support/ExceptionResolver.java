@@ -30,11 +30,11 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             return null;
         }
 
-        InternalServletException error;
-        if (ex instanceof InternalServletException) {
-            error = (InternalServletException) ex;
+        ServiceException error;
+        if (ex instanceof ServiceException) {
+            error = (ServiceException) ex;
         } else {
-            error = new InternalServletException(500, "Internal Server Error");
+            error = new ServiceException(500, "Internal Server Error");
             error.setException(ex);
         }
         try {
