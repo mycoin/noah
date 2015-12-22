@@ -5,7 +5,7 @@ $page.load("banner.html")
 #set($title = "标题在此")
 
 <script>
-var config = "$page.include('ad')"
+var error = "$page.load('not-found')"; // 不会报错
 </script>
 
 <!-- 定义多行变量 -->
