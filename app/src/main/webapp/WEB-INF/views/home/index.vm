@@ -1,3 +1,5 @@
+$page.load("banner.html")
+
 #setLayout("index")
 
 #set($title = "标题在此")

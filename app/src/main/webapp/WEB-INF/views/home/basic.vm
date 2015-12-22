@@ -9,6 +9,7 @@
     #end
 #end
 
+$page.load("banner.html")
 $page.load("misc.vm", {
     "search": $data.getParams().keyword
 })
