@@ -1,4 +1,4 @@
-package org.ionnic.common.view.external;
+package org.ionnic.common.external;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 /**
  * @author apple
  */
-abstract class SyncTemplateConfig {
+abstract class SyncExternalTemplate {
 
     private Resource externalPath;
 

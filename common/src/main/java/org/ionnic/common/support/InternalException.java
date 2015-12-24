@@ -46,8 +46,8 @@ public class InternalException extends ServletException {
             return;
         }
 
+        result.addAttribute("type", exception.getClass().getSimpleName());
         result.addAttribute("message", exception.getMessage());
-        result.addAttribute("error", exception);
     }
 
     @Override

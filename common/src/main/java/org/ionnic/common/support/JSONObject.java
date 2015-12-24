@@ -102,11 +102,6 @@ public class JSONObject implements Serializable, Cloneable {
         this.statusInfo = statusInfo;
     }
 
-    @Override
-    public String toString() {
-        return JsonUtils.toJson(this);
-    }
-
     /**
      * @param map
      */
@@ -116,5 +111,10 @@ public class JSONObject implements Serializable, Cloneable {
         map.put("data", getData());
         map.put("status", getStatus());
         map.put("statusInfo", getStatusInfo());
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtils.toJson(this);
     }
 }

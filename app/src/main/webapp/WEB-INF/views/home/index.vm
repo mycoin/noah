@@ -12,9 +12,14 @@ var error = "$page.load('not-found')"; // 不会报错
 #define("content")
     $page.load("ad.html")
 #end
-
 <!-- 应用外部模板 -->
 $page.load("ad.vm", {
     "search": $data.search,
     "content": $content
 })
+
+##use()
+<!-- 组件引用 -->
+#widget("loginPanel", {})
+
+#end

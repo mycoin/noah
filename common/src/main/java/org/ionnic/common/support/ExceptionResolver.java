@@ -37,23 +37,21 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             error = new InternalException(500, "Internal Server Error");
             error.setException(ex);
         }
+
+        JSONObject result = error.getObject();
         try {
             if (WebUtils.hasResponseAnnotation(obj)) {
                 response.setContentType("application/json; charset=UTF-8");
 
                 // default all ajax responses 200
-                if (!showErrorState) {
-                    response.setStatus(HttpServletResponse.SC_OK);
-                } else {
-                    response.setStatus(error.getObject().getStatus());
+                if (showErrorState) {
+                    response.setStatus(result.getStatus());
                 }
                 response.getOutputStream().write(error.toString().getBytes());
                 response.getOutputStream().close();
-
-                return null;
             } else {
                 mv = new ModelAndView(errorView);
-                mv.addObject(errorAttribute, error.getObject());
+                mv.addObject(errorAttribute, result);
             }
         } catch (Exception e) {
             logger.error("Not catch exception by exceptionResolver:", ex);

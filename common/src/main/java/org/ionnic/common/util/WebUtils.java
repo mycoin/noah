@@ -89,19 +89,6 @@ public abstract class WebUtils extends ServletRequestUtils {
     }
 
     /**
-     * @param request
-     * @return
-     */
-    public static boolean isAjax(HttpServletRequest request) {
-        String requestedWith = request.getHeader("X-Requested-With");
-        if (requestedWith == null) {
-            return false;
-        } else {
-            return "XMLHttpRequest".equals(requestedWith);
-        }
-    }
-
-    /**
      * @param method
      * @param request
      * @return
@@ -117,6 +104,19 @@ public abstract class WebUtils extends ServletRequestUtils {
         }
 
         return anno != null;
+    }
+
+    /**
+     * @param request
+     * @return
+     */
+    public static boolean isAjax(HttpServletRequest request) {
+        String requestedWith = request.getHeader("X-Requested-With");
+        if (requestedWith == null) {
+            return false;
+        } else {
+            return "XMLHttpRequest".equals(requestedWith);
+        }
     }
 
     /**

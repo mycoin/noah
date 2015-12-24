@@ -31,6 +31,7 @@
 
 	<!-- 视图配置 -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="order" value="1" />
 		<property name="suffix" value=".vm" />
 		<property name="screenContentKey" value="body" />
 		<property name="layoutUrl" value="common/layout/default.vm" />
