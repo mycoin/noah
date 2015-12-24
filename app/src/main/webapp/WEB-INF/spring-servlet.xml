@@ -21,11 +21,11 @@
 	<mvc:annotation-driven>
 		<mvc:async-support default-timeout="3000" />
 		<mvc:message-converters register-defaults="false">
-			<bean class="org.ionnic.common.converter.ApiMessageConverter" />
-			<bean class="org.ionnic.common.converter.JsonMessageConverter" />
+			<bean class="org.ionnic.common.http.ApiMessageConverter" />
+			<bean class="org.ionnic.common.http.JsonMessageConverter" />
 		</mvc:message-converters>
 		<mvc:return-value-handlers>
-			<bean class="org.ionnic.common.converter.JsonReturnValueHandler" />
+			<bean class="org.ionnic.common.http.JsonReturnValueHandler" />
 		</mvc:return-value-handlers>
 	</mvc:annotation-driven>
 
@@ -40,13 +40,13 @@
 
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
-		<bean class="org.ionnic.common.interceptor.ContentTypeInterceptor" />
-		<bean class="org.ionnic.common.interceptor.SecurityInterceptor" />
+		<bean class="org.ionnic.common.http.ContentTypeInterceptor" />
+		<bean class="org.ionnic.common.http.SecurityInterceptor" />
 
 		<mvc:interceptor>
 			<mvc:mapping path="/api" />
 			<mvc:mapping path="/api/**" />
-			<bean class="org.ionnic.common.interceptor.ApiProviderInterceptor" />
+			<bean class="org.ionnic.common.http.ApiProviderInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

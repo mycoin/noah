@@ -2,13 +2,12 @@ package org.ionnic.common.support;
 
 import javax.servlet.ServletException;
 
-import org.ionnic.common.model.JSONObject;
 
 /**
  * @author apple
  *
  */
-public class ServiceException extends ServletException {
+public class InternalException extends ServletException {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +17,7 @@ public class ServiceException extends ServletException {
      * @param status
      * @param statusInfo
      */
-    public ServiceException(int status, String statusInfo) {
+    public InternalException(int status, String statusInfo) {
         result = new JSONObject();
 
         result.setStatus(status);
@@ -28,7 +27,7 @@ public class ServiceException extends ServletException {
     /**
      * @param statusInfo
      */
-    public ServiceException(String statusInfo) {
+    public InternalException(String statusInfo) {
         this(500, statusInfo);
     }
 

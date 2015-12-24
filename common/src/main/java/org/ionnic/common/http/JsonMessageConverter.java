@@ -1,4 +1,4 @@
-package org.ionnic.common.converter;
+package org.ionnic.common.http;
 
 import java.io.IOException;
 import java.io.InputStream;

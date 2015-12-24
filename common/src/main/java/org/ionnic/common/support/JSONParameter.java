@@ -1,4 +1,4 @@
-package org.ionnic.common.model;
+package org.ionnic.common.support;
 
 import java.io.Serializable;
 import java.util.HashMap;

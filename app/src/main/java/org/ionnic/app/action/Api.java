@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
-import org.ionnic.common.model.JSONObject;
-import org.ionnic.common.model.JSONParameter;
 import org.ionnic.common.support.ActionSupport;
+import org.ionnic.common.support.JSONObject;
+import org.ionnic.common.support.JSONParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +30,7 @@ public class Api extends ActionSupport {
 
     @RequestMapping("/db")
     @ResponseBody
-    public Object db(HttpServletRequest request) throws SQLException {
+    public JSONObject db(HttpServletRequest request) throws SQLException {
         Connection conn = dataSource.getConnection();
         String sql = "INSERT INTO CUSTOMER " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,7 +40,8 @@ public class Api extends ActionSupport {
         ps.executeUpdate();
         ps.close();
 
-        return conn;
+        JSONObject obj = new JSONObject();
+        return obj;
     }
 
     @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")

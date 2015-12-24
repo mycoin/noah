@@ -25,7 +25,7 @@ public class HttpDispatcherServlet extends DispatcherServlet {
 
     @Override
     protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        new ServiceException(404, "Page Not Found");
+        new InternalException(404, "Page Not Found");
     }
 
     @Override
@@ -69,7 +69,7 @@ public class HttpDispatcherServlet extends DispatcherServlet {
             }
 
             if (found) {
-                ServiceException error = new ServiceException(statusCode, "Forbidden");
+                InternalException error = new InternalException(statusCode, "Forbidden");
                 error.setException(ex);
 
                 ex = error;

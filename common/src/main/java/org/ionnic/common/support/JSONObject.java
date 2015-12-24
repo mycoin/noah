@@ -1,4 +1,4 @@
-package org.ionnic.common.model;
+package org.ionnic.common.support;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -10,12 +10,6 @@ import org.springframework.ui.ModelMap;
 public class JSONObject implements Serializable, Cloneable {
 
     private static final long serialVersionUID = -4545992275844080215L;
-
-    private static final String DATA_ARRTIBUTE = "data";
-
-    private static final String STATUS_ATTRIBUTE = "status";
-
-    private static final String STATUS_INFO_ATTRIBUTE = "statusInfo";
 
     private int status = 0;
 
@@ -67,15 +61,6 @@ public class JSONObject implements Serializable, Cloneable {
     }
 
     /**
-     * @param model
-     */
-    public void exposeContext(Map<String, Object> model) {
-        model.put(DATA_ARRTIBUTE, getData());
-        model.put(STATUS_ATTRIBUTE, getStatus());
-        model.put(STATUS_INFO_ATTRIBUTE, getStatusInfo());
-    }
-
-    /**
      * @return the data
      */
     public ModelMap getData() {
@@ -122,4 +107,14 @@ public class JSONObject implements Serializable, Cloneable {
         return JsonUtils.toJson(this);
     }
 
+    /**
+     * @param map
+     */
+    public void toModel(Map<String, Object> map) {
+        map.clear();
+
+        map.put("data", getData());
+        map.put("status", getStatus());
+        map.put("statusInfo", getStatusInfo());
+    }
 }

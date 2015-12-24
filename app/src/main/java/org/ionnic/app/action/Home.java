@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ionnic.app.util.CreateImage;
-import org.ionnic.common.model.JSONObject;
-import org.ionnic.common.model.JSONParameter;
 import org.ionnic.common.support.ActionSupport;
+import org.ionnic.common.support.JSONObject;
+import org.ionnic.common.support.JSONParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;

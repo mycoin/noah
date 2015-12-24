@@ -1,9 +1,9 @@
-package org.ionnic.common.converter;
+package org.ionnic.common.http;
 
 import java.io.IOException;
 
-import org.ionnic.common.model.JSONObject;
-import org.ionnic.common.model.JSONParameter;
+import org.ionnic.common.support.JSONObject;
+import org.ionnic.common.support.JSONParameter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 

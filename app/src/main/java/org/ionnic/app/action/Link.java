@@ -1,8 +1,8 @@
 package org.ionnic.app.action;
 
-import org.ionnic.common.model.JSONObject;
-import org.ionnic.common.model.JSONParameter;
 import org.ionnic.common.support.ActionSupport;
+import org.ionnic.common.support.JSONObject;
+import org.ionnic.common.support.JSONParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
