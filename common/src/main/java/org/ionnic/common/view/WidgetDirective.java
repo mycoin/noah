@@ -1,4 +1,4 @@
-package org.ionnic.common.view.widget;
+package org.ionnic.common.view;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

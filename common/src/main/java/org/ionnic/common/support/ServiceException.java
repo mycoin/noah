@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
  * @author apple
  *
  */
-public class InternalException extends ServletException {
+public class ServiceException extends ServletException {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +17,7 @@ public class InternalException extends ServletException {
      * @param status
      * @param statusInfo
      */
-    public InternalException(int status, String statusInfo) {
+    public ServiceException(int status, String statusInfo) {
         result = new JSONObject();
 
         result.setStatus(status);
@@ -27,7 +27,7 @@ public class InternalException extends ServletException {
     /**
      * @param statusInfo
      */
-    public InternalException(String statusInfo) {
+    public ServiceException(String statusInfo) {
         this(500, statusInfo);
     }
 

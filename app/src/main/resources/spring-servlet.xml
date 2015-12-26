@@ -19,14 +19,9 @@
 
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
-		<mvc:async-support default-timeout="3000" />
-		<mvc:message-converters register-defaults="false">
-			<bean class="org.ionnic.common.http.ApiMessageConverter" />
+		<mvc:message-converters register-defaults="true">
 			<bean class="org.ionnic.common.http.JsonMessageConverter" />
 		</mvc:message-converters>
-		<mvc:return-value-handlers>
-			<bean class="org.ionnic.common.http.JsonReturnValueHandler" />
-		</mvc:return-value-handlers>
 	</mvc:annotation-driven>
 
 	<!-- 视图配置 -->
@@ -43,12 +38,6 @@
 	<mvc:interceptors>
 		<bean class="org.ionnic.common.http.ContentTypeInterceptor" />
 		<bean class="org.ionnic.common.http.SecurityInterceptor" />
-
-		<mvc:interceptor>
-			<mvc:mapping path="/api" />
-			<mvc:mapping path="/api/**" />
-			<bean class="org.ionnic.common.http.ApiProviderInterceptor" />
-		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- 异常处理 -->

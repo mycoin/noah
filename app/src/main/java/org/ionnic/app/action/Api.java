@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.ionnic.common.support.ActionSupport;
+import org.ionnic.common.support.ContextContainer;
 import org.ionnic.common.support.JSONObject;
 import org.ionnic.common.support.JSONParameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,8 @@ public class Api extends ActionSupport {
         return data;
     }
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @RequestMapping(value = "display", method = { RequestMethod.GET })
+    public void display(ContextContainer data) {
+        System.out.println(data.getRequest());
     }
 }

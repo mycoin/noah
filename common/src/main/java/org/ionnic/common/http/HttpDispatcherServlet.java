@@ -1,8 +1,9 @@
-package org.ionnic.common.support;
+package org.ionnic.common.http;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ionnic.common.support.ServiceException;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -25,7 +26,7 @@ public class HttpDispatcherServlet extends DispatcherServlet {
 
     @Override
     protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        new InternalException(404, "Page Not Found");
+        new ServiceException(404, "Page Not Found");
     }
 
     @Override
@@ -69,7 +70,7 @@ public class HttpDispatcherServlet extends DispatcherServlet {
             }
 
             if (found) {
-                InternalException error = new InternalException(statusCode, "Forbidden");
+                ServiceException error = new ServiceException(statusCode, "Forbidden");
                 error.setException(ex);
 
                 ex = error;

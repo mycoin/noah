@@ -7,13 +7,11 @@
     #if($data.getParams().keyword)
         <!-- status-ok -->
     #end
+
+    OK
 #end
 
 $page.load("banner.html")
-$page.load("misc.vm", {
-    "search": $data.getParams().keyword
-})
-
 <!--
 Request:
 #foreach($item in $request.getAttributeNames())
@@ -27,6 +25,5 @@ Session:
     $item: [$session.getAttribute($item)]
 #end
 -->
-
 
 $tpl

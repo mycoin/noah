@@ -4,14 +4,9 @@
 
 #set($tpl = '<a href="OK">测试</a>')
 
-
-$search
-
-
 <script data-search="$search" data-tpl="$util.escapeInHH($content)">
     var ad = "$util.escapeInJ($content)";
     var search = "$search";
-
 
     var script = document.scripts[document.scripts.length - 1];
     var data = script.getAttribute('data-tpl');
@@ -22,3 +17,5 @@ $search
 </script>
 
 <!-- p title="$search">status-ok:$tpl</p -->
+
+$tpl, $context

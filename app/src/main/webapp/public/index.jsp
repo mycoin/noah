@@ -5,9 +5,7 @@
 <title>home web</title>
 <link rel="stylesheet" type="text/css" href="css/lib.css" />
 </head>
-<%
-String baseUrl = request.getContextPath();
-%>
+<%String baseUrl = request.getContextPath();%>
 <body>
     <h2>测试用例</h2>
     <div class="col">
@@ -19,6 +17,7 @@ String baseUrl = request.getContextPath();
             <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
             <li data-task="x-json"><i>6</i><a class="link normal" href="<%=baseUrl%>/home/json" target="_blank">json</a></li>
             <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
+            <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">new display</a></li>
         </ul>
     </div>
     <script src="//macbook-air.local/jquery.js"></script>

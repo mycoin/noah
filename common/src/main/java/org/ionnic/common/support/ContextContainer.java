@@ -1,0 +1,1 @@
+package org.ionnic.common.support;import javax.servlet.http.HttpServletRequest;import org.springframework.web.context.request.ServletWebRequest;/** * @author apple * */public class ContextContainer extends ServletWebRequest {    public ContextContainer(HttpServletRequest request) {        super(request);        // TODO Auto-generated constructor stub    }}

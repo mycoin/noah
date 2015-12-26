@@ -17,9 +17,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
 
     private static Log logger = LogFactory.getLog(ExceptionResolver.class);
 
-    private String errorAttribute = "error";
-
-    private String errorView = null;
+    private String errorView = "/common/error";
 
     private boolean showErrorState = false;
 
@@ -30,11 +28,11 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             return null;
         }
 
-        InternalException error;
-        if (ex instanceof InternalException) {
-            error = (InternalException) ex;
+        ServiceException error;
+        if (ex instanceof ServiceException) {
+            error = (ServiceException) ex;
         } else {
-            error = new InternalException(500, "Internal Server Error");
+            error = new ServiceException(500, "Internal Server Error");
             error.setException(ex);
         }
 
@@ -51,20 +49,13 @@ public class ExceptionResolver implements HandlerExceptionResolver {
                 response.getOutputStream().close();
             } else {
                 mv = new ModelAndView(errorView);
-                mv.addObject(errorAttribute, result);
+                error.getObject().toModel(mv.getModel());
             }
         } catch (Exception e) {
             logger.error("Not catch exception by exceptionResolver:", ex);
         }
 
         return mv;
-    }
-
-    /**
-     * @param errorAttribute the errorAttribute to set
-     */
-    public void setErrorAttribute(String errorAttribute) {
-        this.errorAttribute = errorAttribute;
     }
 
     /**
