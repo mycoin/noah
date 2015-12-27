@@ -1,4 +1,4 @@
-package org.ionnic.common.widget;
+package org.ionnic.common.view.widget;
 
 /**
  * @author apple

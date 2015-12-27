@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>home web</title>
-<link rel="stylesheet" type="text/css" href="css/lib.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 <%String baseUrl = request.getContextPath();%>
 <body>
@@ -17,11 +17,11 @@
             <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
             <li data-task="x-json"><i>6</i><a class="link normal" href="<%=baseUrl%>/home/json" target="_blank">json</a></li>
             <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
-            <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">new display</a></li>
+            <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">display</a></li>
         </ul>
     </div>
     <script src="//macbook-air.local/jquery.js"></script>
-    <script src="js/lib.js"></script>
+    <script src="js/main.js"></script>
     <script>
     var csrfToken = '<%=Security.generateToken(request)%>';
     var taskMap = {
@@ -74,6 +74,10 @@
             data : JSON.stringify({
                 token: csrfToken
             })
+        },
+
+        'x-display': {
+
         }
     };
 
