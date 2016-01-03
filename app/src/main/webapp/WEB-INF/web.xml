@@ -14,10 +14,9 @@
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.ionnic.common.http.HttpDispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:spring-servlet.xml</param-value>
+			<param-value>classpath:spring-servlet.xml</param-value>
 		</init-param>
 	</servlet>
 

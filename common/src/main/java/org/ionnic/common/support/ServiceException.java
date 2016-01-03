@@ -2,7 +2,6 @@ package org.ionnic.common.support;
 
 import javax.servlet.ServletException;
 
-
 /**
  * @author apple
  *

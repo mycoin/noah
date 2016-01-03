@@ -3,16 +3,19 @@ package org.ionnic.app.action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.ionnic.common.support.ActionSupport;
-import org.ionnic.common.support.ContextContainer;
+import org.ionnic.common.support.Context;
 import org.ionnic.common.support.JSONObject;
 import org.ionnic.common.support.JSONParameter;
+import org.ionnic.common.view.JsonpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +48,17 @@ public class Api extends ActionSupport {
         return obj;
     }
 
+    @RequestMapping(value = "/display", method = { RequestMethod.GET, RequestMethod.POST })
+    public void display(Context cc) throws Exception {
+        final Model data = cc.getData();
+
+        data.addAttribute("id", 1);
+        data.addAttribute("ok", true);
+        data.addAttribute("body", cc.getBody(Map.class));
+
+        cc.setView(new JsonpView());
+    }
+
     @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
     @ResponseBody
     public Object index(@RequestBody JSONParameter param, JSONObject data) {
@@ -57,10 +71,5 @@ public class Api extends ActionSupport {
         data.addAttribute("url", request.getRequestURL());
 
         return data;
-    }
-
-    @RequestMapping(value = "display", method = { RequestMethod.GET })
-    public void display(ContextContainer data) {
-        System.out.println(data.getRequest());
     }
 }

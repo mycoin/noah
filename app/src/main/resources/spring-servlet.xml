@@ -19,6 +19,9 @@
 
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="org.ionnic.common.http.BaseMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 		<mvc:message-converters register-defaults="true">
 			<bean class="org.ionnic.common.http.JsonMessageConverter" />
 		</mvc:message-converters>

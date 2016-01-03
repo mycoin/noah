@@ -20,37 +20,6 @@ public abstract class TemplateUtils {
     private static final Pattern SPACE_HOLDER_PATTERN = Pattern.compile("\\{[^{}]*\\}");
 
     /**
-     * @param content
-     * @param data
-     * @return
-     */
-    public static String renderContent(String content, Map<String, Object> data) throws VelocityException {
-        StringWriter writer = new StringWriter();
-        VelocityEngine engine = new VelocityEngine();
-
-        if (engine.evaluate(new VelocityContext(data), writer, "TemplateUtils.renderTemplate()", content)) {
-            return writer.toString();
-        }
-        return null;
-    }
-
-    /**
-     * @param content
-     * @param data
-     * @return
-     * @throws VelocityException
-     */
-    public static String renderTemplate(String content, Map<String, Object> data) throws VelocityException {
-        StringWriter writer = new StringWriter();
-        VelocityEngine engine = new VelocityEngine();
-
-        Template tpl = engine.getTemplate(content);
-        tpl.merge(new VelocityContext(data), writer);
-
-        return writer.toString();
-    }
-
-    /**
      * @param pattern
      * @param parameterMap
      * @return
@@ -80,5 +49,36 @@ public abstract class TemplateUtils {
 
         buffer.append(pattern, start, pattern.length());
         return buffer.toString();
+    }
+
+    /**
+     * @param content
+     * @param data
+     * @return
+     */
+    public static String renderContent(String content, Map<String, Object> data) throws VelocityException {
+        StringWriter writer = new StringWriter();
+        VelocityEngine engine = new VelocityEngine();
+
+        if (engine.evaluate(new VelocityContext(data), writer, "TemplateUtils.renderTemplate()", content)) {
+            return writer.toString();
+        }
+        return null;
+    }
+
+    /**
+     * @param content
+     * @param data
+     * @return
+     * @throws VelocityException
+     */
+    public static String renderTemplate(String content, Map<String, Object> data) throws VelocityException {
+        StringWriter writer = new StringWriter();
+        VelocityEngine engine = new VelocityEngine();
+
+        Template tpl = engine.getTemplate(content);
+        tpl.merge(new VelocityContext(data), writer);
+
+        return writer.toString();
     }
 }

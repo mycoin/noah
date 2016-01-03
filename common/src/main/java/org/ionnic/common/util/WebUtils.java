@@ -34,7 +34,6 @@ public abstract class WebUtils extends ServletRequestUtils {
         } catch (Exception e) {
         }
         return null;
-
     }
 
     /**

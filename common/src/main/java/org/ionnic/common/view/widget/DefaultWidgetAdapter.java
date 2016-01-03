@@ -6,5 +6,4 @@ package org.ionnic.common.view.widget;
  */
 public class DefaultWidgetAdapter {
 
-
 }

@@ -7,6 +7,10 @@ import java.util.Map;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.ui.ModelMap;
 
+/**
+ * @author apple
+ *
+ */
 public class JSONObject implements Serializable, Cloneable {
 
     private static final long serialVersionUID = -4545992275844080215L;

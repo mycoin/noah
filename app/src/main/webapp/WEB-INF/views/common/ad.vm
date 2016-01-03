@@ -18,4 +18,4 @@
 
 <!-- p title="$search">status-ok:$tpl</p -->
 
-$tpl, $context
+$tpl

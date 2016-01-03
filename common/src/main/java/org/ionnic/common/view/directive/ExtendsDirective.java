@@ -1,4 +1,4 @@
-package org.ionnic.common.view;
+package org.ionnic.common.view.directive;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -39,13 +39,13 @@ import org.apache.velocity.runtime.parser.node.Node;
  * @author Nathan Bubna
  * @version $Id: Define.java 686842 2008-08-18 18:29:31Z nbubna $
  */
-public class DefineDirective extends Block {
+public class ExtendsDirective extends Block {
     /**
      * Return name of this directive.
      */
     @Override
     public String getName() {
-        return "define";
+        return "extends";
     }
 
     /**

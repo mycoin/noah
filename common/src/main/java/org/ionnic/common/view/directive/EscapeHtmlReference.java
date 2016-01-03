@@ -1,4 +1,4 @@
-package org.ionnic.common.view;
+package org.ionnic.common.view.directive;
 
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 import org.ionnic.common.view.tool.StringTool;
