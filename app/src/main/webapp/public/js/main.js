@@ -34,7 +34,7 @@ jQuery(function() {
                     function(data, _, xhr) {
 
                         csrfToken = csrfToken || xhr.getResponseHeader("X-Token");
-
+                        console.log(data);
                         if (_ === 'error') {
                             xhr = data;
                         }
