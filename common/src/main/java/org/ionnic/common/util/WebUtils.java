@@ -92,10 +92,10 @@ public abstract class WebUtils extends ServletRequestUtils {
      * @param request
      * @return
      */
-    public static boolean hasResponseAnnotation(Object handle) {
+    public static boolean hasResponseAnnotation(Object handler) {
         ResponseBody anno = null;
         try {
-            Method me = ((HandlerMethod) handle).getMethod();
+            Method me = ((HandlerMethod) handler).getMethod();
             anno = AnnotationUtils.findAnnotation(me, ResponseBody.class);
             anno.annotationType();
         } catch (Exception e) {

@@ -8,10 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
-import org.ionnic.common.support.ActionSupport;
-import org.ionnic.common.support.Context;
-import org.ionnic.common.support.JSONObject;
-import org.ionnic.common.support.JSONParameter;
+import org.ionnic.common.ActionSupport;
+import org.ionnic.common.ContextContainer;
 import org.ionnic.common.view.JsonpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +32,7 @@ public class Api extends ActionSupport {
 
     @RequestMapping("/db")
     @ResponseBody
-    public JSONObject db(HttpServletRequest request) throws SQLException {
+    public void db(HttpServletRequest request) throws SQLException {
         Connection conn = dataSource.getConnection();
         String sql = "INSERT INTO CUSTOMER " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -43,13 +41,10 @@ public class Api extends ActionSupport {
         ps.setInt(3, 9);
         ps.executeUpdate();
         ps.close();
-
-        JSONObject obj = new JSONObject();
-        return obj;
     }
 
     @RequestMapping(value = "/display", method = { RequestMethod.GET, RequestMethod.POST })
-    public void display(Context cc) throws Exception {
+    public void display(ContextContainer cc) throws Exception {
         final Model data = cc.getData();
 
         data.addAttribute("id", 1);
@@ -61,15 +56,7 @@ public class Api extends ActionSupport {
 
     @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
     @ResponseBody
-    public Object index(@RequestBody JSONParameter param, JSONObject data) {
+    public void index(@RequestBody Map<String, Object> param) {
 
-        data.setStatus(0);
-        data.addAllAttributes(param.getParams());
-
-        data.addAttribute("param", param);
-        data.addAttribute("keyword", param.getParams().get("keyword"));
-        data.addAttribute("url", request.getRequestURL());
-
-        return data;
     }
 }

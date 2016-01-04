@@ -1,4 +1,4 @@
-package org.ionnic.common.http;
+package org.ionnic.common.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

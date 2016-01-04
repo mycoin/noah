@@ -1,9 +1,9 @@
-package org.ionnic.common.http;
+package org.ionnic.common.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.common.support.Context;
+import org.ionnic.common.ContextContainer;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -22,12 +22,12 @@ public class BaseMethodArgumentResolver implements HandlerMethodArgumentResolver
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
 
-        Context context = new Context(request, response, mavContainer);
-        return context;
+        ContextContainer contextContainer = new ContextContainer(request, response, mavContainer);
+        return contextContainer;
     }
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return Context.class.isAssignableFrom(parameter.getParameterType());
+        return ContextContainer.class.isAssignableFrom(parameter.getParameterType());
     }
 }

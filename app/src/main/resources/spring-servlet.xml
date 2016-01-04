@@ -20,10 +20,10 @@
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
-			<bean class="org.ionnic.common.http.BaseMethodArgumentResolver" />
+			<bean class="org.ionnic.common.web.BaseMethodArgumentResolver" />
 		</mvc:argument-resolvers>
 		<mvc:message-converters register-defaults="true">
-			<bean class="org.ionnic.common.http.JsonMessageConverter" />
+			<bean class="org.ionnic.common.web.JsonMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
@@ -39,16 +39,24 @@
 
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
-		<bean class="org.ionnic.common.http.ContentTypeInterceptor" />
-		<bean class="org.ionnic.common.http.SecurityInterceptor" />
+		<bean class="org.ionnic.common.web.ContentTypeInterceptor" />
+		<bean class="org.ionnic.common.web.SecurityInterceptor" />
 	</mvc:interceptors>
 
 	<!-- 异常处理 -->
-	<bean class="org.ionnic.common.support.ExceptionResolver">
-		<property name="errorView" value="/common/error" />
-		<property name="showErrorState" value="false" />
+	<bean class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
+		<property name="order" value="0" />
+		<property name="exceptionResolvers">
+			<list>
+				<bean class="org.ionnic.common.web.DefaultExceptionResolver">
+					<property name="errorView" value="/common/error" />
+					<property name="showErrorState" value="false" />
+				</bean>
+			</list>
+		</property>
 	</bean>
 
 	<!-- 静态资源 -->
-	<mvc:default-servlet-handler />
+	<mvc:resources location="/public/" mapping="/public/**" />
+	<mvc:resources location="/index.html" mapping="/index.html" />
 </beans>

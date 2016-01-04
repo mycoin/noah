@@ -1,1 +1,22 @@
-package org.ionnic.common.support;import java.io.IOException;import java.io.InputStream;import java.nio.charset.Charset;import java.util.Map;import javax.servlet.ServletInputStream;import javax.servlet.http.HttpServletRequest;import javax.servlet.http.HttpServletResponse;import javax.servlet.http.HttpSession;import org.ionnic.common.http.BaseMethodArgumentResolver;import org.ionnic.common.util.JsonUtils;import org.springframework.http.MediaType;import org.springframework.ui.ExtendedModelMap;import org.springframework.ui.Model;import org.springframework.util.StreamUtils;import org.springframework.web.method.support.ModelAndViewContainer;import org.springframework.web.servlet.View;/** * Holder for both Model and View in the web MVC framework. * Note that these are entirely distinct. This class merely holds * both to make it possible for a controller to return both model * and view in a single return value. * * <p>Represents a model and view returned by a handler, to be resolved * by a DispatcherServlet. The view can take the form of a String * view name which will need to be resolved by a ViewResolver object; * alternatively a View object can be specified directly. The model * is a Map, allowing the use of multiple objects keyed by name. * * @author nqliujiangtao@gmail.com * @see BaseMethodArgumentResolver */public class Context {    public static final String DATA = "data";    public static final String STATUS = "status";    public static final String STATUS_INFO = "statusInfo";    private ModelAndViewContainer mv;    private HttpServletRequest request;    private HttpServletResponse response;    private HttpSession session;    // data    private Model data = new ExtendedModelMap();    /**     * @param request     * @param response     */    public Context(HttpServletRequest request, HttpServletResponse response, ModelAndViewContainer mavContainer) {        this.request = request;        this.response = response;        mv = mavContainer;        mv.addAttribute(DATA, data);        setStatus(0);        setStatusInfo("OK");    }    /**     * @param requiredType     * @return     * @throws IOException     */    @SuppressWarnings("unchecked")    public <T> T getBody(Class<T> requiredType) throws IOException {        ServletInputStream stream = request.getInputStream();        if (requiredType.isAssignableFrom(InputStream.class)) {            return (T) stream;        } else {            String body = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));            if (requiredType.isAssignableFrom(String.class)) {                return (T) body;            }            return JsonUtils.fromJson(body, requiredType);        }    }    /**     * @return     */    public Model getData() {        return data;    }    /**     * @return the request     */    public HttpServletRequest getRequest() {        return request;    }    /**     * @return the response     */    public HttpServletResponse getResponse() {        return response;    }    /**     * @return the session     */    public HttpSession getSession() {        return session;    }    /**     * @param contentType     */    public void setContentType(MediaType contentType) {        if (response.getContentType() == null) {            response.setContentType("text/html; charset=UTF-8");        }    }    /**     * @param status     */    public void setStatus(int status) {        mv.addAttribute(STATUS, status);    }    /**     * @param statusInfo     */    public void setStatusInfo(Object statusInfo) {        mv.addAttribute(STATUS_INFO, statusInfo);    }    /**     * @param class1     */    public void setView(View view) {        mv.setView(view);    }    /**     * @param viewName     */    public void setViewName(String viewName) {        mv.setViewName(viewName);    }    /**     * @return     */    public String toJson() {        return JsonUtils.toJson(mv.getModel());    }    /**     * @return     */    public Map<String, Object> toMap() {        return mv.getModel();    }}
+//package org.ionnic.common.support;
+//
+//import org.springframework.ui.ModelMap;
+//
+///**
+// * @author apple
+// *
+// */
+//public interface Context {
+//
+//    public static final String DATA = "data";
+//
+//    public static final String STATUS = "status";
+//
+//    public static final String STATUS_INFO = "statusInfo";
+//
+//    public int getStatus();
+//
+//    public Object getStatusInfo();
+//
+//    public ModelMap getData();
+//}

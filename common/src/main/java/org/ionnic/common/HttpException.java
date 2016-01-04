@@ -1,0 +1,60 @@
+package org.ionnic.common;
+
+import javax.servlet.ServletException;
+
+import org.springframework.ui.ModelMap;
+
+/**
+ * @author apple
+ *
+ */
+public class HttpException extends ServletException {
+
+    private static final long serialVersionUID = 1L;
+
+    private Object statusInfo;
+
+    private int status;
+
+    private ModelMap data;
+
+    @Override
+    public String getLocalizedMessage() {
+        if (statusInfo == null) {
+            return "Unknown";
+        } else {
+            return statusInfo.toString();
+        }
+    }
+
+    /**
+     * @param status
+     * @param statusInfo
+     */
+    public HttpException(int status, String statusInfo) {
+        this.status = status;
+        this.statusInfo = statusInfo;
+
+        data = new ModelMap();
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public Object getStatusInfo() {
+        return statusInfo;
+    }
+
+    public ModelMap getData() {
+        return data;
+    }
+
+    /**
+     * @param ex
+     */
+    public void setException(Exception ex) {
+        data.addAttribute("type", ex.getClass().getName());
+        data.addAttribute("message", ex.getMessage());
+    }
+}

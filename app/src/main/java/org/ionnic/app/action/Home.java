@@ -1,6 +1,7 @@
 package org.ionnic.app.action;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -8,10 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.ionnic.app.JSONParameter;
 import org.ionnic.app.util.CreateImage;
-import org.ionnic.common.support.ActionSupport;
-import org.ionnic.common.support.JSONObject;
-import org.ionnic.common.support.JSONParameter;
+import org.ionnic.common.ActionSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -76,7 +76,7 @@ public class Home extends ActionSupport {
      * @return
      */
     @RequestMapping(value = "/index")
-    public Object index(HttpServletRequest request, JSONObject data) {
+    public Object index(HttpServletRequest request, Model data) {
         data.addAttribute("search", "<a href=\"api\">测试</a>");
         data.addAttribute("url", 1);
 
@@ -85,11 +85,11 @@ public class Home extends ActionSupport {
 
     @RequestMapping(value = "/json")
     @ResponseBody
-    public JSONObject json(HttpServletRequest request) {
-        JSONObject result = new JSONObject();
+    public Map json(HttpServletRequest request) {
+        Map result = new HashMap();
 
-        result.addAttribute("ip", request.getRequestURL());
-        result.addAttribute("search", new Date());
+        result.put("ip", request.getRequestURL());
+        result.put("search", new Date());
         return result;
     }
 
