@@ -37,14 +37,14 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-
-        ModelAndView mv;
-
         if (ex == null) {
             return null;
         }
 
+        ModelAndView mv;
         try {
+
+            // 判断是不是异步请求
             if (WebUtils.hasResponseAnnotation(handler)) {
                 mv = new ModelAndView(new JsonView());
                 if (showErrorState) {

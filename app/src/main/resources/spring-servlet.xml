@@ -39,8 +39,9 @@
 
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
+		<bean class="org.ionnic.common.web.StatementControlInterceptor" />
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		<bean class="org.ionnic.common.web.ContentTypeInterceptor" />
-		<bean class="org.ionnic.common.web.SecurityInterceptor" />
 	</mvc:interceptors>
 
 	<!-- 异常处理 -->
@@ -57,6 +58,6 @@
 	</bean>
 
 	<!-- 静态资源 -->
+	<mvc:view-controller path="/" view-name="redirect:public/index.jsp" />
 	<mvc:resources location="/public/" mapping="/public/**" />
-	<mvc:resources location="/index.html" mapping="/index.html" />
 </beans>
