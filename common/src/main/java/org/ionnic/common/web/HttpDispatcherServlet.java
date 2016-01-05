@@ -13,5 +13,4 @@ public class HttpDispatcherServlet extends DispatcherServlet {
     protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {
         throw new HttpException(404, "Page Not Found");
     }
-
 }

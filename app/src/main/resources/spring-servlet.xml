@@ -37,10 +37,13 @@
 		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 	</bean>
 
+	<!-- <bean name="viewNameTranslator" class="">
+
+	</bean> -->
+
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
 		<bean class="org.ionnic.common.web.StatementControlInterceptor" />
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		<bean class="org.ionnic.common.web.ContentTypeInterceptor" />
 	</mvc:interceptors>
 

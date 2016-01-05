@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.util.WebUtils;
 import org.ionnic.common.view.JsonView;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -31,6 +33,8 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  */
 public class DefaultExceptionResolver implements HandlerExceptionResolver {
 
+    protected final Log logger = LogFactory.getLog(getClass());
+
     private String errorView = "error";
 
     private boolean showErrorState = true;
@@ -44,7 +48,9 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
         ModelAndView mv;
         try {
 
-            // 判断是不是异步请求
+            int statusCode = 500;
+
+            // Is the ajax request
             if (WebUtils.hasResponseAnnotation(handler)) {
                 mv = new ModelAndView(new JsonView());
                 if (showErrorState) {
@@ -52,10 +58,8 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
                 }
             } else {
                 mv = new ModelAndView(errorView);
+                response.sendError(500);
             }
-
-            int statusCode = 500;
-
             try {
                 if (ex instanceof NoSuchRequestHandlingMethodException) {
                     statusCode = HttpServletResponse.SC_NOT_FOUND;
