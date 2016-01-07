@@ -32,20 +32,31 @@ public class HttpException extends ServletException {
      * @param statusInfo
      */
     public HttpException(int status, String statusInfo) {
+        super(statusInfo);
+
         this.status = status;
         this.statusInfo = statusInfo;
 
         data = new ModelMap();
     }
 
+    /**
+     * @return
+     */
     public int getStatus() {
         return status;
     }
 
+    /**
+     * @return
+     */
     public Object getStatusInfo() {
         return statusInfo;
     }
 
+    /**
+     * @return
+     */
     public ModelMap getData() {
         return data;
     }

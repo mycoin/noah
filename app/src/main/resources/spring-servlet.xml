@@ -37,10 +37,6 @@
 		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 	</bean>
 
-	<!-- <bean name="viewNameTranslator" class="">
-
-	</bean> -->
-
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
 		<bean class="org.ionnic.common.web.StatementControlInterceptor" />
@@ -54,7 +50,7 @@
 			<list>
 				<bean class="org.ionnic.common.web.DefaultExceptionResolver">
 					<property name="errorView" value="/common/error" />
-					<property name="showErrorState" value="false" />
+					<property name="statusCode" value="500" />
 				</bean>
 			</list>
 		</property>
