@@ -10,7 +10,7 @@
     <h2>测试用例</h2>
     <div class="col">
         <ul>
-            <li data-task="x-basic"><i>1</i><a class="link normal" href="<%=baseUrl%>/home/basic" target="_blank">basic</a></li>
+            <li data-task="x-basic"><i>1</i><a class="link normal" href="<%=baseUrl%>/home/basic.json" target="_blank">basic</a></li>
             <li data-task="x-search"><i>2</i><a class="link normal" href="<%=baseUrl%>/home/search/杭州天气" target="_blank">search</a></li>
             <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/home/exception" target="_blank">exception</a></li>
             <li data-task="x-api"><i>4</i><a class="link normal" href="<%=baseUrl%>/api" target="_blank">api</a></li>

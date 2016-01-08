@@ -37,6 +37,15 @@
 		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
 	</bean>
 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="requestContextAttribute" value="context" />
+		<property name="alwaysInclude" value="true" />
+	</bean>
+
 	<!-- 拦截过滤 -->
 	<mvc:interceptors>
 		<bean class="org.ionnic.common.web.StatementControlInterceptor" />

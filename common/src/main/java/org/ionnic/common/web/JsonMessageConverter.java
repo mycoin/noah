@@ -3,13 +3,15 @@ package org.ionnic.common.web;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.ionnic.common.support.AppConfig;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.AbstractHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.util.StreamUtils;
@@ -20,14 +22,28 @@ import com.google.gson.JsonSyntaxException;
  * @author apple
  *
  */
-public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
+public class JsonMessageConverter implements HttpMessageConverter<Object> {
 
-    public JsonMessageConverter() {
-        super(MediaType.APPLICATION_JSON);
+    @Override
+    public boolean canRead(Class<?> clazz, MediaType mediaType) {
+        return true;
     }
 
     @Override
-    protected Object readInternal(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+    public boolean canWrite(Class<?> clazz, MediaType mediaType) {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public List<MediaType> getSupportedMediaTypes() {
+        List<MediaType> supportedList = new ArrayList<MediaType>();
+        supportedList.add(MediaType.APPLICATION_JSON);
+        return supportedList;
+    }
+
+    @Override
+    public Object read(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         try {
             InputStream stream = inputMessage.getBody();
             String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
@@ -39,14 +55,10 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
     }
 
     @Override
-    protected boolean supports(Class<?> clazz) {
-        return true;
-    }
-
-    @Override
-    protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+    public void write(Object t, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
         String result = JsonUtils.toJson(t);
         outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         outputMessage.getBody().write(result.getBytes());
     }
+
 }

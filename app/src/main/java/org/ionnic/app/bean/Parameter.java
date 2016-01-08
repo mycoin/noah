@@ -1,4 +1,4 @@
-package org.ionnic.app;
+package org.ionnic.app.bean;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.HttpInputMessage;
 
-public class JSONParameter implements Serializable {
+public class Parameter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,10 +55,8 @@ public class JSONParameter implements Serializable {
         this.params = params;
     }
 
-    /**
-     * @return
-     */
-    public String toJSON() {
+    @Override
+    public String toString() {
         return JsonUtils.toJson(this);
     }
 }

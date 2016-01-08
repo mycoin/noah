@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.ionnic.app.JSONParameter;
+import org.ionnic.app.bean.Parameter;
 import org.ionnic.app.util.CreateImage;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.HttpException;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
@@ -36,12 +37,26 @@ public class Home extends ActionSupport {
      * @param model
      */
     @RequestMapping("/basic")
-    public void basic(@RequestBody JSONParameter body, Model model) {
+    public void basic(@RequestBody Parameter body, Model model) {
         model.addAttribute("method", request.getMethod());
         model.addAttribute("controller", this.getClass().getName());
         model.addAttribute("data", body);
     }
 
+    /**
+     * @param model
+     */
+    @RequestMapping("/hash")
+    public void hash(ModelAndView mv) {
+        mv.addObject("method", request.getMethod());
+        mv.addObject("controller", "访问");
+    }
+
+    /**
+     * @param response
+     * @param session
+     * @throws Exception
+     */
     @RequestMapping("/code")
     public void code(HttpServletResponse response, HttpSession session) throws Exception {
         response.setHeader("Pragma", "No-cache");

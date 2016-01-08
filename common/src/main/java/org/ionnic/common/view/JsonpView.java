@@ -9,6 +9,10 @@ import org.ionnic.common.util.JsonUtils;
 import org.springframework.util.StringUtils;
 
 public class JsonpView extends JsonView {
+    @Override
+    public String getContentType() {
+        return "application/javascript";
+    }
 
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response) throws Exception {

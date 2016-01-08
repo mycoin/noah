@@ -13,7 +13,7 @@ public class JsonView implements View {
     @Override
     public String getContentType() {
         // TODO Auto-generated method stub
-        return null;
+        return "application/json";
     }
 
     @Override

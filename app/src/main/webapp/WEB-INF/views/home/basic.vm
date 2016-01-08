@@ -1,5 +1,3 @@
-##{"params":{"page":1.0,"offset":32.0,"keyword":"百度中国"},"method":"GET"}
-
 #define("tpl")
     <script type="text/javascript">
         var token = "$page.token";
@@ -7,10 +5,9 @@
     #if($data.getParams().keyword)
         <!-- status-ok -->
     #end
-
     OK
 #end
-
+$data
 $page.load("banner.html")
 <!--
 Request:
