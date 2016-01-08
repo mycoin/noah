@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
@@ -46,10 +45,10 @@ public class Home extends ActionSupport {
     /**
      * @param model
      */
-    @RequestMapping("/hash")
-    public void hash(ModelAndView mv) {
-        mv.addObject("method", request.getMethod());
-        mv.addObject("controller", "访问");
+    @RequestMapping("/jsp")
+    public void jsp(@RequestBody Parameter body, Model mv) {
+        mv.addAttribute("method", request.getMethod());
+        mv.addAttribute("controller", body);
     }
 
     /**
