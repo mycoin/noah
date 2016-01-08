@@ -5,12 +5,7 @@
 
 ## 禁用布局功能
 #macro(disabledLayout)
-    #set($layout = "layout.vm")
-#end
-
-## 禁用布局功能
-#macro(default $value, $defaultValue)#*
- *##if($value)$value#else$defaultValue#end
+    #setLayout("blank")
 #end
 
 ## 获取内部模板

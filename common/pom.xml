@@ -44,6 +44,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${springVersion}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${springVersion}</version>
+		</dependency>
 
 		<!-- spring socket -->
 		<dependency>
@@ -62,16 +67,18 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.2</version>
+			<version>2.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -115,16 +122,18 @@
 			<version>5.1.36</version>
 		</dependency>
 
+		<!-- quartz -->
 		<dependency>
 			<groupId>org.opensymphony.quartz</groupId>
 			<artifactId>quartz</artifactId>
 			<version>1.6.1</version>
 		</dependency>
 
+		<!-- xmemcached -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${springVersion}</version>
+			<groupId>com.googlecode.xmemcached</groupId>
+			<artifactId>xmemcached</artifactId>
+			<version>1.4.3</version>
 		</dependency>
 	</dependencies>
 </project>

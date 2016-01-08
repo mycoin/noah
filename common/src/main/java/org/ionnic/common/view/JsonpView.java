@@ -8,7 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.util.StringUtils;
 
+/**
+ * @author apple
+ *
+ */
 public class JsonpView extends JsonView {
+
     @Override
     public String getContentType() {
         return "application/javascript";
