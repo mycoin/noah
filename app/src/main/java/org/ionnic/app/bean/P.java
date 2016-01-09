@@ -1,17 +1,17 @@
-package org.ionnic.app.action;
+package org.ionnic.app.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.ionnic.app.bean.Parameter;
+import org.ionnic.app.util.CreateImage;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.HttpException;
-import org.ionnic.common.util.WebUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author apple
  *
  */
-@Controller
-@RequestMapping("/home")
-public class Home extends ActionSupport {
+public class P extends ActionSupport {
 
     /**
      * @param body
@@ -42,6 +40,22 @@ public class Home extends ActionSupport {
         } else {
             model.addAttribute("data", body);
         }
+    }
+
+    /**
+     * @param response
+     * @param session
+     * @throws Exception
+     */
+    @RequestMapping("/code")
+    public void code(HttpServletResponse response, HttpSession session) throws Exception {
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/png");
+
+        CreateImage vCode = new CreateImage(75, 20, 4, 4);
+        vCode.write(session, response.getOutputStream());
     }
 
     /**
@@ -77,20 +91,12 @@ public class Home extends ActionSupport {
 
     @RequestMapping(value = "/json")
     @ResponseBody
-    public ModelMap json() {
-        ModelMap model = new ModelMap();
+    public Map<String, Serializable> json(HttpServletRequest request) {
+        Map<String, Serializable> result = new HashMap<String, Serializable>();
 
-        Map<String, Object> data = new HashMap<String, Object>();
-
-        model.addAttribute(STATUS, 0);
-        model.addAttribute(STATUS_INFO, "OK");
-        model.addAttribute(DATA, data);
-
-        data.put("url", request.getRequestURL());
-        data.put("ip", WebUtils.getRemoteAddr(request));
-        data.put("search", new Date());
-
-        return model;
+        result.put("ip", request.getRequestURL());
+        result.put("search", new Date());
+        return result;
     }
 
     /**

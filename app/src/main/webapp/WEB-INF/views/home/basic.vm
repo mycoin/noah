@@ -2,13 +2,14 @@
     <script type="text/javascript">
         var token = "$page.token";
     </script>
-    #if($data.getParams().keyword)
+    #if($data.params.keyword)
         <!-- status-ok -->
     #end
     OK
 #end
-$data
+$util.toJson($data)
 $page.load("banner.html")
+
 <!--
 Request:
 #foreach($item in $request.getAttributeNames())

@@ -54,6 +54,24 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
         statusMap.put(HttpServletResponse.SC_BAD_REQUEST, "Bad Request");
     }
 
+    /**
+     * @return the statusCode
+     */
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * @param status
+     * @param ex
+     * @return
+     */
+    protected String getStatusInfo(int status, Exception ex) {
+        String message = ex.getMessage();
+
+        return message;
+    }
+
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         if (ex == null) {
@@ -128,28 +146,10 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
     }
 
     /**
-     * @param status
-     * @param ex
-     * @return
-     */
-    protected String getStatusInfo(int status, Exception ex) {
-        String message = ex.getMessage();
-
-        return message;
-    }
-
-    /**
      * @param errorView the errorView to set
      */
     public void setErrorView(String errorView) {
         this.errorView = errorView;
-    }
-
-    /**
-     * @return the statusCode
-     */
-    public int getStatusCode() {
-        return statusCode;
     }
 
     /**

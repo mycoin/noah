@@ -31,7 +31,6 @@ public class JsonMessageConverter implements HttpMessageConverter<Object> {
 
     @Override
     public boolean canWrite(Class<?> clazz, MediaType mediaType) {
-        // TODO Auto-generated method stub
         return true;
     }
 

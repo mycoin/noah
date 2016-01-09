@@ -18,15 +18,6 @@ public class HttpException extends ServletException {
 
     private ModelMap data;
 
-    @Override
-    public String getLocalizedMessage() {
-        if (statusInfo == null) {
-            return "Unknown";
-        } else {
-            return statusInfo.toString();
-        }
-    }
-
     /**
      * @param status
      * @param statusInfo
@@ -43,6 +34,22 @@ public class HttpException extends ServletException {
     /**
      * @return
      */
+    public ModelMap getData() {
+        return data;
+    }
+
+    @Override
+    public String getLocalizedMessage() {
+        if (statusInfo == null) {
+            return "Unknown";
+        } else {
+            return statusInfo.toString();
+        }
+    }
+
+    /**
+     * @return
+     */
     public int getStatus() {
         return status;
     }
@@ -52,13 +59,6 @@ public class HttpException extends ServletException {
      */
     public Object getStatusInfo() {
         return statusInfo;
-    }
-
-    /**
-     * @return
-     */
-    public ModelMap getData() {
-        return data;
     }
 
     /**

@@ -18,6 +18,23 @@ import org.springframework.web.servlet.support.RequestContextUtils;
  */
 public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("ContentTypeInterceptor.afterCompletion()");
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        if (response.getContentType() == null) {
+            response.setContentType("text/html; charset=UTF-8");
+        }
+
+        response.addHeader("X-Frame-Options", "deny");
+        response.addHeader("X-XSS-Protection", "1; mode=block");
+        response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
+
+        System.out.println("ContentTypeInterceptor.postHandle()");
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -39,22 +56,5 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 
         System.out.println("ContentTypeInterceptor.preHandle()");
         return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        if (response.getContentType() == null) {
-            response.setContentType("text/html; charset=UTF-8");
-        }
-
-        response.addHeader("X-Frame-Options", "deny");
-        response.addHeader("X-XSS-Protection", "1; mode=block");
-        response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
-
-        System.out.println("ContentTypeInterceptor.postHandle()");
-    }
-
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("ContentTypeInterceptor.afterCompletion()");
     }
 }
