@@ -1,11 +1,7 @@
 package org.ionnic.common.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.ContextContainer;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -27,16 +23,11 @@ public class BaseMethodArgumentResolver implements HandlerMethodArgumentResolver
         if (logger.isDebugEnabled()) {
             logger.debug("init ContextContainer()");
         }
-
-        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-        HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
-
-        ContextContainer contextContainer = new ContextContainer(request, response, mavContainer);
-        return contextContainer;
+        return mavContainer;
     }
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return ContextContainer.class.isAssignableFrom(parameter.getParameterType());
+        return false;
     }
 }
