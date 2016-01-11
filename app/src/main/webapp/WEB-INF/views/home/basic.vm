@@ -8,7 +8,6 @@
     OK
 #end
 $util.toJson($data)
-$page.load("banner.html")
 
 <!--
 Request:
