@@ -1,3 +1,9 @@
-$data
-$status
-$statusInfo
+#block("body")
+	data:$data
+	status:$status
+	statusInfo:$statusInfo
+#end
+
+$body
+
+#extends("main")

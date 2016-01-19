@@ -34,6 +34,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
                 return value;
             }
         }
+
         return StringTool.escapeInH(value);
     }
 
