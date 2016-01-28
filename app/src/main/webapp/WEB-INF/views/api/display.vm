@@ -1,16 +1,16 @@
 <div class="title">标题</div>
 
 #block("screen")
-	data:$data
-	status:$status
-	statusInfo:$statusInfo
+	<ul>
+		<li>data: $data</li>
+		<li>status: $status</li>
+		<li>statusInfo: $statusInfo</li>
+	</ul>
 #end
 
 <!-- 脚本代码 -->
 #block("script")
-    <script>
-    var F = {};
-    </script>
+    <script>var F = {};</script>
 #end
 
 <!-- setup -->

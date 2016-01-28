@@ -1,3 +1,3 @@
-$screen_content
-
-#block("script")#end
+#block("screen")
+	$screen_content
+#end

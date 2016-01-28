@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.runtime.parser.node.Node;
+import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.springframework.util.StringUtils;
 
 /**
@@ -17,7 +18,9 @@ public abstract class TemplateUtils {
 
 	private static final Pattern SPACE_HOLDER_PATTERN = Pattern.compile("\\{[^{}]*\\}");
 
-	private static final Object DEFAULT_LAYOUT = "layout/blank.vm";
+	private static final String DEFAULT_LAYOUT = "layout/blank.vm";
+
+	private static final String LAYOUT_KEY = "layout";
 
 	/**
 	 * @param pattern
@@ -58,10 +61,11 @@ public abstract class TemplateUtils {
 	public static String getFirstArg(Node node) {
 		String[] args = getArgArray(node);
 		if (args.length > 0) {
-			return args[0];
-		} else {
-			return null;
+			if (StringUtils.hasLength(args[0])) {
+				return args[0];
+			}
 		}
+		return null;
 	}
 
 	/**
@@ -74,36 +78,22 @@ public abstract class TemplateUtils {
 	 * @return array of arguments
 	 */
 	public static String[] getArgArray(Node node) {
-		/*
-		 * Get the number of arguments for the macro, excluding the
-		 * last child node which is the block tree containing the
-		 * macro body.
-		 */
-		int numArgs = node.jjtGetNumChildren();
 
-		String argArray[] = new String[numArgs];
+		int count = node.jjtGetNumChildren();
+		String[] param = new String[count];
 
-		// avoid the block tree...
-		numArgs--;
+		for (int i = 0; i < count; i++) {
+			SimpleNode item = (SimpleNode) node.jjtGetChild(i);
+			String string = item.getFirstToken().image;
 
-		int i = 0;
-
-		String string;
-
-		while (i <= numArgs) {
-			string = node.jjtGetChild(i).getFirstToken().image;
-			if (i >= 0) {
-				if (string.startsWith("$")) {
-					string = string.substring(1, string.length());
-				} else {
-					string = string.substring(1, string.length() - 1);
-				}
+			if (item.getType() == 8) {
+				param[i] = string.substring(1, string.length() - 1);
+			} else {
+				param[i] = string;
 			}
-
-			argArray[i] = string.intern();
-			i++;
 		}
-		return argArray;
+
+		return param;
 	}
 
 	/**
@@ -111,10 +101,10 @@ public abstract class TemplateUtils {
 	 * @return
 	 */
 	public static boolean isRenderingLayout(InternalContextAdapter context) {
-		String layout = (String) context.get("layout");
+		String layout = (String) context.get(LAYOUT_KEY);
 		if (StringUtils.hasLength(layout)) {
 			return true;
-		} else if (layout == null && context.getCurrentTemplateName().equals(DEFAULT_LAYOUT)) {
+		} else if (context.getCurrentTemplateName().equals(DEFAULT_LAYOUT)) {
 			return true;
 		}
 		return false;
