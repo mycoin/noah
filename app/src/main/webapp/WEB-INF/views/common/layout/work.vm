@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>默认标题</title>
+	#block("title")
+		<title>默认标题</title>
+	#end
 	#include('head.html')
 </head>
 <body>
 	<!-- screen -->
 	<!-- screen -->
 
-	$script
-	$screen
-
-	#block("script")opt#end
+	#block("screen")opt#end
+	#block("script")#end
 </body>
 </html>

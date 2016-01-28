@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.runtime.parser.node.Node;
-import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
-import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
+import org.springframework.util.StringUtils;
 
 /**
  * @author apple
@@ -16,6 +16,8 @@ import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 public abstract class TemplateUtils {
 
 	private static final Pattern SPACE_HOLDER_PATTERN = Pattern.compile("\\{[^{}]*\\}");
+
+	private static final Object DEFAULT_LAYOUT = "layout/blank.vm";
 
 	/**
 	 * @param pattern
@@ -47,6 +49,19 @@ public abstract class TemplateUtils {
 
 		buffer.append(pattern, start, pattern.length());
 		return buffer.toString();
+	}
+
+	/**
+	 * @param node
+	 * @return
+	 */
+	public static String getFirstArg(Node node) {
+		String[] args = getArgArray(node);
+		if (args.length > 0) {
+			return args[0];
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -89,6 +104,20 @@ public abstract class TemplateUtils {
 			i++;
 		}
 		return argArray;
+	}
+
+	/**
+	 * @param context
+	 * @return
+	 */
+	public static boolean isRenderingLayout(InternalContextAdapter context) {
+		String layout = (String) context.get("layout");
+		if (StringUtils.hasLength(layout)) {
+			return true;
+		} else if (layout == null && context.getCurrentTemplateName().equals(DEFAULT_LAYOUT)) {
+			return true;
+		}
+		return false;
 	}
 
 }

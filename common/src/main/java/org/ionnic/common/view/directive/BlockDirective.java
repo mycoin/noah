@@ -51,28 +51,19 @@ public class BlockDirective extends Block {
 	 */
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) {
-		String[] value = TemplateUtils.getArgArray(node);
-
+		key = TemplateUtils.getFirstArg(node);
 		maxDepth = 5;
-		if (value.length > 1) {
-			key = value[0];
+
+		if (TemplateUtils.isRenderingLayout(context)) {
+			Reference ref = (Reference) context.get(key);
+			if (ref == null) {
+				render(context, writer);
+			} else {
+				ref.render(context, writer);
+			}
+		} else {
 			context.put(key, new Reference(context, this));
 		}
-
-		renderLayout(context);
-
 		return true;
-	}
-
-	/**
-	 * @param context
-	 */
-	private void renderLayout(InternalContextAdapter context) {
-		String layout = (String) context.get("layout");
-		String current = context.getCurrentTemplateName();
-
-		if (layout == null && current.equals("layout/blank.vm")) {
-
-		}
 	}
 }
