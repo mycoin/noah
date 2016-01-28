@@ -22,13 +22,9 @@ package org.ionnic.common.view.directive;
 import java.io.Writer;
 
 import org.apache.velocity.context.InternalContextAdapter;
-import org.apache.velocity.exception.TemplateInitException;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.directive.Block;
 import org.apache.velocity.runtime.parser.node.Node;
 import org.ionnic.common.util.TemplateUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * Directive that puts an unrendered AST block in the context
@@ -50,35 +46,33 @@ public class BlockDirective extends Block {
 	}
 
 	/**
-	 *  simple init - get the key
-	 */
-	@Override
-	public void init(RuntimeServices rs, InternalContextAdapter context, Node node) throws TemplateInitException {
-		super.init(rs, context, node);
-		String[] value = TemplateUtils.getNodeArgArray(node, rs);
-
-		if (value.length == 1) {
-			key = value[0];
-		}
-
-		maxDepth = rs.getInt(RuntimeConstants.DEFINE_DIRECTIVE_MAXDEPTH, 2);
-	}
-
-	/**
 	 * directive.render() simply makes an instance of the Block inner class
 	 * and places it into the context as indicated.
 	 */
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) {
-		/*
-		 * put a Block.Reference instance into the context,
-		 * using the user-defined key, for later inline rendering.
-		 */
-		if (StringUtils.hasText(key)) {
+		String[] value = TemplateUtils.getArgArray(node);
+
+		maxDepth = 5;
+		if (value.length > 1) {
+			key = value[0];
 			context.put(key, new Reference(context, this));
 		}
+
+		renderLayout(context);
 
 		return true;
 	}
 
+	/**
+	 * @param context
+	 */
+	private void renderLayout(InternalContextAdapter context) {
+		String layout = (String) context.get("layout");
+		String current = context.getCurrentTemplateName();
+
+		if (layout == null && current.equals("layout/blank.vm")) {
+
+		}
+	}
 }

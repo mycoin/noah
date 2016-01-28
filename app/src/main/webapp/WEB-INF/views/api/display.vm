@@ -1,9 +1,17 @@
-#block("body")
+<div class="title">标题</div>
+
+#block("screen")
 	data:$data
 	status:$status
 	statusInfo:$statusInfo
 #end
 
-$body
+<!-- 脚本代码 -->
+#block("script")
+    <script>
+    var F = {};
+    </script>
+#end
 
-#extends("main")
+<!-- setup -->
+##extends("layout/work.vm")

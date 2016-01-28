@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-    private static String[] escapeVers = new String[] { "util.", "page.", "body", "lang.", "statusInfo", "raw_" };
+    private static String[] escapeVers = new String[] { "util.", "page.", "body", "lang.", "statusInfo", "raw_" ,"_content"};
 
     /**
      * @param ref
@@ -19,6 +19,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
         ref = ref.replace("$", "");
         ref = ref.replace("!", "");
         ref = ref.replace("{", "");
+        ref = ref.replace("}", "");
         return ref;
     }
 
@@ -30,7 +31,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
         reference = getVar(reference);
         for (int i = 0; i < escapeVers.length; i++) {
             String item = escapeVers[i];
-            if (reference.startsWith(item)) {
+            if (reference.startsWith(item) || reference.endsWith(item)) {
                 return value;
             }
         }

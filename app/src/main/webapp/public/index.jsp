@@ -21,7 +21,7 @@
             <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">display</a></li>
         </ul>
     </div>
-    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
     <script>
     var csrfToken = '<%=Security.generateToken(request)%>';

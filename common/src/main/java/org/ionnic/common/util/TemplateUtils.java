@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.parser.node.Node;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 
 /**
  * @author apple
@@ -15,49 +16,6 @@ import org.apache.velocity.runtime.parser.node.Node;
 public abstract class TemplateUtils {
 
 	private static final Pattern SPACE_HOLDER_PATTERN = Pattern.compile("\\{[^{}]*\\}");
-
-	/**
-	 * Creates an array containing the literal text from the macro
-	 * arguments(s) (including the macro's name as the first arg).
-	 *
-	 * @param node The parse node from which to grok the argument
-	 * list.  It's expected to include the block node tree (for the
-	 * macro body).
-	 * @param rsvc For debugging purposes only.
-	 * @return array of arguments
-	 */
-	public static String[] getNodeArgArray(Node node, RuntimeServices rsvc) {
-		/*
-		 * Get the number of arguments for the macro, excluding the
-		 * last child node which is the block tree containing the
-		 * macro body.
-		 */
-		int numArgs = node.jjtGetNumChildren();
-
-		// avoid the block tree...
-		numArgs--;
-
-		String argArray[] = new String[numArgs];
-
-		int i = 0;
-
-		String string;
-
-		while (i < numArgs) {
-			string = node.jjtGetChild(i).getFirstToken().image;
-			if (i >= 0) {
-				if (string.startsWith("$")) {
-					string = argArray[i].substring(1, string.length());
-				} else {
-					string = string.substring(1, string.length() - 1);
-				}
-			}
-			argArray[i] = string.intern();
-			i++;
-		}
-
-		return argArray;
-	}
 
 	/**
 	 * @param pattern
@@ -89,6 +47,48 @@ public abstract class TemplateUtils {
 
 		buffer.append(pattern, start, pattern.length());
 		return buffer.toString();
+	}
+
+	/**
+	 * Creates an array containing the literal text from the macro
+	 * arguments(s) (including the macro's name as the first arg).
+	 *
+	 * @param node The parse node from which to grow the argument
+	 * list.  It's expected to include the block node tree (for the
+	 * macro body).
+	 * @return array of arguments
+	 */
+	public static String[] getArgArray(Node node) {
+		/*
+		 * Get the number of arguments for the macro, excluding the
+		 * last child node which is the block tree containing the
+		 * macro body.
+		 */
+		int numArgs = node.jjtGetNumChildren();
+
+		String argArray[] = new String[numArgs];
+
+		// avoid the block tree...
+		numArgs--;
+
+		int i = 0;
+
+		String string;
+
+		while (i <= numArgs) {
+			string = node.jjtGetChild(i).getFirstToken().image;
+			if (i >= 0) {
+				if (string.startsWith("$")) {
+					string = string.substring(1, string.length());
+				} else {
+					string = string.substring(1, string.length() - 1);
+				}
+			}
+
+			argArray[i] = string.intern();
+			i++;
+		}
+		return argArray;
 	}
 
 }

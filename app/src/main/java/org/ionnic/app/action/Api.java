@@ -44,7 +44,7 @@ public class Api extends ActionSupport {
     @RequestMapping(value = "/display", method = { RequestMethod.GET, RequestMethod.POST })
     public void display(Model data) throws Exception {
         data.addAttribute(DATA, "a");
-        data.addAttribute(STATUS, true);
+        data.addAttribute(STATUS, 0);
         data.addAttribute(STATUS_INFO, "OK");
     }
 
