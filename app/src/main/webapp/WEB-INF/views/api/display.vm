@@ -13,5 +13,9 @@
     <script>var F = {};</script>
 #end
 
-<!-- setup -->
-##extends("layout/work.vm")
+<script>
+var token = '$util.escapeInHJ($page.tokenField)';
+</script>
+
+<!-- 设置布局 -->
+#extends("layout/work.vm")

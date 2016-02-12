@@ -9,13 +9,6 @@
 #end
 
 ## 获取内部模板
-#macro(external $name, $data)#*
- *##if($data == 1)
-        #parse("${name}.html")
-    #else
-        #set($name = "${name}.html")
-        #set($name = "#include(${name})")#*
-      *#$page.exec($name, $data)#*
-  *##end
-  #set($name = $unknown)
+#macro(external $name, $data)
+    $page.load($name, $data)
 #end

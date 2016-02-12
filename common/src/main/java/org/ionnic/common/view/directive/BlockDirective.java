@@ -51,7 +51,7 @@ public class BlockDirective extends Block {
 	 */
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) {
-		key = TemplateUtils.getFirstArg(node);
+		key = TemplateUtils.getFirstArg(node) + ":block";
 		maxDepth = 5;
 
 		if (TemplateUtils.isRenderingLayout(context)) {
