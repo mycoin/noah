@@ -19,6 +19,7 @@ package org.ionnic.common.view.directive;
  * under the License.
  */
 
+import java.io.StringWriter;
 import java.io.Writer;
 
 import org.apache.velocity.context.InternalContextAdapter;
@@ -51,18 +52,24 @@ public class BlockDirective extends Block {
 	 */
 	@Override
 	public boolean render(InternalContextAdapter context, Writer writer, Node node) {
-		key = TemplateUtils.getFirstArg(node) + ":block";
+		key = TemplateUtils.getFirstArg(node);// + ":block";
 		maxDepth = 5;
 
-		if (TemplateUtils.isRenderingLayout(context)) {
-			Reference ref = (Reference) context.get(key);
-			if (ref == null) {
-				render(context, writer);
+		try {
+			if (TemplateUtils.isRenderingLayout(context)) {
+				StringWriter ref = (StringWriter) context.get(key);
+				if (ref == null) {
+					render(context, writer);
+				} else {
+					writer.write(ref.toString());
+				}
 			} else {
-				ref.render(context, writer);
+				StringWriter sw = new StringWriter();
+				render(context, sw);
+				context.put(key, sw);
 			}
-		} else {
-			context.put(key, new Reference(context, this));
+		} catch (Exception e) {
+
 		}
 		return true;
 	}

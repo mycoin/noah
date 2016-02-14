@@ -8,7 +8,6 @@
     </head>
 <body>
 	#block("screen")#end
-	$screen_content
 	#block("script")#end
 </body>
 </html>

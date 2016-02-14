@@ -6,19 +6,19 @@
 		<li>status: $status</li>
 		<li>statusInfo: $statusInfo</li>
 	</ul>
-    #external("ad.vm", {
-        "search": '<a href="api">测试</a>',
-        "content": $statusInfo
-    })
+
+    #set($name = 23456765)
+    #external("ad.html", {})
 #end
 
 <!-- 脚本代码 -->
 #block("script")
     <script>var F = {};</script>
-    <script>
-    var token = '$page.tokenField';
-    </script>
 #end
 
+<script>
+var token = '$page.tokenField';
+</script>
+
 <!-- 设置布局 -->
-#extends("common/work.vm")
+#extends("layout/work.vm")

@@ -29,111 +29,111 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/home")
 public class Home extends ActionSupport {
 
-    /**
-     * @param body
-     * @param model
-     */
-    @RequestMapping("/basic")
-    public void basic(@RequestBody Map<String, Object> body, Model model) {
-        model.addAttribute("method", request.getMethod());
-        model.addAttribute("controller", this.getClass().getName());
-        if (body == null) {
-            model.addAttribute("data", "{=body}");
-        } else {
-            model.addAttribute("data", body);
-        }
-    }
+	/**
+	 * @param body
+	 * @param model
+	 */
+	@RequestMapping("/basic")
+	public void basic(@RequestBody Map<String, Object> body, Model model) {
+		model.addAttribute("method", request.getMethod());
+		model.addAttribute("controller", this.getClass().getName());
+		if (body == null) {
+			model.addAttribute("data", "{=body}");
+		} else {
+			model.addAttribute("data", body);
+		}
+	}
 
-    /**
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/error")
-    public Map<String, Object> error() throws Exception {
-        throw new HttpException(403, "For<!-- status-ok -->bidden");
-    }
+	/**
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/error")
+	public Map<String, Object> error() throws Exception {
+		throw new HttpException(403, "For<!-- status-ok -->bidden");
+	}
 
-    /**
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/exception", produces = "application/json")
-    @ResponseBody
-    public Map<String, Object> exception() throws Exception {
-        throw new HttpException(403, "For<!-- status-ok -->bidden");
-    }
+	/**
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/exception", produces = "application/json")
+	@ResponseBody
+	public Map<String, Object> exception() throws Exception {
+		throw new HttpException(403, "For<!-- status-ok -->bidden");
+	}
 
-    /**
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/index")
-    public Object index(HttpServletRequest request, Model data) {
-        data.addAttribute("search", "<a href=\"api\">测试</a>");
-        data.addAttribute("url", 1);
+	/**
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/index")
+	public Object index(HttpServletRequest request, Model data) {
+		data.addAttribute("search", "<a href=\"api\">测试</a>");
+		data.addAttribute("url", 1);
 
-        return data;
-    }
+		return data;
+	}
 
-    @RequestMapping(value = "/json")
-    @ResponseBody
-    public ModelMap json() {
-        ModelMap model = new ModelMap();
+	@RequestMapping(value = "/json")
+	@ResponseBody
+	public ModelMap json() {
+		ModelMap model = new ModelMap();
 
-        Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<String, Object>();
 
-        model.addAttribute(STATUS, 0);
-        model.addAttribute(STATUS_INFO, "OK");
-        model.addAttribute(DATA, data);
+		model.addAttribute(STATUS, 0);
+		model.addAttribute(STATUS_INFO, "OK");
+		model.addAttribute(DATA, data);
 
-        data.put("url", request.getRequestURL());
-        data.put("ip", WebUtils.getRemoteAddr(request));
-        data.put("search", new Date());
+		data.put("url", request.getRequestURL());
+		data.put("ip", WebUtils.getRemoteAddr(request));
+		data.put("search", new Date());
 
-        return model;
-    }
+		return model;
+	}
 
-    /**
-     * @param model
-     */
-    @RequestMapping("/jsp")
-    public void jsp(@RequestBody Parameter body, Model mv) {
-        mv.addAttribute("method", request.getMethod());
-        mv.addAttribute("controller", body);
-    }
+	/**
+	 * @param model
+	 */
+	@RequestMapping("/jsp")
+	public void jsp(@RequestBody Parameter body, Model mv) {
+		mv.addAttribute("method", request.getMethod());
+		mv.addAttribute("controller", body);
+	}
 
-    @RequestMapping(value = "/log")
-    public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
-        response.setContentType("text/javascript; charset=utf-8");
+	@RequestMapping(value = "/log")
+	public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
+		response.setContentType("text/javascript; charset=utf-8");
 
-        model.addAttribute("siteId", sid);
-        model.addAttribute("version", version);
+		model.addAttribute("siteId", sid);
+		model.addAttribute("version", version);
 
-        return model;
-    }
+		return model;
+	}
 
-    /**
-     * @param body
-     * @param search
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
-    @ResponseBody
-    public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
-        ModelMap data = new ModelMap();
+	/**
+	 * @param body
+	 * @param search
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
+	@ResponseBody
+	public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
+		ModelMap data = new ModelMap();
 
-        data.addAttribute("biz", body);
-        data.addAttribute("search", search);
-        data.addAttribute("status", 0);
+		data.addAttribute("biz", body);
+		data.addAttribute("search", search);
+		data.addAttribute("status", 0);
 
-        return data;
-    }
+		return data;
+	}
 
-    @RequestMapping("/status")
-    public void status(HttpServletResponse response) throws Exception {
-        response.addHeader("Content-Type", "text/html; charset=utf-8");
-        response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
-    }
+	@RequestMapping("/status")
+	public void status(HttpServletResponse response) throws Exception {
+		response.addHeader("Content-Type", "text/html; charset=utf-8");
+		response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
+	}
 
 }

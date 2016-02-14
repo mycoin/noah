@@ -1,6 +1,6 @@
 ## 设置布局地址
 #macro(setLayout $layoutName)
-    #set($layout = "common/layout/${layoutName}.vm")
+    #set($layout = "common/${layoutName}.vm")
 #end
 
 ## 禁用布局功能

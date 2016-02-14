@@ -9,42 +9,42 @@ import org.mortbay.jetty.webapp.WebAppContext;
  * Starts an embedded Jetty server running our application.
  */
 public class Main {
-    private static final String CONTEXT_PATH = "/";
+	private static final String CONTEXT_PATH = "/";
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        Server server = new Server();
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Server server = new Server();
 
-        SocketConnector connector = new SocketConnector();
-        connector.setMaxIdleTime(1000 * 60 * 60);
-        connector.setSoLingerTime(-1);
-        connector.setPort(8080);
+		SocketConnector connector = new SocketConnector();
+		connector.setMaxIdleTime(1000 * 60 * 60);
+		connector.setSoLingerTime(-1);
+		connector.setPort(8080);
 
-        server.setConnectors(new Connector[] { connector });
-        server.setSendServerVersion(true);
+		server.setConnectors(new Connector[] { connector });
+		server.setSendServerVersion(true);
 
-        WebAppContext bb = new WebAppContext();
-        bb.setServer(server);
-        bb.setContextPath(CONTEXT_PATH);
-        bb.setWar("src/main/webapp");
+		WebAppContext bb = new WebAppContext();
+		bb.setServer(server);
+		bb.setContextPath(CONTEXT_PATH);
+		bb.setWar("src/main/webapp");
 
-        server.addHandler(bb);
+		server.addHandler(bb);
 
-        try {
-            System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
-            server.start();
+		try {
+			System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
+			server.start();
 
-            // press any key to stop the web server.
-            System.in.read();
-            System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
+			// press any key to stop the web server.
+			System.in.read();
+			System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
 
-            server.stop();
-            server.join();
+			server.stop();
+			server.join();
 
-        } catch (Exception e) {
-            System.exit(100);
-        }
-    }
+		} catch (Exception e) {
+			System.exit(100);
+		}
+	}
 }

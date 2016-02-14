@@ -4,7 +4,7 @@
 
 #set($tpl = '<a href="OK">测试</a>')
 
-<script data-search="$search" data-tpl="$util.escapeInHH($content)">
+<script data-search="$search" data-tpl="$util.escapeInHJ($content)">
     var ad = "$util.escapeInJ($content)";
     var search = "$search";
 
