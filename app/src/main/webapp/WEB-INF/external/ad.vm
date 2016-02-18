@@ -18,4 +18,20 @@
 
 <!-- p title="$search">status-ok:$tpl</p -->
 
-$tpl
+<!-- 分隔符 -->
+::::    $search
+<!-- 分隔符 -->
+raw:    $util.raw($search)
+<!-- 分隔符 -->
+html:   $util.escapeInH($search)
+<!-- 分隔符 -->
+js:     $util.escapeInJ($search)
+<!-- 分隔符 -->
+url:    $util.escapeInU($search)
+<!-- 分隔符 -->
+htmljs: $util.escapeInHJ($search)
+<!-- 分隔符 -->
+
+<script>
+var opt = "$util.escapeInHJ($search)";
+</script>

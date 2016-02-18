@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import org.ionnic.common.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,9 +49,17 @@ public class Api extends ActionSupport {
 		data.addAttribute(STATUS_INFO, "OK");
 	}
 
+	@RequestMapping(value = "/data")
+	@ResponseBody
+	public Model data() {
+		ExtendedModelMap data = new ExtendedModelMap();
+		return data;
+	}
+
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
 	@ResponseBody
-	public void index(@RequestBody Map<String, Object> param) {
-
+	public Object index(@RequestBody Map<String, Object> param) {
+		param.put("status", 0);
+		return param;
 	}
 }

@@ -1,14 +1,15 @@
-## 设置布局地址
-#macro(setLayout $layoutName)
-    #set($layout = "common/${layoutName}.vm")
-#end
-
 ## 禁用布局功能
 #macro(disabledLayout)
-    #setLayout("blank")
+    #extends("layout")
 #end
 
 ## 获取内部模板
 #macro(external $name, $data)
     $page.load($name, $data)
 #end
+
+## 设置布局地址
+#macro(extends $layoutName)
+    #set($layout = "${layoutName}.vm")
+#end
+

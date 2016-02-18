@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.runtime.parser.node.Node;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.springframework.util.StringUtils;
@@ -17,10 +16,6 @@ import org.springframework.util.StringUtils;
 public abstract class TemplateUtils {
 
 	private static final Pattern SPACE_HOLDER_PATTERN = Pattern.compile("\\{[^{}]*\\}");
-
-	private static final String DEFAULT_LAYOUT = "layout/blank.vm";
-
-	private static final String LAYOUT_KEY = "layout";
 
 	/**
 	 * @param pattern
@@ -95,19 +90,4 @@ public abstract class TemplateUtils {
 
 		return param;
 	}
-
-	/**
-	 * @param context
-	 * @return
-	 */
-	public static boolean isRenderingLayout(InternalContextAdapter context) {
-		String layout = (String) context.get(LAYOUT_KEY);
-		if (StringUtils.hasLength(layout)) {
-			return true;
-		} else if (context.getCurrentTemplateName().equals(DEFAULT_LAYOUT)) {
-			return true;
-		}
-		return false;
-	}
-
 }

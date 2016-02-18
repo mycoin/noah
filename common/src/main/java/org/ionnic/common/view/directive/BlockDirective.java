@@ -19,11 +19,10 @@ package org.ionnic.common.view.directive;
  * under the License.
  */
 
-import java.io.StringWriter;
-import java.io.Writer;
-
 import org.apache.velocity.context.InternalContextAdapter;
-import org.apache.velocity.runtime.directive.Block;
+import org.apache.velocity.exception.TemplateInitException;
+import org.apache.velocity.runtime.RuntimeServices;
+import org.apache.velocity.runtime.directive.Define;
 import org.apache.velocity.runtime.parser.node.Node;
 import org.ionnic.common.util.TemplateUtils;
 
@@ -36,7 +35,7 @@ import org.ionnic.common.util.TemplateUtils;
  * @author Nathan Bubna
  * @version $Id: Define.java 686842 2008-08-18 18:29:31Z nbubna $
  */
-public class BlockDirective extends Block {
+public class BlockDirective extends Define {
 
 	/**
 	 * Return name of this directive.
@@ -46,31 +45,12 @@ public class BlockDirective extends Block {
 		return "block";
 	}
 
-	/**
-	 * directive.render() simply makes an instance of the Block inner class
-	 * and places it into the context as indicated.
-	 */
 	@Override
-	public boolean render(InternalContextAdapter context, Writer writer, Node node) {
-		key = TemplateUtils.getFirstArg(node);// + ":block";
-		maxDepth = 5;
+	public void init(RuntimeServices rs, InternalContextAdapter context, Node node) throws TemplateInitException {
+		// TODO Auto-generated method stub
+		super.init(rs, context, node);
 
-		try {
-			if (TemplateUtils.isRenderingLayout(context)) {
-				StringWriter ref = (StringWriter) context.get(key);
-				if (ref == null) {
-					render(context, writer);
-				} else {
-					writer.write(ref.toString());
-				}
-			} else {
-				StringWriter sw = new StringWriter();
-				render(context, sw);
-				context.put(key, sw);
-			}
-		} catch (Exception e) {
-
-		}
-		return true;
+		// 取得第一个参数
+		key = TemplateUtils.getFirstArg(node);
 	}
 }

@@ -1,23 +1,2 @@
-#setLayout("index")
-
-#set($title = "标题在此")
-
-<script>
-    var error = "$page.load('not-found', null)"; // 不会报错
-</script>
-
-<!-- 定义多行变量 -->
-#define("tpl")
-    $page.load("ad.html")
-#end
-
-<!-- 应用外部模板 -->
-$page.load("ad.vm", {
-    "search": $data.search,
-    "content": $tpl
-})
-
-<!-- 组件引用 -->
-#widget("loginPanel", {})
-    init
-#end
+$search
+<!-- status-ok -->

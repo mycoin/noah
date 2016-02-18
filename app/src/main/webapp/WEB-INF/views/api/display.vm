@@ -6,8 +6,9 @@
 		<li>status: $status</li>
 		<li>statusInfo: $statusInfo</li>
 	</ul>
-    #external("ad.vm", {
-        "search": '<a href="api">测试</a>',
+
+    $page.load("ad.vm", {
+        "search": '<a href="api api-page">{ 测试+测试 }</a>',
         "content": $statusInfo
     })
 #end
@@ -21,4 +22,4 @@
 #end
 
 <!-- 设置布局 -->
-#extends("common/work.vm")
+#extends("common/work")

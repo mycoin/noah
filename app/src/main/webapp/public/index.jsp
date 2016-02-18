@@ -15,8 +15,7 @@
             <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/home/exception" target="_blank">exception</a></li>
             <li data-task="x-api"><i>4</i><a class="link normal" href="<%=baseUrl%>/api" target="_blank">api</a></li>
             <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
-            <li data-task="x-json"><i>6</i><a class="link normal" href="<%=baseUrl%>/home/json" target="_blank">json</a></li>
-            <li data-task="x-db"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
+            <li data-task="x-db"><i>6</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
             <li data-task="x-jsp"><i>7</i><a class="link normal" href="<%=baseUrl%>/home/jsp" target="_blank">jsp-view</a></li>
             <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">display</a></li>
         </ul>
@@ -94,6 +93,7 @@
     	};
     });
 </script>
+<script type="text/javascript" src="<%=baseUrl%>/home/log?version=3.0&sid=6565998006"></script>
 <script type="text/javascript">
 
 </script>

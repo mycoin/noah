@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.app.bean.Parameter;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.HttpException;
 import org.ionnic.common.util.WebUtils;
@@ -93,17 +92,8 @@ public class Home extends ActionSupport {
 		return model;
 	}
 
-	/**
-	 * @param model
-	 */
-	@RequestMapping("/jsp")
-	public void jsp(@RequestBody Parameter body, Model mv) {
-		mv.addAttribute("method", request.getMethod());
-		mv.addAttribute("controller", body);
-	}
-
 	@RequestMapping(value = "/log")
-	public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
+	public Object log(@RequestParam String version, @RequestParam long sid, Model model, HttpServletResponse response) {
 		response.setContentType("text/javascript; charset=utf-8");
 
 		model.addAttribute("siteId", sid);

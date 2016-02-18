@@ -8,17 +8,19 @@ import org.ionnic.common.view.tool.StringTool;
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-	private static String[] escapeVers = new String[] { "util.", "page.", "body", "lang.", "statusInfo", "raw_", "_content" };
+	private static String[] escapeVers = new String[] { "util.", "page.", "lang.", "statusInfo", "raw_", "_content" };
+
+	private static String BLANK_STRING = "";
 
 	/**
 	 * @param ref
 	 * @return
 	 */
 	private static String getVar(String ref) {
-		ref = ref.replace("$", "");
-		ref = ref.replace("!", "");
-		ref = ref.replace("{", "");
-		ref = ref.replace("}", "");
+		ref = ref.replace("$", BLANK_STRING);
+		ref = ref.replace("!", BLANK_STRING);
+		ref = ref.replace("{", BLANK_STRING);
+		ref = ref.replace("}", BLANK_STRING);
 		return ref;
 	}
 
@@ -27,7 +29,9 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 		if (value == null || !(value instanceof String)) {
 			return value;
 		}
+
 		reference = getVar(reference);
+
 		for (int i = 0; i < escapeVers.length; i++) {
 			String item = escapeVers[i];
 			if (reference.startsWith(item) || reference.endsWith(item)) {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	#block("title")
-    		<title>默认标题</title>
-    	#end
+    	$title
     	#include('head.html')
     </head>
 <body>
-	#block("screen")#end
-	#block("script")#end
+    $screen
+	$script
+    <script src="$page.getURI('home/log')?version=1.0.1&sid=3"></script>
 </body>
 </html>
+
