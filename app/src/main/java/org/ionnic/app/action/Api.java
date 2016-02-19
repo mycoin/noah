@@ -2,13 +2,12 @@ package org.ionnic.app.action;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.ionnic.common.ActionSupport;
+import org.ionnic.common.view.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
@@ -31,15 +31,18 @@ public class Api extends ActionSupport {
 
 	@RequestMapping("/db")
 	@ResponseBody
-	public void db(HttpServletRequest request) throws SQLException {
+	public Object db() throws Exception {
+
 		Connection conn = dataSource.getConnection();
 		String sql = "INSERT INTO CUSTOMER " + "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, 2);
-		ps.setString(2, "OK");
+		ps.setInt(1, request.getRemotePort());
+		ps.setString(2, request.getHeader("User-Agent"));
 		ps.setInt(3, 9);
 		ps.executeUpdate();
 		ps.close();
+
+		return "status-ok";
 	}
 
 	@RequestMapping(value = "/display", method = { RequestMethod.GET, RequestMethod.POST })
