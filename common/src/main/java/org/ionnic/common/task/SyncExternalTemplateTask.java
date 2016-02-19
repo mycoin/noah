@@ -10,5 +10,4 @@ public class SyncExternalTemplateTask {
     public void doTask() {
         console.info("处理任务开始>........");
     }
-
 }

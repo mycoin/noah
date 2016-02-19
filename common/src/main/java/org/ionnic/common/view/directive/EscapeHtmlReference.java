@@ -8,7 +8,7 @@ import org.ionnic.common.view.tool.StringTool;
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-	private static String[] escapeVers = new String[] { "util.", "page.", "lang.", "statusInfo", "raw_", "_content" };
+	private static String[] escapeVers = new String[] { "util.", "page.", "lang.", "raw_", "_content" };
 
 	private static String BLANK_STRING = "";
 
@@ -30,6 +30,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 			return value;
 		}
 
+		// 剥离特殊字符
 		reference = getVar(reference);
 
 		for (int i = 0; i < escapeVers.length; i++) {
@@ -38,7 +39,6 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 				return value;
 			}
 		}
-
 		return StringTool.escapeInH(value);
 	}
 }
