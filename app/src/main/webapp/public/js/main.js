@@ -22,17 +22,24 @@ jQuery(function() {
 
             if (link[0] && link.is('A')) {
                 var config = taskMap[type];
-                var opt = jQuery.extend(true, {
-                    data: {
-                        app: '百度'
-                    },
-                    headers: {
-                        'X-Requested-Token': csrfToken
-                    }
-                }, config);
-                jQuery.ajax(link[0].href, opt).always(
-                    function(data, _, xhr) {
-
+                if(typeof config == 'function') {
+                	config(function(status, html){
+                		if (status == 0) {
+                            el.append('<span class="ok">' + html + '</span>');
+                        } else {
+                            el.append('<span class="error">' + (html || '未知异常') + '</span>');
+                        }
+                	});
+                } else {
+                	var opt = jQuery.extend(true, {
+                        data: {
+                            app: '百度'
+                        },
+                        headers: {
+                            'X-Requested-Token': csrfToken
+                        }
+                    }, config);
+                    jQuery.ajax(link[0].href, opt).always(function(data, _, xhr) {
                         csrfToken = csrfToken || xhr.getResponseHeader("X-Token");
                         console.log(data);
                         if (_ === 'error') {
@@ -44,6 +51,7 @@ jQuery(function() {
                             el.append('<span class="error">' + (data.statusInfo || xhr.responseText || '未知异常') + '</span>');
                         }
                     });
+                }
             }
         });
 });

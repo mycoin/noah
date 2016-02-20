@@ -17,31 +17,40 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/api/view")
-public class ViewAction extends ActionSupport {
+public class View extends ActionSupport {
 
 	@RequestMapping("/1")
 	public String A(HttpServletRequest request) throws Exception {
-		request.setAttribute("p", 1);
-		return "index";
+		request.setAttribute("p", "OK");
+		return "api/view";
 	}
 
 	@RequestMapping("/2")
 	public ModelAndView B() throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("p", 1);
-		return new ModelAndView("index", map);
+		map.put("p", "OK");
+		return new ModelAndView("api/view", map);
 	}
 
 	@RequestMapping("/3")
 	public String C(Map<String, Object> map) throws Exception {
-		map.put("p", 1);
-		return "index";
+		map.put("p", "OK");
+		return "api/view";
 	}
 
 	@RequestMapping("/4")
 	public String D(Model model) throws Exception {
-		model.addAttribute("p", 1);
-		return "index";
+		model.addAttribute("p", "OK");
+		return "api/view";
+	}
+
+	@RequestMapping("/5")
+	public ModelAndView E() throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		mv.addObject("p", "OK");
+		mv.setViewName("api/view");
+		return mv;
 	}
 
 }

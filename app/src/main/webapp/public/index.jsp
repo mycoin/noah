@@ -17,6 +17,7 @@
             <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
             <li data-task="x-db"><i>6</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
             <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">display</a></li>
+            <li data-task="x-view"><i>8</i><a class="link normal" href="<%=baseUrl%>/api/view" target="_blank">view</a></li>
         </ul>
     </div>
     <script src="js/jquery.js"></script>
@@ -82,6 +83,30 @@
             data : JSON.stringify({
                 service: 'UserService'
             })
+        },
+
+        'x-view': function(callback){
+        	var index = 0;
+        	var length = 6;
+
+            for(var i = 1; i < length; i++) {
+            	var url = "<%=baseUrl%>/api/view/" + i + '?token=' + csrfToken;
+            	jQuery.ajax({
+            		url: url,
+            		dataType: 'json',
+            		success: function(data, _, xhr){
+            			if(data.status == 0) {
+            				index ++;
+            			}
+            		    if(index == length - 1) {
+            		    	callback(0, xhr.responseText);
+            		    }
+            		},
+            		error: function(xhr){
+            			callback(1, xhr.responseText);
+            		}
+            	});
+            }
         }
     };
 
