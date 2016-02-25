@@ -3,8 +3,8 @@ package org.ionnic.common.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.common.HttpException;
 import org.ionnic.common.support.Security;
+import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -30,11 +30,13 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 		// If it is an ajax request, a csrfToken is required.
-		if (WebUtils.isAjax(request) || WebUtils.hasResponseAnnotation(handler)) {
+		if (WebUtils.isAjax(request) || WebUtils.hasAnnotation(handler)) {
 			if (!Security.checkToken(request)) {
-				throw new HttpException(403, "Unacceptable Token");
+				throw new WebException(403, "Unacceptable Token");
 			}
 		}
+
+		request.setAttribute("handler", handler);
 
 		return true;
 	}

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.ionnic.common.ActionSupport;
-import org.ionnic.common.HttpException;
+import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +48,9 @@ public class Home extends ActionSupport {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/error")
+	@ResponseBody
 	public Map<String, Object> error() throws Exception {
-		throw new HttpException(403, "For<!-- status-ok -->bidden");
+		throw new Exception("OK");
 	}
 
 	/**
@@ -59,7 +60,7 @@ public class Home extends ActionSupport {
 	@RequestMapping(value = "/exception", produces = "application/json")
 	@ResponseBody
 	public Map<String, Object> exception() throws Exception {
-		throw new HttpException(403, "For<!-- status-ok -->bidden");
+		throw new WebException(403, "For<!-- status-ok -->bidden");
 	}
 
 	/**

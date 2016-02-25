@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ionnic.app.util.CreateImage;
 import org.ionnic.common.ActionSupport;
-import org.ionnic.common.HttpException;
+import org.ionnic.common.support.WebException;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,7 +64,7 @@ public class P extends ActionSupport {
 	 */
 	@RequestMapping(value = "/error")
 	public Map<String, Object> error() throws Exception {
-		throw new HttpException(403, "For<!-- status-ok -->bidden");
+		throw new WebException(403, "For<!-- status-ok -->bidden");
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class P extends ActionSupport {
 	@RequestMapping(value = "/exception", produces = "application/json")
 	@ResponseBody
 	public Map<String, Object> exception() throws Exception {
-		throw new HttpException(403, "For<!-- status-ok -->bidden");
+		throw new WebException(403, "For<!-- status-ok -->bidden");
 	}
 
 	/**

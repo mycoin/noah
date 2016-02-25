@@ -9,10 +9,21 @@
 #end
 $util.toJson($data)
 
+
+<table border="1" style="font-size: 9pt" class="c-hide">
+#foreach($item in $request.getAttributeNames())
+    <tr>
+        <td>$item</td>
+        <td>$request.getAttribute($item).class</td>
+        <td>$request.getAttribute($item)</td>
+    </tr>
+#end
+</table>
+
 <!--
 Request:
 #foreach($item in $request.getAttributeNames())
-    $item
+    $item: $request.getAttribute($item)
 #end
 -->
 

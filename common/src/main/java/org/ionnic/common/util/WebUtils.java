@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeansException;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 
@@ -19,7 +18,8 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public abstract class WebUtils extends ServletRequestUtils {
+@SuppressWarnings("unchecked")
+public abstract class WebUtils {
 
 	/**
 	 * @param name
@@ -27,7 +27,6 @@ public abstract class WebUtils extends ServletRequestUtils {
 	 * @return
 	 * @throws BeansException
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType) throws BeansException {
 		try {
 			return (T) request.getAttribute(name);
@@ -93,7 +92,7 @@ public abstract class WebUtils extends ServletRequestUtils {
 	 * @param request
 	 * @return
 	 */
-	public static boolean hasResponseAnnotation(Object handler) {
+	public static boolean hasAnnotation(Object handler) {
 		ResponseBody anno = null;
 		try {
 			Method me = ((HandlerMethod) handler).getMethod();

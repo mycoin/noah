@@ -79,7 +79,7 @@
         'x-display': {
         	contentType : 'application/json;charset=UTF-8',
             type : 'post',
-            dataType: 'jsonp',
+            dataType: 'html',
             data : JSON.stringify({
                 service: 'UserService'
             })

@@ -1,4 +1,4 @@
-<div class="title">标题</div>
+<span class="title">标题</span>
 
 #block("screen")
 	<ul>
@@ -21,5 +21,13 @@
     </script>
 #end
 
+$page.load("ad.vm", {
+    "search": '<a href="api api-page">{ 测试+测试 }</a>'
+})
+
+
 <!-- 设置布局 -->
-#extends("common/work")
+#if("XMLHttpRequest" != $request.getHeader("X-Requested-With"))
+    #extends("common/work")
+#end
+
