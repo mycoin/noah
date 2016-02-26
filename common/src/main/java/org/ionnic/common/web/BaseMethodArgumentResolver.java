@@ -14,20 +14,20 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 public class BaseMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
-	protected final Log logger = LogFactory.getLog(getClass());
+    protected final Log logger = LogFactory.getLog(getClass());
 
-	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
-			WebDataBinderFactory binderFactory) throws Exception {
+    @Override
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
+            WebDataBinderFactory binderFactory) throws Exception {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("init ContextContainer()");
-		}
-		return mavContainer;
-	}
+        if (logger.isDebugEnabled()) {
+            logger.debug("init ContextContainer()");
+        }
+        return mavContainer;
+    }
 
-	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		return false;
-	}
+    @Override
+    public boolean supportsParameter(MethodParameter parameter) {
+        return false;
+    }
 }
