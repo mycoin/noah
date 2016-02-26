@@ -1,4 +1,4 @@
-package org.ionnic.app.action;
+package org.ionnic.app.action.api;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

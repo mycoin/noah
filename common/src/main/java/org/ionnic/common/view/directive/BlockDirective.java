@@ -37,20 +37,20 @@ import org.ionnic.common.util.TemplateUtils;
  */
 public class BlockDirective extends Define {
 
-	/**
-	 * Return name of this directive.
-	 */
-	@Override
-	public String getName() {
-		return "block";
-	}
+    /**
+     * Return name of this directive.
+     */
+    @Override
+    public String getName() {
+        return "block";
+    }
 
-	@Override
-	public void init(RuntimeServices rs, InternalContextAdapter context, Node node) throws TemplateInitException {
-		// TODO Auto-generated method stub
-		super.init(rs, context, node);
+    @Override
+    public void init(RuntimeServices rs, InternalContextAdapter context, Node node) throws TemplateInitException {
+        // TODO Auto-generated method stub
+        super.init(rs, context, node);
 
-		// 取得第一个参数
-		key = TemplateUtils.getFirstArg(node);
-	}
+        // 取得第一个参数
+        key = TemplateUtils.getFirstArg(node);
+    }
 }

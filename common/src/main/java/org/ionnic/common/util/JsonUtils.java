@@ -37,12 +37,8 @@ public abstract class JsonUtils {
         if (json == null) {
             return null;
         }
-        try {
-            return getGson().fromJson(json, clazz);
-        } catch (JsonSyntaxException e) {
-            // TODO: handle exception
-        }
-        return null;
+
+        return getGson().fromJson(json, clazz);
     }
 
     /**

@@ -32,102 +32,106 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  */
 public class DefaultExceptionResolver implements HandlerExceptionResolver {
 
-	protected final Log logger = LogFactory.getLog(getClass());
+    protected final Log logger = LogFactory.getLog(getClass());
 
-	private String errorView = "error";
+    private String errorView = "error";
 
-	private int statusCode = 0;
+    private int statusCode = 0;
 
-	/**
-	 * @return the statusCode
-	 */
-	public int getStatusCode() {
-		return statusCode;
-	}
+    /**
+     * @return the statusCode
+     */
+    public int getStatusCode() {
+        return statusCode;
+    }
 
-	/**
-	 * @param status
-	 * @param ex
-	 * @return
-	 */
-	protected String getStatusInfo(int status, Exception ex) {
-		String message = ex.getMessage();
+    /**
+     * @param status
+     * @param ex
+     * @return
+     */
+    protected String getStatusInfo(int status, Exception ex) {
+        String message = ex.getMessage();
 
-		return message;
-	}
+        return message;
+    }
 
-	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-		if (ex == null) {
-			return null;
-		}
+    @Override
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, final Exception ex) {
+        if (ex == null) {
+            return null;
+        }
 
-		ModelAndView mv = new ModelAndView();
-		int status = 503;
+        ModelAndView mv = new ModelAndView();
+        WebException error = null;
 
-		if (ex instanceof NoSuchRequestHandlingMethodException) {
-			ex = new WebException(404, "Page Not Found");
-		} else if (ex instanceof HttpRequestMethodNotSupportedException) {
-			ex = new WebException(405, "Method Not Allowed");
-		} else if (ex instanceof HttpMediaTypeNotSupportedException) {
-			ex = new WebException(415, "Unsupported Media Type");
-		} else if (ex instanceof HttpMediaTypeNotAcceptableException) {
-			ex = new WebException(406, "Not Acceptable");
-		} else if (ex instanceof MissingServletRequestParameterException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof ServletRequestBindingException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof ConversionNotSupportedException) {
-			ex = new WebException(500, "Internal Server Error");
-		} else if (ex instanceof TypeMismatchException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof HttpMessageNotReadableException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof HttpMessageNotWritableException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof MethodArgumentNotValidException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof MissingServletRequestPartException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof BindException) {
-			ex = new WebException(400, "Bad Request");
-		} else if (ex instanceof NoHandlerFoundException) {
-			ex = new WebException(404, "Page Not Found");
-		} else if (!(ex instanceof WebException)) {
-			ex = new WebException(500, "Internal Server Error");
-		}
+        if (!(ex instanceof WebException)) {
+            if (ex instanceof NoSuchRequestHandlingMethodException) {
+                error = new WebException(404, "Page Not Found");
+            } else if (ex instanceof HttpRequestMethodNotSupportedException) {
+                error = new WebException(405, "Method Not Allowed");
+            } else if (ex instanceof HttpMediaTypeNotSupportedException) {
+                error = new WebException(415, "Unsupported Media Type");
+            } else if (ex instanceof HttpMediaTypeNotAcceptableException) {
+                error = new WebException(406, "Not Acceptable");
+            } else if (ex instanceof MissingServletRequestParameterException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof ServletRequestBindingException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof ConversionNotSupportedException) {
+                error = new WebException(500, "Internal Server Error");
+            } else if (ex instanceof TypeMismatchException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof HttpMessageNotReadableException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof HttpMessageNotWritableException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof MethodArgumentNotValidException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof MissingServletRequestPartException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof BindException) {
+                error = new WebException(400, "Bad Request");
+            } else if (ex instanceof NoHandlerFoundException) {
+                error = new WebException(404, "Page Not Found");
+            } else {
+                error = new WebException(500, "Internal Server Error");
+            }
+            error.setData(ex);
+        } else {
+            error = (WebException) ex;
+        }
 
-		WebException he = (WebException) ex;
-		status = he.getStatus();
+        mv.addObject(ActionSupport.STATUS, error.getStatus());
+        mv.addObject(ActionSupport.STATUS_INFO, error.getStatusInfo());
+        mv.addObject(ActionSupport.DATA, error.getData());
 
-		// 导出数据
-		mv.addObject(ActionSupport.STATUS, status);
-		mv.addObject(ActionSupport.STATUS_INFO, he.getStatusInfo());
-		mv.addObject(ActionSupport.DATA, he.getData());
+        if (WebUtils.hasAnnotation(handler) || handler == null) {
+            mv.setView(new JsonView());
+            if (statusCode > 0) {
+                response.setStatus(error.getStatus());
+            } else {
+                response.setStatus(200);
+            }
+        } else {
+            mv.setViewName(errorView);
+            response.setStatus(error.getStatus());
+        }
 
-		if (WebUtils.hasAnnotation(handler) || handler == null) {
-			mv.setView(new JsonView());
-			if (statusCode > 0) {
-				response.setStatus(status);
-			}
-		} else {
-			mv.setViewName(errorView);
-			response.setStatus(status);
-		}
-		return mv;
-	}
+        return mv;
+    }
 
-	/**
-	 * @param errorView the errorView to set
-	 */
-	public void setErrorView(String errorView) {
-		this.errorView = errorView;
-	}
+    /**
+     * @param errorView the errorView to set
+     */
+    public void setErrorView(String errorView) {
+        this.errorView = errorView;
+    }
 
-	/**
-	 * @param statusCode the statusCode to set
-	 */
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
+    /**
+     * @param statusCode the statusCode to set
+     */
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 }

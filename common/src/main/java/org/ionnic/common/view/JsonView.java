@@ -21,3 +21,4 @@ public class JsonView implements View {
         response.getOutputStream().write(text.getBytes());
     }
 }
+

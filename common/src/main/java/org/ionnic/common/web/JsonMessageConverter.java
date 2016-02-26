@@ -46,8 +46,13 @@ public class JsonMessageConverter implements HttpMessageConverter<Object> {
         try {
             InputStream stream = inputMessage.getBody();
             String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
+            Object result = JsonUtils.fromJson(requestBody, clazz);
 
-            return JsonUtils.fromJson(requestBody, clazz);
+            if (result == null) {
+                throw new JsonSyntaxException("Could not read JSON");
+            } else {
+                return result;
+            }
         } catch (JsonSyntaxException e) {
             throw new HttpMessageNotReadableException("Could not read JSON: " + e.getMessage(), e);
         }

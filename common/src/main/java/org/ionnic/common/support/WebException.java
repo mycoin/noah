@@ -8,50 +8,63 @@ import javax.servlet.ServletException;
  */
 public class WebException extends ServletException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String statusInfo;
+    private String statusInfo;
 
-	private int status;
+    private int status;
 
-	private Object data = new Object();
+    private Object data = new Object();
 
-	/**、
-	 * @param status
-	 * @param statusInfo
-	 */
-	public WebException(int status, String statusInfo) {
-		super(statusInfo);
+    /**、
+     * @param status
+     * @param statusInfo
+     */
+    public WebException(int status, String statusInfo) {
+        super(statusInfo);
 
-		this.status = status;
-		this.statusInfo = statusInfo;
-	}
+        this.status = status;
+        this.statusInfo = statusInfo;
+    }
 
-	/**
-	 * @return the data
-	 */
-	public Object getData() {
-		return data;
-	}
+    /**、
+     * @param status
+     * @param statusInfo
+     */
+    public WebException(int status, String statusInfo, Throwable exception) {
+        super(statusInfo);
 
-	/**
-	 * @return the status
-	 */
-	public int getStatus() {
-		return status;
-	}
+        this.status = status;
+        this.statusInfo = statusInfo;
 
-	/**
-	 * @return the statusInfo
-	 */
-	public String getStatusInfo() {
-		return statusInfo;
-	}
+        this.data = exception;
+    }
 
-	/**
-	 * @param data the data to set
-	 */
-	public void setData(Object data) {
-		this.data = data;
-	}
+    /**
+     * @return the data
+     */
+    public Object getData() {
+        return data;
+    }
+
+    /**
+     * @return the status
+     */
+    public int getStatus() {
+        return status;
+    }
+
+    /**
+     * @return the statusInfo
+     */
+    public String getStatusInfo() {
+        return statusInfo;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(Object data) {
+        this.data = data;
+    }
 }

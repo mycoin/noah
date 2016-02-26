@@ -6,7 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.ionnic.app.util.CreateImage;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
@@ -119,6 +121,22 @@ public class Home extends ActionSupport {
         data.addAttribute("status", 0);
 
         return data;
+    }
+
+    /**
+     * @param response
+     * @param session
+     * @throws Exception
+     */
+    @RequestMapping("/code")
+    public void code(HttpServletResponse response, HttpSession session) throws Exception {
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/png");
+
+        CreateImage vCode = new CreateImage(75, 20, 4, 4);
+        vCode.write(session, response.getOutputStream());
     }
 
     @RequestMapping("/status")
