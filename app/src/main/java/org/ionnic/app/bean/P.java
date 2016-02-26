@@ -27,119 +27,119 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 public class P extends ActionSupport {
 
-	/**
-	 * @param body
-	 * @param model
-	 */
-	@RequestMapping("/basic")
-	public void basic(@RequestBody Map<String, Object> body, Model model) {
-		model.addAttribute("method", request.getMethod());
-		model.addAttribute("controller", this.getClass().getName());
-		if (body == null) {
-			model.addAttribute("data", "{=body}");
-		} else {
-			model.addAttribute("data", body);
-		}
-	}
+    /**
+     * @param body
+     * @param model
+     */
+    @RequestMapping("/basic")
+    public void basic(@RequestBody Map<String, Object> body, Model model) {
+        model.addAttribute("method", request.getMethod());
+        model.addAttribute("controller", this.getClass().getName());
+        if (body == null) {
+            model.addAttribute("data", "{=body}");
+        } else {
+            model.addAttribute("data", body);
+        }
+    }
 
-	/**
-	 * @param response
-	 * @param session
-	 * @throws Exception
-	 */
-	@RequestMapping("/code")
-	public void code(HttpServletResponse response, HttpSession session) throws Exception {
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		response.setContentType("image/png");
+    /**
+     * @param response
+     * @param session
+     * @throws Exception
+     */
+    @RequestMapping("/code")
+    public void code(HttpServletResponse response, HttpSession session) throws Exception {
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/png");
 
-		CreateImage vCode = new CreateImage(75, 20, 4, 4);
-		vCode.write(session, response.getOutputStream());
-	}
+        CreateImage vCode = new CreateImage(75, 20, 4, 4);
+        vCode.write(session, response.getOutputStream());
+    }
 
-	/**
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/error")
-	public Map<String, Object> error() throws Exception {
-		throw new WebException(403, "For<!-- status-ok -->bidden");
-	}
+    /**
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/error")
+    public Map<String, Object> error() throws Exception {
+        throw new WebException(403, "For<!-- status-ok -->bidden");
+    }
 
-	/**
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/exception", produces = "application/json")
-	@ResponseBody
-	public Map<String, Object> exception() throws Exception {
-		throw new WebException(403, "For<!-- status-ok -->bidden");
-	}
+    /**
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/exception", produces = "application/json")
+    @ResponseBody
+    public Map<String, Object> exception() throws Exception {
+        throw new WebException(403, "For<!-- status-ok -->bidden");
+    }
 
-	/**
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value = "/index")
-	public Object index(HttpServletRequest request, Model data) {
-		data.addAttribute("search", "<a href=\"api\">测试</a>");
-		data.addAttribute("url", 1);
+    /**
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/index")
+    public Object index(HttpServletRequest request, Model data) {
+        data.addAttribute("search", "<a href=\"api\">测试</a>");
+        data.addAttribute("url", 1);
 
-		return data;
-	}
+        return data;
+    }
 
-	@RequestMapping(value = "/json")
-	@ResponseBody
-	public Map<String, Serializable> json(HttpServletRequest request) {
-		Map<String, Serializable> result = new HashMap<String, Serializable>();
+    @RequestMapping(value = "/json")
+    @ResponseBody
+    public Map<String, Serializable> json(HttpServletRequest request) {
+        Map<String, Serializable> result = new HashMap<String, Serializable>();
 
-		result.put("ip", request.getRequestURL());
-		result.put("search", new Date());
-		return result;
-	}
+        result.put("ip", request.getRequestURL());
+        result.put("search", new Date());
+        return result;
+    }
 
-	/**
-	 * @param model
-	 */
-	@RequestMapping("/jsp")
-	public void jsp(@RequestBody Parameter body, Model mv) {
-		mv.addAttribute("method", request.getMethod());
-		mv.addAttribute("controller", body);
-	}
+    /**
+     * @param model
+     */
+    @RequestMapping("/jsp")
+    public void jsp(@RequestBody Parameter body, Model mv) {
+        mv.addAttribute("method", request.getMethod());
+        mv.addAttribute("controller", body);
+    }
 
-	@RequestMapping(value = "/log")
-	public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
-		response.setContentType("text/javascript; charset=utf-8");
+    @RequestMapping(value = "/log")
+    public Object log(@RequestParam String version, @RequestParam int sid, Model model, HttpServletResponse response) {
+        response.setContentType("text/javascript; charset=utf-8");
 
-		model.addAttribute("siteId", sid);
-		model.addAttribute("version", version);
+        model.addAttribute("siteId", sid);
+        model.addAttribute("version", version);
 
-		return model;
-	}
+        return model;
+    }
 
-	/**
-	 * @param body
-	 * @param search
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
-	@ResponseBody
-	public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
-		ModelMap data = new ModelMap();
+    /**
+     * @param body
+     * @param search
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
+        ModelMap data = new ModelMap();
 
-		data.addAttribute("biz", body);
-		data.addAttribute("search", search);
-		data.addAttribute("status", 0);
+        data.addAttribute("biz", body);
+        data.addAttribute("search", search);
+        data.addAttribute("status", 0);
 
-		return data;
-	}
+        return data;
+    }
 
-	@RequestMapping("/status")
-	public void status(HttpServletResponse response) throws Exception {
-		response.addHeader("Content-Type", "text/html; charset=utf-8");
-		response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
-	}
+    @RequestMapping("/status")
+    public void status(HttpServletResponse response) throws Exception {
+        response.addHeader("Content-Type", "text/html; charset=utf-8");
+        response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
+    }
 
 }

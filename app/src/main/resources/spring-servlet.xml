@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -10,7 +11,8 @@
 	<context:component-scan base-package="org.ionnic.app" />
 
 	<!-- 模板配置 -->
-	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+	<bean
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="configLocation" value="/WEB-INF/velocity.properties" />
 		<property name="resourceLoaderPath">
 			<value>/WEB-INF/views,/WEB-INF/external</value>
@@ -28,7 +30,8 @@
 	</mvc:annotation-driven>
 
 	<!-- 视图配置 -->
-	<bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
 		<property name="order" value="0" />
 		<property name="suffix" value=".vm" />
 		<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
@@ -41,7 +44,8 @@
 	</mvc:interceptors>
 
 	<!-- 异常处理 -->
-	<bean class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
+	<bean
+		class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
 		<property name="order" value="0" />
 		<property name="exceptionResolvers">
 			<list>
@@ -54,6 +58,7 @@
 	</bean>
 
 	<!-- 静态资源 -->
-	<mvc:view-controller path="/" view-name="redirect:public/index.jsp" />
+	<mvc:view-controller path="/"
+		view-name="redirect:public/index.jsp" />
 	<mvc:resources location="/public/" mapping="/public/**" />
 </beans>
