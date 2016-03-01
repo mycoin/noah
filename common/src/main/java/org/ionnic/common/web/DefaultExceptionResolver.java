@@ -106,7 +106,7 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
         mv.addObject(ActionSupport.STATUS_INFO, error.getStatusInfo());
         mv.addObject(ActionSupport.DATA, error.getData());
 
-        if (WebUtils.hasAnnotation(handler) || handler == null) {
+        if (WebUtils.hasAnnotation(handler)) {
             mv.setView(new JsonView());
             if (statusCode > 0) {
                 response.setStatus(error.getStatus());
