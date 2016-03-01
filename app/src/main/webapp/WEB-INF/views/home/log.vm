@@ -184,17 +184,18 @@
             // 这里必须销毁el变量
             el = W['T\uFEFF'] = null;
         };
+
         for (var k in data) {
             url.push(k + '=' + encodeURIComponent(trim(data[k])));
         }
-        el.src = location.protocol + '//www.ionnic.org/www/w.gif?type=' + type + '&' + url.join('&');
+        el.src = '$page.getURI("home/log.do")?type=' + type + '&' + url.join('&');
     }
 
     /**
      * @全局参数
      *
      * sid:  网站主唯一标示
-     * cid:  跟踪用户唯一标记，默认从Cookie('CID')里面读取
+     * cid:  跟踪用户唯一标记，默认从 Cookie('CID') 里面读取
      * lt:   进入页面的时间，配合 `cid` 跟踪一次访问PV
      * u:    统计维度，一般为当前页面的URL地址
      * title:页面标题，用于统计报表的标题显示
@@ -203,7 +204,7 @@
     function init() {
         G.lt = setTime(T);
         G.title = document.title;
-        G.sid = '$!{siteId}';
+        G.sid = '$!{sid}';
 
         if (!(G.cid = cookie('CID')) || !/^[\S-]{36}$/.test(G.cid)) {
             // 如果没有 cookie('CID') 则表示新访问用户，设置为 `1`
@@ -438,7 +439,7 @@
          *
          * `注意`：  其他所有参数都会被删除
          */
-        if (['ppim', 'beha', 'alop', 'sk'].lastIndexOf(data.fm) > -1) {
+        if(data.fm === 'ppim' || data.fm === 'beha' || data.fm === 'alop' || data.fm === 'sk') {
             K.fm = data.fm;
             K.F = data.F || '';
             for (var key in data) {
@@ -481,7 +482,8 @@
 })(window);
 
 /*
-CREATE TABLE `org` (
+CREATE TABLE `ORG` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `type` tinyint(2) NOT NULL COMMENT '日志类型',
   `os` varchar(16) DEFAULT NULL COMMENT '操作系统',
   `app` varchar(16) DEFAULT NULL COMMENT '浏览器类型',
@@ -514,6 +516,7 @@ CREATE TABLE `org` (
   `F2` varchar(32) DEFAULT NULL COMMENT '预留字段',
   `F3` varchar(32) DEFAULT NULL COMMENT '预留字段',
   `rsv_map` tinytext COMMENT '用户参数',
-  `g` varchar(16) DEFAULT NULL COMMENT '节点特征'
+  `g` varchar(16) DEFAULT NULL COMMENT '节点特征',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 */

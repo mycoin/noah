@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.ionnic.app.util.CreateImage;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,6 +29,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/home")
 public class Home extends ActionSupport {
+
+    @Autowired
+    public HttpServletRequest request;
+
+    @Autowired
+    public HttpSession session;
 
     /**
      * @param body
@@ -95,11 +101,22 @@ public class Home extends ActionSupport {
         return model;
     }
 
-    @RequestMapping(value = "/log")
+    /**
+     * @param version
+     * @return
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/log.do")
+    public void log(HttpServletResponse response) throws Exception {
+        WebUtils.sendFile(response, "public/e.gif");
+    }
+
+    @RequestMapping(value = "/log.js")
     public Object log(@RequestParam String version, @RequestParam long sid, Model model, HttpServletResponse response) {
         response.setContentType("text/javascript; charset=utf-8");
 
-        model.addAttribute("siteId", sid);
+        model.addAttribute("sid", sid);
         model.addAttribute("version", version);
 
         return model;
@@ -121,22 +138,6 @@ public class Home extends ActionSupport {
         data.addAttribute("status", 0);
 
         return data;
-    }
-
-    /**
-     * @param response
-     * @param session
-     * @throws Exception
-     */
-    @RequestMapping("/code")
-    public void code(HttpServletResponse response, HttpSession session) throws Exception {
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/png");
-
-        CreateImage vCode = new CreateImage(75, 20, 4, 4);
-        vCode.write(session, response.getOutputStream());
     }
 
     @RequestMapping("/status")

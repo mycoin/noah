@@ -12,4 +12,3 @@
 #macro(extends $layoutName)
     #set($layout = "${layoutName}.vm")
 #end
-

@@ -1,6 +1,6 @@
 <!doctype html>
 #if($data.search == "<a>测试</a>")
-    <!-- status-ok -->
+    <!-- $lang.status -->
 #end
 <html>
 <head>

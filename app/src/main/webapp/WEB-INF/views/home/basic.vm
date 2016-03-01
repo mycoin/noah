@@ -3,7 +3,7 @@
         var token = "$page.token";
     </script>
     #if($data.params.keyword)
-        <!-- status-ok -->
+        <!-- $lang.status -->
     #end
     OK
 #end
@@ -34,4 +34,4 @@ Session:
 #end
 -->
 
-status-ok
+$lang.status

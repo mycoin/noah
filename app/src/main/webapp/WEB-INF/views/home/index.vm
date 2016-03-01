@@ -1,5 +1,9 @@
-$search
-<!-- status-ok -->
+HTML转义: $search
+<!-- $lang.status -->
 
-${data}
-$data
+$!{data}
+
+<!-- 设置布局 -->
+#if("XMLHttpRequest" != $request.getHeader("X-Requested-With"))
+    #extends("common/work")
+#end

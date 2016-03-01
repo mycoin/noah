@@ -117,7 +117,7 @@
     	};
     });
 </script>
-<script type="text/javascript" src="<%=baseUrl%>/home/log?version=3.0&sid=6565998006"></script>
+<script type="text/javascript" src="<%=baseUrl%>/home/log.js?version=3.0&sid=6565998006"></script>
 <script type="text/javascript">
 
 </script>

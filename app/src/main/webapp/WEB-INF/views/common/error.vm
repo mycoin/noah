@@ -52,10 +52,19 @@ p {
 }
 </style>
 </head>
+
 <body>
     <div id="container">
         <h1>$status - $statusInfo</h1>
-        <p>[$status] $data.message</p>
+        <p>
+            [$status]
+
+            #if($data.message)
+                $data.message
+            #else
+                $statusInfo
+            #end
+        </p>
     </div>
 </body>
 </html>

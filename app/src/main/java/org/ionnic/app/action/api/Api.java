@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.ionnic.common.ActionSupport;
@@ -25,7 +27,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Api extends ActionSupport {
 
     @Autowired
+    public HttpServletRequest request;
+
+    @Autowired
+    public HttpSession session;
+
+    @Autowired
     private DataSource dataSource;
+
+    @RequestMapping(value = "/data")
+    @ResponseBody
+    public Model data() {
+        ExtendedModelMap data = new ExtendedModelMap();
+        return data;
+    }
 
     @RequestMapping("/db")
     @ResponseBody
@@ -48,13 +63,6 @@ public class Api extends ActionSupport {
         data.addAttribute(DATA, "a");
         data.addAttribute(STATUS, 0);
         data.addAttribute(STATUS_INFO, "OK");
-    }
-
-    @RequestMapping(value = "/data")
-    @ResponseBody
-    public Model data() {
-        ExtendedModelMap data = new ExtendedModelMap();
-        return data;
     }
 
     @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")

@@ -8,9 +8,12 @@ import java.net.UnknownHostException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeansException;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.View;
@@ -34,6 +37,15 @@ public abstract class WebUtils {
         } catch (Exception e) {
 
         }
+        return null;
+    }
+
+    /**
+     * @param request
+     * @return
+     */
+    public static View getCachedView(HttpServletRequest request) {
+
         return null;
     }
 
@@ -120,15 +132,6 @@ public abstract class WebUtils {
     }
 
     /**
-     * @param request
-     * @return
-     */
-    public static View getCachedView(HttpServletRequest request) {
-
-        return null;
-    }
-
-    /**
      * Reads HTTP request body. Useful only with POST requests. Once body is read, it cannot be read again!
      */
     public static String readRequestBody(HttpServletRequest request) throws IOException {
@@ -141,5 +144,15 @@ public abstract class WebUtils {
         }
         br.close();
         return str;
+    }
+
+    /**
+     * @param response
+     * @param string
+     * @throws IOException
+     */
+    public static void sendFile(HttpServletResponse response, String string) throws IOException {
+        Resource resource = ContextUtils.getResource(string);
+        StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }
 }

@@ -50,20 +50,6 @@ public abstract class TemplateUtils {
     }
 
     /**
-     * @param node
-     * @return
-     */
-    public static String getFirstArg(Node node) {
-        String[] args = getArgArray(node);
-        if (args.length > 0) {
-            if (StringUtils.hasLength(args[0])) {
-                return args[0];
-            }
-        }
-        return null;
-    }
-
-    /**
      * Creates an array containing the literal text from the macro
      * arguments(s) (including the macro's name as the first arg).
      *
@@ -89,5 +75,19 @@ public abstract class TemplateUtils {
         }
 
         return param;
+    }
+
+    /**
+     * @param node
+     * @return
+     */
+    public static String getFirstArg(Node node) {
+        String[] args = getArgArray(node);
+        if (args.length > 0) {
+            if (StringUtils.hasLength(args[0])) {
+                return args[0];
+            }
+        }
+        return null;
     }
 }

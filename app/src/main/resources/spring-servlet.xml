@@ -7,11 +7,11 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 文件扫描 -->
-    <context:component-scan base-package="org.ionnic.app"/>
+    <context:component-scan base-package="org.ionnic.app" />
 
 	<!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="configLocation" value="/WEB-INF/velocity.properties"/>
+        <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
             <value>/WEB-INF/views,/WEB-INF/external</value>
         </property>
@@ -19,41 +19,38 @@
 
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean class="org.ionnic.common.web.BaseMethodArgumentResolver"/>
-        </mvc:argument-resolvers>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.common.web.JsonMessageConverter"/>
+            <bean class="org.ionnic.common.web.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
 	<!-- 视图配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <property name="order" value="0"/>
-        <property name="suffix" value=".vm"/>
-        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>
+        <property name="suffix" value=".vm" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
     </bean>
 
 	<!-- 拦截过滤 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.common.web.StatementControlInterceptor"/>
-        <bean class="org.ionnic.common.web.ContentTypeInterceptor"/>
+        <bean class="org.ionnic.common.web.StatementControlInterceptor" />
+        <bean class="org.ionnic.common.web.ContentTypeInterceptor" />
     </mvc:interceptors>
 
 	<!-- 异常处理 -->
     <bean class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
-        <property name="order" value="0"/>
+        <property name="order" value="0" />
         <property name="exceptionResolvers">
             <list>
                 <bean class="org.ionnic.common.web.DefaultExceptionResolver">
-                    <property name="errorView" value="/common/error"/>
-                    <property name="statusCode" value="500"/>
+                    <property name="errorView" value="/common/error" />
+                    <property name="statusCode" value="500" />
                 </bean>
             </list>
         </property>
     </bean>
 
 	<!-- 静态资源 -->
-    <mvc:view-controller path="/" view-name="redirect:public/index.jsp"/>
-    <mvc:resources location="/public/" mapping="/public/**"/>
+    <mvc:view-controller path="/" view-name="redirect:public/index.jsp" />
+    <mvc:resources location="/public/" mapping="/public/**" />
 </beans>
