@@ -1,3 +1,5 @@
+$lang.domain
+
 #define("tpl")
     <script type="text/javascript">
         var token = "$page.token";
