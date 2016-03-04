@@ -10,13 +10,13 @@
     <h2>测试用例</h2>
     <div class="col">
         <ul>
-            <li data-task="x-basic"><i>1</i><a class="link normal" href="<%=baseUrl%>/home/basic" target="_blank">basic</a></li>
-            <li data-task="x-search"><i>2</i><a class="link normal" href="<%=baseUrl%>/home/search/杭州天气" target="_blank">search</a></li>
-            <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/home/exception" target="_blank">exception</a></li>
-            <li data-task="x-api"><i>4</i><a class="link normal" href="<%=baseUrl%>/api" target="_blank">api</a></li>
-            <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/home/index" target="_blank">index</a></li>
-            <li data-task="x-db"><i>6</i><a class="link normal" href="<%=baseUrl%>/api/db" target="_blank">db</a></li>
-            <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/api/display" target="_blank">display</a></li>
+            <li data-task="x-basic"><i>1</i><a class="link normal" href="<%=baseUrl%>/testing/basic" target="_blank">basic</a></li>
+            <li data-task="x-search"><i>2</i><a class="link normal" href="<%=baseUrl%>/testing/search/杭州天气" target="_blank">search</a></li>
+            <li data-task="x-exception"><i>3</i><a class="link normal" href="<%=baseUrl%>/testing/exception" target="_blank">exception</a></li>
+            <li data-task="x-api"><i>4</i><a class="link normal" href="<%=baseUrl%>/testing/api" target="_blank">api</a></li>
+            <li data-task="x-index"><i>5</i><a class="link normal" href="<%=baseUrl%>/testing/index" target="_blank">index</a></li>
+            <li data-task="x-db"><i>6</i><a class="link normal" href="<%=baseUrl%>/testing/db" target="_blank">db</a></li>
+            <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/testing/display" target="_blank">display</a></li>
             <li data-task="x-view"><i>8</i><a class="link normal" href="<%=baseUrl%>/api/view" target="_blank">view</a></li>
         </ul>
     </div>
@@ -90,7 +90,7 @@
         	var length = 6;
 
             for(var i = 1; i < length; i++) {
-            	var url = "<%=baseUrl%>/api/view/" + i + '?token=' + csrfToken;
+            	var url = "<%=baseUrl%>/testing/view/" + i + '?token=' + csrfToken;
             	jQuery.ajax({
             		url: url,
             		dataType: 'json',

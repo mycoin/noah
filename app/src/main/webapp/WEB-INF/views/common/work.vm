@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-    	$title
+    	$!title
     	#include('head.html')
     </head>
 <body>
-    $screen
-	$script
+    $!screen
+	$!script
     <script src="$page.getURI('home/log')?version=1.0.1&sid=3"></script>
 </body>
 </html>
-

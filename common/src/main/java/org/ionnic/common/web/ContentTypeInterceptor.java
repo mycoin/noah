@@ -3,6 +3,7 @@ package org.ionnic.common.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ionnic.common.support.AppConfig;
 import org.ionnic.common.support.Security;
 import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
@@ -28,9 +29,10 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        request.setCharacterEncoding(AppConfig.CHARSET);
 
         // If it is an ajax request, a csrfToken is required.
-        if (WebUtils.isAjax(request) || WebUtils.hasAnnotation(handler)) {
+        if (WebUtils.isAjax(request)) {
             if (!Security.checkToken(request)) {
                 throw new WebException(403, "Unacceptable Token");
             }

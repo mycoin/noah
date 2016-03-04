@@ -7,7 +7,7 @@ public class SyncExternalTemplateTask {
 
     private static Log console = LogFactory.getLog(SyncExternalTemplateTask.class);
 
-    public void doTask() {
+    public void execute() {
         console.info("处理任务开始>........");
     }
 }
