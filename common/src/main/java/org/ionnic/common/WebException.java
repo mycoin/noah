@@ -1,4 +1,4 @@
-package org.ionnic.common.support;
+package org.ionnic.common;
 
 import javax.servlet.ServletException;
 

@@ -151,7 +151,7 @@ public abstract class WebUtils {
      * @param string
      * @throws IOException
      */
-    public static void sendFile(HttpServletResponse response, String string) throws IOException {
+    public static void sendResource(HttpServletResponse response, String string) throws IOException {
         Resource resource = ContextUtils.getResource(string);
         StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
     }

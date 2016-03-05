@@ -10,5 +10,5 @@ public interface TemplateService {
 
     public Template query(int id) throws Exception;
 
-    public boolean add(Template template) throws Exception;
+    public int add(Template template) throws Exception;
 }

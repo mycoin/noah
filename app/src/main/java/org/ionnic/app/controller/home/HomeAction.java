@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.ionnic.common.ActionSupport;
-import org.ionnic.common.support.WebException;
+import org.ionnic.common.WebException;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/testing")
-public class TestAction extends ActionSupport {
+@RequestMapping("/home")
+public class HomeAction extends ActionSupport {
     @Autowired
     public HttpServletRequest request;
 
@@ -106,7 +106,7 @@ public class TestAction extends ActionSupport {
         data.addAttribute("url", 1);
     }
 
-    @RequestMapping(value="/api", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
+    @RequestMapping(value = "/api", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
     @ResponseBody
     public Object index(@RequestBody Map<String, Object> param) {
         param.put("status", 0);
@@ -139,7 +139,7 @@ public class TestAction extends ActionSupport {
      */
     @RequestMapping(value = "/log.do")
     public void log(HttpServletResponse response) throws Exception {
-        WebUtils.sendFile(response, "public/e.gif");
+        WebUtils.sendResource(response, "public/e.gif");
     }
 
     @RequestMapping(value = "/log.js")
@@ -170,35 +170,29 @@ public class TestAction extends ActionSupport {
         return data;
     }
 
-    @RequestMapping("/status")
-    public void status(HttpServletResponse response) throws Exception {
-        response.addHeader("Content-Type", "text/html; charset=utf-8");
-        response.getOutputStream().write("OK<!-- status-ok -->".getBytes());
-    }
-
     @RequestMapping("/view/1")
     public String View1(HttpServletRequest request) throws Exception {
         request.setAttribute("p", "OK");
-        return "testing/view";
+        return "home/view";
     }
 
     @RequestMapping("/view/2")
     public ModelAndView View2() throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("p", "OK");
-        return new ModelAndView("testing/view", map);
+        return new ModelAndView("home/view", map);
     }
 
     @RequestMapping("/view/3")
     public String View3(Map<String, Object> map) throws Exception {
         map.put("p", "OK");
-        return "testing/view";
+        return "home/view";
     }
 
     @RequestMapping("/view/4")
     public String View4(Model model) throws Exception {
         model.addAttribute("p", "OK");
-        return "testing/view";
+        return "home/view";
     }
 
     @RequestMapping("/view/5")
@@ -206,7 +200,7 @@ public class TestAction extends ActionSupport {
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("p", "OK");
-        mv.setViewName("testing/view");
+        mv.setViewName("home/view");
         return mv;
     }
 }

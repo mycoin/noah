@@ -3,7 +3,7 @@ package org.ionnic.common.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.common.support.WebException;
+import org.ionnic.common.WebException;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @SuppressWarnings("serial")

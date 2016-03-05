@@ -3,7 +3,7 @@ package org.ionnic.common.util;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import org.ionnic.common.support.AppConfig;
+import org.ionnic.common.Config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -67,7 +67,7 @@ public abstract class JsonUtils {
             GsonBuilder gb = new GsonBuilder();
             gb.serializeNulls();
             gb.disableHtmlEscaping();
-            gb.setDateFormat(AppConfig.DATE_FORMAT);
+            gb.setDateFormat(Config.DATE_FORMAT);
 
             gson = gb.create();
         }

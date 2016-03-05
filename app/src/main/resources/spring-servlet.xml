@@ -31,7 +31,7 @@
         <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
     </bean>
 
-	<!-- 拦截过滤 -->
+    <!-- 拦截器 -->
     <mvc:interceptors>
         <bean class="org.ionnic.common.web.ContentTypeInterceptor" />
     </mvc:interceptors>
@@ -48,7 +48,7 @@
             </list>
         </property>
     </bean>
-	<!-- 静态资源 -->
+
     <!-- 静态资源 -->
     <mvc:view-controller path="/" view-name="redirect:public/index.jsp" />
     <mvc:resources location="/public/" mapping="/public/**" />

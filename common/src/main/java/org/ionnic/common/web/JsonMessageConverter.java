@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ionnic.common.support.AppConfig;
+import org.ionnic.common.Config;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
@@ -47,7 +47,7 @@ public class JsonMessageConverter implements HttpMessageConverter<Object> {
     public Object read(Class<? extends Object> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         try {
             InputStream stream = inputMessage.getBody();
-            String requestBody = StreamUtils.copyToString(stream, Charset.forName(AppConfig.CHARSET));
+            String requestBody = StreamUtils.copyToString(stream, Charset.forName(Config.CHARSET));
             Object result = JsonUtils.fromJson(requestBody, clazz);
 
             if (result == null) {

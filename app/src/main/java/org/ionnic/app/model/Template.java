@@ -12,6 +12,8 @@ public class Template {
 
     private String name;
 
+    private String guid;
+
     /**
      * @return the content
      */
@@ -46,6 +48,14 @@ public class Template {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 
 }

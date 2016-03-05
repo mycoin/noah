@@ -1,7 +1,9 @@
 package org.ionnic.common.util;
 
 import java.lang.reflect.Field;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,20 @@ import org.apache.commons.beanutils.BeanUtils;
 public class DBUtils {
 
     /**
+     * @param ps
+     * @param param
+     * @return
+     * @throws SQLException
+     */
+    public static void format(PreparedStatement ps, Object... param) throws SQLException {
+        if (param != null && param.length > 0) {
+            for (int i = 0; i < param.length; i++) {
+                ps.setObject(i + 1, param[i]);
+            }
+        }
+    }
+
+    /**
      * @param result
      * @return
      */
@@ -24,7 +40,10 @@ public class DBUtils {
         List<String> columnNameList = new ArrayList<String>();
         List<Map<String, Object>> recordSet = new ArrayList<Map<String, Object>>();
         try {
-            for (int i = 1; i <= result.getMetaData().getColumnCount(); i++) {
+
+            int count = result.getMetaData().getColumnCount();
+
+            for (int i = 1; i <= count; i++) {
                 String columnName = result.getMetaData().getColumnName(i).toLowerCase();
                 columnNameList.add(columnName);
             }
@@ -73,28 +92,6 @@ public class DBUtils {
         }
 
         return entityList;
-    }
-
-    /**
-     * @param result
-     * @return
-     */
-    public static List<Object[]> toArrayList(ResultSet result) {
-        List<Object[]> arrayList = null;
-        try {
-            arrayList = new ArrayList<Object[]>();
-            int iCol = result.getMetaData().getColumnCount();
-            while (result.next()) {
-                Object[] objArray = new Object[iCol];
-                for (int i = 1; i <= iCol; i++) {
-                    objArray[i - 1] = result.getObject(i);
-                }
-                arrayList.add(objArray);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-        return arrayList;
     }
 
     /**

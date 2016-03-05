@@ -6,9 +6,9 @@ import org.ionnic.common.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -22,19 +22,9 @@ public class TemplateAction extends ActionSupport {
     @Autowired
     TemplateService templateService;
 
-    @RequestMapping()
+    @RequestMapping(method = { RequestMethod.GET })
     @ResponseBody
-    public void get() throws Exception {
-        Template tpl = new Template();
-        tpl.setName("测试");
-        tpl.setContent("测试测试");
-
-        templateService.add(tpl);
-    }
-
-    @RequestMapping(value = "/{id}", method = { RequestMethod.GET })
-    @ResponseBody
-    public Template get(@PathVariable(value = "id") int id) throws Exception {
+    public Template get(@RequestParam int id) throws Exception {
         return templateService.query(id);
     }
 

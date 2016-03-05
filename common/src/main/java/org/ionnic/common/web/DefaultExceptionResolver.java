@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.ActionSupport;
-import org.ionnic.common.support.WebException;
+import org.ionnic.common.WebException;
 import org.ionnic.common.util.WebUtils;
 import org.ionnic.common.view.JsonView;
 import org.springframework.beans.ConversionNotSupportedException;

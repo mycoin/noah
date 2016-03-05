@@ -1,8 +1,13 @@
-
-<form action="../api/template" method="post">
-    <label>
-        <input name="name">
-        <textarea name="content"></textarea>
-    </label>
-    <button type="submit">submit</button>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<form action="../api/template" target="_hidden" method="post">
+    <ul>
+        <li><label>标题</label> <input name="name"></li>
+        <li><label>内容</label> <textarea rows="20" name="content"></textarea></li>
+        <li>
+            <button type="submit">提交</button>
+        </li>
+    </ul>
 </form>
+
+<iframe name="_hidden" id="_hidden"></iframe>
