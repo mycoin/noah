@@ -1,4 +1,4 @@
-package org.ionnic.app.controller.home;
+package org.ionnic.app.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/home")
-public class HomeAction extends ActionSupport {
+public class TestController extends ActionSupport {
     @Autowired
     public HttpServletRequest request;
 

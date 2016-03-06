@@ -1,16 +1,20 @@
 package org.ionnic.app.model;
 
+import java.io.Serializable;
+
 /**
  * @author apple
  *
  */
-public class Template {
+public class Document implements Serializable {
+
+    private static final long serialVersionUID = -5791961737566154899L;
 
     private int id;
 
-    private String content;
-
     private String name;
+
+    private String content;
 
     private String guid;
 
@@ -22,10 +26,24 @@ public class Template {
     }
 
     /**
+     * @return the guid
+     */
+    public String getGuid() {
+        return guid;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -36,26 +54,24 @@ public class Template {
     }
 
     /**
+     * @param guid the guid to set
+     */
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+    /**
      * @param id the id to set
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
 }
