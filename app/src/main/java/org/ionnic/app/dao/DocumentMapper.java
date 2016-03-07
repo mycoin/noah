@@ -3,7 +3,7 @@ package org.ionnic.app.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.ionnic.app.model.Document;
+import org.ionnic.app.domain.Document;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 

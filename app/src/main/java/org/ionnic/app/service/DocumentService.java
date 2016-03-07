@@ -4,20 +4,18 @@
 package org.ionnic.app.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.ionnic.app.dao.DocumentDao;
-import org.ionnic.app.model.Document;
+import org.ionnic.app.domain.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 /**
  * @author apple
  *
  */
 @Service("DocumentService")
-@Transactional
 public class DocumentService {
 
     @Autowired
@@ -27,24 +25,38 @@ public class DocumentService {
      * @param document
      * @return
      */
-    public Object save(Document document) {
+    public boolean save(Document document) {
+        String id = document.getGuid();
 
-        document.setGuid(UUID.randomUUID() + "");
-        dao.save(document);
-
-        return null;
+        if (!StringUtils.hasText(id)) {
+            return dao.insert(document);
+        } else {
+            return dao.update(id, document);
+        }
     }
 
     /**
      * @param id
      * @return
      */
-    public List<Document> query(int id) {
-        if (id > 0) {
-            return dao.query(id);
-        } else {
-            return dao.query();
-        }
+    public List<Document> query() {
+        return dao.select();
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    public Document query(String id) {
+        return dao.select(id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    public boolean delete(String id) {
+        return dao.delete(id);
     }
 
 }

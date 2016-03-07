@@ -6,8 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.ionnic.common.WebException;
 import org.springframework.web.servlet.DispatcherServlet;
 
-@SuppressWarnings("serial")
+/**
+ * @author apple
+ *
+ */
 public class HttpDispatcherServlet extends DispatcherServlet {
+
+    private static final long serialVersionUID = -9144342126789693112L;
 
     @Override
     protected void noHandlerFound(HttpServletRequest request, HttpServletResponse response) throws Exception {

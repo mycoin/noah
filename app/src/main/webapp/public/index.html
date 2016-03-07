@@ -1,13 +1,58 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="js/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<form action="../api/template" target="_hidden" method="post">
+<form action="../api/document" target="_hidden" method="post">
     <ul>
-        <li><label>标题</label> <input name="name"></li>
-        <li><label>内容</label> <textarea rows="20" name="content"></textarea></li>
         <li>
-            <button type="submit">提交</button>
+            <label>GUID/ID</label> <input name="guid" id="GUID" value="">
+            <button type="button" style="margin-left: 0; margin-right: 10px;" ONCLICK="load();">加载</button>
+            <button type="button" style="margin-left: 0;" ONCLICK="openIt();">打开</button>
+        </li>
+        <li><label>标题</label> <input id="NAME" name="name"></li>
+        <li><label>内容</label> <textarea id="CONTENT" rows="20" name="content"></textarea></li>
+        <li>
+            <button type="submit" style="margin-right: 10px">提交</button>
+            <button type="button" onclick="removeIt()" style="margin-left: 0">删除</button>
         </li>
     </ul>
 </form>
+<script>
+function load() {
+	var id = jQuery("#GUID").val();
+	if(id) {
+		jQuery.getJSON("../api/document/" + id, function(result){
+            if(result.data) {
+            	var data = result.data || {};
+            	jQuery("#GUID").val(data.guid);
+            	jQuery("#NAME").val(data.name);
+            	jQuery("#CONTENT").val(data.content);
+            } else {
+            	jQuery('form')[0].reset();
+            	jQuery("#GUID").focus();
+            }
+        });
+	}
+}
 
-<iframe name="_hidden" id="_hidden"></iframe>
+function removeIt() {
+	var id = jQuery("#GUID").val();
+	if(id) {
+		if(confirm("确认删除？")) {
+		    jQuery.ajax("../api/document/" + id, {
+		    	type: 'DELETE',
+		    	success: function(){
+		    		alert("OK");
+		    	}
+		    });
+		}
+	}
+}
+
+function openIt() {
+	var id = jQuery("#GUID").val();
+	if(id) {
+		open("../api/document/" + id);
+	}
+}
+</script>
+<iframe name="_hidden" style="position: absolute; top: 106px; left: 580px; width: 400px; height: 272px;"id="_hidden"></iframe>
