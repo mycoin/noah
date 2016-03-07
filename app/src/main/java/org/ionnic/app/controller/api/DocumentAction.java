@@ -2,7 +2,7 @@ package org.ionnic.app.controller.api;
 
 import java.util.List;
 
-import org.ionnic.app.domain.Document;
+import org.ionnic.app.model.Document;
 import org.ionnic.app.service.DocumentService;
 import org.ionnic.common.ActionSupport;
 import org.ionnic.common.JSONObject;
@@ -36,7 +36,7 @@ public class DocumentAction extends ActionSupport {
     public JSONObject get(@PathVariable("id") String id) throws Exception {
         Document r = documentService.query(id);
         if (r == null) {
-            return new JSONObject(null, 503, "BAD PARAMETER");
+            return new JSONObject(null, 503, "NULL RECORD");
         } else {
             return new JSONObject(r);
         }

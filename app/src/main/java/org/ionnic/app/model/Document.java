@@ -1,4 +1,4 @@
-package org.ionnic.app.domain;
+package org.ionnic.app.model;
 
 import java.io.Serializable;
 

@@ -6,7 +6,7 @@ package org.ionnic.app.service;
 import java.util.List;
 
 import org.ionnic.app.dao.DocumentDao;
-import org.ionnic.app.domain.Document;
+import org.ionnic.app.model.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

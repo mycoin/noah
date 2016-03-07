@@ -7,6 +7,5 @@
 <body>
     $!screen
 	$!script
-    <script src="$page.getURI('home/log')?version=1.0.1&sid=3"></script>
 </body>
 </html>

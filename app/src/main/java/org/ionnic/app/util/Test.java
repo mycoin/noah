@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/home")
-public class TestController extends ActionSupport {
+public class Test extends ActionSupport {
     @Autowired
     public HttpServletRequest request;
 
@@ -43,7 +43,7 @@ public class TestController extends ActionSupport {
      * @param model
      */
     @RequestMapping("/basic")
-    public void basic(@RequestBody Map<String, Object> body, Model model) {
+    public void basic(@RequestBody(required = false) Map<String, Object> body, Model model) {
         model.addAttribute("method", request.getMethod());
         model.addAttribute("controller", this.getClass().getName());
         if (body == null) {

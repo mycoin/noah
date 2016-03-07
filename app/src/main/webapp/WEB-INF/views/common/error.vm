@@ -19,7 +19,7 @@
 }
 
 body {
-    background-color: #fff;
+    background-color: #FFF;
     margin: 40px;
     font: 13px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;
@@ -52,13 +52,11 @@ p {
 }
 </style>
 </head>
-
 <body>
     <div id="container">
         <h1>$status - $statusInfo</h1>
         <p>
             [$status]
-
             #if($data.message)
                 $data.message
             #else
@@ -66,5 +64,10 @@ p {
             #end
         </p>
     </div>
+    #set($result = {
+        "status": $status,
+        "statusInfo": $statusInfo
+    })
+    <INPUT TYPE="HIDDEN" VALUE="$util.escapeInH($util.toJson($result))" />
 </body>
 </html>

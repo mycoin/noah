@@ -1,6 +1,6 @@
 $lang.domain
 
-#define("tpl")
+#block("tpl")
     <script type="text/javascript">
         var token = "$page.token";
     </script>
@@ -11,10 +11,22 @@ $lang.domain
 #end
 $util.toJson($data)
 
+<style>
+.ac {
+    font-size: 9pt;
+    border-collapse: collapse;
+    margin-top: 10px
+}
 
-<table border="1" style="font-size: 9pt" class="c-hide">
+.ac td {
+    padding: 5px;
+    border: 1px solid #CCC
+}
+</style>
+<table border="1" style="font-size: 9pt" class="ac c-hide">
 #foreach($item in $request.getAttributeNames())
     <tr>
+        <td>$velocityCount</td>
         <td>$item</td>
         <td>$request.getAttribute($item).class</td>
         <td>$request.getAttribute($item)</td>

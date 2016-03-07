@@ -18,6 +18,7 @@
             <li data-task="x-db"><i>6</i><a class="link normal" href="<%=baseUrl%>/home/db" target="_blank">db</a></li>
             <li data-task="x-display"><i>7</i><a class="link normal" href="<%=baseUrl%>/home/display" target="_blank">display</a></li>
             <li data-task="x-view"><i>8</i><a class="link normal" href="<%=baseUrl%>/api/view" target="_blank">view</a></li>
+            <li data-task="x-404"><i>9</i><a class="link normal" href="<%=baseUrl%>/home/404" target="_blank">404 errro</a></li>
         </ul>
     </div>
     <script src="js/jquery.js"></script>
@@ -107,6 +108,29 @@
             		}
             	});
             }
+        },
+
+        'x-404': function(callback) {
+        	jQuery.ajax({
+                url: '<%=baseUrl%>/home/404',
+                dataType: 'json',
+                success: function(data, _, xhr){
+                    if(data.status == 0) {
+                        index ++;
+                    }
+                    if(index == length - 1) {
+                        callback(0, xhr.responseText);
+                    }
+                },
+                error: function(xhr){
+                	var html = xhr.responseText;
+                	if(html.indexOf(' TYPE="HIDDEN" ') > 0) {
+                		callback(0, xhr.statusText);
+                	} else {
+                		callback(1, xhr.responseText);
+                	}
+                }
+            });
         }
     };
 

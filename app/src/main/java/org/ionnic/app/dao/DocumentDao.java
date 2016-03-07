@@ -3,7 +3,7 @@ package org.ionnic.app.dao;
 import java.util.List;
 import java.util.UUID;
 
-import org.ionnic.app.domain.Document;
+import org.ionnic.app.model.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -69,7 +69,7 @@ public class DocumentDao {
      * @param values
      * @return
      */
-    public List<Document> select(String where, Object... values) {
+    private List<Document> select(String where, Object... values) {
         String sql = "SELECT * FROM `TEMPLATE` WHERE " + where + ";";
         return jdbcTemplate.query(sql, mapper, values);
     }
