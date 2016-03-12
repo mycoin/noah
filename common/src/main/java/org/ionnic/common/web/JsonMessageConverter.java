@@ -2,14 +2,12 @@ package org.ionnic.common.web;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.ionnic.common.Config;
 import org.ionnic.common.util.JsonUtils;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -61,14 +59,16 @@ public class JsonMessageConverter implements HttpMessageConverter<Object> {
     }
 
     @Override
+    /**
+     * @see org.springframework.http.server.ServletServerHttpResponse#getBody()
+     */
     public void write(Object t, MediaType contentType, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
         String result = JsonUtils.toJson(t);
 
-        HttpHeaders headers = outputMessage.getHeaders();
-        OutputStream out = outputMessage.getBody();
+        // set header after getBody() invoked.
 
-        headers.setContentType(contentType);
-        out.write(result.getBytes());
+        outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        outputMessage.getBody().write(result.getBytes());
     }
 
 }

@@ -26,7 +26,6 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
         if (request.getCharacterEncoding() == null) {
             request.setCharacterEncoding(Config.CHARSET);
         }
-        response.setCharacterEncoding(Config.CHARSET);
         return true;
     }
 }

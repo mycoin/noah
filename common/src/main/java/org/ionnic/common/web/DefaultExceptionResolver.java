@@ -117,9 +117,6 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
             mv.setViewName(errorView);
             response.setStatus(error.getStatus());
         }
-
-        ex.printStackTrace();
-
         return mv;
     }
 
