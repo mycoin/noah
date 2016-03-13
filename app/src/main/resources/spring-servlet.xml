@@ -50,6 +50,5 @@
     </bean>
 
     <!-- 静态资源 -->
-    <mvc:view-controller path="/" view-name="redirect:public/index.jsp" />
-    <mvc:resources location="/public/" mapping="/public/**" />
+    <mvc:default-servlet-handler />
 </beans>

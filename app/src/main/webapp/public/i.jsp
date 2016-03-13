@@ -124,7 +124,7 @@
                 },
                 error: function(xhr){
                 	var html = xhr.responseText;
-                	if(html.indexOf(' TYPE="HIDDEN" ') > 0) {
+                	if(html.indexOf(' type="hidden" ') > 0) {
                 		callback(0, xhr.statusText);
                 	} else {
                 		callback(1, xhr.responseText);

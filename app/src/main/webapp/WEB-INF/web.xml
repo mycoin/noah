@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>spring</servlet-name>
-        <servlet-class>org.ionnic.common.web.HttpDispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-servlet.xml</param-value>
@@ -26,6 +26,11 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/public/error.html</location>
+    </error-page>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
