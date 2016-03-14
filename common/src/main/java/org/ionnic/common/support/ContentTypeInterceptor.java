@@ -22,8 +22,8 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 
         if (response.getContentType() == null) {
             response.setContentType(Config.CONTENT_TYPE);
+            response.setCharacterEncoding(Config.CHARSET);
         }
-        response.setCharacterEncoding(Config.CHARSET);
     }
 
     @Override
@@ -31,6 +31,9 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
         if (request.getCharacterEncoding() == null) {
             request.setCharacterEncoding(Config.CHARSET);
         }
+
+        String session = request.getSession(true).getId();
+        System.out.println(session);
         return true;
     }
 }
