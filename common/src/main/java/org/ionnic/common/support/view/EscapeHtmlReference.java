@@ -1,9 +1,11 @@
-package org.ionnic.common.support.view.directive;
+package org.ionnic.common.support.view;
 
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
 import org.ionnic.common.support.view.tool.StringTool;
 
 /**
+ * @author apple
+ *
  * HTML转义输出
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
@@ -29,10 +31,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
         if (value == null || !(value instanceof String)) {
             return value;
         }
-
-        // 剥离特殊字符
         reference = getVar(reference);
-
         for (int i = 0; i < escapeVers.length; i++) {
             String item = escapeVers[i];
             if (reference.startsWith(item) || reference.endsWith(item)) {
