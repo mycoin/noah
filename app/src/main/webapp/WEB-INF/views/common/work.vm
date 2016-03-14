@@ -5,6 +5,11 @@
     	#include('head.html')
     </head>
 <body>
+
+    $lang.domain
+
+
+
     $!screen
 	$!script
 </body>

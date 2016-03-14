@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import org.ionnic.common.ActionSupport;
-import org.ionnic.common.WebException;
+import org.ionnic.common.support.ActionSupport;
+import org.ionnic.common.support.WebException;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

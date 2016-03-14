@@ -20,7 +20,7 @@
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.common.web.JsonMessageConverter" />
+            <bean class="org.ionnic.common.support.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -33,7 +33,7 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.common.web.ContentTypeInterceptor" />
+        <bean class="org.ionnic.common.support.ContentTypeInterceptor" />
     </mvc:interceptors>
 
 	<!-- 异常处理 -->
@@ -41,7 +41,7 @@
         <property name="order" value="0" />
         <property name="exceptionResolvers">
             <list>
-                <bean class="org.ionnic.common.web.DefaultExceptionResolver">
+                <bean class="org.ionnic.common.support.DefaultExceptionResolver">
                     <property name="errorView" value="/common/error" />
                     <property name="statusCode" value="500" />
                 </bean>
