@@ -10,9 +10,13 @@ import java.util.Map;
  */
 public class DefaultResultMap implements Cloneable, Serializable {
 
-    private Map<String, Object> internalMap = new HashMap<String, Object>();
-
     private static final long serialVersionUID = 1L;
+
+    private Object data;
+
+    private int status;
+
+    private String statusInfo;
 
     /**
      * @param status
@@ -44,19 +48,24 @@ public class DefaultResultMap implements Cloneable, Serializable {
      * @return
      */
     public Map<String, Object> getModelMap() {
-        return internalMap;
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put(ActionSupport.DATA, data);
+        result.put(ActionSupport.STATUS, status);
+        result.put(ActionSupport.STATUS_INFO, statusInfo);
+
+        return result;
     }
 
     public void setData(Object data) {
-        internalMap.put("data", data);
+        this.data = data;
     }
 
     public void setStatus(int status) {
-        internalMap.put("status", status);
+        this.status = status;
     }
 
     public void setStatusInfo(String statusInfo) {
-        internalMap.put("statusInfo", statusInfo);
+        this.statusInfo = statusInfo;
     }
 
 }

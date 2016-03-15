@@ -188,7 +188,7 @@
         for (var k in data) {
             url.push(k + '=' + encodeURIComponent(trim(data[k])));
         }
-        el.src = '$page.getURI("home/log.do")?type=' + type + '&' + url.join('&');
+        el.src = '#springUrl("/~/testing/log.do")?type=' + type + '&' + url.join('&');
     }
 
     /**

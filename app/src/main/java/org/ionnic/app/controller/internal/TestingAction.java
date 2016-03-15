@@ -144,7 +144,7 @@ public class TestingAction extends ActionSupport {
      */
     @RequestMapping(value = "/log.do")
     public void log(HttpServletResponse response) throws Exception {
-        WebUtils.sendResource(response, "public/e.gif");
+        WebUtils.sendResource(response, "https://avatars0.githubusercontent.com/u/1845440?v=3&s=40");
     }
 
     @RequestMapping(value = "/log.js")
