@@ -16,7 +16,7 @@ public class WebException extends ServletException {
 
     private Object data = new Object();
 
-    /**、
+    /**
      * @param status
      * @param statusInfo
      */
@@ -27,7 +27,7 @@ public class WebException extends ServletException {
         this.statusInfo = statusInfo;
     }
 
-    /**、
+    /**
      * @param status
      * @param statusInfo
      */

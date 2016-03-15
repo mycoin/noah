@@ -22,9 +22,6 @@
         <mvc:message-converters register-defaults="true">
             <bean class="org.ionnic.common.support.JsonMessageConverter" />
         </mvc:message-converters>
-        <!-- <mvc:return-value-handlers>
-            <bean class="org.ionnic.common.support.JsonResultMethodProcessor" />
-        </mvc:return-value-handlers> -->
     </mvc:annotation-driven>
 
 	<!-- 视图配置 -->

@@ -1,4 +1,4 @@
-package org.ionnic.app.util;
+package org.ionnic.app.controller.internal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/home")
-public class Test extends ActionSupport {
+@RequestMapping("/~/testing")
+public class TestingAction extends ActionSupport {
     @Autowired
     public HttpServletRequest request;
 
@@ -37,6 +37,11 @@ public class Test extends ActionSupport {
 
     @Autowired
     private DataSource dataSource;
+
+    @RequestMapping
+    public String index() {
+        return "~/testing/overview";
+    }
 
     /**
      * @param body
@@ -173,26 +178,26 @@ public class Test extends ActionSupport {
     @RequestMapping("/view/1")
     public String View1(HttpServletRequest request) throws Exception {
         request.setAttribute("p", "OK");
-        return "home/view";
+        return "~/testing/view";
     }
 
     @RequestMapping("/view/2")
     public ModelAndView View2() throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("p", "OK");
-        return new ModelAndView("home/view", map);
+        return new ModelAndView("~/testing/view", map);
     }
 
     @RequestMapping("/view/3")
     public String View3(Map<String, Object> map) throws Exception {
         map.put("p", "OK");
-        return "home/view";
+        return "~/testing/view";
     }
 
     @RequestMapping("/view/4")
     public String View4(Model model) throws Exception {
         model.addAttribute("p", "OK");
-        return "home/view";
+        return "~/testing/view";
     }
 
     @RequestMapping("/view/5")
@@ -200,7 +205,8 @@ public class Test extends ActionSupport {
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("p", "OK");
-        mv.setViewName("home/view");
+        mv.setViewName("~/testing/view");
         return mv;
     }
+
 }

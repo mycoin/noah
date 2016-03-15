@@ -1,11 +1,12 @@
 package org.ionnic.common.support;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.Config;
+import org.ionnic.common.support.securty.DefaultCrypt;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -14,8 +15,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  *
  */
 public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
-
-    protected final Log logger = LogFactory.getLog(getClass());
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
@@ -32,8 +31,16 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
             request.setCharacterEncoding(Config.CHARSET);
         }
 
-        String session = request.getSession(true).getId();
-        System.out.println(session);
+        HttpSession session = request.getSession(true);
+        String sessionId = session.getId();
+        DefaultCrypt crypt = new DefaultCrypt(sessionId);
+
+        Cookie cookie = new Cookie("SID", crypt.encrypt(sessionId));
+        cookie.setPath("/");
+        cookie.setMaxAge(3600 * 24 * 365);
+
+        response.addCookie(cookie);
+
         return true;
     }
 }

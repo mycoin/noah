@@ -29,7 +29,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/public/error.html</location>
+        <location>/page/error.html</location>
     </error-page>
 
     <welcome-file-list>
