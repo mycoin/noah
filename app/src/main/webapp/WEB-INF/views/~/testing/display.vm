@@ -7,7 +7,7 @@
 		<li>statusInfo: $statusInfo</li>
 	</ul>
 
-    $page.load("ad.vm", {
+    $page.loadTemplate("ad.vm", {
         "search": '<a href="api api-page">{ 测试+测试 }</a>',
         "content": $statusInfo
     })
@@ -21,7 +21,7 @@
     </script>
 #end
 
-$page.load("ad.vm", {
+$page.loadTemplate("ad.vm", {
     "search": '<a href="api api-page">{ 测试+测试 }</a>'
 })
 

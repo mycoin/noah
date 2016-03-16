@@ -28,6 +28,7 @@
     <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".vm" />
         <property name="exposeRequestAttributes" value="true" />
+        <property name="expose_spring_macro_helpers" value="false" />
         <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
     </bean>
 
