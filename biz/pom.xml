@@ -1,21 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>spring-mvc</artifactId>
-		<groupId>org.ionnic</groupId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
-	<groupId>org.ionnic</groupId>
-	<artifactId>biz</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<name>biz</name>
-	<dependencies>
-		<dependency>
-			<groupId>org.ionnic</groupId>
-			<artifactId>common</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>spring-mvc</artifactId>
+        <groupId>org.ionnic</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <groupId>org.ionnic</groupId>
+    <artifactId>biz</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>biz</name>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.ionnic</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- email -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+    </dependencies>
 </project>

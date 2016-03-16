@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ionnic.common.Config;
 import org.ionnic.common.support.securty.DefaultCrypt;
+import org.ionnic.common.util.WebUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -35,7 +36,7 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
         String sessionId = session.getId();
         DefaultCrypt crypt = new DefaultCrypt(sessionId);
 
-        Cookie cookie = new Cookie("SID", crypt.encrypt(sessionId));
+        Cookie cookie = new Cookie("SID", crypt.encrypt(sessionId + WebUtils.getRemoteAddr(request)));
         cookie.setPath("/");
         cookie.setMaxAge(3600 * 24 * 365);
 
