@@ -6,62 +6,58 @@ import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.BeansException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.View;
 
 /**
  * @author apple
  *
  */
 @SuppressWarnings("unchecked")
-public abstract class WebUtils {
-
-    /**
-     * @param name
-     * @param requiredType
-     * @return
-     * @throws BeansException
-     */
-    public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType) throws BeansException {
-        try {
-            return (T) request.getAttribute(name);
-        } catch (Exception e) {
-
-        }
-        return null;
-    }
-
-    /**
-     * @param request
-     * @return
-     */
-    public static View getCachedView(HttpServletRequest request) {
-
-        return null;
-    }
-
-    /**
-     * @param request
-     * @param name
-     * @return
-     */
-    public static Cookie getCookie(HttpServletRequest request, String name) {
-        for (Cookie item : request.getCookies()) {
-            if (item.getName().equals(name)) {
-                return item;
-            }
-        }
-        return null;
-    }
+public abstract class WebUtils extends org.springframework.web.util.WebUtils {
+//
+//    /**
+//     * @param name
+//     * @param requiredType
+//     * @return
+//     * @throws BeansException
+//     */
+//    public static <T> T getAttribute(HttpServletRequest request, String name, Class<T> requiredType) throws BeansException {
+//        try {
+//            return (T) request.getAttribute(name);
+//        } catch (Exception e) {
+//
+//        }
+//        return null;
+//    }
+//    /**
+//     * @param request
+//     * @return
+//     */
+//    public static View getCachedView(HttpServletRequest request) {
+//
+//        return null;
+//    }
+//
+//    /**
+//     * @param request
+//     * @param name
+//     * @return
+//     */
+//    public static Cookie getCookie(HttpServletRequest request, String name) {
+//        for (Cookie item : request.getCookies()) {
+//            if (item.getName().equals(name)) {
+//                return item;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * @param request

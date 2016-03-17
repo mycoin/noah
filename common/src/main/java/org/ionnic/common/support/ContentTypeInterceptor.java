@@ -41,7 +41,10 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
         cookie.setMaxAge(3600 * 24 * 365);
 
         response.addCookie(cookie);
-
+        response.addHeader("Access-Control-Allow-Origin", "*"); 
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.addHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+        response.addHeader("Access-Control-Max-Age", "36000000");
         return true;
     }
 }

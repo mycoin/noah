@@ -25,12 +25,12 @@ public class DocumentAction extends ActionSupport {
     @Autowired
     DocumentService documentService;
 
-    @RequestMapping(method = { RequestMethod.GET })
-    @ResponseBody
-    public DefaultResultMap get() throws Exception {
-        List<Document> r = documentService.query();
-        return new DefaultResultMap(r);
-    }
+//    @RequestMapping(method = { RequestMethod.GET })
+//    @ResponseBody
+//    public DefaultResultMap get() throws Exception {
+//        List<Document> r = documentService.query();
+//        return new DefaultResultMap(r);
+//    }
 
     @RequestMapping(value = "/{id}", method = { RequestMethod.GET })
     @ResponseBody
@@ -43,7 +43,7 @@ public class DocumentAction extends ActionSupport {
         }
     }
 
-    @RequestMapping(method = { RequestMethod.POST })
+    @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
     @ResponseBody
     public DefaultResultMap post(Document document) throws Exception {
         boolean r = documentService.save(document);
