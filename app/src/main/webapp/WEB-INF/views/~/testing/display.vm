@@ -1,4 +1,4 @@
-<span class="title">标题</span>
+<span class="title no-pas">标题</span>
 
 #block("screen")
 	<ul>

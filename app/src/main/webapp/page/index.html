@@ -23,110 +23,110 @@
     <script src="static/js/jquery.js"></script>
     <script src="static/js/main.js"></script>
     <script>
-    var taskMap = {
-        'x-search' : {
-            dataType : 'json',
-            type : 'post',
-            contentType : 'application/json;charset=UTF-8',
-            data : JSON.stringify({
+	var taskMap = {
+		'x-search' : {
+			dataType : 'json',
+			type : 'post',
+			contentType : 'application/json;charset=UTF-8',
+			data : JSON.stringify({
+				locate : "1"
+			})
+		},
 
-            })
-        },
+		'x-basic' : {
+			contentType : 'application/json;charset=UTF-8',
+			type : 'post',
+			dataType : 'text',
+			data : JSON.stringify({
+				service : 'UserService',
+				params : {
+					page : 1,
+					offset : 32,
+					keyword : '百度中国'
+				}
+			})
+		},
 
-        'x-basic' : {
-            contentType : 'application/json;charset=UTF-8',
-            type : 'post',
-            dataType: 'text',
-            data : JSON.stringify({
-                service: 'UserService',
-                params: {
-                    page: 1,
-                    offset: 32,
-                    keyword: '百度中国'
-                }
-            })
-        },
+		'x-exception' : {
+			dataType : 'json'
+		},
 
-        'x-exception': {
-            dataType : 'json'
-        },
+		'x-api' : {
+			contentType : 'application/json;charset=UTF-8',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify({
+				service : 'UserService',
+				params : {
+					page : 1,
+					offset : 32,
+					keyword : '百度中国'
+				}
+			})
+		},
+		'x-db' : {
+			contentType : 'application/json;charset=UTF-8',
+			type : 'post',
+			dataType : 'json',
+			data : JSON.stringify({})
+		},
 
-        'x-api': {
-            contentType : 'application/json;charset=UTF-8',
-            type : 'post',
-            dataType: 'json',
-            data : JSON.stringify({
-                service: 'UserService',
-                params: {
-                    page: 1,
-                    offset: 32,
-                    keyword: '百度中国'
-                }
-            })
-        },
-        'x-db': {
-            contentType : 'application/json;charset=UTF-8',
-            type : 'post',
-            dataType: 'json',
-            data : JSON.stringify({})
-        },
+		'x-display' : {
+			contentType : 'application/json;charset=UTF-8',
+			type : 'post',
+			dataType : 'html',
+			data : JSON.stringify({
+				service : 'UserService'
+			})
+		},
 
-        'x-display': {
-            contentType : 'application/json;charset=UTF-8',
-            type : 'post',
-            dataType: 'html',
-            data : JSON.stringify({
-                service: 'UserService'
-            })
-        },
+		'x-view' : function(callback) {
+			var index = 0;
+			var length = 6;
 
-        'x-view': function(callback){
-            var index = 0;
-            var length = 6;
+			for ( var i = 1; i < length; i++) {
+				var url = "../~/testing/view/" + i;
+				jQuery.ajax({
+					url : url,
+					dataType : 'json',
+					success : function(data, _, xhr) {
+						if (data.status == 0) {
+							index++;
+						}
+						if (index == length - 1) {
+							callback(0, xhr.responseText);
+						}
+					},
+					error : function(xhr) {
+						callback(1, xhr.responseText);
+					}
+				});
+			}
+		},
 
-            for(var i = 1; i < length; i++) {
-                var url = "../~/testing/view/" + i;
-                jQuery.ajax({
-                    url: url,
-                    dataType: 'json',
-                    success: function(data, _, xhr){
-                        if(data.status == 0) {
-                            index ++;
-                        }
-                        if(index == length - 1) {
-                            callback(0, xhr.responseText);
-                        }
-                    },
-                    error: function(xhr){
-                        callback(1, xhr.responseText);
-                    }
-                });
-            }
-        },
-
-        'x-404': function(callback) {
-            jQuery.ajax({
-                url: '../~/testing/404',
-                dataType: 'json',
-                success: function(data, _, xhr){
-                    if(data.status == 0) {
-                        index ++;
-                    }
-                    if(index == length - 1) {
-                        callback(0, xhr.responseText);
-                    }
-                },
-                error: function(xhr){
-                    var html = xhr.responseText;
-                    if(html.indexOf(' type="hidden" ') > 0) {
-                        callback(0, xhr.statusText);
-                    } else {
-                        callback(1, xhr.responseText);
-                    }
-                }
-            });
-        }
-    };
+		'x-404' : function(callback) {
+			jQuery.ajax({
+				url : '../~/testing/404',
+				dataType : 'json',
+				success : function(data, _, xhr) {
+					if (data.status == 0) {
+						index++;
+					}
+					if (index == length - 1) {
+						callback(0, xhr.responseText);
+					}
+				},
+				error : function(xhr) {
+					var html = xhr.responseText;
+					if (html.indexOf(' type="hidden" ') > 0) {
+						callback(0, xhr.statusText);
+					} else {
+						callback(1, xhr.responseText);
+					}
+				}
+			});
+		}
+	};
 </script>
 <script type="text/javascript" src="../~/testing/log.js?version=3.0&sid=6565998006"></script>
 <script type="text/javascript">

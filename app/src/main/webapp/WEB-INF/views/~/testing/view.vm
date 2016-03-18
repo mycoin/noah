@@ -1,1 +1,1 @@
-{"status":0,"statusInfo":"$p","data":{"ua":"$request.getHeader('Host')"}}
+{"status":0,"statusInfo":"$statusInfo","data":{"host":"$request.getHeader('Host')"}}

@@ -1,7 +1,5 @@
 package org.ionnic.app.controller.api;
 
-import java.util.List;
-
 import org.ionnic.app.model.Document;
 import org.ionnic.app.service.DocumentService;
 import org.ionnic.common.support.ActionSupport;

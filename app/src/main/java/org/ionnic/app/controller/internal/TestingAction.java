@@ -177,26 +177,26 @@ public class TestingAction extends ActionSupport {
 
     @RequestMapping("/view/1")
     public String View1(HttpServletRequest request) throws Exception {
-        request.setAttribute("p", "OK");
+        request.setAttribute("statusInfo", "OK");
         return "~/testing/view";
     }
 
     @RequestMapping("/view/2")
     public ModelAndView View2() throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("p", "OK");
+        map.put("statusInfo", "OK");
         return new ModelAndView("~/testing/view", map);
     }
 
     @RequestMapping("/view/3")
     public String View3(Map<String, Object> map) throws Exception {
-        map.put("p", "OK");
+        map.put("statusInfo", "OK");
         return "~/testing/view";
     }
 
     @RequestMapping("/view/4")
     public String View4(Model model) throws Exception {
-        model.addAttribute("p", "OK");
+        model.addAttribute("statusInfo", "OK");
         return "~/testing/view";
     }
 
@@ -204,7 +204,7 @@ public class TestingAction extends ActionSupport {
     public ModelAndView View5() throws Exception {
         ModelAndView mv = new ModelAndView();
 
-        mv.addObject("p", "OK");
+        mv.addObject("statusInfo", "OK");
         mv.setViewName("~/testing/view");
         return mv;
     }

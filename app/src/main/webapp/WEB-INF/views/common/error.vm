@@ -68,6 +68,6 @@ p {
         "status": $status,
         "statusInfo": $statusInfo
     })
-    <INPUT TYPE="HIDDEN" VALUE="$util.escapeInH($util.toJson($result))" />
+    <input data-status="$status" type="hidden" value='$util.toJson($result)' />
 </body>
 </html>
