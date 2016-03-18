@@ -13,6 +13,15 @@ function pad(n) {
     return n < 10 ? '0' + n : n;
 }
 
+var index = 0;
+var taskLength = jQuery('[data-task]').length;
+function updateCount(){
+    index ++;
+    if(index == taskLength) {
+    	location.href = "../home/index.html";
+    }
+}
+
 jQuery(function() {
     jQuery('li').each(
         function() {
@@ -46,6 +55,7 @@ jQuery(function() {
                         }
                         if (data.status == 0 || xhr.responseText.indexOf('status-ok') > -1) {
                             el.append('<span class="ok">' + (xhr.responseText) + '</span>');
+                            updateCount();
                         } else {
                             el.append('<span class="error">' + (data.statusInfo || xhr.responseText || '未知异常') + '</span>');
                         }

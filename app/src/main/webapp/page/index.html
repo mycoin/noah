@@ -3,22 +3,26 @@
 <head>
 <title>home web</title>
 <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+<style>
+.overview {display:none;}
+</style>
 </head>
-
 <body>
-    <h2>测试用例</h2>
-    <div class="col">
-        <ul>
-            <li data-task="x-basic"><i>1</i><a class="link normal" href="../~/testing/basic" target="_blank">basic</a></li>
-            <li data-task="x-search"><i>2</i><a class="link normal" href="../~/testing/search/杭州天气" target="_blank">search</a></li>
-            <li data-task="x-exception"><i>3</i><a class="link normal" href="../~/testing/exception" target="_blank">exception</a></li>
-            <li data-task="x-api"><i>4</i><a class="link normal" href="../~/testing/api" target="_blank">api</a></li>
-            <li data-task="x-index"><i>5</i><a class="link normal" href="../~/testing/index" target="_blank">index</a></li>
-            <li data-task="x-db"><i>6</i><a class="link normal" href="../~/testing/db" target="_blank">db</a></li>
-            <li data-task="x-display"><i>7</i><a class="link normal" href="../~/testing/display" target="_blank">display</a></li>
-            <li data-task="x-view"><i>8</i><a class="link normal" href="../~/testing/view/1" target="_blank">view</a></li>
-            <li data-task="x-404"><i>9</i><a class="link normal" href="../~/testing/404" target="_blank">404 errro</a></li>
-        </ul>
+    <div class="overview">
+        <h2>测试用例</h2>
+        <div class="col">
+            <ul>
+                <li data-task="x-basic"><i>1</i><a class="link normal" href="../~/testing/basic" target="_blank">basic</a></li>
+                <li data-task="x-search"><i>2</i><a class="link normal" href="../~/testing/search/杭州天气" target="_blank">search</a></li>
+                <li data-task="x-exception"><i>3</i><a class="link normal" href="../~/testing/exception" target="_blank">exception</a></li>
+                <li data-task="x-api"><i>4</i><a class="link normal" href="../~/testing/api" target="_blank">api</a></li>
+                <li data-task="x-index"><i>5</i><a class="link normal" href="../~/testing/index" target="_blank">index</a></li>
+                <li data-task="x-db"><i>6</i><a class="link normal" href="../~/testing/db" target="_blank">db</a></li>
+                <li data-task="x-display"><i>7</i><a class="link normal" href="../~/testing/display" target="_blank">display</a></li>
+                <li data-task="x-view"><i>8</i><a class="link normal" href="../~/testing/view/1" target="_blank">view</a></li>
+                <li data-task="x-404"><i>9</i><a class="link normal" href="../~/testing/404" target="_blank">404 errro</a></li>
+            </ul>
+        </div>
     </div>
     <script src="static/js/jquery.js"></script>
     <script src="static/js/main.js"></script>
@@ -94,6 +98,7 @@
 							index++;
 						}
 						if (index == length - 1) {
+							updateCount();
 							callback(0, xhr.responseText);
 						}
 					},
@@ -120,6 +125,7 @@
 					var html = xhr.responseText;
 					if (html.indexOf(' type="hidden" ') > 0) {
 						callback(0, xhr.statusText);
+						updateCount();
 					} else {
 						callback(1, xhr.responseText);
 					}
