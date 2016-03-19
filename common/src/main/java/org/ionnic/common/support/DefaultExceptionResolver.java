@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.support.view.JsonView;
+import org.ionnic.common.support.view.MappingJacksonJsonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
@@ -105,7 +105,7 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
         mv.addObject(ActionSupport.DATA, error.getData());
 
         if (WebUtils.hasAnnotation(handler)) {
-            mv.setView(new JsonView());
+            mv.setView(new MappingJacksonJsonView());
             if (statusCode > 0) {
                 response.setStatus(error.getStatus());
             } else {

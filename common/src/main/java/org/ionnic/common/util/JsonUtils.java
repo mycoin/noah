@@ -13,6 +13,7 @@ import com.google.gson.JsonSyntaxException;
  * @author apple
  *
  */
+@SuppressWarnings("unchecked")
 public abstract class JsonUtils {
 
     private static final String DEFAULT_JSON = "{}";
@@ -23,7 +24,6 @@ public abstract class JsonUtils {
      * @param json
      * @return
      */
-    @SuppressWarnings("unchecked")
     public static Map<String, Object> fromJson(String json) {
         return fromJson(json, Map.class);
     }
@@ -46,7 +46,6 @@ public abstract class JsonUtils {
      * @param type
      * @return
      */
-    @SuppressWarnings("unchecked")
     public static <T> T fromJson(String json, Type type) {
         if (json == null) {
             return null;

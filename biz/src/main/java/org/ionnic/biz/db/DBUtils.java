@@ -1,4 +1,4 @@
-package org.ionnic.common.util;
+package org.ionnic.biz.db;
 
 import java.lang.reflect.Field;
 import java.sql.PreparedStatement;

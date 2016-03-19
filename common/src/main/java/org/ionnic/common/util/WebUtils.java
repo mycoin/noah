@@ -19,7 +19,6 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-@SuppressWarnings("unchecked")
 public abstract class WebUtils extends org.springframework.web.util.WebUtils {
 //
 //    /**

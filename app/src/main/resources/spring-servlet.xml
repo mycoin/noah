@@ -20,7 +20,7 @@
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.common.support.JsonMessageConverter" />
+            <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 

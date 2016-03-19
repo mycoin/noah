@@ -1,4 +1,4 @@
-package org.ionnic.common.biz;
+package org.ionnic.biz.sync;
 
 /**
  * @author apple

@@ -25,5 +25,12 @@
             <artifactId>javax.mail-api</artifactId>
             <version>1.5.5</version>
         </dependency>
+
+        <!-- svnkit -->
+        <dependency>
+            <groupId>org.tmatesoft.svnkit</groupId>
+            <artifactId>svnkit</artifactId>
+            <version>1.7.8</version>
+        </dependency>
     </dependencies>
 </project>
