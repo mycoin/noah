@@ -39,14 +39,14 @@ abstract class SyncTemplateConfig {
     /**
      * @param enable the enable to set
      */
-    public void setEnable(boolean enable) {
+    public void setEnable( boolean enable ) {
         this.enable = enable;
     }
 
     /**
      * @param externalPath the externalPath to set
      */
-    public void setExternalPath(Resource externalPath) {
+    public void setExternalPath( Resource externalPath ) {
         this.externalPath = externalPath;
     }
 

@@ -22,7 +22,7 @@ public class DocumentDao {
      * @param id
      * @return
      */
-    public boolean delete(String id) {
+    public boolean delete( String id ) {
         String sql = "DELETE FROM `TEMPLATE` WHERE `guid` = ?;";
         int count = jdbcTemplate.update(sql, id);
         return count == 1;
@@ -32,7 +32,7 @@ public class DocumentDao {
      * @param document
      * @return
      */
-    public boolean insert(Document document) {
+    public boolean insert( Document document ) {
         String sql;
         if (document == null) {
             return false;
@@ -55,7 +55,7 @@ public class DocumentDao {
      * @param guid
      * @return
      */
-    public Document select(String id) {
+    public Document select( String id ) {
         List<Document> result = select("`id` = ? OR `guid` = ?", id, id);
         if (result == null || result.size() < 1) {
             return null;
@@ -69,7 +69,7 @@ public class DocumentDao {
      * @param values
      * @return
      */
-    private List<Document> select(String where, Object... values) {
+    private List<Document> select( String where, Object... values ) {
         String sql = "SELECT * FROM `TEMPLATE` WHERE " + where + ";";
         return jdbcTemplate.query(sql, mapper, values);
     }
@@ -78,7 +78,7 @@ public class DocumentDao {
      * @param guid
      * @param document
      */
-    public boolean update(String guid, Document document) {
+    public boolean update( String guid, Document document ) {
         if (document == null || !StringUtils.hasText(guid)) {
             return false;
         } else {

@@ -20,7 +20,7 @@ public class WebException extends ServletException {
      * @param status
      * @param statusInfo
      */
-    public WebException(int status, String statusInfo) {
+    public WebException( int status, String statusInfo ) {
         super(statusInfo);
 
         this.status = status;
@@ -31,7 +31,7 @@ public class WebException extends ServletException {
      * @param status
      * @param statusInfo
      */
-    public WebException(int status, String statusInfo, Throwable exception) {
+    public WebException( int status, String statusInfo, Throwable exception ) {
         super(statusInfo);
 
         this.status = status;
@@ -64,7 +64,7 @@ public class WebException extends ServletException {
     /**
      * @param data the data to set
      */
-    public void setData(Object data) {
+    public void setData( Object data ) {
         this.data = data;
     }
 }

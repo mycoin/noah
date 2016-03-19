@@ -18,7 +18,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
      * @param ref
      * @return
      */
-    private static String getVar(String ref) {
+    private static String getVar( String ref ) {
         ref = ref.replace("$", BLANK_STRING);
         ref = ref.replace("!", BLANK_STRING);
         ref = ref.replace("{", BLANK_STRING);
@@ -27,7 +27,7 @@ public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
     }
 
     @Override
-    public Object referenceInsert(String reference, Object value) {
+    public Object referenceInsert( String reference, Object value ) {
         if (value == null || !(value instanceof String)) {
             return value;
         }

@@ -25,7 +25,7 @@ public class DocumentService {
      * @param document
      * @return
      */
-    public boolean save(Document document) {
+    public boolean save( Document document ) {
         String id = document.getGuid();
 
         if (!StringUtils.hasText(id)) {
@@ -47,7 +47,7 @@ public class DocumentService {
      * @param id
      * @return
      */
-    public Document query(String id) {
+    public Document query( String id ) {
         return dao.select(id);
     }
 
@@ -55,7 +55,7 @@ public class DocumentService {
      * @param id
      * @return
      */
-    public boolean delete(String id) {
+    public boolean delete( String id ) {
         return dao.delete(id);
     }
 

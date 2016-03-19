@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class DocumentMapper<T> implements RowMapper<Document> {
 
     @Override
-    public Document mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public Document mapRow( ResultSet rs, int rowNum ) throws SQLException {
         Document doc = new Document();
 
         doc.setId(rs.getInt("id"));

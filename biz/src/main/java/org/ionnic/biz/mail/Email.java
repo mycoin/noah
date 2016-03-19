@@ -29,7 +29,7 @@ public final class Email {
 
     }
 
-    public boolean sendMail(String subject, String text, String to) {
+    public boolean sendMail( String subject, String text, String to ) {
         initJMail();
         try {
             Properties props = new Properties();

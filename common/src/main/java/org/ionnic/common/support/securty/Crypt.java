@@ -26,7 +26,7 @@ public abstract class Crypt {
      * @param s
      * @return
      */
-    public final static String md5(String s) {
+    public final static String md5( String s ) {
 
         char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         byte[] btInput = s.getBytes();
@@ -62,7 +62,7 @@ public abstract class Crypt {
      * @param b
      * @return
      */
-    public static String byteToHex(byte[] b) {
+    public static String byteToHex( byte[] b ) {
         StringBuilder hs = new StringBuilder();
         String stmp;
         for (int n = 0; b != null && n < b.length; n++) {
@@ -82,7 +82,7 @@ public abstract class Crypt {
      * @return      返回解密后的原始数据
      * @throws Exception
      */
-    public static String decrypt(String data, String key) {
+    public static String decrypt( String data, String key ) {
         byte[] datas = hexToByte(data.getBytes());
         byte[] keys = key.getBytes();
 
@@ -118,7 +118,7 @@ public abstract class Crypt {
      * @throws Exception
      */
 
-    public static String encrypt(String data, String key) throws Exception {
+    public static String encrypt( String data, String key ) throws Exception {
         byte[] datas = data.getBytes();
         byte[] keys = key.getBytes();
 
@@ -150,7 +150,7 @@ public abstract class Crypt {
      * @param b
      * @return
      */
-    public static byte[] hexToByte(byte[] b) {
+    public static byte[] hexToByte( byte[] b ) {
         if ((b.length % 2) != 0) {
             throw new IllegalArgumentException();
         }

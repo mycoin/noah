@@ -39,7 +39,7 @@ public class MappingJacksonJsonView extends AbstractView {
     private String[] jsonpParameterNames = new String[] { "callback" };
 
     @Override
-    protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected void renderMergedOutputModel( Map<String, Object> model, HttpServletRequest request, HttpServletResponse response ) throws Exception {
         String jsonpParameterValue = getJsonpParameterValue(request);
         ServletOutputStream out = response.getOutputStream();
 
@@ -57,7 +57,7 @@ public class MappingJacksonJsonView extends AbstractView {
      * @param request
      * @return
      */
-    private String getJsonpParameterValue(HttpServletRequest request) {
+    private String getJsonpParameterValue( HttpServletRequest request ) {
         if (this.jsonpParameterNames != null) {
             for (String name : this.jsonpParameterNames) {
                 String value = request.getParameter(name);
@@ -77,7 +77,7 @@ public class MappingJacksonJsonView extends AbstractView {
     }
 
     @Override
-    protected void prepareResponse(HttpServletRequest request, HttpServletResponse response) {
+    protected void prepareResponse( HttpServletRequest request, HttpServletResponse response ) {
         setResponseContentType(request, response);
         response.setCharacterEncoding(Config.CHARSET);
         if (this.disableCaching) {

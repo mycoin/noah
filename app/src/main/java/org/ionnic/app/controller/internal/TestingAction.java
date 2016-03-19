@@ -48,7 +48,7 @@ public class TestingAction extends ActionSupport {
      * @param model
      */
     @RequestMapping("/basic")
-    public void basic(@RequestBody(required = false) Map<String, Object> body, Model model) {
+    public void basic( @RequestBody(required = false) Map<String, Object> body, Model model ) {
         model.addAttribute("method", request.getMethod());
         model.addAttribute("controller", this.getClass().getName());
         if (body == null) {
@@ -75,7 +75,7 @@ public class TestingAction extends ActionSupport {
     }
 
     @RequestMapping(value = "/display", method = { RequestMethod.GET, RequestMethod.POST })
-    public void display(Model data) throws Exception {
+    public void display( Model data ) throws Exception {
         data.addAttribute(DATA, "a");
         data.addAttribute(STATUS, 0);
         data.addAttribute(STATUS_INFO, "OK");
@@ -106,14 +106,14 @@ public class TestingAction extends ActionSupport {
      * @return
      */
     @RequestMapping(value = "/index")
-    public void index(HttpServletRequest request, Model data) {
+    public void index( HttpServletRequest request, Model data ) {
         data.addAttribute("search", "<a href=\"api\">测试</a>");
         data.addAttribute("url", 1);
     }
 
     @RequestMapping(value = "/api", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json")
     @ResponseBody
-    public Object index(@RequestBody Map<String, Object> param) {
+    public Object index( @RequestBody Map<String, Object> param ) {
         param.put("status", 0);
         return param;
     }
@@ -143,12 +143,12 @@ public class TestingAction extends ActionSupport {
      * @throws Exception
      */
     @RequestMapping(value = "/log.do")
-    public void log(HttpServletResponse response) throws Exception {
+    public void log( HttpServletResponse response ) throws Exception {
         WebUtils.sendResource(response, "page/static/icon.gif");
     }
 
     @RequestMapping(value = "/log.js")
-    public Object log(@RequestParam String version, @RequestParam long sid, Model model, HttpServletResponse response) {
+    public Object log( @RequestParam String version, @RequestParam long sid, Model model, HttpServletResponse response ) {
         response.setContentType("text/javascript; charset=utf-8");
 
         model.addAttribute("sid", sid);
@@ -165,7 +165,7 @@ public class TestingAction extends ActionSupport {
      */
     @RequestMapping(value = "/search/{search}", method = RequestMethod.POST)
     @ResponseBody
-    public Object search(@RequestBody Map<String, Object> body, @PathVariable() String search) throws Exception {
+    public Object search( @RequestBody Map<String, Object> body, @PathVariable() String search ) throws Exception {
         ModelMap data = new ModelMap();
 
         data.addAttribute("biz", body);
@@ -176,7 +176,7 @@ public class TestingAction extends ActionSupport {
     }
 
     @RequestMapping("/view/1")
-    public String View1(HttpServletRequest request) throws Exception {
+    public String View1( HttpServletRequest request ) throws Exception {
         request.setAttribute("statusInfo", "OK");
         return "~/testing/view";
     }
@@ -189,13 +189,13 @@ public class TestingAction extends ActionSupport {
     }
 
     @RequestMapping("/view/3")
-    public String View3(Map<String, Object> map) throws Exception {
+    public String View3( Map<String, Object> map ) throws Exception {
         map.put("statusInfo", "OK");
         return "~/testing/view";
     }
 
     @RequestMapping("/view/4")
-    public String View4(Model model) throws Exception {
+    public String View4( Model model ) throws Exception {
         model.addAttribute("statusInfo", "OK");
         return "~/testing/view";
     }

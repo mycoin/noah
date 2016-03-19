@@ -22,14 +22,14 @@ public class DefaultResultMap implements Cloneable, Serializable {
      * @param status
      * @param statusInfo
      */
-    public DefaultResultMap(int status, String statusInfo) {
+    public DefaultResultMap( int status, String statusInfo ) {
         this(null, status, statusInfo);
     }
 
     /**
      * @param data
      */
-    public DefaultResultMap(Object data) {
+    public DefaultResultMap( Object data ) {
         this(data, 0, "OK");
     }
 
@@ -38,7 +38,7 @@ public class DefaultResultMap implements Cloneable, Serializable {
      * @param status
      * @param statusInfo
      */
-    public DefaultResultMap(Object data, int status, String statusInfo) {
+    public DefaultResultMap( Object data, int status, String statusInfo ) {
         setStatus(status);
         setStatusInfo(statusInfo);
         setData(data);
@@ -56,15 +56,15 @@ public class DefaultResultMap implements Cloneable, Serializable {
         return result;
     }
 
-    public void setData(Object data) {
+    public void setData( Object data ) {
         this.data = data;
     }
 
-    public void setStatus(int status) {
+    public void setStatus( int status ) {
         this.status = status;
     }
 
-    public void setStatusInfo(String statusInfo) {
+    public void setStatusInfo( String statusInfo ) {
         this.statusInfo = statusInfo;
     }
 

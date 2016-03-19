@@ -18,7 +18,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView ) throws Exception {
 
         if (response.getContentType() == null) {
             response.setContentType(Config.CONTENT_TYPE);
@@ -27,7 +27,7 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler ) throws Exception {
         if (request.getCharacterEncoding() == null) {
             request.setCharacterEncoding(Config.CHARSET);
         }
@@ -41,7 +41,7 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
         cookie.setMaxAge(3600 * 24 * 365);
 
         response.addCookie(cookie);
-        response.addHeader("Access-Control-Allow-Origin", "*"); 
+        response.addHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.addHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
         response.addHeader("Access-Control-Max-Age", "36000000");

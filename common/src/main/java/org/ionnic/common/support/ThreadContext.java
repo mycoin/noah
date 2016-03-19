@@ -28,7 +28,7 @@ public class ThreadContext {
      * @param key
      * @param value
      */
-    public void put(Object key, Object value) {
+    public void put( Object key, Object value ) {
         hashMap.getFirst().put(key, value);
     }
 
@@ -36,7 +36,7 @@ public class ThreadContext {
      * @param key
      * @return
      */
-    public Object get(Object key) {
+    public Object get( Object key ) {
         for (HashMap<Object, Object> stackFrame : hashMap) {
             Object value = stackFrame.get(key);
             if (value != null) {
@@ -49,7 +49,7 @@ public class ThreadContext {
     /**
      * @param runnable
      */
-    public void runInSubcontext(Runnable runnable) {
+    public void runInSubcontext( Runnable runnable ) {
         hashMap.addFirst(new HashMap<Object, Object>());
         try {
             runnable.run();

@@ -35,6 +35,7 @@ public class SVNHandler {
 
     private String xmlPath;
 
+    @SuppressWarnings("deprecation")
     public void svnCheckin() {
 
         SVNRepository repository;
@@ -44,8 +45,7 @@ public class SVNHandler {
         try {
             repository = SVNRepositoryFactory.create(SVNURL.parseURIDecoded(repURL));
 
-            ISVNAuthenticationManager authManager =
-                    SVNWCUtil.createDefaultAuthenticationManager(username, password);
+            ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(username, password);
             repository.setAuthenticationManager(authManager);
 
             logger.info("Repository Root: " + repository.getRepositoryRoot(true));
@@ -60,21 +60,19 @@ public class SVNHandler {
 
             File xmlfile = new File(xmlPath);
             File jsonfile = new File(jsonPath);
-            File[] xmlfilearray = {xmlfile};
-            File[] jsonfilearray = {jsonfile};
+            File[] xmlfilearray = { xmlfile };
+            File[] jsonfilearray = { jsonfile };
 
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-            diffClient.doDiff(xmlfile, SVNRevision.UNDEFINED, SVNRevision.BASE, SVNRevision.WORKING,
-                    SVNDepth.INFINITY, true, outputStream, null);
+            diffClient.doDiff(xmlfile, SVNRevision.UNDEFINED, SVNRevision.BASE, SVNRevision.WORKING, SVNDepth.INFINITY, true, outputStream, null);
 
             if (outputStream.size() > 0) {
                 commitClient.doCommit(xmlfilearray, false, outputStream.toString(), false, true);
                 logger.info("XML Checked in at " + new Date());
             }
 
-            diffClient.doDiff(jsonfile, SVNRevision.UNDEFINED, SVNRevision.BASE, SVNRevision.WORKING,
-                    SVNDepth.INFINITY, true, outputStream, null);
+            diffClient.doDiff(jsonfile, SVNRevision.UNDEFINED, SVNRevision.BASE, SVNRevision.WORKING, SVNDepth.INFINITY, true, outputStream, null);
 
             if (outputStream.size() > 0) {
                 commitClient.doCommit(jsonfilearray, false, outputStream.toString(), false, true);
@@ -88,6 +86,7 @@ public class SVNHandler {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void svnCheckout() {
 
         File svnTempDir = new File(repPath);
@@ -98,27 +97,26 @@ public class SVNHandler {
         SVNRepository repository;
 
         try {
-            //initiate the reporitory from the url
+            // initiate the reporitory from the url
             repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(repURL));
 
-            //create authentication data
-            ISVNAuthenticationManager authManager =
-                    SVNWCUtil.createDefaultAuthenticationManager(username, password);
+            // create authentication data
+            ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(username, password);
             repository.setAuthenticationManager(authManager);
 
-            //need to identify latest revision
+            // need to identify latest revision
             long latestRevision = repository.getLatestRevision();
 
-            //create client manager and set authentication
+            // create client manager and set authentication
             SVNClientManager ourClientManager = SVNClientManager.newInstance();
             ourClientManager.setAuthenticationManager(authManager);
 
-            //use SVNUpdateClient to do the export
+            // use SVNUpdateClient to do the export
             SVNUpdateClient updateClient = ourClientManager.getUpdateClient();
             updateClient.setIgnoreExternals(false);
 
-            updateClient.doCheckout(repository.getLocation(), svnTempDir,
-                    SVNRevision.create(latestRevision), SVNRevision.create(latestRevision), true);
+            updateClient.doCheckout(repository.getLocation(), svnTempDir, SVNRevision.create(latestRevision), SVNRevision.create(latestRevision),
+                    true);
 
         } catch (SVNException e) {
             logger.error(e.toString());

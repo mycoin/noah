@@ -23,7 +23,7 @@ public class DBUtils {
      * @return
      * @throws SQLException
      */
-    public static void format(PreparedStatement ps, Object... param) throws SQLException {
+    public static void format( PreparedStatement ps, Object... param ) throws SQLException {
         if (param != null && param.length > 0) {
             for (int i = 0; i < param.length; i++) {
                 ps.setObject(i + 1, param[i]);
@@ -35,7 +35,7 @@ public class DBUtils {
      * @param result
      * @return
      */
-    public static List<Map<String, Object>> toList(ResultSet result) {
+    public static List<Map<String, Object>> toList( ResultSet result ) {
         Map<String, Object> record = null;
         List<String> columnNameList = new ArrayList<String>();
         List<Map<String, Object>> recordSet = new ArrayList<Map<String, Object>>();
@@ -66,7 +66,7 @@ public class DBUtils {
      * @param classType
      * @return
      */
-    public static <T> List<T> toList(ResultSet result, Class<T> classType) {
+    public static <T> List<T> toList( ResultSet result, Class<T> classType ) {
         List<String> columnNameList = new ArrayList<String>();
         List<T> entityList = new ArrayList<T>();
 
@@ -98,7 +98,7 @@ public class DBUtils {
      * @param result
      * @return
      */
-    public static Map<String, Object> toMap(ResultSet result) {
+    public static Map<String, Object> toMap( ResultSet result ) {
         List<String> columnNameList = new ArrayList<String>();
         Map<String, Object> record = null;
         try {
@@ -125,7 +125,7 @@ public class DBUtils {
      * @param classType
      * @return
      */
-    public static <T> T toBean(ResultSet result, Class<T> classType) {
+    public static <T> T toBean( ResultSet result, Class<T> classType ) {
 
         List<T> entityList = toList(result, classType);
         if (entityList == null || entityList.size() == 0) {

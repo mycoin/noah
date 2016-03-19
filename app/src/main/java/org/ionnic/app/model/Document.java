@@ -49,28 +49,28 @@ public class Document implements Serializable {
     /**
      * @param content the content to set
      */
-    public void setContent(String content) {
+    public void setContent( String content ) {
         this.content = content;
     }
 
     /**
      * @param guid the guid to set
      */
-    public void setGuid(String guid) {
+    public void setGuid( String guid ) {
         this.guid = guid;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId( int id ) {
         this.id = id;
     }
 
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setName( String name ) {
         this.name = name;
     }
 

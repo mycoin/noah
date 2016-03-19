@@ -48,14 +48,14 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
      * @param ex
      * @return
      */
-    protected String getStatusInfo(int status, Exception ex) {
+    protected String getStatusInfo( int status, Exception ex ) {
         String message = ex.getMessage();
 
         return message;
     }
 
     @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, final Exception ex) {
+    public ModelAndView resolveException( HttpServletRequest request, HttpServletResponse response, Object handler, final Exception ex ) {
         if (ex == null) {
             return null;
         }
@@ -121,14 +121,14 @@ public class DefaultExceptionResolver implements HandlerExceptionResolver {
     /**
      * @param errorView the errorView to set
      */
-    public void setErrorView(String errorView) {
+    public void setErrorView( String errorView ) {
         this.errorView = errorView;
     }
 
     /**
      * @param statusCode the statusCode to set
      */
-    public void setStatusCode(int statusCode) {
+    public void setStatusCode( int statusCode ) {
         this.statusCode = statusCode;
     }
 }

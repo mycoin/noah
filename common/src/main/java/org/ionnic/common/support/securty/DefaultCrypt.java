@@ -11,7 +11,7 @@ public final class DefaultCrypt {
     /**
      * @param key
      */
-    public DefaultCrypt(String key) {
+    public DefaultCrypt( String key ) {
         this.key = key;
     }
 
@@ -20,7 +20,7 @@ public final class DefaultCrypt {
      * @return
      * @throws Exception
      */
-    public String decrypt(String data) throws Exception {
+    public String decrypt( String data ) throws Exception {
         return Crypt.decrypt(data, key);
     }
 
@@ -29,7 +29,7 @@ public final class DefaultCrypt {
      * @return
      * @throws Exception
      */
-    public String encrypt(String data) throws Exception {
+    public String encrypt( String data ) throws Exception {
         return Crypt.encrypt(data, key);
     }
 }

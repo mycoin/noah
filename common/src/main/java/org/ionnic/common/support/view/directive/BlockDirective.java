@@ -46,7 +46,7 @@ public class BlockDirective extends Define {
     }
 
     @Override
-    public void init(RuntimeServices rs, InternalContextAdapter context, Node node) throws TemplateInitException {
+    public void init( RuntimeServices rs, InternalContextAdapter context, Node node ) throws TemplateInitException {
         // TODO Auto-generated method stub
         super.init(rs, context, node);
 
