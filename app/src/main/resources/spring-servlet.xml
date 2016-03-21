@@ -27,12 +27,18 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-	<!-- 视图配置 -->
-    <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <property name="suffix" value=".vm" />
-        <property name="exposeRequestAttributes" value="true" />
-        <property name="exposeSpringMacroHelpers" value="false" />
-        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+    <!-- 视图配置 -->
+    <bean class="org.springframework.web.servlet.view.ViewResolverComposite">
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+                <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+                    <property name="suffix" value=".vm" />
+                    <property name="contentType" value="text/html" />
+                    <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
+                </bean>
+            </list>
+        </property>
     </bean>
 
     <!-- 拦截器 -->

@@ -39,6 +39,12 @@ public class MappingJacksonJsonView extends AbstractView {
     private String[] jsonpParameterNames = new String[] { "callback" };
 
     @Override
+    public String getContentType() {
+        // TODO Auto-generated method stub
+        return CONTENT_TYPE;
+    }
+
+    @Override
     protected void renderMergedOutputModel( Map<String, Object> model, HttpServletRequest request, HttpServletResponse response ) throws Exception {
         String jsonpParameterValue = getJsonpParameterValue(request);
         ServletOutputStream out = response.getOutputStream();

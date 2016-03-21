@@ -21,10 +21,10 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
             response.setCharacterEncoding(Config.CHARSET);
         }
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
-        response.setHeader("Access-Control-Max-Age", "36000000");
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+//        response.setHeader("Access-Control-Max-Age", "36000000");
     }
 
     @Override

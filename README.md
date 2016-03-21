@@ -20,10 +20,10 @@ or
 Import the project as a maven project into your IDE of choice. 
 Run the class `org.ionnic.app.Main`
 
-then open <http://localhost:8080/spring-mvc/>
+then open <http://127.0.0.1:8080/>
 
 
-###Overview
+### Overview
 ---
 
 This is an application to demo the implementation of a REST API that can return responses in both JSON and XML. 
@@ -38,8 +38,8 @@ URLs the servlet responds to:
 + `/hello` - responds with the text Hello.
 + `/welcome` - Either a get or post request will work. If there is a name parameter in the request, the value of the name parameter will be included in the welcome response. 
 + `/secure` - This path will only respond to GET requests. The response format can be changed from the default of json to xml by using one of the 
-	three methods listed above. The response is a description of a person object in json or xml.  
-	The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `admin` and the password is `12345`.
+  three methods listed above. The response is a description of a person object in json or xml.  
+  The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `admin` and the password is `12345`.
 
 
 ### Features

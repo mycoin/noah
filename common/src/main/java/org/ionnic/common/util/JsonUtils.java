@@ -59,6 +59,8 @@ public abstract class JsonUtils {
         if (gson == null) {
             GsonBuilder gb = new GsonBuilder();
             gb.serializeNulls();
+            gb.disableHtmlEscaping();
+            // gb.generateNonExecutableJson();
             gb.setDateFormat(Config.DATE_FORMAT);
 
             gson = gb.create();

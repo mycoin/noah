@@ -39,11 +39,6 @@ public class TestingAction extends ActionSupport {
     @Autowired
     private DataSource dataSource;
 
-    @RequestMapping
-    public String index() {
-        return "~/testing/overview";
-    }
-
     /**
      * @param body
      * @param model
