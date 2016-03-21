@@ -1,8 +1,8 @@
 package org.ionnic.common.support;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
+import org.springframework.ui.ModelMap;
 
 /**
  * @author apple
@@ -45,15 +45,14 @@ public class DefaultResultMap implements Cloneable, Serializable {
     }
 
     /**
-     * @return
+     * @param modelMap
      */
-    public Map<String, Object> getModelMap() {
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put(ActionSupport.DATA, data);
-        result.put(ActionSupport.STATUS, status);
-        result.put(ActionSupport.STATUS_INFO, statusInfo);
+    public void exposeToModel(ModelMap modelMap) {
+        modelMap.clear();
 
-        return result;
+        modelMap.put(ActionSupport.DATA, data);
+        modelMap.put(ActionSupport.STATUS, status);
+        modelMap.put(ActionSupport.STATUS_INFO, statusInfo);
     }
 
     public void setData( Object data ) {

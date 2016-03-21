@@ -44,6 +44,7 @@ public class MappingJacksonJsonView extends AbstractView {
         ServletOutputStream out = response.getOutputStream();
 
         String responseText = JsonUtils.toJson(model);
+
         if (null == jsonpParameterValue) {
             response.setContentType(CONTENT_TYPE);
             out.write(responseText.getBytes());

@@ -28,13 +28,13 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  * @author apple
  *
  */
-public class DefaultExceptionResolver implements HandlerExceptionResolver {
+public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
-    private String errorView = "error";
+    private String errorView = "common/error";
 
-    private int statusCode = 0;
+    private int statusCode = 500;
 
     /**
      * @return the statusCode

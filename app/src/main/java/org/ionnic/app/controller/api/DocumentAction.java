@@ -24,7 +24,7 @@ public class DocumentAction extends ActionSupport {
     @Autowired
     DocumentService documentService;
 
-    @RequestMapping(method = { RequestMethod.GET })
+    @RequestMapping(value = "/all", method = { RequestMethod.GET })
     @ResponseBody
     public DefaultResultMap get() throws Exception {
         List<Document> r = documentService.query();

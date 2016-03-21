@@ -1,13 +1,9 @@
 package org.ionnic.common.support;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.ionnic.common.Config;
-import org.ionnic.common.support.securty.DefaultCrypt;
-import org.ionnic.common.util.WebUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -24,6 +20,11 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
             response.setContentType(Config.CONTENT_TYPE);
             response.setCharacterEncoding(Config.CHARSET);
         }
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "36000000");
     }
 
     @Override
@@ -32,19 +33,15 @@ public class ContentTypeInterceptor extends HandlerInterceptorAdapter {
             request.setCharacterEncoding(Config.CHARSET);
         }
 
-        HttpSession session = request.getSession(true);
-        String sessionId = session.getId();
-        DefaultCrypt crypt = new DefaultCrypt(sessionId);
+//        String newTheme = request.getParameter("theme");
+//        if (newTheme != null) {
+//            ThemeResolver themeResolver = RequestContextUtils.getThemeResolver(request);
+//            if (themeResolver == null) {
+//                throw new IllegalStateException("No ThemeResolver found: not in a DispatcherServlet request?");
+//            }
+//            themeResolver.setThemeName(request, response, newTheme);
+//        }
 
-        Cookie cookie = new Cookie("SID", crypt.encrypt(sessionId + WebUtils.getRemoteAddr(request)));
-        cookie.setPath("/");
-        cookie.setMaxAge(3600 * 24 * 365);
-
-        response.addCookie(cookie);
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.addHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
-        response.addHeader("Access-Control-Max-Age", "36000000");
         return true;
     }
 }

@@ -18,7 +18,9 @@ var taskLength = jQuery('[data-task]').length;
 function updateCount(){
     index ++;
     if(index == taskLength) {
-    	location.href = "../home/index.html";
+    	jQuery(document.body).click(function(){
+    		location.href = "document.html";
+    	});
     }
 }
 

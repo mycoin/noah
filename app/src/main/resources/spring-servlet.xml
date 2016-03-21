@@ -9,6 +9,9 @@
 	<!-- 文件扫描 -->
     <context:component-scan base-package="org.ionnic.app" />
 
+    <!-- 系统变量 -->
+    <context:property-placeholder location="classpath:conf/app.properties" />
+
 	<!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
@@ -20,7 +23,7 @@
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean class="org.ionnic.common.support.JsonMessageConverter" />
+            <bean class="org.ionnic.common.support.JsonHttpMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -42,10 +45,7 @@
         <property name="order" value="0" />
         <property name="exceptionResolvers">
             <list>
-                <bean class="org.ionnic.common.support.DefaultExceptionResolver">
-                    <property name="errorView" value="/common/error" />
-                    <property name="statusCode" value="500" />
-                </bean>
+                <bean class="org.ionnic.common.support.DefaultHandlerExceptionResolver" />
             </list>
         </property>
     </bean>

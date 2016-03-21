@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/~/testing")
 public class TestingAction extends ActionSupport {
+
     @Autowired
     public HttpServletRequest request;
 
@@ -86,7 +87,6 @@ public class TestingAction extends ActionSupport {
      * @throws Exception
      */
     @RequestMapping(value = "/error")
-    @ResponseBody
     public Map<String, Object> error() throws Exception {
         throw new Exception("OK");
     }

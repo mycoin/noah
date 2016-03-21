@@ -20,9 +20,9 @@ import com.google.gson.JsonSyntaxException;
  * @author apple
  *
  */
-public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
+public class JsonHttpMessageConverter extends AbstractHttpMessageConverter<Object> {
 
-    public JsonMessageConverter() {
+    public JsonHttpMessageConverter() {
         super(MediaType.APPLICATION_JSON);
     }
 
@@ -46,6 +46,7 @@ public class JsonMessageConverter extends AbstractHttpMessageConverter<Object> {
     @Override
     protected void writeInternal( Object t, HttpOutputMessage outputMessage ) throws IOException, HttpMessageNotWritableException {
         String result = JsonUtils.toJson(t);
+
         outputMessage.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         outputMessage.getBody().write(result.getBytes());
     }
