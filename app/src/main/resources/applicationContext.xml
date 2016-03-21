@@ -1,1 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"    xsi:schemaLocation="        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">    <!-- 系统配置 -->    <context:property-placeholder location="classpath:conf/app.properties"/>    <!-- 国际化配置 -->    <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">        <property name="basenames">            <list>                <value>/WEB-INF/conf/page</value>            </list>        </property>        <property name="cacheSeconds" value="60" />        <property name="fallbackToSystemLocale" value="false" />        <property name="useCodeAsDefaultMessage" value="true" />    </bean>    <import resource="applicationContext-db.xml" />    <import resource="applicationContext-task.xml" /></beans>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 系统配置 -->
+    <context:property-placeholder location="classpath:config/app.properties"/>
+
+    <!-- 国际化配置 -->
+    <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>/WEB-INF/conf/page</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="60" />
+        <property name="fallbackToSystemLocale" value="false" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
+</beans>

@@ -55,16 +55,10 @@ URLs the servlet responds to:
 ### HttpMessageConverters
 
 HttpMessageConverters is the magic that provides automatic conversion of Java objects to XML and JSON. In the rest-demo-servlet.xml, the 
-section starting with `<mvc:annotation-driven>` automatically creates some standard HttpMessageConverters based on what jars are on the classpath. In particular, if the 
+section starting with `<mvc:annotation-driven />` automatically creates some standard HttpMessageConverters based on what jars are on the classpath. In particular, if the 
 Jackson library is on the classpath, then a JSON converter will be created. We also add an XML marshaller based on XStream. We do this manually because by default Spring doesn't seem to do it quite right.
 
 
 ### Main.java
 
 This is the class that runs an embedded Jetty server with the servlet. 
-
-
-TODO
-====
-
-* Examples of testing Spring Controllers

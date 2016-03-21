@@ -12,6 +12,3 @@
 #macro(extends $layoutName)
     #set($layout = "${layoutName}.vm")
 #end
-
-## 获取内部地址
-#macro(getUrl $pathName)$page.getUrl($pathName)#end

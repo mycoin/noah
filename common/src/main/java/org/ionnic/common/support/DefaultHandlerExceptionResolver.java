@@ -5,8 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.support.view.MappingJacksonJsonView;
-import org.ionnic.common.util.WebUtils;
+import org.ionnic.common.config.ConfigConstants;
+import org.ionnic.common.support.util.WebUtils;
+import org.ionnic.common.support.view.tool.MappingJacksonJsonView;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -28,7 +29,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  * @author apple
  *
  */
-public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver {
+public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, ConfigConstants {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
@@ -61,48 +62,48 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
         }
 
         ModelAndView mv = new ModelAndView();
-        WebException error = null;
+        DefaultWebException error = null;
 
-        if (!(ex instanceof WebException)) {
+        if (!(ex instanceof DefaultWebException)) {
             if (ex instanceof NoSuchRequestHandlingMethodException) {
-                error = new WebException(404, "Page Not Found");
+                error = new DefaultWebException(404, "Page Not Found");
             } else if (ex instanceof HttpRequestMethodNotSupportedException) {
-                error = new WebException(405, "Method Not Allowed");
+                error = new DefaultWebException(405, "Method Not Allowed");
             } else if (ex instanceof HttpMediaTypeNotSupportedException) {
-                error = new WebException(415, "Unsupported Media Type");
+                error = new DefaultWebException(415, "Unsupported Media Type");
             } else if (ex instanceof HttpMediaTypeNotAcceptableException) {
-                error = new WebException(406, "Not Acceptable");
+                error = new DefaultWebException(406, "Not Acceptable");
             } else if (ex instanceof MissingServletRequestParameterException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof ServletRequestBindingException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof ConversionNotSupportedException) {
-                error = new WebException(500, "Internal Server Error");
+                error = new DefaultWebException(500, "Internal Server Error");
             } else if (ex instanceof TypeMismatchException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof HttpMessageNotReadableException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof HttpMessageNotWritableException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof MethodArgumentNotValidException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof MissingServletRequestPartException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof BindException) {
-                error = new WebException(400, "Bad Request");
+                error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof NoHandlerFoundException) {
-                error = new WebException(404, "Page Not Found");
+                error = new DefaultWebException(404, "Page Not Found");
             } else {
-                error = new WebException(500, "Internal Server Error");
+                error = new DefaultWebException(500, "Internal Server Error");
             }
             error.setData(ex);
         } else {
-            error = (WebException) ex;
+            error = (DefaultWebException) ex;
         }
 
-        mv.addObject(ActionSupport.STATUS, error.getStatus());
-        mv.addObject(ActionSupport.STATUS_INFO, error.getStatusInfo());
-        mv.addObject(ActionSupport.DATA, error.getData());
+        mv.addObject(STATUS, error.getStatus());
+        mv.addObject(STATUS_INFO, error.getStatusInfo());
+        mv.addObject(DATA, error.getData());
 
         if (WebUtils.hasAnnotation(handler)) {
             mv.setView(new MappingJacksonJsonView());
