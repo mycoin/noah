@@ -1,6 +1,6 @@
 package org.ionnic.common.support;
 
-import org.ionnic.common.util.GsonUtils;
+import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
 import com.google.gson.Gson;
@@ -11,7 +11,7 @@ import com.google.gson.Gson;
  */
 public class JsonHttpMessageConverter extends GsonHttpMessageConverter {
 
-    private Gson gson = GsonUtils.getGson();
+    private Gson gson = JsonUtils.getGson();
 
     /**
      * set Gson

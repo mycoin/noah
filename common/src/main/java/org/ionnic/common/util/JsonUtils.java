@@ -1,9 +1,9 @@
 package org.ionnic.common.util;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.ionnic.common.config.ConfigConstants;
 
 import com.google.gson.Gson;
@@ -13,9 +13,11 @@ import com.google.gson.GsonBuilder;
  * @author apple
  *
  */
-public abstract class GsonUtils implements ConfigConstants {
+public abstract class JsonUtils implements ConfigConstants {
 
-    private static final String DEFAULT_JSON = "{}";
+    public static final String DEFAULT_JSON = "{}";
+
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     private static Gson gson;
 
@@ -41,27 +43,15 @@ public abstract class GsonUtils implements ConfigConstants {
     }
 
     /**
-     * @param json
-     * @param type
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> T fromJson( String json, Type type ) {
-        if (json == null) {
-            return null;
-        }
-        return (T) getGson().fromJson(json, type);
-    }
-
-    /**
      * @return
      */
     public static Gson getGson() {
         if (gson == null) {
             GsonBuilder gb = new GsonBuilder();
+
             gb.serializeNulls();
             gb.disableHtmlEscaping();
-            // gb.generateNonExecutableJson();
+            gb.excludeFieldsWithoutExposeAnnotation();
             gb.setDateFormat(DATE_FORMAT);
 
             gson = gb.create();
@@ -76,9 +66,22 @@ public abstract class GsonUtils implements ConfigConstants {
     public static String toJson( Object src ) {
         try {
             return getGson().toJson(src);
-        } catch (Exception e) {
+        } catch (Throwable e) {
 
         }
         return DEFAULT_JSON;
+    }
+
+    /**
+     * @param src
+     * @return
+     */
+    public static String toJson( Object src, Log log ) {
+        try {
+            return getGson().toJson(src);
+        } catch (Throwable e) {
+            log.error("Cannot serialize object.", e);
+        }
+        return null;
     }
 }

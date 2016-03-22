@@ -18,7 +18,7 @@ public class ApiController extends AbstractController {
         mv.addObject("id", 1);
         mv.addObject("OK", 1);
 
-        if (this != null) {
+        if (this == null) {
             mv.setView(MappingJacksonJsonView.getInstance());
         }
         return mv;

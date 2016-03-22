@@ -1,25 +1,28 @@
 package org.ionnic.common.support;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ionnic.common.config.ConfigConstants;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author apple
  *
  */
 @SuppressWarnings("serial")
-public class DefaultWebException extends ServletException {
+public class DefaultWebException extends RuntimeException implements ConfigConstants {
 
     @SuppressWarnings("unused")
     private final Log log = LogFactory.getLog(getClass());
 
-    private String statusInfo;
+    private String statusText;
 
-    private int status;
+    private int statusCode;
 
-    private Object data = new Object();
+    private Throwable innerException = null;
 
     /**
      * @param status
@@ -28,8 +31,8 @@ public class DefaultWebException extends ServletException {
     public DefaultWebException( int status, String statusInfo ) {
         super(statusInfo);
 
-        this.status = status;
-        this.statusInfo = statusInfo;
+        this.statusCode = status;
+        this.statusText = statusInfo;
     }
 
     /**
@@ -39,37 +42,34 @@ public class DefaultWebException extends ServletException {
     public DefaultWebException( int status, String statusInfo, Throwable exception ) {
         super(statusInfo);
 
-        this.status = status;
-        this.statusInfo = statusInfo;
-
-        this.data = exception;
-    }
-
-    /**
-     * @return the data
-     */
-    public Object getData() {
-        return data;
-    }
-
-    /**
-     * @return the status
-     */
-    public int getStatus() {
-        return status;
-    }
-
-    /**
-     * @return the statusInfo
-     */
-    public String getStatusInfo() {
-        return statusInfo;
+        this.statusCode = status;
+        this.statusText = statusInfo;
+        this.innerException = exception;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData( Object data ) {
-        this.data = data;
+    public void setCause( Throwable data ) {
+        this.innerException = data;
+    }
+
+    /**
+     * @param mv
+     * @param object
+     */
+    public void responseTo( ModelAndView mv, HttpServletResponse response ) {
+        if (innerException == null) {
+            mv.addObject(DATA_NAME, new ServletException("" + statusText));
+        } else {
+            mv.addObject(DATA_NAME, innerException);
+        }
+
+        mv.addObject(STATUS_NAME, statusCode);
+        mv.addObject(STATUS_INFO_NAME, statusText);
+
+        if (response != null) {
+            response.setStatus(statusCode);
+        }
     }
 }

@@ -22,7 +22,7 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
     public void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView ) throws Exception {
 
         if (response.getContentType() == null) {
-            response.setContentType(CONTENT_TYPE);
+            response.setContentType("text/html; charset=" + CHARSET);
             response.setCharacterEncoding(CHARSET);
         }
     }

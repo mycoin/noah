@@ -5,22 +5,30 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.ConfigConstants;
-import org.ionnic.common.util.GsonUtils;
+import org.ionnic.common.util.JsonUtils;
 import org.springframework.web.servlet.View;
 
+/**
+ * @author apple
+ *
+ */
 public class MappingJacksonJsonView implements View, ConfigConstants {
 
-    private static View instance;
+    private static View main;
+
+    private Log log = LogFactory.getLog(getClass());
 
     /**
      * @return
      */
     public static View getInstance() {
-        if (instance == null) {
-            instance = new MappingJacksonJsonView();
+        if (main == null) {
+            main = new MappingJacksonJsonView();
         }
-        return instance;
+        return main;
     }
 
     @Override
@@ -30,12 +38,9 @@ public class MappingJacksonJsonView implements View, ConfigConstants {
 
     @Override
     public void render( Map<String, ?> model, HttpServletRequest request, HttpServletResponse response ) throws Exception {
-        String result = "{\"throwable\": true}";
-        try {
-            result = GsonUtils.toJson(model);
-        } catch (Throwable e) {
-        }
-        response.setContentType("application/javascript; charset=utf-8");
+        String result = JsonUtils.toJson(model, log);
+
+        response.setContentType("application/json; charset=" + CHARSET);
         response.getWriter().write(result);
     }
 }

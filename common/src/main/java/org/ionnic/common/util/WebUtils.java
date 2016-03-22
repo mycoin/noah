@@ -6,10 +6,14 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 
+/**
+ * @author apple
+ *
+ */
 public class WebUtils {
+
     /**
-     * @param method
-     * @param request
+     * @param handler
      * @return
      */
     public static boolean hasAnnotation( Object handler ) {

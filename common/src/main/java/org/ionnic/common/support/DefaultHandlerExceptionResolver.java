@@ -33,7 +33,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
 
     protected final Log log = LogFactory.getLog(getClass());
 
-    private String errorView = "common/error";
+    private final String ERROR_VIEW_NAME = "common/error";
 
     private int statusCode = 500;
 
@@ -64,6 +64,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
         DefaultWebException error = null;
 
         if (!(ex instanceof DefaultWebException)) {
+
             if (ex instanceof NoSuchRequestHandlingMethodException) {
                 error = new DefaultWebException(404, "Page Not Found");
             } else if (ex instanceof HttpRequestMethodNotSupportedException) {
@@ -95,35 +96,22 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             } else {
                 error = new DefaultWebException(500, "Internal Server Error");
             }
-            error.setData(ex);
+            mv.addObject(DATA_NAME, ex);
         } else {
             error = (DefaultWebException) ex;
         }
 
-        mv.addObject(STATUS, error.getStatus());
-        mv.addObject(STATUS_INFO, error.getStatusInfo());
-        mv.addObject(DATA, error.getData());
-
         if (WebUtils.hasAnnotation(handler)) {
-            mv.setView(new MappingJacksonJsonView());
-            if (statusCode > 0) {
-                response.setStatus(error.getStatus());
-            } else {
-                response.setStatus(200);
-            }
+            mv.setView(MappingJacksonJsonView.getInstance());
+            error.responseTo(mv, null);
         } else {
-            mv.setViewName(errorView);
-            response.setStatus(error.getStatus());
+            mv.setViewName(ERROR_VIEW_NAME);
+            error.responseTo(mv, response);
         }
-        log.info("Coutched Error:", ex);
-        return mv;
-    }
 
-    /**
-     * @param errorView the errorView to set
-     */
-    public void setErrorView( String errorView ) {
-        this.errorView = errorView;
+        log.info("Coutched Error:", ex);
+
+        return mv;
     }
 
     /**
