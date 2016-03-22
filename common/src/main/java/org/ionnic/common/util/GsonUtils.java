@@ -1,4 +1,4 @@
-package org.ionnic.common.support.util;
+package org.ionnic.common.util;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

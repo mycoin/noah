@@ -1,6 +1,6 @@
 package org.ionnic.common.support.view.tool;
 
-import org.ionnic.common.support.util.ContextUtils;
+import org.ionnic.common.util.ContextUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 /**

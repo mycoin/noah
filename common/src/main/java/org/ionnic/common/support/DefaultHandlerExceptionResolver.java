@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.ConfigConstants;
-import org.ionnic.common.support.util.WebUtils;
-import org.ionnic.common.support.view.tool.MappingJacksonJsonView;
+import org.ionnic.common.support.view.MappingJacksonJsonView;
+import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  */
 public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, ConfigConstants {
 
-    protected final Log logger = LogFactory.getLog(getClass());
+    protected final Log log = LogFactory.getLog(getClass());
 
     private String errorView = "common/error";
 
@@ -51,7 +51,6 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
      */
     protected String getStatusInfo( int status, Exception ex ) {
         String message = ex.getMessage();
-
         return message;
     }
 
@@ -116,6 +115,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             mv.setViewName(errorView);
             response.setStatus(error.getStatus());
         }
+        log.info("Coutched Error:", ex);
         return mv;
     }
 

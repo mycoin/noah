@@ -2,12 +2,18 @@ package org.ionnic.common.support;
 
 import javax.servlet.ServletException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * @author apple
  *
  */
 @SuppressWarnings("serial")
 public class DefaultWebException extends ServletException {
+
+    @SuppressWarnings("unused")
+    private final Log log = LogFactory.getLog(getClass());
 
     private String statusInfo;
 

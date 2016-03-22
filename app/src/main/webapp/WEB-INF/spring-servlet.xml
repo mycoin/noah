@@ -23,6 +23,9 @@
             <bean class="org.ionnic.common.support.JsonHttpMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <property name="caseSensitive" value="true" />
+    </bean>
 
     <!-- 视图配置 -->
     <bean class="org.springframework.web.servlet.view.ViewResolverComposite">
