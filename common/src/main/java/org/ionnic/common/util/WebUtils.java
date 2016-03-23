@@ -23,7 +23,7 @@ public class WebUtils {
             anno = AnnotationUtils.findAnnotation(me, ResponseBody.class);
             anno.annotationType();
         } catch (Exception e) {
-
+            return false;
         }
 
         return anno != null;

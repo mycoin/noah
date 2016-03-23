@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 系统配置 -->
-    <context:property-placeholder location="classpath:config/app.properties"/>
+    <context:property-placeholder location="classpath:config/app.properties" />
 
     <!-- 国际化配置 -->
     <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

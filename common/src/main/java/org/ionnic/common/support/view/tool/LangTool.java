@@ -9,7 +9,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 public class LangTool {
 
-    public WebApplicationContext applicationContext = ContextUtils.getContext();
+    private WebApplicationContext applicationContext = ContextUtils.getApplicationContext();
 
     /**
      * @param key

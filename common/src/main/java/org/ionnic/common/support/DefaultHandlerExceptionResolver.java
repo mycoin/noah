@@ -101,6 +101,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             error = (DefaultWebException) ex;
         }
 
+
         if (WebUtils.hasAnnotation(handler)) {
             mv.setView(MappingJacksonJsonView.getInstance());
             error.responseTo(mv, null);

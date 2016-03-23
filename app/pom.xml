@@ -16,12 +16,12 @@
         <dependency>
             <groupId>org.ionnic</groupId>
             <artifactId>common</artifactId>
-            <version>(,2.0)</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.ionnic</groupId>
             <artifactId>biz</artifactId>
-            <version>(,2.0)</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
 		<!-- jetty -->
@@ -35,6 +35,20 @@
             <artifactId>jetty-util</artifactId>
             <version>6.1.26</version>
         </dependency>
+
+        <!-- jsp page -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

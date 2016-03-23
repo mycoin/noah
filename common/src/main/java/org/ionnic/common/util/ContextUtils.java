@@ -12,7 +12,7 @@ public abstract class ContextUtils {
     /**
      * @return
      */
-    public static WebApplicationContext getContext() {
+    public static WebApplicationContext getApplicationContext() {
         return ContextLoader.getCurrentWebApplicationContext();
     }
 }

@@ -26,6 +26,13 @@ public class DefaultWebException extends RuntimeException implements ConfigConst
 
     /**
      * @param status
+     */
+    public DefaultWebException( int status ) {
+
+    }
+
+    /**
+     * @param status
      * @param statusInfo
      */
     public DefaultWebException( int status, String statusInfo ) {
@@ -44,14 +51,7 @@ public class DefaultWebException extends RuntimeException implements ConfigConst
 
         this.statusCode = status;
         this.statusText = statusInfo;
-        this.innerException = exception;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setCause( Throwable data ) {
-        this.innerException = data;
+        setCause(exception);
     }
 
     /**
@@ -60,16 +60,22 @@ public class DefaultWebException extends RuntimeException implements ConfigConst
      */
     public void responseTo( ModelAndView mv, HttpServletResponse response ) {
         if (innerException == null) {
-            mv.addObject(DATA_NAME, new ServletException("" + statusText));
-        } else {
-            mv.addObject(DATA_NAME, innerException);
+            innerException = new ServletException(statusText);
         }
 
+        mv.addObject(DATA_NAME, innerException);
         mv.addObject(STATUS_NAME, statusCode);
         mv.addObject(STATUS_INFO_NAME, statusText);
 
         if (response != null) {
             response.setStatus(statusCode);
         }
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setCause( Throwable data ) {
+        this.innerException = data;
     }
 }
