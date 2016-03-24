@@ -1,5 +1,6 @@
 package org.ionnic.common.support;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +37,8 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
     private final String ERROR_VIEW_NAME = "common/error";
 
     private int statusCode = 500;
+
+    private final String NO_HANDLE_MESSAGE_PREFIX = "No adapter for handler";
 
     /**
      * @return the statusCode
@@ -93,14 +96,19 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
                 error = new DefaultWebException(400, "Bad Request");
             } else if (ex instanceof NoHandlerFoundException) {
                 error = new DefaultWebException(404, "Page Not Found");
-            } else {
-                error = new DefaultWebException(500, "Internal Server Error");
+            } else if (ex instanceof ServletException) {
+
+                if (ex.getMessage().startsWith(NO_HANDLE_MESSAGE_PREFIX)) {
+                    error = new DefaultWebException(404, "Page Not Found");
+                } else {
+                    error = new DefaultWebException(500, "Internal Server Error");
+                }
+
             }
             mv.addObject(DATA_NAME, ex);
         } else {
             error = (DefaultWebException) ex;
         }
-
 
         if (WebUtils.hasAnnotation(handler)) {
             mv.setView(MappingJacksonJsonView.getInstance());

@@ -4,22 +4,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.ionnic.common.support.DefaultWebException;
-import org.ionnic.common.support.web.ActionSupport;
+import org.ionnic.common.support.web.AbstractActionSupport;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller("HomeController")
 @RequestMapping("/home")
-public class HomeController extends ActionSupport {
+public class HomeController extends AbstractActionSupport {
 
     @RequestMapping("/index")
-    public void index( ModelMap mv ) {
-        mv.addAttribute("data", 1);
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("param", 1);
+        mv.addObject("param", new HashMap<String, Object>());
+        return mv;
     }
 
     @RequestMapping(value = "/ajax", produces = "application/json; charset=UTF-8")
@@ -30,11 +30,5 @@ public class HomeController extends ActionSupport {
         model.put(STATUS_NAME, 1);
 
         return model;
-    }
-
-    @Override
-    public boolean checkRequest( HttpServletRequest request, Boolean is ) throws DefaultWebException {
-        // TODO Auto-generated method stub
-        return true;
     }
 }

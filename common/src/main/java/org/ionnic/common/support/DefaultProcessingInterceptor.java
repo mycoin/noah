@@ -7,6 +7,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.support.web.ActionSupport;
+import org.ionnic.common.util.WebUtils;
+import org.springframework.core.Ordered;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -15,7 +17,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author apple
  *
  */
-public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements ConfigConstants {
+public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements ConfigConstants, Ordered {
 
     private final Log log = LogFactory.getLog(getClass());
 
@@ -27,6 +29,7 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
                 response.setContentType("text/html; charset=" + CHARSET);
                 response.setCharacterEncoding(CHARSET);
             }
+            WebUtils.exposeSessionTokenAttribute(request);
         }
     }
 
@@ -38,25 +41,21 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
         if (handler instanceof HandlerMethod) {
             Object bean = ((HandlerMethod) handler).getBean();
             if (bean instanceof ActionSupport) {
-                prepareInitRequest(request, (ActionSupport) bean, (HandlerMethod) handler);
+
+                if (log.isDebugEnabled()) {
+                    log.debug("The handle is instanceof ActionSupport, invoke checkRequest()");
+                }
+
+                if (false == ((ActionSupport) bean).checkRequest(request, (HandlerMethod) handler)) {
+                    throw new DefaultWebException(403, "Access Denied");
+                }
             }
         }
-
         return true;
     }
 
-    /**
-     * @param request
-     * @param actionBean
-     * @param handler
-     */
-    private void prepareInitRequest( HttpServletRequest request, ActionSupport actionBean, HandlerMethod handler ) {
-        if (!actionBean.checkRequest(request, true)) {
-            throw new DefaultWebException(403, "Access Denied");
-        }
-
-        if (log.isDebugEnabled()) {
-            log.debug("The handle is instanceof ActionSupport, invoke checkRequest()");
-        }
+    @Override
+    public int getOrder() {
+        return 0;
     }
 }
