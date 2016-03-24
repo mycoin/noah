@@ -22,7 +22,7 @@ public abstract class AbstractActionSupport implements ActionSupport {
      * @throws DefaultWebException
      * @throws HttpMediaTypeNotAcceptableException
      */
-    public boolean checkRequest( HttpServletRequest request, HandlerMethod method ) throws DefaultWebException, HttpMediaTypeNotAcceptableException {
+    public boolean checkRequest( HttpServletRequest request, HandlerMethod method ) throws DefaultWebException {
         return true;
     }
 
@@ -34,11 +34,9 @@ public abstract class AbstractActionSupport implements ActionSupport {
      * @throws DefaultWebException
      */
     public boolean checkSessionBasedToken( HttpServletRequest request ) throws DefaultWebException {
-        try {
-            return WebUtils.checkRequestSessionToken(request);
-        } catch (Exception e) {
-
+        if (WebUtils.checkRequestSessionToken(request)) {
+            return true;
         }
-        return false;
+        throw new DefaultWebException(403, "Access Denied");
     }
 }

@@ -97,15 +97,14 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             } else if (ex instanceof NoHandlerFoundException) {
                 error = new DefaultWebException(404, "Page Not Found");
             } else if (ex instanceof ServletException) {
-
                 if (ex.getMessage().startsWith(NO_HANDLE_MESSAGE_PREFIX)) {
                     error = new DefaultWebException(404, "Page Not Found");
-                } else {
-                    error = new DefaultWebException(500, "Internal Server Error");
                 }
-
             }
-            mv.addObject(DATA_NAME, ex);
+            if (error == null) {
+                error = new DefaultWebException(500, "Internal Server Error", ex);
+            }
+            log.info("Coutched Error:", ex);
         } else {
             error = (DefaultWebException) ex;
         }
@@ -117,9 +116,6 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             mv.setViewName(ERROR_VIEW_NAME);
             error.responseTo(mv, response);
         }
-
-        log.info("Coutched Error:", ex);
-
         return mv;
     }
 

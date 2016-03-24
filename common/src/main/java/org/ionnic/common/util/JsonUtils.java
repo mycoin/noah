@@ -3,11 +3,11 @@ package org.ionnic.common.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
 import org.ionnic.common.config.ConfigConstants;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.MalformedJsonException;
 
 /**
  * @author apple
@@ -51,7 +51,6 @@ public abstract class JsonUtils implements ConfigConstants {
 
             gb.serializeNulls();
             gb.disableHtmlEscaping();
-            gb.excludeFieldsWithoutExposeAnnotation();
             gb.setDateFormat(DATE_FORMAT);
 
             gson = gb.create();
@@ -62,26 +61,13 @@ public abstract class JsonUtils implements ConfigConstants {
     /**
      * @param src
      * @return
+     * @throws MalformedJsonException
      */
-    public static String toJson( Object src ) {
+    public static String toJson( Object src ) throws UnsupportedOperationException {
         try {
             return getGson().toJson(src);
-        } catch (Throwable e) {
-
+        } catch (Exception e) {
+            throw new UnsupportedOperationException(e);
         }
-        return DEFAULT_JSON;
-    }
-
-    /**
-     * @param src
-     * @return
-     */
-    public static String toJson( Object src, Log log ) {
-        try {
-            return getGson().toJson(src);
-        } catch (Throwable e) {
-            log.error("Cannot serialize object.", e);
-        }
-        return null;
     }
 }
