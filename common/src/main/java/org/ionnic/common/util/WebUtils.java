@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.ionnic.common.support.DESDigest;
+import org.ionnic.common.support.DigestSupport;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,11 +45,11 @@ public class WebUtils {
      * @param response
      * @throws Exception
      */
-    public static void exposeSessionTokenAttribute( HttpServletRequest request ) throws RuntimeException {
+    public static void exposeSessionTokenAttribute( HttpServletRequest request ) {
         HttpSession session = request.getSession(true);
         Assert.notNull(session, "The session cannot be null");
 
-        String code = DESDigest.encrypt(session.getId(), HEADER_NAME);
+        String code = DigestSupport.encrypt(session.getId());
         request.setAttribute(HEADER_NAME, code);
     }
 
@@ -68,7 +68,7 @@ public class WebUtils {
             return false;
         }
         String sessionId = session.getId();
-        return tokenValue.equals(DESDigest.encrypt(sessionId, HEADER_NAME));
+        return tokenValue.equals(DigestSupport.encrypt(sessionId));
     }
 
     /**

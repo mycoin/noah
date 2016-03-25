@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.ionnic.common.support.view.MappingJacksonJsonView;
 import org.ionnic.common.support.web.AbstractActionSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class HomeController extends AbstractActionSupport {
         ModelAndView mv = new ModelAndView();
         mv.addObject("param", 1);
         mv.addObject("data", new HashMap<String, Object>());
-        mv.setView(MappingJacksonJsonView.getInstance());
+        // mv.setView(MappingJacksonJsonView.getInstance());
         return mv;
     }
 

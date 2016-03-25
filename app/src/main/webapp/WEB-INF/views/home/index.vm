@@ -1,1 +1,5 @@
 #[[$pagetool]]#
+
+
+<br />
+$request.getAttribute("X-Request-Token")
