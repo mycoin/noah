@@ -34,11 +34,11 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
 
     protected final Log log = LogFactory.getLog(getClass());
 
-    private final String ERROR_VIEW_NAME = "common/error";
+    private final String ERROR_VIEW = "common/error";
 
     private int statusCode = 500;
 
-    private final String NO_HANDLE_MESSAGE_PREFIX = "No adapter for handler";
+    private final String NO_HANDLE = "No adapter for handler";
 
     /**
      * @return the statusCode
@@ -97,7 +97,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             } else if (ex instanceof NoHandlerFoundException) {
                 error = new DefaultWebException(404, "Page Not Found");
             } else if (ex instanceof ServletException) {
-                if (ex.getMessage().startsWith(NO_HANDLE_MESSAGE_PREFIX)) {
+                if (ex.getMessage().startsWith(NO_HANDLE)) {
                     error = new DefaultWebException(404, "Page Not Found");
                 }
             }
@@ -113,7 +113,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
             mv.setView(MappingJacksonJsonView.getInstance());
             error.responseTo(mv, null);
         } else {
-            mv.setViewName(ERROR_VIEW_NAME);
+            mv.setViewName(ERROR_VIEW);
             error.responseTo(mv, response);
         }
         return mv;

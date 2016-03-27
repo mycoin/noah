@@ -1,9 +1,8 @@
-package org.ionnic.common.support.web;
+package org.ionnic.common.support;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.common.config.ConfigConstants;
-import org.ionnic.common.support.DefaultWebException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
 

@@ -1,8 +1,7 @@
-package org.ionnic.common.support.web;
+package org.ionnic.common.support;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.support.DefaultWebException;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
@@ -34,7 +33,7 @@ public abstract class AbstractActionSupport implements ActionSupport {
      * @throws DefaultWebException
      */
     public boolean checkSessionBasedToken( HttpServletRequest request ) throws DefaultWebException {
-        if (WebUtils.checkRequestSessionToken(request)) {
+        if (WebUtils.checkSessionToken(request)) {
             return true;
         }
         throw new DefaultWebException(403, "Access Denied");

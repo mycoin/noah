@@ -3,7 +3,6 @@ package org.ionnic.common.util;
 import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.ionnic.common.support.DigestSupport;
@@ -16,11 +15,11 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public class WebUtils {
+public abstract class WebUtils {
 
     public static final String HEADER_NAME = "X-Request-Token";
 
-    public static final String PARAMETER_NAME = "_csrfToken";
+    public static final String PARAMETER_NAME = "csrf_token";
 
     /**
      * @param handler
@@ -40,43 +39,32 @@ public class WebUtils {
     }
 
     /**
+     * SessionId 的加密
+     *
      * @param request
-     * @param response
-     * @param response
-     * @throws Exception
+     * @return
      */
-    public static void exposeSessionTokenAttribute( HttpServletRequest request ) {
+    public static String getSessionToken( HttpServletRequest request ) {
         HttpSession session = request.getSession(true);
         Assert.notNull(session, "The session cannot be null");
 
-        String code = DigestSupport.encrypt(session.getId());
-        request.setAttribute(HEADER_NAME, code);
+        return DigestSupport.encrypt(session.getId());
     }
 
     /**
      * @param request
      * @return
      */
-    public static boolean checkRequestSessionToken( HttpServletRequest request ) {
+    public static boolean checkSessionToken( HttpServletRequest request ) {
         HttpSession session = request.getSession(false);
         String tokenValue = request.getHeader(HEADER_NAME);
         if (tokenValue == null) {
             tokenValue = request.getParameter(PARAMETER_NAME);
         }
-
         if (session == null || tokenValue == null) {
             return false;
+        } else {
+            return tokenValue.equals(getSessionToken(request));
         }
-        String sessionId = session.getId();
-        return tokenValue.equals(DigestSupport.encrypt(sessionId));
-    }
-
-    /**
-     * @param response
-     */
-    public static void exposeXSSResponseHeader( HttpServletResponse response ) {
-        response.addHeader("X-Frame-Options", "deny");
-        response.addHeader("X-XSS-Protection", "1; mode=block");
-        response.addHeader("X-UA-Compatible", "IE=Edge,chrome=1");
     }
 }

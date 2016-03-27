@@ -16,7 +16,7 @@
                 <value>/WEB-INF/conf/page</value>
             </list>
         </property>
-        <property name="cacheSeconds" value="60" />
+        <property name="cacheSeconds" value="10" />
         <property name="fallbackToSystemLocale" value="false" />
         <property name="useCodeAsDefaultMessage" value="true" />
     </bean>

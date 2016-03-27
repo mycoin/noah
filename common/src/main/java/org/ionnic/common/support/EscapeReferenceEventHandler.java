@@ -1,7 +1,7 @@
 package org.ionnic.common.support;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
+import org.ionnic.common.support.view.tool.StringTool;
 
 /**
  * @author apple
@@ -36,6 +36,6 @@ public class EscapeReferenceEventHandler implements ReferenceInsertionEventHandl
                 return value;
             }
         }
-        return StringEscapeUtils.escapeHtml(value.toString());
+        return StringTool.encodeHtml(value.toString());
     }
 }

@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.ConfigConstants;
-import org.ionnic.common.support.web.ActionSupport;
-import org.ionnic.common.util.WebUtils;
 import org.springframework.core.Ordered;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +27,6 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
                 response.setContentType("text/html; charset=" + CHARSET);
                 response.setCharacterEncoding(CHARSET);
             }
-            WebUtils.exposeSessionTokenAttribute(request);
         }
     }
 

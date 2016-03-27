@@ -19,9 +19,4 @@ public class JsonHttpMessageConverter extends GsonHttpMessageConverter {
     public JsonHttpMessageConverter() {
         setGson(gson);
     }
-
-    @Override
-    public Gson getGson() {
-        return gson;
-    }
 }

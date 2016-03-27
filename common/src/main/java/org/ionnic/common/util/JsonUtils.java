@@ -1,6 +1,6 @@
 package org.ionnic.common.util;
 
-import java.util.HashMap;
+import java.lang.reflect.Type;
 import java.util.Map;
 
 import org.ionnic.common.config.ConfigConstants;
@@ -27,7 +27,7 @@ public abstract class JsonUtils implements ConfigConstants {
      */
     @SuppressWarnings("unchecked")
     public static Map<String, Object> fromJson( String json ) {
-        return fromJson(json, HashMap.class);
+        return fromJson(json, Map.class);
     }
 
     /**
@@ -60,14 +60,24 @@ public abstract class JsonUtils implements ConfigConstants {
 
     /**
      * @param src
+     * @param typeOfSrc
+     * @return
+     * @throws UnsupportedOperationException
+     */
+    public static String toJson( Object src, Type type ) throws UnsupportedOperationException {
+        try {
+            return getGson().toJson(src, type);
+        } catch (Throwable e) {
+            throw new UnsupportedOperationException(e);
+        }
+    }
+
+    /**
+     * @param src
      * @return
      * @throws MalformedJsonException
      */
     public static String toJson( Object src ) throws UnsupportedOperationException {
-        try {
-            return getGson().toJson(src);
-        } catch (Exception e) {
-            throw new UnsupportedOperationException(e);
-        }
+        return toJson(src, src.getClass());
     }
 }

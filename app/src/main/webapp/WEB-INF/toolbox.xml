@@ -19,33 +19,18 @@
 -->
 <toolbox>
     <tool>
+        <key>page</key>
+        <scope>request</scope>
+        <class>org.ionnic.common.support.view.tool.PageTool</class>
+    </tool>
+    <tool>
         <key>lang</key>
         <scope>application</scope>
         <class>org.ionnic.common.support.view.tool.LangTool</class>
     </tool>
     <tool>
-        <key>context</key>
-        <scope>request</scope>
-        <class>org.apache.velocity.tools.generic.ContextTool</class>
-    </tool>
-    <tool>
-        <key>json</key>
+        <key>util</key>
         <scope>application</scope>
-        <class>com.google.gson.Gson</class>
-    </tool>
-    <tool>
-        <key>date</key>
-        <scope>application</scope>
-        <class>org.apache.velocity.tools.generic.DateTool</class>
-    </tool>
-    <tool>
-        <key>math</key>
-        <scope>application</scope>
-        <class>org.apache.velocity.tools.generic.MathTool</class>
-    </tool>
-    <tool>
-        <key>string</key>
-        <scope>application</scope>
-        <class>org.apache.velocity.util.StringUtils</class>
+        <class>org.ionnic.common.support.view.tool.StringTool</class>
     </tool>
 </toolbox>

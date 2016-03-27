@@ -1,5 +1,3 @@
-<property name="resourceLoaderPath">
+<property name="resourceLoaderPath" data-search="$!search">
     <value>/WEB-INF/views,/WEB-INF/external</value>
 </property>
-
-测试

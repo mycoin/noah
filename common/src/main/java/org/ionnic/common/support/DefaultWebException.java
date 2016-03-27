@@ -26,13 +26,6 @@ public class DefaultWebException extends RuntimeException implements ConfigConst
 
     /**
      * @param status
-     */
-    public DefaultWebException( int status ) {
-
-    }
-
-    /**
-     * @param status
      * @param statusInfo
      */
     public DefaultWebException( int status, String statusInfo ) {
