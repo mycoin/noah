@@ -44,20 +44,17 @@ public class MappingJacksonJsonView extends AbstractView implements ConfigConsta
 
     private String[] jsonpParameterNames = new String[] { "callback" };
 
-    @Override
-    protected void renderMergedOutputModel( Map<String, Object> model, HttpServletRequest request, HttpServletResponse response ) throws Exception {
+    private static View main;
 
-        String jsonpParameterValue = getJsonpParameterValue(request);
-        ServletOutputStream out = response.getOutputStream();
-        String responseText = getDefaultErrorJson(model);
-
-        if (null == jsonpParameterValue) {
-            response.setContentType(CONTENT_TYPE);
-            out.write(responseText.getBytes());
-        } else {
-            response.setContentType(JSONP_CONTENT_TYPE);
-            out.write((jsonpParameterValue + "(" + responseText + ");").getBytes());
+    /**
+     * @return
+     */
+    public static View getInstance() {
+        // TODO Auto-generated method stub
+        if (main == null) {
+            main = new MappingJacksonJsonView();
         }
+        return main;
     }
 
     /**
@@ -79,7 +76,7 @@ public class MappingJacksonJsonView extends AbstractView implements ConfigConsta
             try {
                 responseText = JsonUtils.toJson(errorMap);
             } catch (Exception ex) {
-
+                responseText = "{}";
             }
         } finally {
 
@@ -119,13 +116,19 @@ public class MappingJacksonJsonView extends AbstractView implements ConfigConsta
         }
     }
 
-    private static View main;
+    @Override
+    protected void renderMergedOutputModel( Map<String, Object> model, HttpServletRequest request, HttpServletResponse response ) throws Exception {
 
-    public static View getInstance() {
-        // TODO Auto-generated method stub
-        if (main == null) {
-            main = new MappingJacksonJsonView();
+        String jsonpParameterValue = getJsonpParameterValue(request);
+        ServletOutputStream out = response.getOutputStream();
+        String responseText = getDefaultErrorJson(model);
+
+        if (null == jsonpParameterValue) {
+            response.setContentType(CONTENT_TYPE);
+            out.write(responseText.getBytes());
+        } else {
+            response.setContentType(JSONP_CONTENT_TYPE);
+            out.write((jsonpParameterValue + "(" + responseText + ");").getBytes());
         }
-        return main;
     }
 }

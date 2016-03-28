@@ -24,18 +24,6 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
-		<!-- jetty -->
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty</artifactId>
-            <version>6.1.26</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-util</artifactId>
-            <version>6.1.26</version>
-        </dependency>
-
         <!-- jsp page -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -72,12 +60,6 @@
                 <version>6.1.10</version>
                 <configuration>
                     <contextPath>/</contextPath>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>productionMode</name>
-                            <value>false</value>
-                        </systemProperty>
-                    </systemProperties>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                 </configuration>
             </plugin>

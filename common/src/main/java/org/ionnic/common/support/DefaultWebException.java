@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @SuppressWarnings("serial")
-public class DefaultWebException extends RuntimeException implements ConfigConstants {
+public class DefaultWebException extends Exception implements ConfigConstants {
 
     @SuppressWarnings("unused")
     private final Log log = LogFactory.getLog(getClass());

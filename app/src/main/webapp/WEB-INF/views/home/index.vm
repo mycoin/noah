@@ -8,11 +8,12 @@ $page.render("header.vm")
 $page.render("header.vm", {
     "search": '百度搜索'
 })
-
-#external("header.vm", {})
+#external("header.vm", {
+    "search": "<>"
+})
 
 $util.encodeUnicode("测试")
 $util.stripTags('<a>dw<b>x<span onclick="">s</span></b></a>')
 <script>
-var url = "$util.encodeJs('<a>测测试<b>x<span onclick="">s</span></b></a>')";
+var url = "$util.escapeJs('<a>测测试<b>x<span onclick="">s</span></b></a>')";
 </script>
