@@ -1,8 +1,8 @@
-package org.ionnic.common.support;
+package org.ionnic.common.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.config.ConfigConstants;
+import org.ionnic.common.config.GlobalConstants;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
 
@@ -10,7 +10,7 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public interface ActionSupport extends ConfigConstants {
+public interface ActionSupport extends GlobalConstants {
 
     /**
      * Check the given request

@@ -1,4 +1,4 @@
-package org.ionnic.common.support;
+package org.ionnic.common.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.ConfigConstants;
+import org.ionnic.common.config.GlobalConstants;
 import org.ionnic.common.support.view.MappingJacksonJsonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.core.Ordered;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.validation.BindException;
@@ -30,7 +31,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  * @author apple
  *
  */
-public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, ConfigConstants {
+public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, Ordered, GlobalConstants {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -124,5 +125,10 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
      */
     public void setStatusCode( int statusCode ) {
         this.statusCode = statusCode;
+    }
+
+    @Override
+    public int getOrder() {
+        return HIGHEST_PRECEDENCE;
     }
 }

@@ -1,11 +1,11 @@
-package org.ionnic.common.support;
+package org.ionnic.common.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.ConfigConstants;
+import org.ionnic.common.config.GlobalConstants;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @SuppressWarnings("serial")
-public class DefaultWebException extends Exception implements ConfigConstants {
+public class DefaultWebException extends Exception implements GlobalConstants {
 
     @SuppressWarnings("unused")
     private final Log log = LogFactory.getLog(getClass());

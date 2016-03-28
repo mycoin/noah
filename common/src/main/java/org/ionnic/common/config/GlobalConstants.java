@@ -4,7 +4,7 @@ package org.ionnic.common.config;
  * @author apple
  *
  */
-public interface ConfigConstants {
+public interface GlobalConstants {
 
     public static final String CHARSET = "UTF-8";
 
@@ -13,4 +13,5 @@ public interface ConfigConstants {
     public static final String STATUS_NAME = "status";
 
     public static final String STATUS_INFO_NAME = "statusInfo";
+
 }
