@@ -4,12 +4,9 @@ $page.token
 $page.tokenField
 <a class="$page.getUrl('/controllerClassNameHandlerMapping')">链接</a>
 
-$page.render("header.vm")
-$page.render("header.vm", {
-    "search": '百度搜索'
-})
+#external("header.vm")
 #external("header.vm", {
-    "search": "<>"
+    "search": '<a>百度搜索</a>'
 })
 
 $util.encodeUnicode("测试")

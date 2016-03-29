@@ -1,1 +1,3 @@
-<property name="resourceLoaderPath" data-search="$!search"></property>
+<property name="resourceLoaderPath" data-search="$!search">
+    #include("footer-link.html")
+</property>

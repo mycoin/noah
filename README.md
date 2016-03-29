@@ -2,62 +2,57 @@ spring-mvc
 ===
 
 [![Build Status](https://travis-ci.org/mycoin/spring-mvc.svg?branch=master)](https://travis-ci.org/mycoin/spring-mvc)
+This project will allow you to start off on the good foot with spring MVC. In this showcase you'll see the following features in action:
 
-This project will allow you to start off on the good foot with spring MVC.
+- Pure maven dependencies
+- Uses embedded Jetty
+- Mapping Requests
+- Message Converters
+- Rendering Layout Views
+- Exception Handling
 
 
 ### Get start
 ---
 Clone the repository:
 
-```
+```shell
 git clone git@github.com:mycoin/spring-mvc.git
-mvn jetty:run
+mvn -U clean install -Dmaven.test.skip=true
+cd app && mvn jetty:run
 ```
 
-or 
+or
 
-Import the project as a maven project into your IDE of choice. 
-Run the class `org.ionnic.app.Main`
-
+Import the project as a maven project into your IDE, Run the class `org.ionnic.app.Main`
 then open <http://127.0.0.1:8080/>
 
 
 ### Overview
 ---
+This is an application to demo the implementation of a REST API.
+> BTW: XML responses is not supported.
 
-This is an application to demo the implementation of a REST API that can return responses in both JSON and XML. 
-There are three ways of requesting a specific type of response:
+A better project structure is required:
 
-1. Setting the Accept header to `application/[json|xml]`
-2. Adding a `?format=[json|xml]` parameter to the url.
-3. Adding the format as the file type of the request. Eg instead of the url `http://localhost:8090/object`, your would have `http://localhost:8090/object.json`
+- `app` the webapp contains the runtime environment.
+- `biz` middleware, toolkit
+- `common` config and application support, important config.
 
-URLs the servlet responds to:
+#### [VelocityLayout]
 
-+ `/hello` - responds with the text Hello.
-+ `/welcome` - Either a get or post request will work. If there is a name parameter in the request, the value of the name parameter will be included in the welcome response. 
-+ `/secure` - This path will only respond to GET requests. The response format can be changed from the default of json to xml by using one of the 
-  three methods listed above. The response is a description of a person object in json or xml.  
-  The /people* urls require basic authentication to access them. This is set up in the security context. The user name is `admin` and the password is `12345`.
+The `VelocityLayout` support. The velocity resource paths are:
+- `/WEB-INF/views/` The primary template path
+- `/WEB-INF/external/` velocity code snippets
+- `~/output/` static external templates from SVN ? FTP or other services
 
+Write your awesome template that assigned by the Controller in `/WEB-INF/views/` folder. 
 
-### Features
+Common modules such as header or footer locate in `/WEB-INF/external/`, then use `page.render(name, dataMap)` to import it.
 
-* Uses embedded Jetty
-* Uses basic auth to secure some url paths
-* A simple RESTful api
-* Uses Spring annotations
-* Uses HttpMessageConverters - allows the serialization of objects to XML and JSON. Also used for converting request bodies into Java objects.
-* Security configuration isolated to a single file.
-* Comments with explanations of why some features were implemented a certain way.
+Uncoupling the templates that frequently Modified is very necessary, you can manage them in webservice and sync then to `~/output/` folder
 
-### HttpMessageConverters
-
-HttpMessageConverters is the magic that provides automatic conversion of Java objects to XML and JSON. In the rest-demo-servlet.xml, the 
-section starting with `<mvc:annotation-driven />` automatically creates some standard HttpMessageConverters based on what jars are on the classpath. In particular, if the 
-Jackson library is on the classpath, then a JSON converter will be created. We also add an XML marshaller based on XStream. We do this manually because by default Spring doesn't seem to do it quite right.
-
+> see [org.ionnic.common.support.view.tool.PageTool](https://github.com/mycoin/spring-mvc/blob/master/common/src/main/java/org/ionnic/common/support/view/tool/PageTool.java) for detail
 
 ### Main.java
 
