@@ -8,9 +8,22 @@
         http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 请求匹配 -->
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
-        <property name="basePackage" value="org.ionnic.app" />
+    <context:property-placeholder />
+
+    <!-- 模板配置 -->
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="configLocation" value="/WEB-INF/velocity.properties" />
+        <property name="resourceLoaderPath">
+            <value>/WEB-INF/views,/WEB-INF/external,classpath:pre-external,file://${user.home}/output/</value>
+        </property>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="velocimacro.library">library.vm,macro.vm</prop>
+                <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeReferenceEventHandler</prop>
+            </props>
+        </property>
     </bean>
 
     <!-- 视图配置 -->
@@ -21,6 +34,7 @@
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
                     <property name="suffix" value=".vm" />
+                    <property name="cache" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
             </list>
@@ -32,14 +46,7 @@
         <bean class="org.ionnic.common.web.DefaultProcessingInterceptor" />
     </mvc:interceptors>
 
-    <!-- 模板配置 -->
-    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="configLocation" value="/WEB-INF/velocity.properties" />
-        <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,/WEB-INF/external,classpath:pre-external/</value>
-        </property>
-    </bean>
-
     <!-- 异常处理 -->
     <bean class="org.ionnic.common.web.DefaultHandlerExceptionResolver" />
+
 </beans>

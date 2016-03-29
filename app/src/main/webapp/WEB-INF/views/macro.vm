@@ -10,10 +10,3 @@
 #macro(extends $layoutName)
     #set($layout = "${layoutName}.vm")
 #end
-
-
-#macro( surround $x )
-  surround:$x
-    $bodyContent
-  /surround:$x
-#end

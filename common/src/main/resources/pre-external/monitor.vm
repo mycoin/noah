@@ -1,5 +1,0 @@
-#set($_ = $response.setContentType("application/json"))
-$util.toJson({
-    "ip": $ip,
-    "env": $start
-})

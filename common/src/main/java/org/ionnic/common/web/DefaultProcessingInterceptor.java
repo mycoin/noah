@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.GlobalConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.springframework.core.Ordered;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author apple
  *
  */
-public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements GlobalConstants, Ordered {
+public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements ConfigConstants, Ordered {
 
     private final Log log = LogFactory.getLog(getClass());
 
@@ -35,6 +35,7 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
         if (request.getCharacterEncoding() == null) {
             request.setCharacterEncoding(CHARSET);
         }
+
         if (handler instanceof HandlerMethod) {
             Object bean = ((HandlerMethod) handler).getBean();
             if (bean instanceof ActionSupport) {
@@ -48,6 +49,7 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
                 }
             }
         }
+
         return true;
     }
 

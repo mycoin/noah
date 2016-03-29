@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.GlobalConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.support.view.MappingJacksonJsonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  * @author apple
  *
  */
-public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, Ordered, GlobalConstants {
+public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, Ordered, ConfigConstants {
 
     protected final Log log = LogFactory.getLog(getClass());
 

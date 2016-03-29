@@ -34,7 +34,7 @@ public abstract class AbstractActionSupport implements ActionSupport {
      * @return
      * @throws DefaultWebException
      */
-    public boolean checkSessionBasedToken( HttpServletRequest request ) throws DefaultWebException {
+    public boolean checkSessionToken( HttpServletRequest request ) throws DefaultWebException {
         if (WebUtils.checkSessionToken(request)) {
             return true;
         }

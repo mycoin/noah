@@ -59,9 +59,13 @@ public abstract class WebUtils {
      */
     public static boolean checkSessionToken( HttpServletRequest request ) {
         HttpSession session = request.getSession(false);
-        String tokenValue = request.getHeader(HEADER_NAME);
-        if (tokenValue == null) {
-            tokenValue = request.getParameter(PARAMETER_NAME);
+        String tokenValue = null;
+        try {
+            tokenValue = request.getHeader(HEADER_NAME);
+            if (tokenValue == null) {
+                tokenValue = request.getParameter(PARAMETER_NAME);
+            }
+        } catch (Exception e) {
         }
         if (session == null || tokenValue == null) {
             return false;

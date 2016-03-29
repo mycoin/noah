@@ -1,0 +1,12 @@
+## 禁用布局功能
+#macro(DisabledLayout)
+    #extends("layout")
+#end
+
+## 空逻辑输出
+#macro(Ignore $ignore)#set($_ = $ignore.toString())#end
+
+## 设置布局地址
+#macro(Extends $layoutName)
+    #set($layout = "${layoutName}.vm")
+#end
