@@ -20,4 +20,7 @@
         <property name="fallbackToSystemLocale" value="false" />
         <property name="useCodeAsDefaultMessage" value="true" />
     </bean>
+
+    <import resource="applicationContext-db.xml" />
+    <import resource="applicationContext-task.xml" />
 </beans>

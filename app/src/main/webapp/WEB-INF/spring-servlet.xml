@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 文件扫描 -->
-    <context:component-scan base-package="org.ionnic.common.config" />
+    <context:component-scan base-package="org.ionnic.app" />
 
     <!-- 导入公共 -->
     <import resource="classpath:common-servlet.xml" />

@@ -27,13 +27,6 @@ public class PageTool extends RenderTool {
     /**
      * @return
      */
-    public Context getContext() {
-        return context;
-    }
-
-    /**
-     * @return
-     */
     public HttpServletRequest getRequest() {
         return request;
     }
@@ -75,7 +68,7 @@ public class PageTool extends RenderTool {
         context = (ViewToolContext) object;
         request = context.getRequest();
 
-        // 缓存起来
+        // cache it.
         engine = context.getVelocityEngine();
     }
 
