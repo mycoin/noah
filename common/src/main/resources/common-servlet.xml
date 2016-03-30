@@ -19,7 +19,7 @@
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,classpath:system-internal,/WEB-INF/external,${view.external.dir}</value>
+            <value>/WEB-INF/views,classpath:internal,/WEB-INF/external,${view.external.dir}</value>
         </property>
         <property name="velocityProperties">
             <props>
