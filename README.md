@@ -44,7 +44,7 @@ A better project structure is required:
 The `VelocityLayout` support. The velocity resource paths are:
 - `/WEB-INF/views/` The primary template path
 - `/WEB-INF/external/` velocity code snippets
-- `~/output/` static external templates from SVN ? FTP or other services
+- `~/output/` static external templates from SVN ? FTP or other services, At the same time, you can config it at `app:resources/config/global.properties`
 
 Write your awesome template that assigned by the Controller in `/WEB-INF/views/` folder. 
 

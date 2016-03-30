@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:websocket="http://www.springframework.org/schema/websocket" xmlns:util="http://www.springframework.org/schema/util"
@@ -9,21 +9,24 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:property-placeholder />
-
+    <!-- 系统监控 -->
     <context:component-scan base-package="org.ionnic.common.config" />
+
+    <!-- 默认配置 -->
+    <context:property-placeholder order="256" location="classpath:org/ionnic/common/config/default.properties" />
 
     <!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,/WEB-INF/external,classpath:pre-external,file://${user.home}/output/</value>
+            <value>/WEB-INF/views,classpath:system-internal,/WEB-INF/external,${view.external.dir}</value>
         </property>
         <property name="velocityProperties">
             <props>
-                <prop key="input.encoding">UTF-8</prop>
-                <prop key="output.encoding">UTF-8</prop>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
                 <prop key="velocimacro.library">library.vm,macro.vm</prop>
+                <prop key="file.resource.loader.cache">${view.template.cache}</prop>
                 <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeReferenceEventHandler</prop>
             </props>
         </property>
@@ -37,7 +40,6 @@
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
                     <property name="suffix" value=".vm" />
-                    <property name="cache" value="true" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
             </list>

@@ -10,6 +10,6 @@ public class SyncExternalTemplateTask {
      * @return
      */
     public void execute() {
-        System.out.println(1);
+        //System.out.println(1);
     }
 }

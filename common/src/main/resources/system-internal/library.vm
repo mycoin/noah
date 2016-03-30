@@ -10,3 +10,9 @@
 #macro(Extends $layoutName)
     #set($layout = "${layoutName}.vm")
 #end
+
+## 引用静态模板
+#macro(Include $filename)
+    #include("${filename}.html")
+#end
+

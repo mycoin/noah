@@ -8,6 +8,8 @@
         http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:config/global.properties" />
+
     <!-- 文件扫描 -->
     <context:component-scan base-package="org.ionnic.app" />
 

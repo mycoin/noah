@@ -23,7 +23,7 @@
     </bean>
 
     <!-- 注入数据 -->
-    <jdbc:initialize-database data-source="dataSource" enabled="false">
+    <jdbc:initialize-database data-source="dataSource" enabled="true">
         <jdbc:script location="classpath:data/db-schema.sql" />
         <jdbc:script location="classpath:data/db-data.sql" />
     </jdbc:initialize-database>

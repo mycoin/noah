@@ -1,7 +1,7 @@
 #Ignore($response.setContentType("application/json"))
 $util.toJson({
     "ip": $ip,
+    "prop": $prop,
+    "tags": $tags,
     "env": $env
 })
-
-#parse("output.html")
