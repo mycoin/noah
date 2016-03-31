@@ -35,7 +35,7 @@ This is an application to demo the implementation of a REST API.
 
 A better project structure is required:
 
-- `app` the webapp contains the runtime environment.
+- `app` the webapp contains the portal project.
 - `biz` middleware, toolkit
 - `common` config and application support, important config.
 
@@ -57,3 +57,7 @@ Uncoupling the templates that frequently Modified is very necessary, you can man
 ### Main.java
 
 This is the class that runs an embedded Jetty server with the servlet. 
+
+---
+
+FreeBSD License

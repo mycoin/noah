@@ -1,1 +1,1 @@
-INSERT INTO `CONFIG` (`ID`, `FIELD`, `VALUE`, `ENABLE`) VALUES (NULL, 'SITE', 'TEST', 1);
+INSERT INTO `CONFIG` (`FIELD`, `VALUE`, `ENABLE`) VALUES ('view.template.cache', 'true', 1);

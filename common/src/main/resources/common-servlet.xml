@@ -13,13 +13,13 @@
     <context:component-scan base-package="org.ionnic.common.config" />
 
     <!-- 默认配置 -->
-    <context:property-placeholder order="256" location="classpath:org/ionnic/common/config/default.properties" />
+    <context:property-placeholder order="256" location="classpath:default.properties" />
 
     <!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,classpath:internal,/WEB-INF/external,${view.external.dir}</value>
+            <value>/WEB-INF/views,classpath:pre-internal,/WEB-INF/external,file://${view.external.path}</value>
         </property>
         <property name="velocityProperties">
             <props>

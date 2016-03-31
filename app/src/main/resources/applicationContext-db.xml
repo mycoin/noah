@@ -16,7 +16,7 @@
         <property name="password" value="" />
     </bean>
 
-    <bean class="org.springframework.jdbc.core.JdbcTemplate" abstract="false">
+    <bean class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource">
             <ref bean="dataSource" />
         </property>
