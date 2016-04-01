@@ -1,4 +1,4 @@
-package org.ionnic.common.web;
+package org.ionnic.common.support;
 
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;

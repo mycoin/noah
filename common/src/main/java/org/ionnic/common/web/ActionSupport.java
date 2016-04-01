@@ -3,6 +3,7 @@ package org.ionnic.common.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.support.DefaultWebException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
 

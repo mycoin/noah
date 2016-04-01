@@ -1,6 +1,6 @@
 ## 禁用布局功能
 #macro(DisabledLayout)
-    #extends("layout")
+    $page.setLayout("")
 #end
 
 ## 空逻辑输出
@@ -8,11 +8,10 @@
 
 ## 设置布局地址
 #macro(Extends $layoutName)
-    #set($layout = "${layoutName}.vm")
+    $page.setLayout($layoutName)
 #end
 
 ## 引用静态模板
 #macro(Include $filename)
     #include("${filename}.html")
 #end
-

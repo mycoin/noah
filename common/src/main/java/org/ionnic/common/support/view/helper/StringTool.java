@@ -1,4 +1,4 @@
-package org.ionnic.common.support.view.tool;
+package org.ionnic.common.support.view.helper;
 
 import java.net.URLEncoder;
 import java.security.MessageDigest;

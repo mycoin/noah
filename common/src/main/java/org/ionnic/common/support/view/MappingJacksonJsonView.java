@@ -112,7 +112,7 @@ public class MappingJacksonJsonView extends AbstractView implements RuntimeConst
         setResponseContentType(request, response);
         response.setCharacterEncoding(CHARSET);
         if (this.disableCaching) {
-            response.addHeader("Cache-Control", "no-store");
+            response.addHeader("Cache-PageControl", "no-store");
         }
     }
 

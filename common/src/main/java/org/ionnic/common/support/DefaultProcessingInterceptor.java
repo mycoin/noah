@@ -1,11 +1,10 @@
-package org.ionnic.common.web;
+package org.ionnic.common.support;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.web.ActionSupport;
 import org.springframework.core.Ordered;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,8 +15,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  *
  */
 public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements RuntimeConstants, Ordered {
-
-    private final Log log = LogFactory.getLog(getClass());
 
     @Override
     public void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView ) throws Exception {
@@ -37,14 +34,12 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
         }
 
         if (handler instanceof HandlerMethod) {
-            Object bean = ((HandlerMethod) handler).getBean();
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Object bean = handlerMethod.getBean();
+
             if (bean instanceof ActionSupport) {
-
-                if (log.isDebugEnabled()) {
-                    log.debug("The handle is instanceof ActionSupport, invoke checkRequest()");
-                }
-
-                if (false == ((ActionSupport) bean).checkRequest(request, (HandlerMethod) handler)) {
+                ActionSupport actionBean = (ActionSupport) bean;
+                if (false == actionBean.checkRequest(request, handlerMethod)) {
                     throw new DefaultWebException(403, "Access Denied");
                 }
             }
@@ -55,6 +50,6 @@ public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter impl
 
     @Override
     public int getOrder() {
-        return 0;
+        return HIGHEST_PRECEDENCE;
     }
 }

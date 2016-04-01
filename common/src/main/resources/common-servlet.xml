@@ -13,13 +13,13 @@
     <context:component-scan base-package="org.ionnic.common.config" />
 
     <!-- 默认配置 -->
-    <context:property-placeholder order="256" location="classpath:default.properties" />
+    <context:property-placeholder order="1024" location="classpath:default.properties" />
 
     <!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,classpath:pre-internal,/WEB-INF/external,file://${view.external.path}</value>
+            <value>/WEB-INF/views,classpath:protected,/WEB-INF/external,file://${view.external.path}</value>
         </property>
         <property name="velocityProperties">
             <props>
@@ -27,7 +27,7 @@
                 <prop key="output.encoding">utf-8</prop>
                 <prop key="velocimacro.library">library.vm,macro.vm</prop>
                 <prop key="file.resource.loader.cache">${view.template.cache}</prop>
-                <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeReferenceEventHandler</prop>
+                <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeHtmlReference</prop>
             </props>
         </property>
     </bean>
@@ -38,7 +38,8 @@
         <property name="viewResolvers">
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-                <bean class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+                <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+                    <property name="viewClass" value="org.ionnic.common.support.view.EnhancedVelocityView" />
                     <property name="suffix" value=".vm" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
@@ -48,10 +49,10 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.common.web.DefaultProcessingInterceptor" />
+        <bean class="org.ionnic.common.support.DefaultProcessingInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->
-    <bean class="org.ionnic.common.web.DefaultHandlerExceptionResolver" />
+    <bean class="org.ionnic.common.support.DefaultHandlerExceptionResolver" />
 
 </beans>

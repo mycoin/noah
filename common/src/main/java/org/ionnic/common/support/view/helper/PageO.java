@@ -1,4 +1,4 @@
-package org.ionnic.common.support.view.tool;
+package org.ionnic.common.support.view.helper;
 
 import java.io.StringWriter;
 import java.util.Map;
@@ -8,21 +8,56 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.view.ViewToolContext;
+import org.ionnic.common.config.RuntimeConstants;
 import org.ionnic.common.util.WebUtils;
 
 /**
  * @author apple
  *
  */
-public class PageTool extends RenderTool {
+public class PageO extends RenderTool implements RuntimeConstants {
 
-    private ViewToolContext context;
+    private ViewToolContext velocityContext;
 
-    private VelocityEngine engine;
+    private VelocityEngine velocityEngine;
 
     private HttpServletRequest request;
+
+    /**
+     * the view control name, a global var in every velocity template file
+     */
+    public static final String CONTROL_NAME = "page";
+
+    private static final String BLOCK_PREFIX = CONTROL_NAME + ":raw";
+
+    /**
+     * @param velocityContext
+     */
+    public PageO( Context context ) {
+
+        // put PageControl to context
+        if (context.containsKey(CONTROL_NAME)) {
+            throw new VelocityException("Cannot create PageControl, because of an existing model object of the same name: " + CONTROL_NAME);
+        } else {
+            context.put(CONTROL_NAME, this);
+            velocityContext = (ViewToolContext) context;
+            request = velocityContext.getRequest();
+
+            // cache it.
+            velocityEngine = velocityContext.getVelocityEngine();
+        }
+    }
+
+    /**
+     * @param blockName
+     * @return
+     */
+    public Object getInternal( String key ) {
+        return velocityContext.get(BLOCK_PREFIX + key);
+    }
 
     /**
      * @return
@@ -59,20 +94,6 @@ public class PageTool extends RenderTool {
     }
 
     /**
-     * 请求级别的初始化函数
-     *
-     * @param obj
-     * @throws Exception
-     */
-    public void init( Object object ) {
-        context = (ViewToolContext) object;
-        request = context.getRequest();
-
-        // cache it.
-        engine = context.getVelocityEngine();
-    }
-
-    /**
      * @param templateName
      * @return
      */
@@ -92,13 +113,21 @@ public class PageTool extends RenderTool {
         Context data = null;
         try {
             if (map != null) {
-                map.putAll(context.getToolbox());
+                map.putAll(velocityContext.getToolbox());
             }
             data = new VelocityContext(map);
-            engine.getTemplate(templateName).merge(data, writer);
+            velocityEngine.getTemplate(templateName).merge(data, writer);
         } catch (Exception e) {
             writer.write("<!-- ERROR RENDER TEMPLATE -->");
         }
         return writer;
+    }
+
+    /**
+     * @param key
+     * @param value
+     */
+    public void setInternal( String key, Object value ) {
+        velocityContext.put(BLOCK_PREFIX + key, value);
     }
 }

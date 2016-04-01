@@ -1,16 +1,19 @@
 package org.ionnic.common.support.view;
 
 import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
-import org.ionnic.common.support.view.tool.StringTool;
+import org.ionnic.common.support.view.helper.PageControl;
+import org.ionnic.common.support.view.helper.StringTool;
 
 /**
  * @author apple
  *
  * HTML转义输出
  */
-public class EscapeReferenceEventHandler implements ReferenceInsertionEventHandler {
+public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-    private static String[] escapeVers = new String[] { "util.", "page.", "lang.", "raw_", "_content" };
+    private static String PAGE_CONTROL = PageControl.PAGE_CONTROL + ".";
+
+    private static String[] escapeVers = new String[] { "util.", PAGE_CONTROL, "lang.", "raw_", "_content" };
 
     /**
      * @param ref

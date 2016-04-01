@@ -19,18 +19,13 @@
 -->
 <toolbox>
     <tool>
-        <key>page</key>
-        <scope>request</scope>
-        <class>org.ionnic.common.support.view.tool.PageTool</class>
-    </tool>
-    <tool>
         <key>lang</key>
         <scope>application</scope>
-        <class>org.ionnic.common.support.view.tool.LangTool</class>
+        <class>org.ionnic.common.support.view.helper.LangTool</class>
     </tool>
     <tool>
         <key>util</key>
         <scope>application</scope>
-        <class>org.ionnic.common.support.view.tool.StringTool</class>
+        <class>org.ionnic.common.support.view.helper.StringTool</class>
     </tool>
 </toolbox>

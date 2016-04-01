@@ -1,0 +1,19 @@
+$lang.domain
+
+$page.token
+$page.tokenField
+<a class="$page.getUrl('/controllerClassNameHandlerMapping')">链接</a>
+
+#external("header.vm")
+#external("header.vm", {
+    "search": '<a>百度搜索</a>'
+})
+
+$util.encodeUnicode("测试")
+$util.stripTags('<a>dw<b>x<span onclick="">s</span></b></a>')
+<script>
+var url = "$util.escapeJs('<a>测测试<b>x<span onclick="">s</span></b></a>')";
+</script>
+
+#external("output.html")
+#Extends("common/work-layout")
