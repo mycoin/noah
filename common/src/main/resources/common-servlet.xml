@@ -19,7 +19,7 @@
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="configLocation" value="/WEB-INF/velocity.properties" />
         <property name="resourceLoaderPath">
-            <value>/WEB-INF/views,classpath:protected,/WEB-INF/external,file://${view.external.path}</value>
+            <value>/WEB-INF/views,classpath:internal,/WEB-INF/external,file://${view.external.path}</value>
         </property>
         <property name="velocityProperties">
             <props>
@@ -39,7 +39,7 @@
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="org.ionnic.common.support.view.EnhancedVelocityView" />
+                    <property name="viewClass" value="org.ionnic.common.support.view.BetterVelocityView" />
                     <property name="suffix" value=".vm" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
@@ -49,10 +49,10 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.common.support.DefaultProcessingInterceptor" />
+        <bean class="org.ionnic.common.support.ProcessingInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->
-    <bean class="org.ionnic.common.support.DefaultHandlerExceptionResolver" />
+    <bean class="org.ionnic.common.support.SimpleExceptionResolver" />
 
 </beans>

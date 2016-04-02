@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.support.view.MappingJacksonJsonView;
+import org.ionnic.common.support.view.MappingJacksonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,6 @@ import org.springframework.web.servlet.View;
 
 @Controller
 @RequestMapping("-")
-@SuppressWarnings("unused")
 public class Monitor {
 
     private static final String GET = "get";
@@ -27,27 +26,27 @@ public class Monitor {
     @Autowired
     private HttpServletRequest request;
 
-    private View view = MappingJacksonJsonView.getInstance();
+    private View view = MappingJacksonView.getInstance();
 
     /**
      * @param data
      */
-    private void getEnv( ModelMap data ) {
+    public void getEnv( ModelMap data ) {
         data.addAttribute("env", System.getenv());
     }
 
     /**
      * @param data
      */
-    private void getIp( ModelMap data ) {
+    public void getIp( ModelMap data ) {
         data.addAttribute("ip", WebUtils.getRemoteAddr(request));
     }
 
     /**
      * @param data
      */
-    private void getProperties( ModelMap data ) {
-        data.addAttribute("properties", System.getProperties());
+    public void getProp( ModelMap data ) {
+        data.addAttribute("prop", System.getProperties());
     }
 
     @RequestMapping("monitor")

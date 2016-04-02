@@ -1,4 +1,4 @@
-package org.ionnic.common.support.view.helper;
+package org.ionnic.app.common.view;
 
 import org.ionnic.common.util.ContextUtils;
 import org.springframework.web.context.WebApplicationContext;

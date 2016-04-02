@@ -11,8 +11,9 @@
     $page.setLayout($layoutName)
 #end
 
+## 获取外部模板
 #macro(External $templateName, $dataMap)
-    $!page.renderTpl($templateName, $dataMap)
+    $page.renderTpl($templateName, $dataMap)
 #end
 
 ## 引用静态模板

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.RuntimeConstants;
-import org.ionnic.common.support.view.MappingJacksonJsonView;
+import org.ionnic.common.support.view.MappingJacksonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMeth
  * @author apple
  *
  */
-public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver, Ordered, RuntimeConstants {
+public class SimpleExceptionResolver implements HandlerExceptionResolver, Ordered, RuntimeConstants {
 
     protected final Log log = LogFactory.getLog(getClass());
 
@@ -111,7 +111,7 @@ public class DefaultHandlerExceptionResolver implements HandlerExceptionResolver
         }
 
         if (WebUtils.hasAnnotation(handler)) {
-            mv.setView(MappingJacksonJsonView.getInstance());
+            mv.setView(MappingJacksonView.getInstance());
             error.responseTo(mv, null);
         } else {
             mv.setViewName(ERROR_VIEW);

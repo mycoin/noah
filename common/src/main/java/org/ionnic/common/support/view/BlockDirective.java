@@ -1,4 +1,4 @@
-package org.ionnic.common.support.view.helper;
+package org.ionnic.common.support.view;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -75,15 +75,15 @@ public class BlockDirective extends Block {
     @Override
     public boolean render( InternalContextAdapter context, Writer writer, Node node ) throws IOException, ResourceNotFoundException,
             ParseErrorException, MethodInvocationException {
-        PageControl page = (PageControl) context.get(PageControl.PAGE_CONTROL);
+        PageControl page = (PageControl) context.get(PageControl.CONTEXT_NAME);
         Writer out = new StringWriter();
 
-        if (StringUtils.hasLength(blockName) && page instanceof PageControl) {
-            if (!page.prepareLayout(null)) {
+        if (page instanceof PageControl) {
+            if (!page.isRenderLayout()) {
                 node.jjtGetChild(1).render(context, out);
-                page.set(blockName, out);
+                page.setVariable(blockName, out);
             } else {
-                out = (Writer) page.get(blockName, null);
+                out = (Writer) page.getVariable(blockName, null);
                 if (out == null) {
                     node.jjtGetChild(1).render(context, writer);
                 } else {
@@ -91,6 +91,7 @@ public class BlockDirective extends Block {
                 }
             }
         }
+
         return true;
     }
 }

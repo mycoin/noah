@@ -24,12 +24,11 @@ import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.view.ViewToolContext;
-import org.ionnic.common.support.view.helper.PageControl;
 import org.springframework.beans.BeansException;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 
 /**
- * EnhancedVelocityView emulates the functionality offered by Velocity's
+ * BetterVelocityView emulates the functionality offered by Velocity's
  * VelocityLayoutServlet to ease page composition from different templates.
  *
  * <p>The {@code url} property should be set to the content template
@@ -47,7 +46,7 @@ import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
  * At runtime, this variable will contain the rendered content template.
  *
  */
-public final class EnhancedVelocityView extends VelocityToolboxView {
+public final class BetterVelocityView extends VelocityToolboxView {
 
     /**
      * Overrides the normal rendering process in order to pre-process the Context,
@@ -56,7 +55,7 @@ public final class EnhancedVelocityView extends VelocityToolboxView {
      * modified Context in the super class.
      */
     @Override
-    protected void doRender( Context context, HttpServletResponse response ) throws Exception {
+    protected final void doRender( Context context, HttpServletResponse response ) throws Exception {
         PageControl page = new PageControl((ViewToolContext) context);
 
         StringWriter body = getMergeContent(getUrl(), context);
@@ -64,7 +63,7 @@ public final class EnhancedVelocityView extends VelocityToolboxView {
 
         if (layoutPath == null) {
             if (logger.isDebugEnabled()) {
-                logger.debug("no layoutPath was found, write the body. url:" + getUrl());
+                logger.debug("no layoutPath was assigned, response it. url:" + getUrl());
             }
             response.getWriter().write(body.toString());
         } else {
@@ -80,7 +79,7 @@ public final class EnhancedVelocityView extends VelocityToolboxView {
      * The resulting context contains any mappings from render, plus screen content.
      * @return
      */
-    protected StringWriter getMergeContent( String templateName, Context velocityContext ) throws Exception {
+    protected final StringWriter getMergeContent( String templateName, Context velocityContext ) throws Exception {
         StringWriter sw = new StringWriter();
 
         if (logger.isDebugEnabled()) {
@@ -98,11 +97,10 @@ public final class EnhancedVelocityView extends VelocityToolboxView {
     }
 
     @Override
-    protected void initApplicationContext() throws BeansException {
+    protected final void initApplicationContext() throws BeansException {
         super.initApplicationContext();
 
         VelocityEngine velocityEngine = getVelocityEngine();
-        velocityEngine.loadDirective("org.ionnic.common.support.view.helper.BlockDirective");
-        velocityEngine.loadDirective("org.ionnic.common.support.view.helper.WidgetDirective");
+        velocityEngine.loadDirective(BlockDirective.class.getName());
     }
 }

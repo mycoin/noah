@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author apple
  *
  */
-public class DefaultProcessingInterceptor extends HandlerInterceptorAdapter implements RuntimeConstants, Ordered {
+public class ProcessingInterceptor extends HandlerInterceptorAdapter implements RuntimeConstants, Ordered {
 
     @Override
     public void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView ) throws Exception {
