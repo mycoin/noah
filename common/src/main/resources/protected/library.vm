@@ -11,6 +11,10 @@
     $page.setLayout($layoutName)
 #end
 
+#macro(External $templateName, $dataMap)
+    $!page.renderTpl($templateName, $dataMap)
+#end
+
 ## 引用静态模板
 #macro(Include $filename)
     #include("${filename}.html")

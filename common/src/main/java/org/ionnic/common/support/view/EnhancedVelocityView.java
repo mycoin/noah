@@ -57,7 +57,7 @@ public final class EnhancedVelocityView extends VelocityToolboxView {
      */
     @Override
     protected void doRender( Context context, HttpServletResponse response ) throws Exception {
-        PageControl page = new PageControl(this, (ViewToolContext) context);
+        PageControl page = new PageControl((ViewToolContext) context);
 
         StringWriter body = getMergeContent(getUrl(), context);
         String layoutPath = page.getLayout();

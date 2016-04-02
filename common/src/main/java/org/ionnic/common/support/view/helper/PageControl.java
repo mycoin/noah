@@ -9,7 +9,6 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.VelocityException;
 import org.apache.velocity.tools.view.ViewToolContext;
 import org.ionnic.common.config.RuntimeConstants;
-import org.ionnic.common.support.view.EnhancedVelocityView;
 import org.springframework.util.StringUtils;
 
 /**
@@ -35,7 +34,7 @@ public class PageControl extends StringTool implements RuntimeConstants {
      * @param context
      * @param velocityEngine
      */
-    public PageControl( EnhancedVelocityView view, ViewToolContext context ) {
+    public PageControl( ViewToolContext context ) {
 
         if (context.containsKey(PAGE_CONTROL)) {
             throw new VelocityException("Cannot create PageControl, because of an existing model object of the same name: " + PAGE_CONTROL);
@@ -78,7 +77,7 @@ public class PageControl extends StringTool implements RuntimeConstants {
      * @param velocityView
      * @return
      */
-    public StringWriter renderTemplate( String templateName, Map<String, Object> varMap ) {
+    public StringWriter renderTpl( String templateName, Map<String, Object> varMap ) {
         StringWriter writer = new StringWriter();
         Context context = createContext(varMap);
 
@@ -86,7 +85,7 @@ public class PageControl extends StringTool implements RuntimeConstants {
             VelocityEngine velocityEngine = velocityContext.getVelocityEngine();
             velocityEngine.mergeTemplate(templateName, CHARSET, context, writer);
         } catch (Exception e) {
-
+            writer.write("<!-- BAD RESOURCE: " + templateName + " -->");
         }
         return writer;
     }

@@ -1,5 +1,11 @@
 #block("title")
     页面标题
 #end
-@
+
+#block("mata")
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="/mycoin" data-pjax-transient>
+#end
+
 #Extends("common/work-layout")
