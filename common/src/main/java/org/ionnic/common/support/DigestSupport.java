@@ -140,7 +140,7 @@ public abstract class DigestSupport {
                 str[index++] = KEY_CHARS[by >>> 4 & 0xf];
                 str[index++] = KEY_CHARS[by & 0xf];
                 if (i == 3 || i == 5 || i == 7 || i == 9) {
-                    str[index++] = new String(i + "").charAt(0);
+                    str[index++] = '-';
                 }
             }
             return new String(str);
