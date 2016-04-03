@@ -112,7 +112,7 @@ public class MappingJacksonView extends AbstractView implements RuntimeConstants
         setResponseContentType(request, response);
         response.setCharacterEncoding(CHARSET);
         if (this.disableCaching) {
-            response.addHeader("Cache-PageControl", "no-store");
+            response.addHeader("Cache-Viewport", "no-store");
         }
     }
 

@@ -1,11 +1,9 @@
-#block("title")
-    页面标题
-#end
+$page.setVariable("title", "页面标题")
 
-#block("mata")
-    <meta name="msapplication-TileImage" content="/windows-tile.png">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="selected-link" value="/mycoin" data-pjax-transient>
-#end
+<input value="$page.encrypt('OK')" type="hidden" />
+<div class="main">
+    $page.renderTpl("go-search")
+    $page.renderTpl("sub-menu", {})
+</div>
 
-#Extends("common/work-layout")
+$page.setLayout("common/work-layout")

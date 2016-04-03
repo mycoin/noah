@@ -9,12 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    #block("mata")
-        AAA
-    #end
+    $page.renderTpl("csrf-token", {})
+    <title>
+        $page.getVariable("title") - google.com 中文站
+    </title>
 </head>
 <body>
-    #External("footer-link.html", {})
-    #External("footer-link.html")
+    <div class="header">
+        $page.getConfig("message.domain")
+    </div>
+    $page.getVariable("body")
+    $page.renderTpl("baidu-search")
 </body>
 </html>

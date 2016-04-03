@@ -1,6 +1,6 @@
 ## 禁用布局功能
 #macro(DisabledLayout)
-    $page.setLayout("")
+    $page.setLayout(null)
 #end
 
 ## 空逻辑输出

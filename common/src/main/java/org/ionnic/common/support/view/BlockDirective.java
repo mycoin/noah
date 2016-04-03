@@ -75,10 +75,10 @@ public class BlockDirective extends Block {
     @Override
     public boolean render( InternalContextAdapter context, Writer writer, Node node ) throws IOException, ResourceNotFoundException,
             ParseErrorException, MethodInvocationException {
-        PageControl page = (PageControl) context.get(PageControl.CONTEXT_NAME);
+        Viewport page = (Viewport) context.get(Viewport.CONTEXT_NAME);
         Writer out = new StringWriter();
 
-        if (page instanceof PageControl) {
+        if (page instanceof Viewport) {
             if (!page.isRenderLayout()) {
                 node.jjtGetChild(1).render(context, out);
                 page.setVariable(blockName, out);

@@ -9,7 +9,7 @@ import org.apache.velocity.app.event.ReferenceInsertionEventHandler;
  */
 public class EscapeHtmlReference implements ReferenceInsertionEventHandler {
 
-    private static String PAGE_CONTROL = PageControl.CONTEXT_NAME + ".";
+    private static String PAGE_CONTROL = Viewport.CONTEXT_NAME + ".";
 
     private static String[] escapeVers = new String[] { "util.", PAGE_CONTROL, "lang.", "raw_", "_content" };
 

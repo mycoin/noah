@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
-import org.apache.velocity.tools.view.ViewToolContext;
 import org.springframework.beans.BeansException;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 
@@ -48,6 +47,8 @@ import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
  */
 public final class BetterVelocityView extends VelocityToolboxView {
 
+    private BetterVelocityView instance = null;
+
     /**
      * Overrides the normal rendering process in order to pre-process the Context,
      * merging it with the screen template into a single value (identified by the
@@ -56,7 +57,7 @@ public final class BetterVelocityView extends VelocityToolboxView {
      */
     @Override
     protected final void doRender( Context context, HttpServletResponse response ) throws Exception {
-        PageControl page = new PageControl((ViewToolContext) context);
+        Viewport page = new Viewport(context);
 
         StringWriter body = getMergeContent(getUrl(), context);
         String layoutPath = page.getLayout();
@@ -80,7 +81,7 @@ public final class BetterVelocityView extends VelocityToolboxView {
      * @return
      */
     protected final StringWriter getMergeContent( String templateName, Context velocityContext ) throws Exception {
-        StringWriter sw = new StringWriter();
+        StringWriter out = new StringWriter();
 
         if (logger.isDebugEnabled()) {
             logger.debug("Rendering template [" + templateName + "]");
@@ -88,19 +89,31 @@ public final class BetterVelocityView extends VelocityToolboxView {
 
         try {
             Template tpl = getTemplate(templateName);
-            tpl.merge(velocityContext, sw);
+            tpl.merge(velocityContext, out);
         } catch (Exception e) {
             logger.error("Failed to render template [" + templateName + "]", e);
         }
 
-        return sw;
+        return out;
     }
 
     @Override
     protected final void initApplicationContext() throws BeansException {
-        super.initApplicationContext();
-
+        instance = this;
         VelocityEngine velocityEngine = getVelocityEngine();
-        velocityEngine.loadDirective(BlockDirective.class.getName());
+
+        if (velocityEngine == null) {
+            velocityEngine = autodetectVelocityEngine();
+            velocityEngine.loadDirective(BlockDirective.class.getName());
+        }
+
+        super.initApplicationContext();
+    }
+
+    /**
+     * @return
+     */
+    public BetterVelocityView getInstance() {
+        return instance;
     }
 }

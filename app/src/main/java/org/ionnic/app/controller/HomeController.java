@@ -29,7 +29,7 @@ public class HomeController extends AbstractActionSupport {
         context.addAttribute("data", new HashMap<String, Object>());
 
         if (target.equals("external")) {
-            return "external/homeIndex";
+            return "external:homeIndex";
         } else {
             return "home/index";
         }
