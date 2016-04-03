@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * @author apple
  *
  */
-public class MappingJacksonView extends AbstractView implements RuntimeConstants {
+public class MappingJsonView extends AbstractView implements RuntimeConstants {
 
     private final Log log = LogFactory.getLog(getClass());
 
@@ -50,9 +50,8 @@ public class MappingJacksonView extends AbstractView implements RuntimeConstants
      * @return
      */
     public static View getInstance() {
-        // TODO Auto-generated method stub
         if (main == null) {
-            main = new MappingJacksonView();
+            main = new MappingJsonView();
         }
         return main;
     }

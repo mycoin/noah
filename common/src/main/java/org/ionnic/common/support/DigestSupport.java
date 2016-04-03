@@ -1,5 +1,7 @@
 package org.ionnic.common.support;
 
+import java.security.GeneralSecurityException;
+import java.security.KeyException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.UUID;
@@ -27,31 +29,36 @@ public abstract class DigestSupport {
      * @return      返回解密后的原始数据
      * @throws Exception
      */
-    public static String DESDecode( String data, String key ) {
+    public static String DESDecode( String data, String key ) throws GeneralSecurityException {
         byte[] datas = toByte(data.getBytes());
         byte[] keys = key.getBytes();
 
         try {
-            // DES算法要求有一个可信任的随机数源
+
+            key = padKey(key);
+
+            // The DES algorithm requires a trusted random number generator
             SecureRandom sr = new SecureRandom();
 
-            // 从原始密匙数据创建一个DESKeySpec对象
+            // Create a DESKeySpec object from the original key data
             DESKeySpec dks = new DESKeySpec(keys);
 
-            // 创建一个密匙工厂，然后用它把DESKeySpec对象转换成一个SecretKey对象
+            // Create a key factory, and then use it to convert the DESKeySpec object into a SecretKey object
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
             SecretKey securekey = keyFactory.generateSecret(dks);
 
-            // Cipher对象实际完成解密操作
+            // Cipher object to complete the decryption operation
             Cipher cipher = Cipher.getInstance(DES);
 
-            // 用密匙初始化Cipher对象
+            // Cipher object is initialized with a key.
             cipher.init(Cipher.DECRYPT_MODE, securekey, sr);
 
-            // 现在，获取数据并解密,正式执行解密操作
+            // Now, access to data and decryption, the official implementation of the decryption operation
             return new String(cipher.doFinal(datas));
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new GeneralSecurityException(e);
+        } finally {
         }
     }
 
@@ -61,32 +68,47 @@ public abstract class DigestSupport {
      * @param src 数据源
      * @param key 密钥
      * @return    返回加密后的数据
+     * @throws KeyException
+     * @throws GeneralSecurityException
      * @throws Exception
      */
 
-    public static String DESEncode( String data, String key ) {
-
+    public static String DESEncode( String data, String key ) throws GeneralSecurityException {
         try {
-            // 从原始密匙数据创建DESKeySpec对象
+
+            key = padKey(key);
+
+            // Create a DESKeySpec object from the original key data
             DESKeySpec dks = new DESKeySpec(key.getBytes());
 
-            // 创建一个密匙工厂，然后用它把DESKeySpec转换成一个SecretKey对象
+            // Create a key factory, and then use it to convert DESKeySpec into a SecretKey object
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
 
             SecretKey securekey = keyFactory.generateSecret(dks);
 
-            // Cipher对象实际完成加密操作
+            // Cipher object to complete the encryption operation
             Cipher cipher = Cipher.getInstance(DES);
 
-            // 用密匙初始化Cipher对象
+            // Cipher object is initialized with a key.
             cipher.init(Cipher.ENCRYPT_MODE, securekey, new SecureRandom());
 
-            // 正式执行加密操作
+            // Formal execution of cryptographic operations
             return toHex(cipher.doFinal(data.getBytes()));
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new GeneralSecurityException(e);
         }
+    }
+
+    /**
+     * @param key
+     * @return
+     */
+    private static String padKey( String key ) {
+        if (key == null || key.length() < 8) {
+            return "12345678" + key;
+        }
+        return key;
     }
 
     /**
@@ -96,25 +118,30 @@ public abstract class DigestSupport {
     public static String encrypt( String string ) {
 
         try {
-            // 获得MD5摘要算法的 MessageDigest 对象
+            // MD5 abstract algorithm to obtain the MessageDigest object
             MessageDigest mdInst = MessageDigest.getInstance("MD5");
 
             byte[] btInput = string.getBytes();
 
-            // 使用指定的字节更新摘要
+            // Using the specified byte update summary
             mdInst.update(btInput);
 
-            // 获得密文
+            // Obtain the cipher text
             byte[] md = mdInst.digest();
 
-            // 把密文转换成十六进制的字符串形式
+            // Converting the cipher text into a string of sixteen
             int len = md.length;
-            char str[] = new char[len * 2];
+
+            char str[] = new char[len * 2 + 4];
             int index = 0;
+
             for (int i = 0; i < len; i++) {
                 byte by = md[i];
                 str[index++] = KEY_CHARS[by >>> 4 & 0xf];
                 str[index++] = KEY_CHARS[by & 0xf];
+                if (i == 3 || i == 5 || i == 7 || i == 9) {
+                    str[index++] = new String(i + "").charAt(0);
+                }
             }
             return new String(str);
 

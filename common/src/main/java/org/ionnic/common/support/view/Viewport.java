@@ -21,9 +21,11 @@ import org.springframework.web.context.WebApplicationContext;
  */
 public class Viewport implements RuntimeConstants {
 
-    public static final String SCREEN_KEY = "body";
+    public static final String BLANK = "";
 
     public static final String CONTEXT_NAME = "page";
+
+    public static final String SCREEN_KEY = "body";
 
     public static final String TEMPLATE_EXT = ".vm";
 
@@ -35,8 +37,8 @@ public class Viewport implements RuntimeConstants {
     public Viewport( Context context ) {
         this.context = (ViewToolContext) context;
 
+        setVariable(SCREEN_KEY, 0);
         setVariable(CONTEXT_NAME, this);
-        setVariable(SCREEN_KEY, -1);
     }
 
     /**
@@ -49,23 +51,24 @@ public class Viewport implements RuntimeConstants {
 
     /**
      * @param templateName
-     * @param dataMap
+     * @param varMap
+     * @param safeMode
+     * @return
      */
     public StringWriter renderTpl( String templateName, Map<String, Object> varMap ) {
         StringWriter writer = new StringWriter();
-        if (!templateName.endsWith(TEMPLATE_EXT)) {
-            templateName = templateName.concat(TEMPLATE_EXT);
-        }
         try {
+            if (!templateName.endsWith(TEMPLATE_EXT)) {
+                templateName = templateName.concat(TEMPLATE_EXT);
+            }
             if (varMap != null) {
-                Map<String, Object> toolbox = context.getToolbox();
-                for (String key : toolbox.keySet()) {
-                    varMap.put(key, toolbox.get(key));
-                }
+                varMap.putAll(context.getToolbox());
                 varMap.put(CONTEXT_NAME, this);
             }
+
+            VelocityContext renderContext = new VelocityContext(varMap);
             VelocityEngine velocityEngine = context.getVelocityEngine();
-            velocityEngine.mergeTemplate(templateName, CHARSET, new VelocityContext(varMap), writer);
+            velocityEngine.mergeTemplate(templateName, CHARSET, renderContext, writer);
         } catch (Exception e) {
             writer.write("<!-- BAD RESOURCE: [" + templateName + "] -->");
         }
@@ -82,12 +85,35 @@ public class Viewport implements RuntimeConstants {
     }
 
     /**
+     * @param data
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    public static String encrypt( String data, String key ) throws Exception {
+        return DigestSupport.DESEncode(data, key);
+    }
+
+    /**
      * @param blockName
      * @param object
      * @return
      */
     public Object getVariable( String key ) {
         return context.get(key);
+    }
+
+    /**
+     * @param blockName
+     * @param object
+     * @return
+     */
+    public Object getVariable( String key, Object defaultValue ) {
+        Object var = getVariable(key);
+        if (var == null) {
+            return defaultValue;
+        }
+        return var;
     }
 
     /**
@@ -127,19 +153,6 @@ public class Viewport implements RuntimeConstants {
     }
 
     /**
-     * @param blockName
-     * @param object
-     * @return
-     */
-    public Object getVariable( String key, Object defaultValue ) {
-        Object var = getVariable(key);
-        if (var == null) {
-            return defaultValue;
-        }
-        return null;
-    }
-
-    /**
      * @return
      */
     public String getToken() {
@@ -162,6 +175,13 @@ public class Viewport implements RuntimeConstants {
     }
 
     /**
+     * @return
+     */
+    public static String getGuid() {
+        return DigestSupport.getGuid();
+    }
+
+    /**
      * @param blockName
      * @param out
      */
@@ -174,7 +194,8 @@ public class Viewport implements RuntimeConstants {
      */
     public String setLayout( String layoutName ) {
         this.layoutName = layoutName + TEMPLATE_EXT;
-        return "";
+
+        return BLANK;
     }
 
     /**
@@ -199,9 +220,13 @@ public class Viewport implements RuntimeConstants {
     public boolean isTemplateExist( String templateName ) {
         try {
             context.getVelocityEngine().getTemplate(templateName, CHARSET);
+            context.hashCode();
+
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return false;
     }
 
@@ -210,13 +235,13 @@ public class Viewport implements RuntimeConstants {
         return "Implement:{" + getClass().getName() + "}";
     }
 
-    private String layoutName = null;
-
-    private ViewToolContext context = null;
-
     /**
      * For the default, render the screen first.
      */
     private boolean isRenderLayout = false;
+
+    private String layoutName = null;
+
+    private ViewToolContext context = null;
 
 }

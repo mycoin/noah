@@ -40,7 +40,7 @@ public class ProcessingInterceptor extends HandlerInterceptorAdapter implements 
             if (bean instanceof ActionSupport) {
                 ActionSupport actionBean = (ActionSupport) bean;
                 if (false == actionBean.checkRequest(request, handlerMethod)) {
-                    throw new DefaultWebException(403, "Access Denied");
+                    throw new WebException(403, "Access Denied");
                 }
             }
         }

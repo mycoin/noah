@@ -1,7 +1,8 @@
 <style type="text/css">
-.go_search {width: 300px;}
-.go_search .gsc-input td,.go_search .gsc-input {padding:0 0 0 0;margin:0 0 0 0;height:23px;}
-.go_search .gsc-input input:focus{
+.go-search {width: 300px;}
+.go-search .gsc-input td,
+.go-search .gsc-input {padding:0 0 0 0;margin:0 0 0 0;height:23px;}
+.go-search .gsc-input input:focus{
     border:none;
 }
 </style>

@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.support.view.MappingJacksonView;
+import org.ionnic.common.support.view.MappingJsonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class Monitor {
     @Autowired
     private HttpServletRequest request;
 
-    private View view = MappingJacksonView.getInstance();
+    private View view = MappingJsonView.getInstance();
 
     /**
      * @param data

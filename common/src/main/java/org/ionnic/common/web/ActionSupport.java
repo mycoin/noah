@@ -3,7 +3,7 @@ package org.ionnic.common.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ionnic.common.config.RuntimeConstants;
-import org.ionnic.common.support.DefaultWebException;
+import org.ionnic.common.support.WebException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
 
@@ -19,8 +19,8 @@ public interface ActionSupport extends RuntimeConstants {
      * @param request
      * @param method
      * @return
-     * @throws DefaultWebException
+     * @throws WebException
      * @throws HttpMediaTypeNotAcceptableException
      */
-    public boolean checkRequest( HttpServletRequest request, HandlerMethod method ) throws DefaultWebException, HttpMediaTypeNotAcceptableException;
+    public boolean checkRequest( HttpServletRequest request, HandlerMethod method ) throws WebException, HttpMediaTypeNotAcceptableException;
 }

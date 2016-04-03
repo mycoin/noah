@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ionnic.common.config.RuntimeConstants;
-import org.ionnic.common.support.view.MappingJacksonView;
+import org.ionnic.common.support.view.MappingJsonView;
 import org.ionnic.common.util.WebUtils;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
@@ -65,53 +65,53 @@ public class SimpleExceptionResolver implements HandlerExceptionResolver, Ordere
         }
 
         ModelAndView mv = new ModelAndView();
-        DefaultWebException error = null;
+        WebException error = null;
 
-        if (!(ex instanceof DefaultWebException)) {
+        if (!(ex instanceof WebException)) {
 
             if (ex instanceof NoSuchRequestHandlingMethodException) {
-                error = new DefaultWebException(404, "Page Not Found");
+                error = new WebException(404, "Page Not Found");
             } else if (ex instanceof HttpRequestMethodNotSupportedException) {
-                error = new DefaultWebException(405, "Method Not Allowed");
+                error = new WebException(405, "Method Not Allowed");
             } else if (ex instanceof HttpMediaTypeNotSupportedException) {
-                error = new DefaultWebException(415, "Unsupported Media Type");
+                error = new WebException(415, "Unsupported Media Type");
             } else if (ex instanceof HttpMediaTypeNotAcceptableException) {
-                error = new DefaultWebException(406, "Not Acceptable");
+                error = new WebException(406, "Not Acceptable");
             } else if (ex instanceof MissingServletRequestParameterException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof ServletRequestBindingException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof ConversionNotSupportedException) {
-                error = new DefaultWebException(500, "Internal Server Error");
+                error = new WebException(500, "Internal Server Error");
             } else if (ex instanceof TypeMismatchException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof HttpMessageNotReadableException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof HttpMessageNotWritableException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof MethodArgumentNotValidException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof MissingServletRequestPartException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof BindException) {
-                error = new DefaultWebException(400, "Bad Request");
+                error = new WebException(400, "Bad Request");
             } else if (ex instanceof NoHandlerFoundException) {
-                error = new DefaultWebException(404, "Page Not Found");
+                error = new WebException(404, "Page Not Found");
             } else if (ex instanceof ServletException) {
                 if (ex.getMessage().startsWith(NO_HANDLE)) {
-                    error = new DefaultWebException(404, "Page Not Found");
+                    error = new WebException(404, "Page Not Found");
                 }
             }
             if (error == null) {
-                error = new DefaultWebException(500, "Internal Server Error", ex);
+                error = new WebException(500, "Internal Server Error", ex);
             }
             log.info("Coutched Error:", ex);
         } else {
-            error = (DefaultWebException) ex;
+            error = (WebException) ex;
         }
 
         if (WebUtils.hasAnnotation(handler)) {
-            mv.setView(MappingJacksonView.getInstance());
+            mv.setView(MappingJsonView.getInstance());
             error.responseTo(mv, null);
         } else {
             mv.setViewName(ERROR_VIEW);

@@ -7,12 +7,12 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
  * @author apple
  *
  */
-public class JsonHttpMessageConverter extends GsonHttpMessageConverter {
+public class JsonMessageConverter extends GsonHttpMessageConverter {
 
     /**
      * set Gson
      */
-    public JsonHttpMessageConverter() {
+    public JsonMessageConverter() {
         super();
         setGson(JsonUtils.getGson());
     }

@@ -1,6 +1,12 @@
 $page.setVariable("title", "页面标题")
 
-<input value="$page.encrypt('OK')" type="hidden" />
+<input value="$page.getToken()" type="hidden" />
+<input value="$page.getTokenName()" type="hidden" />
+<input value="$page.getTokenHeader()" type="hidden" />
+
+$page.encrypt('12345678')
+$page.getGuid()
+
 <div class="main">
     $page.renderTpl("go-search")
     $page.renderTpl("sub-menu", {})

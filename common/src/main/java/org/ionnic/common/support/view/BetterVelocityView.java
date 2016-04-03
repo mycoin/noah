@@ -20,10 +20,13 @@ import java.io.StringWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.FatalBeanException;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 
 /**
@@ -47,16 +50,18 @@ import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
  */
 public final class BetterVelocityView extends VelocityToolboxView {
 
+    private Log log = LogFactory.getLog(getClass());
+
     private BetterVelocityView instance = null;
 
     /**
      * Overrides the normal rendering process in order to pre-process the Context,
      * merging it with the screen template into a single value (identified by the
      * value of screenContentKey). The layout template is then merged with the
-     * modified Context in the super class.
+     * modified Viewport in the super class.
      */
     @Override
-    protected final void doRender( Context context, HttpServletResponse response ) throws Exception {
+    protected void doRender( Context context, HttpServletResponse response ) throws Exception {
         Viewport page = new Viewport(context);
 
         StringWriter body = getMergeContent(getUrl(), context);
@@ -64,13 +69,14 @@ public final class BetterVelocityView extends VelocityToolboxView {
 
         if (layoutPath == null) {
             if (logger.isDebugEnabled()) {
-                logger.debug("no layoutPath was assigned, response it. url:" + getUrl());
+                logger.debug("No layoutPath was assigned, response it. url:" + getUrl());
             }
             response.getWriter().write(body.toString());
         } else {
             if (logger.isDebugEnabled()) {
                 logger.debug("Rendering layout [" + layoutPath + "] for url:" + getUrl());
             }
+
             page.prepareLayout(body);
             mergeTemplate(getTemplate(layoutPath), context, response);
         }
@@ -80,7 +86,7 @@ public final class BetterVelocityView extends VelocityToolboxView {
      * The resulting context contains any mappings from render, plus screen content.
      * @return
      */
-    protected final StringWriter getMergeContent( String templateName, Context velocityContext ) throws Exception {
+    protected StringWriter getMergeContent( String templateName, Context velocityContext ) throws Exception {
         StringWriter out = new StringWriter();
 
         if (logger.isDebugEnabled()) {
@@ -90,24 +96,27 @@ public final class BetterVelocityView extends VelocityToolboxView {
         try {
             Template tpl = getTemplate(templateName);
             tpl.merge(velocityContext, out);
-        } catch (Exception e) {
-            logger.error("Failed to render template [" + templateName + "]", e);
-        }
 
-        return out;
+            return out;
+        } catch (Exception e) {
+            log.error("Rendering screen [" + templateName + "] with error", e);
+            throw e;
+        }
     }
 
     @Override
-    protected final void initApplicationContext() throws BeansException {
-        instance = this;
+    protected void initApplicationContext() throws BeansException {
         VelocityEngine velocityEngine = getVelocityEngine();
 
         if (velocityEngine == null) {
             velocityEngine = autodetectVelocityEngine();
             velocityEngine.loadDirective(BlockDirective.class.getName());
-        }
 
-        super.initApplicationContext();
+            instance = this;
+            super.initApplicationContext();
+        } else {
+            throw new FatalBeanException("init velocity engine with error");
+        }
     }
 
     /**

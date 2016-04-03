@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     $page.renderTpl("csrf-token", {})
     <title>
-        $page.getVariable("title") - google.com 中文站
+        $page.getVariable("title", "主页") - google.com 中文站
     </title>
 </head>
 <body>

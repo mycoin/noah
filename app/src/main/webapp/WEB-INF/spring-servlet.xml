@@ -19,7 +19,7 @@
     <!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.ionnic.common.support.JsonHttpMessageConverter" />
+            <bean class="org.ionnic.common.support.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 

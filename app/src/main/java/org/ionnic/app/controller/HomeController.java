@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.support.DefaultWebException;
+import org.ionnic.common.support.WebException;
 import org.ionnic.common.web.AbstractActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class HomeController extends AbstractActionSupport {
 
     @RequestMapping(value = "/ajax", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Map<String, Object> ajax() throws DefaultWebException {
+    public Map<String, Object> ajax() throws WebException {
         checkSessionToken(request);
 
         Map<String, Object> model = new HashMap<String, Object>();

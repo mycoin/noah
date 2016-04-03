@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @SuppressWarnings("serial")
-public class DefaultWebException extends Exception implements RuntimeConstants {
+public class WebException extends Exception implements RuntimeConstants {
 
     @SuppressWarnings("unused")
     private final Log log = LogFactory.getLog(getClass());
@@ -28,7 +28,7 @@ public class DefaultWebException extends Exception implements RuntimeConstants {
      * @param status
      * @param statusInfo
      */
-    public DefaultWebException( int status, String statusInfo ) {
+    public WebException( int status, String statusInfo ) {
         super(statusInfo);
 
         this.statusCode = status;
@@ -39,7 +39,7 @@ public class DefaultWebException extends Exception implements RuntimeConstants {
      * @param status
      * @param statusInfo
      */
-    public DefaultWebException( int status, String statusInfo, Throwable exception ) {
+    public WebException( int status, String statusInfo, Throwable exception ) {
         super(statusInfo);
 
         this.statusCode = status;
