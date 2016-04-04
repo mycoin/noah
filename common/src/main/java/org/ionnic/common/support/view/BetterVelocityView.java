@@ -25,6 +25,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
@@ -48,11 +50,11 @@ import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
  * At runtime, this variable will contain the rendered content template.
  *
  */
-public final class BetterVelocityView extends VelocityToolboxView {
+public final class BetterVelocityView extends VelocityToolboxView implements ConfigConstants, RuntimeConstants {
 
-    private Log log = LogFactory.getLog(getClass());
+    private Log logger = LogFactory.getLog(getClass());
 
-    private BetterVelocityView instance = null;
+    private static BetterVelocityView instance = null;
 
     /**
      * Overrides the normal rendering process in order to pre-process the Context,
@@ -62,7 +64,7 @@ public final class BetterVelocityView extends VelocityToolboxView {
      */
     @Override
     protected void doRender( Context context, HttpServletResponse response ) throws Exception {
-        Viewport page = new Viewport(context);
+        Viewport page = new Viewport(this, context);
 
         StringWriter body = getMergeContent(getUrl(), context);
         String layoutPath = page.getLayout();
@@ -83,6 +85,13 @@ public final class BetterVelocityView extends VelocityToolboxView {
     }
 
     /**
+     * @return
+     */
+    public static BetterVelocityView getInstance() {
+        return instance;
+    }
+
+    /**
      * The resulting context contains any mappings from render, plus screen content.
      * @return
      */
@@ -99,7 +108,7 @@ public final class BetterVelocityView extends VelocityToolboxView {
 
             return out;
         } catch (Exception e) {
-            log.error("Rendering screen [" + templateName + "] with error", e);
+            logger.error("Rendering screen [" + templateName + "] with error", e);
             throw e;
         }
     }
@@ -111,18 +120,10 @@ public final class BetterVelocityView extends VelocityToolboxView {
         if (velocityEngine == null) {
             velocityEngine = autodetectVelocityEngine();
             velocityEngine.loadDirective(BlockDirective.class.getName());
-
             instance = this;
             super.initApplicationContext();
         } else {
             throw new FatalBeanException("init velocity engine with error");
         }
-    }
-
-    /**
-     * @return
-     */
-    public BetterVelocityView getInstance() {
-        return instance;
     }
 }

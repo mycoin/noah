@@ -9,13 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    $page.renderTpl("no-cache")
     $page.renderTpl("csrf-token", {})
     <title>
-        $page.getVariable("title", "主页") - google.com 中文站
+        $page.getVariable("title", "网站主页") - google.com 中文站
     </title>
 </head>
 <body>
     <div class="header">
+        $page.getPageId()
         $page.getConfig("message.domain")
     </div>
     $page.getVariable("body")

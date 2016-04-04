@@ -17,7 +17,7 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public abstract class WebUtils {
+public abstract class WebUtils extends org.springframework.web.util.WebUtils {
 
     public static final String HEADER_NAME = "X-Request-Token";
 

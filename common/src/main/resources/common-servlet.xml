@@ -13,7 +13,7 @@
     <context:component-scan base-package="org.ionnic.common.config" />
 
     <!-- 默认配置 -->
-    <context:property-placeholder order="1024" location="classpath:default.properties" />
+    <context:property-placeholder location="classpath:default.properties" order="1024" />
 
     <!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -26,7 +26,6 @@
                 <prop key="input.encoding">utf-8</prop>
                 <prop key="output.encoding">utf-8</prop>
                 <prop key="velocimacro.library">library.vm,macro.vm</prop>
-                <prop key="file.resource.loader.cache">${view.template.cache}</prop>
                 <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeHtmlReference</prop>
             </props>
         </property>

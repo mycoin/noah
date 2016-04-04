@@ -34,10 +34,12 @@ public class Viewport implements ConfigConstants {
     private static WebApplicationContext application = ContextUtils.getApplicationContext();
 
     /**
+     * @param view
      * @param context
      */
-    public Viewport( Context context ) {
+    public Viewport( BetterVelocityView view, Context context ) {
         this.context = (ViewToolContext) context;
+        this.velocityView = view;
 
         setVariable(SCREEN_KEY, 0);
         setVariable(CONTEXT_NAME, this);
@@ -186,6 +188,13 @@ public class Viewport implements ConfigConstants {
     }
 
     /**
+     * @return
+     */
+    public String getPageId() {
+        return velocityView.getBeanName();
+    }
+
+    /**
      * @param blockName
      * @param out
      */
@@ -236,13 +245,15 @@ public class Viewport implements ConfigConstants {
 
     @Override
     public String toString() {
-        return "Implement:{" + getClass().getName() + "}";
+        return "Implement: {" + getClass().getName() + "}";
     }
 
     /**
      * For the default, render the screen first.
      */
     private boolean isRenderLayout = false;
+
+    private BetterVelocityView velocityView = null;
 
     private String layoutName = null;
 
