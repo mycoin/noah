@@ -2,7 +2,7 @@ package org.ionnic.common.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.support.WebException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.method.HandlerMethod;
@@ -11,7 +11,7 @@ import org.springframework.web.method.HandlerMethod;
  * @author apple
  *
  */
-public interface ActionSupport extends RuntimeConstants {
+public interface ActionSupport extends ConfigConstants {
 
     /**
      * Check the given request

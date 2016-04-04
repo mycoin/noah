@@ -3,7 +3,7 @@ package org.ionnic.common.support;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.web.ActionSupport;
 import org.springframework.core.Ordered;
 import org.springframework.web.method.HandlerMethod;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author apple
  *
  */
-public class ProcessingInterceptor extends HandlerInterceptorAdapter implements RuntimeConstants, Ordered {
+public class ProcessingInterceptor extends HandlerInterceptorAdapter implements ConfigConstants, Ordered {
 
     @Override
     public void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView ) throws Exception {

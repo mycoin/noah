@@ -3,7 +3,7 @@ package org.ionnic.common.util;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,7 +13,7 @@ import com.google.gson.stream.MalformedJsonException;
  * @author apple
  *
  */
-public abstract class JsonUtils implements RuntimeConstants {
+public abstract class JsonUtils implements ConfigConstants {
 
     public static final String DEFAULT_JSON = "{}";
 

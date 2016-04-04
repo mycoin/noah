@@ -9,7 +9,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.view.ViewToolContext;
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.support.DigestSupport;
 import org.ionnic.common.util.ContextUtils;
 import org.ionnic.common.util.WebUtils;
@@ -19,15 +19,17 @@ import org.springframework.web.context.WebApplicationContext;
  * @author apple
  *
  */
-public class Viewport implements RuntimeConstants {
+public class Viewport implements ConfigConstants {
 
-    public static final String BLANK = "";
+    public static final String BLANK = new String();
 
     public static final String CONTEXT_NAME = "page";
 
     public static final String SCREEN_KEY = "body";
 
     public static final String TEMPLATE_EXT = ".vm";
+
+    public static final String HTML_EXT = ".html";
 
     private static WebApplicationContext application = ContextUtils.getApplicationContext();
 
@@ -57,10 +59,12 @@ public class Viewport implements RuntimeConstants {
      */
     public StringWriter renderTpl( String templateName, Map<String, Object> varMap ) {
         StringWriter writer = new StringWriter();
+
         try {
-            if (!templateName.endsWith(TEMPLATE_EXT)) {
+            if (!templateName.endsWith(TEMPLATE_EXT) && !templateName.endsWith(HTML_EXT)) {
                 templateName = templateName.concat(TEMPLATE_EXT);
             }
+
             if (varMap != null) {
                 varMap.putAll(context.getToolbox());
                 varMap.put(CONTEXT_NAME, this);

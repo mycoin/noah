@@ -19,7 +19,7 @@ import org.springframework.web.servlet.View;
 
 @Controller
 @RequestMapping("-")
-public class Monitor {
+public class MonitorAction {
 
     private static final String GET = "get";
 

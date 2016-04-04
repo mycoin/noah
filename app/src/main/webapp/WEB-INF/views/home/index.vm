@@ -9,6 +9,7 @@ $page.getGuid()
 
 <div class="main">
     $page.renderTpl("go-search")
+    $page.renderTpl("output.html")
     $page.renderTpl("sub-menu", {})
 </div>
 

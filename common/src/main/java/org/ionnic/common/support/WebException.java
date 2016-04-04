@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @SuppressWarnings("serial")
-public class WebException extends Exception implements RuntimeConstants {
+public class WebException extends Exception implements ConfigConstants {
 
     @SuppressWarnings("unused")
     private final Log log = LogFactory.getLog(getClass());

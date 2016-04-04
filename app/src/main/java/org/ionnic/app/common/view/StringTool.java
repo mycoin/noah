@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.velocity.util.StringUtils;
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.util.JsonUtils;
 
 /**
@@ -70,7 +70,7 @@ public class StringTool extends StringUtils {
         String string = trim(subject);
         String decoded = null;
         try {
-            decoded = URLEncoder.encode(string, RuntimeConstants.CHARSET);
+            decoded = URLEncoder.encode(string, ConfigConstants.CHARSET);
             return decoded.replaceAll("\\+", "%20");
         } catch (Exception e) {
 

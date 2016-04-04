@@ -192,4 +192,11 @@ public abstract class DigestSupport {
         }
         return hs.toString().toUpperCase();
     }
+
+    /**
+     * @param args
+     */
+    public static void main( String[] args ) {
+        System.out.println(encrypt("11"));
+    }
 }

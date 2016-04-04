@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ionnic.common.config.RuntimeConstants;
+import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.util.JsonUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.View;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * @author apple
  *
  */
-public class MappingJsonView extends AbstractView implements RuntimeConstants {
+public class MappingJsonView extends AbstractView implements ConfigConstants {
 
     private final Log log = LogFactory.getLog(getClass());
 
