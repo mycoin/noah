@@ -1,6 +1,29 @@
+#*
+    renderTpl(String)
+    renderTpl(String, Map<String, Object>)
+    encrypt(String)
+    encrypt(String, String)
+    getVariable(String)
+    getVariable(String, Object)
+    getConfig(String, String)
+    getConfig(String)
+    getLayout()
+    getURI(String)
+    getToken()
+    getTokenName()
+    getTokenHeader()
+    getGuid()
+    getPageId()
+    setVariable(String, Object)
+    setLayout(String)
+    prepareLayout(StringWriter)
+    isRenderLayout()
+    isTemplateExist(String)
+*#
+
 ## 禁用布局功能
 #macro(DisabledLayout)
-    $page.setLayout(null)
+    $page.setLayout("")
 #end
 
 ## 空逻辑输出
@@ -20,3 +43,4 @@
 #macro(Include $filename)
     #include("${filename}.html")
 #end
+

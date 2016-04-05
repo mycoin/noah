@@ -13,6 +13,7 @@ import org.ionnic.common.config.ConfigConstants;
 import org.ionnic.common.support.DigestSupport;
 import org.ionnic.common.util.ContextUtils;
 import org.ionnic.common.util.WebUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
@@ -206,8 +207,11 @@ public class Viewport implements ConfigConstants {
      * @return
      */
     public String setLayout( String layoutName ) {
-        this.layoutName = layoutName + TEMPLATE_EXT;
-
+        if (StringUtils.hasText(layoutName)) {
+            this.layoutName = layoutName + TEMPLATE_EXT;
+        } else {
+            this.layoutName = null;
+        }
         return BLANK;
     }
 

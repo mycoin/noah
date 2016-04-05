@@ -99,7 +99,7 @@ public final class BetterVelocityView extends VelocityToolboxView implements Con
         StringWriter out = new StringWriter();
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Rendering template [" + templateName + "]");
+            logger.debug("Rendering screen template [" + templateName + "]");
         }
 
         try {

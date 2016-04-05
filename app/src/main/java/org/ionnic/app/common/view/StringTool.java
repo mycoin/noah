@@ -313,4 +313,28 @@ public class StringTool extends StringUtils {
         return string.substring(0, maxLength - suffix.length()) + suffix;
 
     }
+
+    /**
+     * @param input
+     * @return
+     */
+    public static String trimLeft( String input ) {
+        int i = 0;
+        while (i < input.length() && Character.isWhitespace(input.charAt(i))) {
+            i++;
+        }
+        return input.substring(i);
+    }
+
+    /**
+     * @param input
+     * @return
+     */
+    public static String trimRight( String input ) {
+        int i = input.length() - 1;
+        while (i >= 0 && Character.isWhitespace(input.charAt(i))) {
+            i--;
+        }
+        return input.substring(0, i + 1);
+    }
 }

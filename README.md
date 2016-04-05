@@ -5,7 +5,7 @@ spring-mvc
 This project will allow you to start off on the good foot with spring MVC. In this showcase you'll see the following features in action:
 
 - Pure maven dependencies
-- Uses embedded Jetty
+- Embedded Jetty
 - Mapping Requests
 - Message Converters
 - Rendering Layout Views
@@ -48,9 +48,9 @@ The `VelocityLayout` support. The velocity resource paths are:
 
 Write your awesome template that assigned by the Controller in `/WEB-INF/views/` folder. 
 
-Common modules such as header or footer locate in `/WEB-INF/external/`, then use `page.render(name, dataMap)` to import it.
+Common modules such as header or footer locate in `/WEB-INF/external/`, then use `page.renderTpl(name, dataMap)` to import it.
 
-Uncoupling the templates that frequently Modified is very necessary, you can manage them in webservice and sync then to `~/output/` folder
+Templates that frequently Modified will be managed by webservice, then sync then to `~/output/` folder
 
 > see [org.ionnic.common.support.view.tool.PageTool](https://github.com/mycoin/spring-mvc/blob/master/common/src/main/java/org/ionnic/common/support/view/tool/PageTool.java) for detail
 

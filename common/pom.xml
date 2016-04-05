@@ -23,14 +23,6 @@
     </developers>
 
     <dependencies>
-        <!-- servlet-api  -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
-
 		<!-- spring core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -61,6 +53,14 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
             <version>${springVersion}</version>
+        </dependency>
+
+        <!-- servlet-api  -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- apache common -->
@@ -116,14 +116,6 @@
                     <artifactId>struts-core</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.apache.struts</groupId>
-                    <artifactId>struts-taglib</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.struts</groupId>
-                    <artifactId>struts-tiles</artifactId>
-                </exclusion>
-                <exclusion>
                     <groupId>oro</groupId>
                     <artifactId>oro</artifactId>
                 </exclusion>
@@ -131,13 +123,19 @@
                     <groupId>sslext</groupId>
                     <artifactId>sslext</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>dom4j</groupId>
+                    <artifactId>dom4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.struts</groupId>
+                    <artifactId>struts-taglib</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.struts</groupId>
+                    <artifactId>struts-tiles</artifactId>
+                </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mitchellbosecke</groupId>
-            <artifactId>pebble</artifactId>
-            <version> 2.1.0 </version>
         </dependency>
 
 		<!-- gson -->
@@ -147,4 +145,15 @@
             <version>2.4</version>
         </dependency>
     </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>
