@@ -13,4 +13,11 @@ $page.getGuid()
     $page.renderTpl("sub-menu", {})
 </div>
 
+
+dwd
+work-layoutwd
+wdw
+dwdd
+wdwwd
+wdwwd
 $page.setLayout("common/work-layout")
