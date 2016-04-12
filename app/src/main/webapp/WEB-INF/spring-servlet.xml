@@ -11,7 +11,7 @@
     <context:property-placeholder location="classpath:config/global.properties" order="0" />
 
     <!-- 文件扫描 -->
-    <context:component-scan base-package="org.ionnic.app" />
+    <context:component-scan base-package="net.breakidea.app" />
 
     <!-- 导入公共 -->
     <import resource="classpath:common-servlet.xml" />
@@ -19,7 +19,7 @@
     <!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.ionnic.common.support.JsonMessageConverter" />
+            <bean class="net.breakidea.common.support.JsonMessageConverter" />
         </mvc:message-converters>
     </mvc:annotation-driven>
 

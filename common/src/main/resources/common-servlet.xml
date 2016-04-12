@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 系统监控 -->
-    <context:component-scan base-package="org.ionnic.common.config" />
+    <context:component-scan base-package="net.breakidea.common.config" />
 
     <!-- 默认配置 -->
     <context:property-placeholder location="classpath:default.properties" order="1024" />
@@ -26,7 +26,7 @@
                 <prop key="input.encoding">utf-8</prop>
                 <prop key="output.encoding">utf-8</prop>
                 <prop key="velocimacro.library">library.vm,macro.vm</prop>
-                <prop key="eventhandler.referenceinsertion.class">org.ionnic.common.support.view.EscapeHtmlReference</prop>
+                <prop key="eventhandler.referenceinsertion.class">net.breakidea.common.support.view.EscapeHtmlReference</prop>
             </props>
         </property>
     </bean>
@@ -38,7 +38,7 @@
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="org.ionnic.common.support.view.BetterVelocityView" />
+                    <property name="viewClass" value="net.breakidea.common.support.view.BetterVelocityView" />
                     <property name="suffix" value=".vm" />
                     <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml" />
                 </bean>
@@ -48,10 +48,10 @@
 
     <!-- 拦截器 -->
     <mvc:interceptors>
-        <bean class="org.ionnic.common.support.ProcessingInterceptor" />
+        <bean class="net.breakidea.common.support.ProcessingInterceptor" />
     </mvc:interceptors>
 
     <!-- 异常处理 -->
-    <bean class="org.ionnic.common.support.SimpleExceptionResolver" />
+    <bean class="net.breakidea.common.support.SimpleExceptionResolver" />
 
 </beans>

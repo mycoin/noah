@@ -21,11 +21,11 @@
     <tool>
         <key>lang</key>
         <scope>application</scope>
-        <class>org.ionnic.app.common.view.LangTool</class>
+        <class>net.breakidea.app.common.view.LangTool</class>
     </tool>
     <tool>
         <key>util</key>
         <scope>application</scope>
-        <class>org.ionnic.app.common.view.StringTool</class>
+        <class>net.breakidea.app.common.view.StringTool</class>
     </tool>
 </toolbox>

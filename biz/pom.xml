@@ -3,17 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>spring-mvc</artifactId>
-        <groupId>org.ionnic</groupId>
+        <groupId>net.breakidea</groupId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    <groupId>org.ionnic</groupId>
+    <groupId>net.breakidea</groupId>
     <artifactId>biz</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>biz</name>
     <dependencies>
         <dependency>
-            <groupId>org.ionnic</groupId>
+            <groupId>net.breakidea</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
