@@ -8,7 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 import net.breakidea.common.util.JsonUtils;
 
 import org.apache.commons.logging.Log;

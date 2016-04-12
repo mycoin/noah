@@ -3,7 +3,7 @@ package net.breakidea.app.common;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

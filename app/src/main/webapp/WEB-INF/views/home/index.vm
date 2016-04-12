@@ -1,5 +1,16 @@
 $page.setVariable("title", "页面标题")
 
+#block("title")
+
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+    http://macbook-air.local:8080/home/index?token=79c1b58a-f090-4515-beea-a46e71c906ca
+
+#end
+
 <input value="$page.getToken()" type="hidden" />
 <input value="$page.getTokenName()" type="hidden" />
 <input value="$page.getTokenHeader()" type="hidden" />

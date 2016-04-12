@@ -39,7 +39,7 @@ A better project structure is required:
 - `biz` middleware, toolkit
 - `common` config and application support, important config.
 
-#### [VelocityLayout]
+##### View
 
 The `VelocityLayout` support. The velocity resource paths are:
 - `/WEB-INF/views/` The primary template path
@@ -52,7 +52,11 @@ Common modules such as header or footer locate in `/WEB-INF/external/`, then use
 
 Templates that frequently Modified will be managed by webservice, then sync then to `~/output/` folder
 
-> see [org.ionnic.common.support.view.tool.PageTool](https://github.com/mycoin/spring-mvc/blob/master/common/src/main/java/org/ionnic/common/support/view/tool/PageTool.java) for detail
+
+
+
+
+> see [net.breakidea.common.support.view.Viewport](https://github.com/mycoin/spring-mvc/blob/master/common/src/main/java/net/breakidea/common/support/view/Viewport.java) for detail
 
 ### Main.java
 

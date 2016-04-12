@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 import net.breakidea.common.util.JsonUtils;
 
 import org.apache.velocity.util.StringUtils;

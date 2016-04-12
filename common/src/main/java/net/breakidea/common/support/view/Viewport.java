@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 import net.breakidea.common.support.DigestSupport;
 import net.breakidea.common.util.ContextUtils;
 import net.breakidea.common.util.WebUtils;

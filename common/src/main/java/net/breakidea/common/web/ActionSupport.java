@@ -2,7 +2,7 @@ package net.breakidea.common.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 import net.breakidea.common.support.WebException;
 
 import org.springframework.web.HttpMediaTypeNotAcceptableException;

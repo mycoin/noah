@@ -32,7 +32,6 @@ public abstract class DigestSupport {
         byte[] keys = key.getBytes();
 
         try {
-
             key = padKey(key);
 
             // The DES algorithm requires a trusted random number generator
@@ -100,6 +99,14 @@ public abstract class DigestSupport {
 
     /**
      * @param string
+     * @return
+     */
+    public static String encrypt( String string ) {
+        return encrypt(string, "0123456789abcdef");
+    }
+
+    /**
+     * @param string
      * @param key
      * @return
      */
@@ -141,14 +148,6 @@ public abstract class DigestSupport {
     }
 
     /**
-     * @param string
-     * @return
-     */
-    public static String encrypt( String string ) {
-        return encrypt(string, "0123456789abcdef");
-    }
-
-    /**
      * @return
      */
     public static String getGuid() {
@@ -157,19 +156,12 @@ public abstract class DigestSupport {
     }
 
     /**
-     * @param args
-     */
-    public static void main( String[] args ) {
-        System.out.println(encrypt("11"));
-    }
-
-    /**
      * @param key
      * @return
      */
     private static String padKey( String key ) {
         if (key == null || key.length() < 8) {
-            return "12345678" + key;
+            return key + "12345678".substring(key.length());
         }
         return key;
     }

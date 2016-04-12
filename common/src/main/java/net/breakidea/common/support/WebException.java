@@ -3,7 +3,7 @@ package net.breakidea.common.support;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
-import net.breakidea.common.config.ConfigConstants;
+import net.breakidea.common.ConfigConstants;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

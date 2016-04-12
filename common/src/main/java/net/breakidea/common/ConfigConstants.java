@@ -1,4 +1,4 @@
-package net.breakidea.common.config;
+package net.breakidea.common;
 
 /**
  * @author apple
