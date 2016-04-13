@@ -99,7 +99,7 @@ public class Viewport implements ConfigConstants {
      * @throws Exception
      */
     public static String encrypt( String data, String key ) throws Exception {
-        return DigestSupport.DESEncode(data, key);
+        return DigestSupport.encrypt(data, key);
     }
 
     /**

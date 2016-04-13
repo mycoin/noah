@@ -39,7 +39,7 @@ public class MappingJsonView extends AbstractView implements ConfigConstants {
     /**
      * Pattern for validating jsonp callback parameter values.
      */
-    private static final Pattern CALLBACK_PARAM_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
+    private static final Pattern CALLBACK_PARAM_PATTERN = Pattern.compile("[A-Za-z][0-9A-Za-z_\\.]*");
 
     private boolean disableCaching = true;
 
@@ -61,7 +61,7 @@ public class MappingJsonView extends AbstractView implements ConfigConstants {
      * @param model
      * @return
      */
-    private String getDefaultErrorJson( Map<String, Object> model ) {
+    private String getJsonResultText( Map<String, Object> model ) {
         String responseText = null;
         try {
             responseText = JsonUtils.toJson(model);
@@ -121,7 +121,7 @@ public class MappingJsonView extends AbstractView implements ConfigConstants {
 
         String jsonpParameterValue = getJsonpParameterValue(request);
         ServletOutputStream out = response.getOutputStream();
-        String responseText = getDefaultErrorJson(model);
+        String responseText = getJsonResultText(model);
 
         if (null == jsonpParameterValue) {
             response.setContentType(CONTENT_TYPE);

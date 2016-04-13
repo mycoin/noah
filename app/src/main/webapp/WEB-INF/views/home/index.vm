@@ -20,10 +20,9 @@ $page.getGuid()
 <script>
 $page.renderTpl("encrypt", {
     "var": "encrypt",
-    "keyToken": "0123456789abcdef"
+    "keyToken": "01g3456789abcdef"
 })
 </script>
-
 
 <div class="main">
     $page.renderTpl("go-search")
@@ -31,8 +30,9 @@ $page.renderTpl("encrypt", {
     $page.renderTpl("sub-menu", {})
 </div>
 
-<div>
-encrypt(中文) = $page.encrypt('中文')<br>
-encrypt(123456) = $page.encrypt('123456')
-</div>
+#set($textMap = ["中文", "1234567890", "Alibaba-inc", "&"])
+#foreach($raw_item in $textMap)
+$page.encrypt($raw_item, "01g3456789abcdef")<br><script>document.write(encrypt("$raw_item"))</script><br><br>
+#end
+
 $page.setLayout("common/work-layout")
