@@ -157,7 +157,7 @@ public class StringTool extends StringUtils {
      */
     public static Map<String, Object> parseJson( String json ) {
         try {
-            return JsonUtils.fromJson(json);
+            return JsonUtils.parse(json);
         } catch (Exception e) {
 
         }
@@ -232,7 +232,7 @@ public class StringTool extends StringUtils {
      */
     public static String toJson( Object source ) {
         try {
-            return JsonUtils.toJson(source);
+            return JsonUtils.stringify(source);
         } catch (Exception e) {
             return null;
         }

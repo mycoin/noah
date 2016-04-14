@@ -26,8 +26,8 @@ public abstract class JsonUtils implements ConfigConstants {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public static Map<String, Object> fromJson( String json ) {
-        return fromJson(json, Map.class);
+    public static Map<String, Object> parse( String json ) {
+        return parse(json, Map.class);
     }
 
     /**
@@ -35,17 +35,17 @@ public abstract class JsonUtils implements ConfigConstants {
      * @param clazz
      * @return
      */
-    public static <T> T fromJson( String json, Class<T> clazz ) {
+    public static <T> T parse( String json, Class<T> clazz ) {
         if (json == null) {
             return null;
         }
-        return getGson().fromJson(json, clazz);
+        return getInstance().fromJson(json, clazz);
     }
 
     /**
      * @return
      */
-    public static Gson getGson() {
+    public static Gson getInstance() {
         if (gson == null) {
             GsonBuilder gb = new GsonBuilder();
 
@@ -64,9 +64,9 @@ public abstract class JsonUtils implements ConfigConstants {
      * @return
      * @throws UnsupportedOperationException
      */
-    public static String toJson( Object src, Type type ) throws UnsupportedOperationException {
+    public static String stringify( Object src, Type type ) throws UnsupportedOperationException {
         try {
-            return getGson().toJson(src, type);
+            return getInstance().toJson(src, type);
         } catch (Throwable e) {
             throw new UnsupportedOperationException(e);
         }
@@ -77,7 +77,7 @@ public abstract class JsonUtils implements ConfigConstants {
      * @return
      * @throws MalformedJsonException
      */
-    public static String toJson( Object src ) throws UnsupportedOperationException {
-        return toJson(src, src.getClass());
+    public static String stringify( Object src ) throws UnsupportedOperationException {
+        return stringify(src, src.getClass());
     }
 }

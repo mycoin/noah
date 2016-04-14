@@ -64,17 +64,17 @@ public class MappingJsonView extends AbstractView implements ConfigConstants {
     private String getJsonResultText( Map<String, Object> model ) {
         String responseText = null;
         try {
-            responseText = JsonUtils.toJson(model);
+            responseText = JsonUtils.stringify(model);
         } catch (Exception e) {
             Map<String, Object> errorMap = new HashMap<String, Object>();
 
-            errorMap.put(STATUS_INFO_NAME, "Unsupported");
+            errorMap.put(STATUS_INFO_NAME, "Unsupported Model");
             errorMap.put(STATUS_NAME, 500);
             errorMap.put(DATA_NAME, e.getClass().getName());
 
             log.error("Unsupported Json Model.", e);
             try {
-                responseText = JsonUtils.toJson(errorMap);
+                responseText = JsonUtils.stringify(errorMap);
             } catch (Exception ex) {
                 responseText = "{}";
             }

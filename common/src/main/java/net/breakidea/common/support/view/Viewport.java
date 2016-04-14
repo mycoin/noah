@@ -43,7 +43,7 @@ public class Viewport implements ConfigConstants {
         this.context = (ViewToolContext) context;
         this.velocityView = view;
 
-        setVariable(SCREEN_KEY, 0);
+        setVariable(SCREEN_KEY, BLANK);
         setVariable(CONTEXT_NAME, this);
     }
 

@@ -15,6 +15,6 @@ public class JsonMessageConverter extends GsonHttpMessageConverter {
      */
     public JsonMessageConverter() {
         super();
-        setGson(JsonUtils.getGson());
+        setGson(JsonUtils.getInstance());
     }
 }
