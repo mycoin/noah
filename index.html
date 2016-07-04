@@ -1,49 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Lotus by mycoin</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <title>Lotus by mycoin</title>
   </head>
+
   <body>
+    <div id="container">
+      <div class="inner">
 
-      <header>
-        <h1>Lotus</h1>
-        <p>Yet another spring-mvc demo project with better structure!</p>
-      </header>
+        <header>
+          <h1>Lotus</h1>
+          <h2>Yet another spring-mvc demo project with better structure!</h2>
+        </header>
 
-      <div id="banner">
-        <span id="logo"></span>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/mycoin/lotus/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/mycoin/lotus/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/mycoin/lotus" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-        <a href="https://github.com/mycoin/lotus" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/mycoin/lotus/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/mycoin/lotus/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+        <hr>
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>
+        <section id="main_content">
+          <h1>
 <a id="lotus" class="anchor" href="#lotus" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>lotus</h1>
 
-<p><a href="https://travis-ci.org/mycoin/spring-mvc"><img src="https://travis-ci.org/mycoin/spring-mvc.svg?branch=master" alt="Build Status"></a>
-This project will allow you to start off on the good foot with spring MVC. In this showcase you'll see the following features in action:</p>
+<p><a href="https://travis-ci.org/mycoin/spring-mvc"><img src="https://travis-ci.org/mycoin/spring-mvc.svg?branch=master" alt="Build Status"></a> This project will allow you to start off on the good foot with spring MVC. In this showcase you'll see the following features in action:</p>
 
 <ul>
 <li>Pure maven dependencies</li>
@@ -59,6 +50,8 @@ This project will allow you to start off on the good foot with spring MVC. In th
 
 <hr>
 
+<p>Import the mysql script <code>lotus.web/db.sql</code> , modify the db config in <code>applicationContext-db.xml</code>~</p>
+
 <p>Clone the repository and:</p>
 
 <div class="highlight highlight-source-shell"><pre>mvn -U clean install -DdownloadSources=<span class="pl-c1">true</span> -Dmaven.<span class="pl-c1">test</span>.skip=<span class="pl-c1">true</span>
@@ -66,8 +59,8 @@ This project will allow you to start off on the good foot with spring MVC. In th
 
 <p>or</p>
 
-<p>Import the project as a maven project into your IDE, Run the class <code>net.breakidea.web.Main</code>
-then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
+<p>Import the project as a maven project into your IDE,  Run the class <code>net.breakidea.web.Main</code>
+then open <a href="http://127.0.0.1:8080/index.html">http://127.0.0.1:8080/index.html</a></p>
 
 <h3>
 <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h3>
@@ -104,7 +97,7 @@ then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
 <li>
 <code>/WEB-INF/common/</code> velocity code snippets</li>
 <li>
-<code>~/output/</code> static external templates from SVN ? FTP or other services, At the same time, you can config it at <code>app:resources/config/global.properties</code>
+<code>~/output/</code> static external templates from SVN ? FTP or other services, At the same time, you can config it at <code>app:global.properties</code>
 </li>
 </ul>
 
@@ -118,6 +111,11 @@ then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
 <p>see <a href="https://github.com/mycoin/lotus/blob/feature/spring/lotus.common/src/main/java/net/breakidea/common/web/view/support/ChainedContext.java">net.breakidea.common.web.view.support.ChainedContext</a> for detail</p>
 </blockquote>
 
+<h5>
+<a id="macro" class="anchor" href="#macro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>macro</h5>
+
+<p>Lots of macros , such as <code>block</code> ,  <code>extends</code> , get more ? <a href="https://github.com/mycoin/lotus/blob/master/lotus.common/src/main/resources/modules/global.vm">click here</a></p>
+
 <h3>
 <a id="mainjava" class="anchor" href="#mainjava" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main.java</h3>
 
@@ -126,13 +124,15 @@ then open <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
 <hr>
 
 <p>FreeBSD License</p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/mycoin">mycoin</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
+        </section>
+
+        <footer>
+          Lotus is maintained by <a href="https://github.com/mycoin">mycoin</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
   </body>
 </html>
