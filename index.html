@@ -1,37 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
     <title>Lotus by mycoin</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
 
-        <header>
-          <h1>Lotus</h1>
-          <h2>Yet another spring-mvc demo project with better structure!</h2>
-        </header>
+      <header>
+        <h1>Lotus</h1>
+        <p>Yet another spring-mvc demo project with better structure!</p>
+      </header>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/mycoin/lotus/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/mycoin/lotus/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/mycoin/lotus" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+      <div id="banner">
+        <span id="logo"></span>
 
-        <hr>
+        <a href="https://github.com/mycoin/lotus" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/mycoin/lotus/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/mycoin/lotus/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
-        <section id="main_content">
-          <h1>
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
 <a id="lotus" class="anchor" href="#lotus" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>lotus</h1>
 
 <p><a href="https://travis-ci.org/mycoin/spring-mvc"><img src="https://travis-ci.org/mycoin/spring-mvc.svg?branch=master" alt="Build Status"></a> This project will allow you to start off on the good foot with spring MVC. In this showcase you'll see the following features in action:</p>
@@ -41,6 +49,7 @@
 <li>Embedded Jetty</li>
 <li>Mapping Requests</li>
 <li>Message Converters</li>
+<li>Message Source</li>
 <li>Rendering Layout Views</li>
 <li>Exception Handling</li>
 </ul>
@@ -105,16 +114,50 @@ then open <a href="http://127.0.0.1:8080/index.html">http://127.0.0.1:8080/index
 
 <p>Common modules such as header or footer locate in <code>/WEB-INF/common/</code>, then use <code>context.render(name, data)</code> to import it.</p>
 
-<p>Templates that frequently modified will be managed by other service, then sync then to <code>~/output/</code> folder</p>
+<p>Templates that frequently modified will be managed by other service, then sync then to <code>~/output/</code> folder~</p>
+
+<p>For context, the default attributes are:</p>
+
+<ul>
+<li>
+<code>application</code> the <code>WebApplicationContext</code> instance</li>
+<li>
+<code>request</code> the current <code>HttpServletRequest</code>
+</li>
+<li>
+<code>response</code> the current <code>HttpServletResponse</code>
+</li>
+<li>
+<code>page</code> the current context helper,  <code>net.breakidea.common.core.ContextHolder</code>
+</li>
+<li>
+<code>context</code> the context it's self</li>
+<li>
+<code>util</code> tool, static class for <code>net.breakidea.common.web.view.support.Utils</code>
+</li>
+</ul>
 
 <blockquote>
-<p>see <a href="https://github.com/mycoin/lotus/blob/feature/spring/lotus.common/src/main/java/net/breakidea/common/web/view/support/ChainedContext.java">net.breakidea.common.web.view.support.ChainedContext</a> for detail</p>
+<p>see <a href="https://github.com/mycoin/lotus/blob/feature/spring/lotus.common/src/main/java/net/breakidea/common/web/view/support/ContextHolder.java">@ContextHolder</a> for detail</p>
 </blockquote>
 
 <h5>
 <a id="macro" class="anchor" href="#macro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>macro</h5>
 
-<p>Lots of macros , such as <code>block</code> ,  <code>extends</code> , get more ? <a href="https://github.com/mycoin/lotus/blob/master/lotus.common/src/main/resources/modules/global.vm">click here</a></p>
+<p>Lots of macros , such as <code>block</code> ,  <code>extends</code> , <code>showContent</code> , <code>showInet</code> , <code>showMessage</code>  and so on. <a href="https://github.com/mycoin/lotus/blob/master/lotus.common/src/main/resources/modules/global.vm">click here</a> for details.</p>
+
+<h5>
+<a id="message-and-url" class="anchor" href="#message-and-url" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>message and url</h5>
+
+<p>Use <code>MessageSource</code> to manage texts, message and config. see file <code>applicationContext.xml</code></p>
+
+<ul>
+<li>global message and important config <code>classpath:global.properties</code>
+</li>
+<li>application base url (with domain and <code>/</code> ) <code>system.server.base</code>  e.g <a href="http://www.baidu.com/">http://www.baidu.com/</a>
+</li>
+<li>CDN style resource <code>system.server.static</code>  e.g <a href="https://astyle.alicdn.com/1.0.0/">https://astyle.alicdn.com/1.0.0/</a> , see more <a href="https://github.com/mycoin/lotus/blob/master/lotus.common/src/main/resources/modules/global.vm#L126">at here</a> </li>
+</ul>
 
 <h3>
 <a id="mainjava" class="anchor" href="#mainjava" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main.java</h3>
@@ -124,15 +167,13 @@ then open <a href="http://127.0.0.1:8080/index.html">http://127.0.0.1:8080/index
 <hr>
 
 <p>FreeBSD License</p>
-        </section>
-
-        <footer>
-          Lotus is maintained by <a href="https://github.com/mycoin">mycoin</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/mycoin">mycoin</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
     </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
