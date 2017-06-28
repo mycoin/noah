@@ -1,0 +1,13 @@
+<a href="/index">首页</a>
+
+#if($!{loginUser})
+    <input type="hidden" class="login_user_id" value="${loginUser.id}"/>
+	$!{loginUser.loginName}，<a href="/user/logout">退出</a>
+#else
+    <a href="/user/preLogin">登陆</a>
+#end
+
+<a href="/user/preRegister">注册</a>
+<a href="/admin/index">我的马拉松</a>
+
+<br /><br />

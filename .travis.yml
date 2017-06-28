@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - oraclejdk7
+  - openjdk7
+
+before_script:
+  - export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
+
+script: 'mvn install -Pproduction'
