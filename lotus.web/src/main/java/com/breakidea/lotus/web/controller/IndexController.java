@@ -9,18 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.breakidea.lotus.shared.param.user.UserParam;
 import com.breakidea.lotus.shared.service.user.UserService;
 import com.breakidea.lotus.shared.support.ServiceException;
+import com.breakidea.lotus.web.support.beans.RequestContextFilter;
 
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class IndexController extends AbstractController {
 
 	@Resource
-	private UserService userService;
+	protected UserService userService;
 
 	@RequestMapping("/index")
 	public ModelAndView index(UserParam param) throws ServiceException {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userService.query(param));
+		mv.addObject("request_id", request.getAttribute(RequestContextFilter.REQUEST_ID));
 		return mv;
 	}
 

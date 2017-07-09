@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<context:property-placeholder location="classpath:conf/default.properties" />
-	
+
 	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="cacheSeconds" value="30" />
 		<property name="basenames">
@@ -19,6 +19,7 @@
 		</property>
 	</bean>
 
+	<import resource="applicationContext-filter.xml" />
 	<import resource="applicationContext-biz.xml" />
 	<import resource="applicationContext-common.xml" />
 	<import resource="applicationContext-db.xml" />

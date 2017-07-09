@@ -7,7 +7,6 @@
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 文件扫描 -->
@@ -44,7 +43,7 @@
 			<props>
 				<prop key="input.encoding">UTF-8</prop>
 				<prop key="output.encoding">UTF-8</prop>
-				<prop key="velocimacro.library">library.vm</prop>
+				<prop key="velocimacro.library">Library.vm</prop>
 			</props>
 		</property>
 	</bean>
@@ -56,7 +55,7 @@
 			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-					<property name="viewClass" value="com.breakidea.lotus.web.support.TemplateBasedLayoutView" />
+					<property name="viewClass" value="com.breakidea.lotus.web.support.beans.TemplateBasedLayoutView" />
 					<property name="requestContextAttribute" value="requestContext" />
 					<property name="cache" value="true" />
 					<property name="prefix" value="modules/" />
@@ -66,6 +65,9 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- 服务拦截 -->
+	<!-- <mvc:interceptors> <bean class="com.breakidea.lotus.web.support.beans.RequestContextInterceptor" /> </mvc:interceptors> -->
 
 	<!-- 异常处理 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
