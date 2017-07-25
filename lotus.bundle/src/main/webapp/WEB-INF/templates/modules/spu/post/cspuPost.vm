@@ -1,0 +1,3 @@
+<h1>完善规格属性</h1>
+手动输入，批量导入 <a href="success.htm">发布产品</a>
+#setLayout("layout/spu/defaultLayout")

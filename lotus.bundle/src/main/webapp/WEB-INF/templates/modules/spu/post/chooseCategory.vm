@@ -1,0 +1,13 @@
+<input type="hidden" name="canSearch" value="true" />
+<input type="hidden" name="hasAuthorizationCate" value="true" />
+<input type="hidden" name="categoryChoiceUrl" value="https://portal.go.1688.com/mallcat/ajax/getMarketCategory.json?opMemberId=b2b-2249771845&brandId=21508&type=espace" />
+
+<link rel="stylesheet" data-sc-pos="header" href="https://astyle-src.alicdn.com/app/spu/page/categories/entry.css" />
+
+<div id="container"></div>
+
+<script data-sc-pos="footer" data-sc-amd="true" src="https://astyle-src.alicdn.com/app/spu/polyfill.js"></script>
+<script data-sc-pos="footer" data-sc-amd="true" src="https://astyle-src.alicdn.com/app/spu/common.js"></script>
+<script data-sc-pos="footer" data-sc-amd="true" src="https://astyle-src.alicdn.com/app/spu/page/categories/entry.js"></script>
+
+#setLayout("layout/spu/defaultLayout")

@@ -1,0 +1,26 @@
+<div class="widget" component-name="search-panel@1">
+    <script type="component/json">
+        {
+            "data": {
+                "keyword": "连衣裙",
+				"isAuthorized": true,
+				"categoryList": null
+            },
+            "options": {
+				"categorySelectApi": "https://portal.go.1688.com/mallcat/ajax/getMarketCategory.json?opMemberId=b2b-2249771845&brandId=21508&type=espace",
+				"categoryCheckApi": "/spu/category/check_category.json?_input_charset=utf-8"
+			}
+        }
+    </script>
+</div>
+<div class="widget" component-name="form-button@1">
+    <script type="component/json">
+        {
+            "data": {},
+            "options": {
+				"isDisabled": true,
+				"postingUrl": "spu_post.htm"
+			}
+        }
+    </script>
+</div>

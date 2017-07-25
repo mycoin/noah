@@ -1,0 +1,10 @@
+<div class="widget" component-name="step-bar@1">
+    <script type="component/json">
+        {
+            "data": {},
+            "options": {
+                "current":  1
+            }
+        }
+    </script>
+</div>

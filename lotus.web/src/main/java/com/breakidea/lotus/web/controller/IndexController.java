@@ -34,6 +34,7 @@ public class IndexController extends AbstractController {
 		} catch (ServiceException e) {
 			mv.addObject("error", e);
 		}
+		
 		return mv;
 	}
 }

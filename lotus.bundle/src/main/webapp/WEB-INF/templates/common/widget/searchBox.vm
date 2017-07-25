@@ -1,0 +1,11 @@
+<div class="widget" component-name="search-box@1">
+    <script type="component/json">
+        {
+            "data": {},
+            "options": {
+                "debounceValue": 500,
+                "categoryApi": "https://offer.1688.com/offer/asyn/category_selector.json?_input_charset=utf-8"
+            }
+        }
+    </script>
+</div>

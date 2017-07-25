@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="data-spm" content="a262dk" />
+        <title>企业云</title>
+        <meta charset="gbk"/>
+		#renderTemplate("widget/headquarters")
+    </head>
+    <body data-spm="$!{spmb}">
+        $!csrfToken.hiddenField
+        <div id="header"></div>
+        <div id="content">
+            <div id="leftmenu">
+                <!-- 将后台调用菜单服务化接口的结果直接输出 -->
+                #renderTemplate("spu/leftMenu")
+            </div>
+            <div id="app-content">
+                <!-- 页面vm模板中原来body标签下的内容，放在这个标签里来 -->
+                $screenContent
+            </div>
+        </div>
+    </body>
+</html>

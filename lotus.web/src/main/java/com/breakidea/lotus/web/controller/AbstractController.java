@@ -2,16 +2,17 @@ package com.breakidea.lotus.web.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.context.annotation.Scope;
-
-@Scope("request")
 public abstract class AbstractController {
 
 	@Resource
 	protected HttpServletRequest request;
 
-	public AbstractController() {
-		System.out.println("AbstractController");
-	}
+	@Resource
+	protected HttpServletResponse response;
+
+	@Resource
+	protected HttpSession session;
 }
