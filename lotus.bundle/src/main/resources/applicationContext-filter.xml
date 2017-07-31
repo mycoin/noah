@@ -8,7 +8,7 @@
 	<bean id="delegatingFilter" class="org.springframework.web.filter.CompositeFilter">
 		<property name="filters">
 			<list>
-				<bean class="com.breakidea.lotus.web.support.beans.RequestContextFilter" />
+				<bean class="com.breakidea.lotus.web.beans.RequestContextFilter" />
 				<bean class="org.springframework.web.filter.CharacterEncodingFilter">
 					<property name="encoding" value="UTF-8" />
 					<property name="forceEncoding" value="true" />

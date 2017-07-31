@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support;
+package com.breakidea.lotus.web.utils;
 
 import java.io.Reader;
 import java.lang.reflect.Type;

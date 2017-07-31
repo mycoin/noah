@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support.beans;
+package com.breakidea.lotus.web.beans;
 
 import java.io.StringWriter;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.velocity.VelocityView;
 
-import com.breakidea.lotus.web.support.JsonUtils;
-import com.breakidea.lotus.web.support.Utils;
+import com.breakidea.lotus.web.utils.JsonUtils;
+import com.breakidea.lotus.web.utils.Utils;
 
 @SuppressWarnings("deprecation")
 public class TemplateBasedLayoutView extends VelocityView {

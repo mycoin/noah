@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.controller;
+package com.breakidea.lotus.web.modules;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

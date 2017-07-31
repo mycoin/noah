@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support;
+package com.breakidea.lotus.web.utils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

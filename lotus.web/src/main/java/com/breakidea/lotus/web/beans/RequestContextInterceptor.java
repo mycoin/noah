@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support.beans;
+package com.breakidea.lotus.web.beans;
 
 import java.util.UUID;
 
