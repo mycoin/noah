@@ -4,3 +4,11 @@
 	#end
 	#set($screenLayout = "${url}.vm")
 #end
+
+#macro(renderTemplate $url)
+	#if($url.startsWith("common/"))
+		<!-- [WARN] bad control location. -->
+	#else
+		#parse("common/${url}.vm")
+	#end
+#end

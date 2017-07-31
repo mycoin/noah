@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support;
+package com.breakidea.lotus.web.beans;
 
 import java.io.StringWriter;
 import java.util.Map;
@@ -12,6 +12,9 @@ import org.springframework.util.NumberUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.velocity.VelocityView;
+
+import com.breakidea.lotus.web.utils.JsonUtils;
+import com.breakidea.lotus.web.utils.Utils;
 
 @SuppressWarnings("deprecation")
 public class TemplateBasedLayoutView extends VelocityView {
@@ -32,14 +35,14 @@ public class TemplateBasedLayoutView extends VelocityView {
 		}
 		mergeTemplate(getTemplate(layoutUrl), context, response);
 	}
-
+	
 	@Override
 	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
 		model.put("NumberUtils", NumberUtils.class);
-		model.put("Utils", Utils.class);
 		model.put("StringUtils", StringUtils.class);
 		model.put("ObjectUtils", ObjectUtils.class);
 		model.put("JsonUtils", JsonUtils.class);
+		model.put("Utils", Utils.class);
 
 		return new VelocityContext(model);
 	}

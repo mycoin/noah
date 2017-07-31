@@ -1,4 +1,4 @@
-package com.breakidea.lotus.web.support;
+package com.breakidea.lotus.web.utils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -16,6 +16,8 @@ import org.springframework.web.util.JavaScriptUtils;
 import com.breakidea.lotus.shared.Constants;
 
 public abstract class Utils implements Constants {
+
+	private static final char SEPARATOR = '_';
 
 	/**
 	 * 组装一个URL地址，带有参数的那种！
@@ -186,6 +188,31 @@ public abstract class Utils implements Constants {
 			tagRule = "<(?!/?(" + allowedTagList.toString() + ")[\\s>/])[^>]*?>";
 		}
 		return Pattern.compile(tagRule, Pattern.CASE_INSENSITIVE).matcher(subject).replaceAll("");
+	}
+
+	public static String toCamelCase(String s) {
+		if (s == null) {
+			return null;
+		}
+
+		s = s.toLowerCase();
+
+		StringBuilder sb = new StringBuilder(s.length());
+		boolean upperCase = false;
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+
+			if (c == SEPARATOR) {
+				upperCase = true;
+			} else if (upperCase) {
+				sb.append(Character.toUpperCase(c));
+				upperCase = false;
+			} else {
+				sb.append(c);
+			}
+		}
+
+		return sb.toString();
 	}
 
 	/**

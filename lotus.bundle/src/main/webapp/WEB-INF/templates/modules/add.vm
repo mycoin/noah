@@ -1,8 +1,0 @@
-#if($error)
-	ERROR
-	<pre>
-		$Utils.printException($error)
-	</pre>
-#else
-	OK
-#end
