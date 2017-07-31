@@ -1,0 +1,14 @@
+#macro(setLayout $url)
+	#if(!$url.startsWith("layout"))
+		<!-- [WARN] bad layout location. -->
+	#end
+	#set($screenLayout = "${url}.vm")
+#end
+
+#macro(renderTemplate $url)
+	#if($url.startsWith("common/"))
+		<!-- [WARN] bad control location. -->
+	#else
+		#parse("common/${url}.vm")
+	#end
+#end
