@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-public class RequestContextFilter extends OncePerRequestFilter {
+import com.breakidea.lotus.shared.RuntimeConstants;
 
-	public static final String REQUEST_ID = "request_id";
+public class RequestContextFilter extends OncePerRequestFilter implements RuntimeConstants {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

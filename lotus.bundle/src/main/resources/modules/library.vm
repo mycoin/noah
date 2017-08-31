@@ -12,3 +12,7 @@
 		#parse("common/${url}.vm")
 	#end
 #end
+
+#macro(printException $exception) 
+$Utils.printException($exception)
+#end

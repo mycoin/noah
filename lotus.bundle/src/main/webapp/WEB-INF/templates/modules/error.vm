@@ -1,1 +1,2 @@
-$requestContext
+$exception
+<pre>#printException($exception)</pre>
