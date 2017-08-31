@@ -132,7 +132,7 @@
       <id>production</id>
       <properties>
         <environment>production</environment>
-        <conf>file:/opt/service/web.properties</conf>
+        <conf>file:/opt/lotus.properties</conf>
       </properties>
     </profile>
   </profiles>
