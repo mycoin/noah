@@ -5,7 +5,7 @@
 	#set($screenLayout = "${url}.vm")
 #end
 
-#macro(renderTemplate $url)
+#macro(includeTemplate $url)
 	#if($url.startsWith("common/"))
 		<!-- [WARN] bad control location. -->
 	#else

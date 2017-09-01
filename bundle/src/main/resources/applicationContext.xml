@@ -9,6 +9,7 @@
 	<context:property-placeholder location="classpath:conf/default.properties" />
 
 	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8" />
 		<property name="cacheSeconds" value="30" />
 		<property name="basenames">
 			<list>

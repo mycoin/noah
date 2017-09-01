@@ -6,13 +6,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-    <module>shared/</module>
-    <module>dal/</module>
-    <module>common/</module>
-    <module>web/</module>
-    <module>biz/</module>
-    <module>bundle/</module>
-    <module>deploy/</module>
+    <module>shared</module>
+    <module>dal</module>
+    <module>common</module>
+    <module>web</module>
+    <module>biz</module>
+    <module>bundle</module>
+    <module>deploy</module>
   </modules>
   <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
