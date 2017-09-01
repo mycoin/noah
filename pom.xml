@@ -6,13 +6,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-    <module>lotus.shared</module>
-    <module>lotus.dal</module>
-    <module>lotus.common</module>
-    <module>lotus.web</module>
-    <module>lotus.biz</module>
-    <module>lotus.bundle</module>
-    <module>lotus.deploy</module>
+    <module>shared/</module>
+    <module>dal/</module>
+    <module>common/</module>
+    <module>web/</module>
+    <module>biz/</module>
+    <module>bundle/</module>
+    <module>deploy/</module>
   </modules>
   <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
