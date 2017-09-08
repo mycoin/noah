@@ -20,7 +20,6 @@
 		</property>
 	</bean>
 
-	<import resource="applicationContext-filter.xml" />
 	<import resource="applicationContext-biz.xml" />
 	<import resource="applicationContext-common.xml" />
 	<import resource="applicationContext-db.xml" />

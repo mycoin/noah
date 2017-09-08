@@ -20,7 +20,7 @@ public class IndexController extends AbstractController {
 	@Resource
 	protected UserService userService;
 
-	@RequestMapping("/index")
+	@RequestMapping("/index.htm")
 	public ModelAndView index(UserParam param) throws ServiceException {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userService.query(param));
