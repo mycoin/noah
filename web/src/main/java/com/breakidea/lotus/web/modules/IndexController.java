@@ -17,25 +17,25 @@ import com.google.gson.JsonObject;
 @RequestMapping("/")
 public class IndexController extends AbstractController {
 
-	@Resource
-	protected UserService userService;
+    @Resource
+    protected UserService userService;
 
-	@RequestMapping("/index.htm")
-	public ModelAndView index(UserParam param) throws ServiceException {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", userService.query(param));
-		mv.addObject("request_id", request.getAttribute(RequestContextFilter.REQUEST_ID));
-		return mv;
-	}
+    @RequestMapping("/index.htm")
+    public ModelAndView index( UserParam param ) throws ServiceException {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("user", userService.query(param));
+        mv.addObject("request_id", request.getAttribute(RequestContextFilter.REQUEST_ID));
+        return mv;
+    }
 
-	@RequestMapping("/add")
-	public @ResponseBody JsonObject add(UserParam param) {
-		JsonObject mv = new JsonObject();
-		try {
-			userService.add(param);
-		} catch (ServiceException e) {
-			mv.addProperty("message", e.getMessage());
-		}
-		return mv;
-	}
+    @RequestMapping("/add")
+    public @ResponseBody JsonObject add( UserParam param ) {
+        JsonObject mv = new JsonObject();
+        try {
+            userService.add(param);
+        } catch (ServiceException e) {
+            mv.addProperty("message", e.getMessage());
+        }
+        return mv;
+    }
 }
