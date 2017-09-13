@@ -1,0 +1,8 @@
+title: Lotus
+description: Yet another spring-mvc demo project with better structure!
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-midnight
+
+gems:
+  - jekyll-mentions
