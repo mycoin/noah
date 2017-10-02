@@ -36,7 +36,7 @@ class AutoReloadLocator implements Observer {
 }
 
 class WatchObservable extends Observable implements Runnable {
-	
+
 	private volatile boolean idle = true;
 
 	private Thread thread = new Thread(this);

@@ -35,7 +35,7 @@ public class TemplateBasedLayoutView extends VelocityView {
 		}
 		mergeTemplate(getTemplate(layoutUrl), context, response);
 	}
-	
+
 	@Override
 	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
 		model.put("NumberUtils", NumberUtils.class);

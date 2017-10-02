@@ -25,6 +25,7 @@ public class IndexController extends AbstractController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userService.query(param));
 		mv.addObject("request_id", request.getAttribute(RequestContextFilter.REQUEST_ID));
+
 		return mv;
 	}
 
@@ -37,5 +38,9 @@ public class IndexController extends AbstractController {
 			mv.addProperty("message", e.getMessage());
 		}
 		return mv;
+	}
+
+	@RequestMapping("/vm")
+	public void vm() {
 	}
 }
