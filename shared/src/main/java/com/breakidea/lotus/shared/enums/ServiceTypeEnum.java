@@ -2,28 +2,28 @@ package com.breakidea.lotus.shared.enums;
 
 public enum ServiceTypeEnum {
 
-	FORMAT_SERVICE("formal"),
+    FORMAT_SERVICE("formal"),
 
-	INTERNAL_SERVICE("interval");
+    INTERNAL_SERVICE("interval");
 
-	private String type;
+    private String type;
 
-	public static ServiceTypeEnum getValue(String type) {
-		ServiceTypeEnum result = null;
-		for (ServiceTypeEnum sourceType : ServiceTypeEnum.values()) {
-			if (sourceType.getType().equals(type)) {
-				result = sourceType;
-				break;
-			}
-		}
-		return result;
-	}
+    public static ServiceTypeEnum getValue( String type ) {
+        ServiceTypeEnum result = null;
+        for (ServiceTypeEnum sourceType : ServiceTypeEnum.values()) {
+            if (sourceType.getType().equals(type)) {
+                result = sourceType;
+                break;
+            }
+        }
+        return result;
+    }
 
-	private ServiceTypeEnum(String type) {
-		this.type = type;
-	}
+    private ServiceTypeEnum( String type ) {
+        this.type = type;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 }

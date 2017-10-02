@@ -2,6 +2,6 @@ package com.breakidea.lotus.common.base;
 
 public interface Lookup<T> {
 
-	T get(String name);
+    T get( String name );
 
 }

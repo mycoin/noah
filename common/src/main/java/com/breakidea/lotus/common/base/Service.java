@@ -2,7 +2,7 @@ package com.breakidea.lotus.common.base;
 
 public interface Service {
 
-	String getName();
+    String getName();
 
-	String getType();
+    String getType();
 }

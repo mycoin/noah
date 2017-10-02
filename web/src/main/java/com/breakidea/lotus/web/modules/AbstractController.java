@@ -7,12 +7,12 @@ import javax.servlet.http.HttpSession;
 
 public abstract class AbstractController {
 
-	@Resource
-	protected HttpServletRequest request;
+    @Resource
+    protected HttpServletRequest request;
 
-	@Resource
-	protected HttpServletResponse response;
+    @Resource
+    protected HttpServletResponse response;
 
-	@Resource
-	protected HttpSession session;
+    @Resource
+    protected HttpSession session;
 }
