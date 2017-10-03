@@ -36,11 +36,6 @@ class AutoReloadLocator implements Observer {
 }
 
 class WatchObservable extends Observable implements Runnable {
-<<<<<<< HEAD
-
-	private volatile boolean idle = true;
-=======
->>>>>>> e226dd6841cc3dfeb355e7d2303037cec489bc81
 
     private volatile boolean idle = true;
 

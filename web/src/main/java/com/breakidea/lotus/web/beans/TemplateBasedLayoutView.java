@@ -29,29 +29,12 @@ public class TemplateBasedLayoutView extends VelocityView {
     protected void doRender( Context context, HttpServletResponse response ) throws Exception {
         renderScreenContent(context);
 
-<<<<<<< HEAD
-		String layoutUrl = (String) context.get(DEFAULT_LAYOUT_KEY);
-		if (layoutUrl == null) {
-			layoutUrl = DEFAULT_LAYOUT_URL;
-		}
-		mergeTemplate(getTemplate(layoutUrl), context, response);
-	}
-
-	@Override
-	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
-		model.put("NumberUtils", NumberUtils.class);
-		model.put("StringUtils", StringUtils.class);
-		model.put("ObjectUtils", ObjectUtils.class);
-		model.put("JsonUtils", JsonUtils.class);
-		model.put("Utils", Utils.class);
-=======
         String layoutUrl = (String) context.get(DEFAULT_LAYOUT_KEY);
         if (layoutUrl == null) {
             layoutUrl = DEFAULT_LAYOUT_URL;
         }
         mergeTemplate(getTemplate(layoutUrl), context, response);
     }
->>>>>>> e226dd6841cc3dfeb355e7d2303037cec489bc81
 
     @Override
     protected Context createVelocityContext( Map<String, Object> model ) throws Exception {

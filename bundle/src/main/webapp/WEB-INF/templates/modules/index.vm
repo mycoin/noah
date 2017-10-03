@@ -3,7 +3,7 @@
 <style>
 span {
   display: inline-block;
-  width: 80px;
+  width: 60px;
   text-align: right;
   margin: 0 5px;
 }
@@ -11,7 +11,7 @@ button {
 	margin: 10px 50px
 }
 </style>
-<!-- $request_id -->
+
 <form action="add" method="POST" target="hiddenForm">
     <li><span class="label">userName</span><input name="userName" /></li>
     <li><span class="label">password</span><input name="password" /></li>
@@ -24,5 +24,5 @@ $requestContext.getMessage("var.copyright")
 <script>
 	var dataList = $JsonUtils.stringify($user); 
 </script>
-
+$request_id
 #setLayout("layout/defaultLayout")

@@ -20,31 +20,6 @@ public class IndexController extends AbstractController {
     @Resource
     protected UserService userService;
 
-<<<<<<< HEAD
-	@RequestMapping("/index.htm")
-	public ModelAndView index(UserParam param) throws ServiceException {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", userService.query(param));
-		mv.addObject("request_id", request.getAttribute(RequestContextFilter.REQUEST_ID));
-
-		return mv;
-	}
-
-	@RequestMapping("/add")
-	public @ResponseBody JsonObject add(UserParam param) {
-		JsonObject mv = new JsonObject();
-		try {
-			userService.add(param);
-		} catch (ServiceException e) {
-			mv.addProperty("message", e.getMessage());
-		}
-		return mv;
-	}
-
-	@RequestMapping("/vm")
-	public void vm() {
-	}
-=======
     @RequestMapping("/index.htm")
     public ModelAndView index( UserParam param ) throws ServiceException {
         ModelAndView mv = new ModelAndView();
@@ -63,5 +38,4 @@ public class IndexController extends AbstractController {
         }
         return mv;
     }
->>>>>>> e226dd6841cc3dfeb355e7d2303037cec489bc81
 }
