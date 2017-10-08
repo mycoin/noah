@@ -1,4 +1,0 @@
-<a href="/index">首页</a>
-<script src="#springMessage('static.jquery')"></script>
-<script src="#springMessage('static.require')"></script>
-<br /><br />
