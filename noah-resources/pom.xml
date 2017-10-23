@@ -7,4 +7,18 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>noah-resources</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-test-start</artifactId>
+		</dependency>
+	</dependencies>
 </project>
