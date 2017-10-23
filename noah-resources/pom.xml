@@ -6,12 +6,5 @@
 		<artifactId>noah-product</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>noah-modules</artifactId>
-	<packaging>pom</packaging>
-	<modules>
-		<module>noah-scheduler</module>
-		<module>noah-plugin</module>
-		<module>noah-api</module>
-		<module>noah-utils</module>
-	</modules>
+	<artifactId>noah-resources</artifactId>
 </project>

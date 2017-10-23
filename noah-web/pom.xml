@@ -10,18 +10,24 @@
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.avalon.framework</groupId>
-			<artifactId>avalon-framework-api</artifactId>
-			<version>4.3.1</version>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.avalon.framework</groupId>
-			<artifactId>avalon-framework-impl</artifactId>
-			<version>4.3.1</version>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-scheduler</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-plugin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>
