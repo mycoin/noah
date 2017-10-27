@@ -22,7 +22,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-test-start</artifactId>
+			<artifactId>noah-start</artifactId>
 		</dependency>
 	</dependencies>
 </project>

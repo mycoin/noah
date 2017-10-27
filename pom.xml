@@ -11,7 +11,7 @@
 		<module>noah-modules</module>
 		<module>noah-resources</module>
 		<module>noah-web</module>
-		<module>noah-test-start</module>
+		<module>noah-start</module>
 	</modules>
 	<properties>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -95,7 +95,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-test-start</artifactId>
+				<artifactId>noah-start</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
