@@ -12,6 +12,6 @@
 		<module>noah-framework</module>
 		<module>noah-dao</module>
 		<module>noah-service</module>
-		<module>noah-model</module>
+		<module>noah-shared</module>
 	</modules>
 </project>

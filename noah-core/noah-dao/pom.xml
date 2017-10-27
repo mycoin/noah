@@ -14,7 +14,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-model</artifactId>
+			<artifactId>noah-shared</artifactId>
 		</dependency>
 	</dependencies>
 </project>

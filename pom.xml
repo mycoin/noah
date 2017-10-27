@@ -55,7 +55,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-model</artifactId>
+				<artifactId>noah-shared</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -98,7 +98,7 @@
 				<artifactId>noah-test-start</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-    
+
             <!-- spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
