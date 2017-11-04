@@ -10,6 +10,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.alibaba.rigel</groupId>
+			<artifactId>noah-shared</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.rigel</groupId>
 			<artifactId>noah-utils</artifactId>
 		</dependency>
 		<dependency>
@@ -45,10 +49,6 @@
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-shared</artifactId>
 		</dependency>
 	</dependencies>
 </project>

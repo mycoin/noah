@@ -7,10 +7,4 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>noah-shared</artifactId>
-	<dependencies>
-		<dependency>
-			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-utils</artifactId>
-		</dependency>
-	</dependencies>
 </project>

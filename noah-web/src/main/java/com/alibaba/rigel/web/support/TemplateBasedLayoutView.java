@@ -46,14 +46,9 @@ public class TemplateBasedLayoutView extends VelocityView {
 	}
 
 	/**
-	 * The resulting context contains any mappings from render, plus screen
-	 * content.
+	 * The resulting context contains any mappings from render, plus screen content.
 	 */
 	private void renderScreenContent(Context velocityContext) throws Exception {
-		if (logger.isDebugEnabled()) {
-			logger.debug("Rendering screen content template [" + getUrl() + "]");
-		}
-
 		StringWriter sw = new StringWriter();
 		Template screenContentTemplate = getTemplate(getUrl());
 		screenContentTemplate.merge(velocityContext, sw);

@@ -49,7 +49,9 @@ public class UserServiceImpl implements UserService {
 
 		if (!CollectionUtils.isEmpty(models)) {
 			for (UserModel model : models) {
-				vos.add(convert(model));
+				UserVO vo = new UserVO();
+				BeanUtils.copyProperties(model, vo);
+				vos.add(vo);
 			}
 		}
 		return vos;
@@ -63,11 +65,5 @@ public class UserServiceImpl implements UserService {
 		} else {
 			userDao.update(param);
 		}
-	}
-
-	private UserVO convert(UserModel model) {
-		UserVO vo = new UserVO();
-		BeanUtils.copyProperties(model, vo);
-		return vo;
 	}
 }

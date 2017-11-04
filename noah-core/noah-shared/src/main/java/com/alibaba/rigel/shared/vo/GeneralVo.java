@@ -1,8 +1,8 @@
 package com.alibaba.rigel.shared.vo;
 
-import java.io.Serializable;
+import com.alibaba.rigel.shared.Description;
 
 @SuppressWarnings("serial")
-public class GeneralVo implements Serializable {
+public class GeneralVo extends Description {
 
 }

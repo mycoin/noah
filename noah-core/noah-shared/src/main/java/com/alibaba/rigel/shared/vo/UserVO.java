@@ -8,8 +8,6 @@ public class UserVO extends GeneralVo {
 
 	private Long id;
 
-	private String password;
-
 	private String status;
 
 	private String userName;
@@ -24,14 +22,6 @@ public class UserVO extends GeneralVo {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getStatus() {

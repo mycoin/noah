@@ -26,3 +26,6 @@ $requestContext.getMessage("var.copyright")
 </script>
 $request_id
 #setLayout("layout/defaultLayout")
+
+
+$session.getAttribute("name")
