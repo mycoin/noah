@@ -22,13 +22,12 @@
             </list>
         </property>
     </bean>
+
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.alibaba.rigel.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
-    <!-- 回话设置 -->
-    <bean class="org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration" />
     <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <constructor-arg ref="dataSource" />
     </bean>

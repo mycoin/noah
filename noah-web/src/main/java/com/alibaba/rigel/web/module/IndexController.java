@@ -24,11 +24,12 @@ public class IndexController extends AbstractController {
 	public ModelAndView index(UserParam param) throws ServiceException {
 		ModelAndView mv = new ModelAndView();
 
-		session.setAttribute("name", request.getParameterMap());
+		session.setAttribute("name", param);
 
 		mv.addObject("user", userService.query(param));
 		mv.addObject("request_id", request.getAttribute(FrameworkConstants.REQUEST_ID));
 		mv.addObject("session", session);
+		mv.addObject("response", response);
 
 		return mv;
 	}

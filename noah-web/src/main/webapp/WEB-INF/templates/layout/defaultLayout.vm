@@ -11,14 +11,6 @@
 	<meta name="description" content="A free single page responsive portfolio website html template for designers, developers and entrepreneurs.">
 	<meta name="keywords" content="responsive, free, html, template">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="styles/essentials.css">
-	<link rel="stylesheet" href="styles/font-awesome.min.css">
-	<link rel="stylesheet" href="styles/jquery.bxslider.css">
-	<!-- Main stylesheet -->
-	<link rel="stylesheet" href="styles/style.css">
-	<link rel="stylesheet" href="styles/color.css">
-	<!-- Favicon -->
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

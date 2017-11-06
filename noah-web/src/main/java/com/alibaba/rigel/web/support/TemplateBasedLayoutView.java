@@ -41,6 +41,7 @@ public class TemplateBasedLayoutView extends VelocityView {
 		model.put("StringUtils", StringUtils.class);
 		model.put("ObjectUtils", ObjectUtils.class);
 		model.put("JsonUtils", JsonUtils.class);
+		model.put("context", model);
 
 		return new VelocityContext(model);
 	}
