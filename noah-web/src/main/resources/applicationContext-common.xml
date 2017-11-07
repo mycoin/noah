@@ -20,7 +20,10 @@
     <bean id="delegatingFilter" class="org.springframework.web.filter.CompositeFilter">
         <property name="filters">
             <list>
-                <bean class="com.alibaba.rigel.web.support.RequestContextFilter" />
+                <bean class="org.springframework.web.filter.CharacterEncodingFilter">
+                    <property name="encoding" value="UTF-8" />
+                    <property name="forceEncoding" value="true" />
+                </bean>
                 <bean class="org.springframework.session.web.http.SessionRepositoryFilter">
                     <constructor-arg ref="sessionRepository" />
                     <property name="httpSessionStrategy">
@@ -29,10 +32,6 @@
                             <property name="sessionAliasParamName" value="session_id" />
                         </bean>
                     </property>
-                </bean>
-                <bean class="org.springframework.web.filter.CharacterEncodingFilter">
-                    <property name="encoding" value="UTF-8" />
-                    <property name="forceEncoding" value="true" />
                 </bean>
             </list>
         </property>

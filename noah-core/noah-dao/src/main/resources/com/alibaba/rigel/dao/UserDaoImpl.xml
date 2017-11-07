@@ -28,7 +28,8 @@
         <include refid="userCondition" />
     </delete>
     <insert id="insert" parameterType="com.alibaba.rigel.shared.param.UserParam">
-        INSERT INTO `TABLE_USER` (USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED)
+        INSERT INTO `TABLE_USER` (USER_NAME, PASSWORD, STATUS, GMT_CREATED,
+        GMT_MODIFIED)
         VALUES
         (#{userName}, #{password}, #{status}, now(), now());
     </insert>
