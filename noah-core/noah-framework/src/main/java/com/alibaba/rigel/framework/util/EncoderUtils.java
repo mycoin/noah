@@ -36,7 +36,7 @@ public class EncoderUtils {
 			cipher.init(Cipher.DECRYPT_MODE, securekey, new SecureRandom());
 			return new String(cipher.doFinal(datas));
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		return null;
 	}

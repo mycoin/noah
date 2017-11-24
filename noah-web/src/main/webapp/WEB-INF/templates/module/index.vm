@@ -24,7 +24,6 @@ $requestContext.getMessage("var.copyright")
 <script>
 	var dataList = $JsonUtils.stringify($user); 
 </script>
-
 <input name="request_id" value="$request_id" />
 <input name="session_id" value="$session.id" />
 

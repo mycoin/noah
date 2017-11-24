@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
 		String encode = EncoderUtils.encode(password);
 
 		param.setPassword(encode);
+		
 		userDao.insert(param);
 	}
 

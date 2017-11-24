@@ -59,7 +59,7 @@
                     <property name="viewClass" value="com.alibaba.rigel.web.support.TemplateBasedLayoutView" />
                     <property name="requestContextAttribute" value="requestContext" />
                     <property name="cache" value="true" />
-                    <property name="prefix" value="modules/" />
+                    <property name="prefix" value="module/" />
                     <property name="suffix" value=".vm" />
                     <property name="contentType" value="text/html; charset=UTF-8" />
                 </bean>

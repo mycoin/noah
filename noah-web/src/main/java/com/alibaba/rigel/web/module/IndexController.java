@@ -40,7 +40,7 @@ public class IndexController extends AbstractController {
 	}
 
 	@RequestMapping("/list")
-	public @ResponseBody Map list(UserParam param) {
+	public @ResponseBody Map<String, Object> list(UserParam param) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			result.put("dataList", userService.query(param));
