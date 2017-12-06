@@ -7,3 +7,8 @@ mvn dependency:purge-local-repository
 ```
 dependency:analyze
 ```
+
+重设版本
+```
+mvn -N io.takari:maven:wrapper -Dmaven=3.1.0
+```

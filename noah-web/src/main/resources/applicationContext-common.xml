@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
-	default-autowire="byName">
+    default-autowire="byName">
 
-	<bean id="sessionRepository" class="org.springframework.session.jdbc.JdbcOperationsSessionRepository">
-		<constructor-arg>
-			<bean class="org.springframework.jdbc.core.JdbcTemplate">
-				<constructor-arg ref="dataSource" />
-			</bean>
-		</constructor-arg>
-		<constructor-arg>
-			<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" />
-		</constructor-arg>
-	</bean>
+    <bean id="sessionRepository" class="org.springframework.session.jdbc.JdbcOperationsSessionRepository">
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.core.JdbcTemplate">
+                <constructor-arg ref="dataSource" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" />
+        </constructor-arg>
+    </bean>
 
-	<!-- 过滤机制 -->
-	<bean id="delegatingFilter" class="org.springframework.web.filter.CompositeFilter">
-		<property name="filters">
-			<list>
-				<bean class="org.springframework.web.filter.CharacterEncodingFilter">
-					<property name="encoding" value="UTF-8" />
-					<property name="forceEncoding" value="true" />
-				</bean>
-				<bean class="org.springframework.web.filter.HttpPutFormContentFilter" />
-				<bean class="org.springframework.session.web.http.SessionRepositoryFilter">
-					<constructor-arg ref="sessionRepository" />
-					<property name="httpSessionStrategy">
-						<bean class="org.springframework.session.web.http.CookieHttpSessionStrategy">
-							<property name="cookieName" value="SID" />
-							<property name="sessionAliasParamName" value="session_id" />
-						</bean>
-					</property>
-				</bean>
-			</list>
-		</property>
-	</bean>
+    <!-- 过滤机制 -->
+    <bean id="delegatingFilter" class="org.springframework.web.filter.CompositeFilter">
+        <property name="filters">
+            <list>
+                <bean class="org.springframework.web.filter.CharacterEncodingFilter">
+                    <property name="encoding" value="UTF-8" />
+                    <property name="forceEncoding" value="true" />
+                </bean>
+                <bean class="org.springframework.web.filter.HttpPutFormContentFilter" />
+                <bean class="org.springframework.session.web.http.SessionRepositoryFilter">
+                    <constructor-arg ref="sessionRepository" />
+                    <property name="httpSessionStrategy">
+                        <bean class="org.springframework.session.web.http.CookieHttpSessionStrategy">
+                            <property name="cookieName" value="SID" />
+                            <property name="sessionAliasParamName" value="session_id" />
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
 </beans>
