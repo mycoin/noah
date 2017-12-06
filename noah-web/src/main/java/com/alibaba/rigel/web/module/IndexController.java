@@ -1,19 +1,21 @@
 package com.alibaba.rigel.web.module;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
-import com.alibaba.rigel.shared.exception.ServiceException;
-import com.alibaba.rigel.web.base.AbstractController;
+import com.alibaba.rigel.web.base.ModuleConstant;
 
-@Controller
-@RestController
-@RequestMapping("/")
+@Controller(ModuleConstant.INDEX)
 public class IndexController extends AbstractController {
 
-	@RequestMapping("/index")
-	public void index() throws ServiceException {
-
+	@Override
+	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		ModelAndView mv = new ModelAndView(ModuleConstant.INDEX);
+		return mv;
 	}
 }
