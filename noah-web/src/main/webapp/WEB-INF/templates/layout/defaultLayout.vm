@@ -6,15 +6,15 @@
 <!--[if (gt IE 9)|!(IE)]><html lang="en"><![endif]-->
 <!--[if !IE]><html lang="en"><![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>Single Page Responsive Portfolio Site - Tenero</title>
-	<meta name="description" content="A free single page responsive portfolio website html template for designers, developers and entrepreneurs.">
-	<meta name="keywords" content="responsive, free, html, template">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+  <meta charset="utf-8">
+  <title>Single Page Responsive Portfolio Site - Tenero</title>
+  <meta name="description" content="A free single page responsive portfolio website html template for designers, developers and entrepreneurs.">
+  <meta name="keywords" content="responsive, free, html, template">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body>
 $screenContent

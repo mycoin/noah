@@ -1,4 +1,4 @@
-package com.alibaba.rigel.web.base;
+package com.alibaba.rigel.web.module;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

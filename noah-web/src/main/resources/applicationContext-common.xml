@@ -23,15 +23,14 @@
             <list>
                 <bean class="org.springframework.web.filter.CharacterEncodingFilter">
                     <property name="encoding" value="UTF-8" />
-                    <property name="forceEncoding" value="true" />
+                    <property name="forceEncoding" value="false" />
                 </bean>
-                <bean class="org.springframework.web.filter.HttpPutFormContentFilter" />
+                <bean class="org.springframework.web.filter.RequestContextFilter" />
                 <bean class="org.springframework.session.web.http.SessionRepositoryFilter">
                     <constructor-arg ref="sessionRepository" />
                     <property name="httpSessionStrategy">
                         <bean class="org.springframework.session.web.http.CookieHttpSessionStrategy">
                             <property name="cookieName" value="SID" />
-                            <property name="sessionAliasParamName" value="session_id" />
                         </bean>
                     </property>
                 </bean>

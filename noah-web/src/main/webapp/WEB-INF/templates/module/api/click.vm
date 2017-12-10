@@ -1,0 +1,21 @@
+<style>
+span {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+  margin: 0 5px;
+}
+button {
+  margin: 10px 50px
+}
+</style>
+<form action="detective" method="POST">
+    <li><span class="label">data</span><input name="data" /></li>
+    <li><span class="label">ie</span><input name="ie" /></li>
+    <li>
+      <span class="label">method</span>
+      GET<input type="radio" name="method" value="get" />
+      POST<input type="radio" name="method" value="post" />
+    </li>
+    <button>提交</button>
+</form>
