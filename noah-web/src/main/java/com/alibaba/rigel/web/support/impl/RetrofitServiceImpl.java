@@ -21,7 +21,6 @@ public class RetrofitServiceImpl implements RetrofitService, FrameworkConstants 
 		if (request.getAttribute(REQUEST_ID) == null) {
 			request.setAttribute(REQUEST_ID, UUID.randomUUID());
 		}
-		
 		return request.getAttribute(REQUEST_ID) + "";
 	}
 }
