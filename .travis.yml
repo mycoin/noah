@@ -6,7 +6,7 @@ jdk:
 before_script:
   - export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
 
-script: 'mvn install -Pproduction'
+script: './mvnw install -Pproduction'
 
 notifications:
   email:
