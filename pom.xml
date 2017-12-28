@@ -13,7 +13,6 @@
 	</modules>
 	<properties>
 		<java.version>1.6</java.version>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -52,12 +51,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-dao</artifactId>
+				<artifactId>noah-shared</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-shared</artifactId>
+				<artifactId>noah-dao</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -83,11 +82,6 @@
 			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
 				<artifactId>noah-utils</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-ui</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -156,8 +150,8 @@
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>2.5</version>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.code.gson</groupId>
@@ -178,11 +172,6 @@
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-core</artifactId>
 				<version>1.1.7</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>3.0.1</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
