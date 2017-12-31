@@ -11,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller(DetectiveAction.API)
+@Controller("/api/detective")
 public class DetectiveAction extends AbstractController {
-
-	static final String API = "/api/detective";
 
 	@Resource
 	protected HttpServletRequest request;

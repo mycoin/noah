@@ -43,5 +43,4 @@ public class DefaultJsonpResponseBodyAdvice extends AbstractJsonpResponseBodyAdv
 			}
 		}
 	}
-
 }
