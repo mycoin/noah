@@ -10,6 +10,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.context.Context;
 import org.springframework.util.NumberUtils;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.view.velocity.VelocityView;
 
@@ -18,21 +19,25 @@ import com.alibaba.rigel.framework.util.JsonUtils;
 @SuppressWarnings("deprecation")
 public class TemplateBasedLayoutView extends VelocityView {
 
-	public static final String DEFAULT_LAYOUT_URL = "layout/defaultLayout.vm";
-
 	public static final String DEFAULT_LAYOUT_KEY = "screenLayout";
 
 	public static final String DEFAULT_SCREEN_CONTENT_KEY = "screenContent";
 
 	@Override
 	protected void doRender(Context context, HttpServletResponse response) throws Exception {
-		renderScreenContent(context);
+		StringWriter screen = new StringWriter();
+		Template screenTemplate = getTemplate(getUrl());
+		screenTemplate.merge(context, screen);
+
+		// Put rendered content into Velocity context.
+		context.put(DEFAULT_SCREEN_CONTENT_KEY, screen);
 
 		String layoutUrl = (String) context.get(DEFAULT_LAYOUT_KEY);
-		if (layoutUrl == null) {
-			layoutUrl = DEFAULT_LAYOUT_URL;
+		if (!StringUtils.hasLength(layoutUrl)) {
+			StreamUtils.copy(screen.toString().getBytes(), response.getOutputStream());
+		} else {
+			mergeTemplate(getTemplate(layoutUrl), context, response);
 		}
-		mergeTemplate(getTemplate(layoutUrl), context, response);
 	}
 
 	@Override
@@ -44,17 +49,5 @@ public class TemplateBasedLayoutView extends VelocityView {
 		model.put("context", model);
 
 		return new VelocityContext(model);
-	}
-
-	/**
-	 * The resulting context contains any mappings from render, plus screen content.
-	 */
-	private void renderScreenContent(Context velocityContext) throws Exception {
-		StringWriter sw = new StringWriter();
-		Template screenContentTemplate = getTemplate(getUrl());
-		screenContentTemplate.merge(velocityContext, sw);
-
-		// Put rendered content into Velocity context.
-		velocityContext.put(DEFAULT_SCREEN_CONTENT_KEY, sw.toString());
 	}
 }

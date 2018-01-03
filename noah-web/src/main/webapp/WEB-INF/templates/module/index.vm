@@ -19,7 +19,6 @@ button {
 <iframe name="hiddenForm"></iframe>
 <br />
 
-$req
 $requestContext.getMessage("var.copyright")
 <script>
 	var dataList = $JsonUtils.stringify($user); 
