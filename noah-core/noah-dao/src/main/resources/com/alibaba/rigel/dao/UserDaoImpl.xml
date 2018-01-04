@@ -45,6 +45,7 @@
     </update>
     <sql id="userCondition">
         1 = 1
+        <if test="id != null"> and ID = #{id} </if>
         <if test="userName != null"> and USER_NAME = #{userName} </if>
         <if test="password != null"> and PASSWORD = #{password} </if>
         <if test="status != null"> and STATUS = #{status} </if>

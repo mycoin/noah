@@ -1,6 +1,6 @@
 package com.alibaba.rigel.web.support;
 
-public interface RetrofitService {
+public interface CheckoutService {
 
 	String getRequestId();
 

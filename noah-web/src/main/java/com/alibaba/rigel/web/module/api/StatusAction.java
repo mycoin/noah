@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller("/api/detective")
-public class DetectiveAction extends AbstractController {
+@Controller("/api/status")
+public class StatusAction extends AbstractController {
 
 	@Resource
 	protected HttpServletRequest request;

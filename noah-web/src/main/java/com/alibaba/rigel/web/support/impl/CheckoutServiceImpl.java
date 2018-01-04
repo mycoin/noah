@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.rigel.framework.FrameworkConstants;
-import com.alibaba.rigel.web.support.RetrofitService;
+import com.alibaba.rigel.web.support.CheckoutService;
 
 @Service
-public class RetrofitServiceImpl implements RetrofitService, FrameworkConstants {
+public class CheckoutServiceImpl implements CheckoutService, FrameworkConstants {
 
 	@Resource
 	private HttpServletRequest request;

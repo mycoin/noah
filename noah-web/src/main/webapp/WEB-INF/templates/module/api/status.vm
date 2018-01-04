@@ -64,4 +64,3 @@ legend {
     <strong>$name</strong>: $properties.get($name) <br />
   #end
 </fieldset>
-#setLayout("layout/blankLayout")

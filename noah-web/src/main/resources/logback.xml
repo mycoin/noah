@@ -6,7 +6,7 @@
             <pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{50} - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="INFO">
+    <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
