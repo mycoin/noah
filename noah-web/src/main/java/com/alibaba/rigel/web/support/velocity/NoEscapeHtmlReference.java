@@ -20,12 +20,9 @@ public class NoEscapeHtmlReference extends EscapeHtmlReference {
 	 */
 	@Override
 	public Object referenceInsert(String reference, Object value) {
-		if (value == null) {
+		if (value == null || !(value instanceof String)) {
 			return value;
 		}
-		
-		System.out.println(reference);
-
 		if (matchRegExp == null) {
 			return escape(value);
 		} else if (!perl.match(matchRegExp, reference)) {

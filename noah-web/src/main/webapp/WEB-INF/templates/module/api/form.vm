@@ -1,6 +1,6 @@
 #includeTemplate("header")
 <style>
-span {
+.label {
   display: inline-block;
   width: 60px;
   text-align: right;
@@ -10,23 +10,34 @@ button {
 	margin: 10px 50px
 }
 </style>
-<form action="?action=submit" method="POST" target="hiddenForm">
-    <li><span class="label">userName</span><input name="userName" /></li>
-    <li><span class="label">password</span><input name="password" /></li>
-    <li><span class="label">status</span><input name="status" /></li>
-    <button>提交</button>
-</form>
-<iframe name="hiddenForm"></iframe>
-
-#foreach($item in $user)
-<li>$item.id, $item.userName <b>$item.status</b></li>
-#end
-
-$requestContext.getMessage("var.copyright")
 <script>
 	var dataList = $JsonUtils.stringify($user); 
 </script>
-<input name="request_id" value="$request_id" />
-<input name="session_id" value="$session.id" />
-
+<table>
+	<tr>
+		<td>
+			<form action="?action=submit" method="POST" target="hiddenForm">
+                <li><label class="label">userName</label><input name="userName" /></li>
+                <li><label class="label">password</label><input name="password" /></li>
+                <li><label class="label">status</label><input name="status" /></li>
+                <button>提交</button>
+            </form>
+			<iframe name="hiddenForm"></iframe>
+		</td>
+		<td>
+			<div>
+			#foreach($item in $user)
+				<li>$item.id, $item.userName <b>$item.status</b></li>
+			#end
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input name="request_id" value="$request_id" />
+			<input name="session_id" value="$session.id" />
+		</td>
+	</tr>
+</table>
+$requestContext.getMessage("var.copyright")
 #setLayout("layout/defaultLayout")

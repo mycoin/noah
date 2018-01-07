@@ -14,7 +14,7 @@ public class CascadingError extends Error implements CascadingThrowable {
 	public CascadingError(final String message, final Throwable throwable) {
 		this(null, message, throwable);
 	}
-
+	
 	@Override
 	public String getName() {
 		return name;

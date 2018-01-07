@@ -24,5 +24,13 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+		</dependency>
 	</dependencies>
 </project>
