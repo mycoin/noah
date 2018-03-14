@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		Server server = new Server();
 		Connector connector = new SelectChannelConnector();
-		connector.setPort(8080);
+		connector.setPort(8800);
 
 		WebAppContext handler = new WebAppContext("src/main/webapp/", "/");
 
@@ -23,6 +23,5 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 }

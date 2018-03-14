@@ -11,15 +11,43 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-api</artifactId>
+			<artifactId>noah-framework</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-scheduler</artifactId>
+			<artifactId>noah-service</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.rigel</groupId>
-			<artifactId>noah-plugin</artifactId>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

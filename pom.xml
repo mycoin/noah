@@ -7,8 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>noah-core</module>
-		<module>noah-modules</module>
+		<module>noah-dao</module>
+		<module>noah-framework</module>
+        <module>noah-service</module>
+		<module>noah-shared</module>
 		<module>noah-web</module>
 	</modules>
 	<properties>
@@ -67,24 +69,9 @@
 				<artifactId>noah-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<dependency>
+            <dependency>
 				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-plugin</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-scheduler</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
-				<artifactId>noah-utils</artifactId>
+				<artifactId>noah-web</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
