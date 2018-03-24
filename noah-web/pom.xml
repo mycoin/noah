@@ -62,6 +62,22 @@
 					<contextPath>/</contextPath>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>de.ntcomputer</groupId>
+				<artifactId>executable-packer-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+					<mainClass>com.alibaba.rigel.Main</mainClass>
+					<classifier>jar-executable</classifier>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>pack-executable-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
