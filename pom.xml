@@ -9,7 +9,7 @@
 	<modules>
 		<module>noah-dao</module>
 		<module>noah-framework</module>
-        <module>noah-service</module>
+		<module>noah-service</module>
 		<module>noah-shared</module>
 		<module>noah-web</module>
 	</modules>
@@ -30,7 +30,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.5</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -69,7 +69,7 @@
 				<artifactId>noah-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-            <dependency>
+			<dependency>
 				<groupId>com.alibaba.rigel</groupId>
 				<artifactId>noah-web</artifactId>
 				<version>${project.version}</version>
@@ -109,6 +109,11 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-websocket</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -169,7 +174,7 @@
 				<version>${logback.version}</version>
 			</dependency>
 
-			<!-- jetty -->
+			<!-- Jetty -->
 			<dependency>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty</artifactId>

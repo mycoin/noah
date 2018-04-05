@@ -1,6 +1,4 @@
-package com.alibaba.rigel.web.module.api;
-
-import java.util.Properties;
+package com.alibaba.rigel.web.module.portal;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller("/api/status")
-public class StatusAction extends AbstractController {
+@Controller("/portal/endpoint")
+public class EndpointController extends AbstractController {
 
 	@Resource
 	protected HttpServletRequest request;
@@ -27,14 +25,12 @@ public class StatusAction extends AbstractController {
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Properties properties = System.getProperties();
 
-		mv.addObject("properties", properties);
+		mv.addObject("properties", System.getProperties());
 		mv.addObject("request", request);
 		mv.addObject("response", request);
 		mv.addObject("session", session);
 
 		return mv;
 	}
-
 }
