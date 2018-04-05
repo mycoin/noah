@@ -1,7 +1,5 @@
 package com.alibaba.rigel.web.module.portal;
 
-import java.util.Properties;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,14 +25,12 @@ public class EndpointController extends AbstractController {
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Properties properties = System.getProperties();
 
-		mv.addObject("properties", properties);
+		mv.addObject("properties", System.getProperties());
 		mv.addObject("request", request);
 		mv.addObject("response", request);
 		mv.addObject("session", session);
 
 		return mv;
 	}
-
 }
