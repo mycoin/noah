@@ -16,7 +16,7 @@ This project will allow you to start off on the good foot with spring MVC. In th
 
 ### Get start
 ---
-Clone the repository and modify the db config in `classpath:conf/dev.properties `  then import the mysql script `lotus.deploy/src/main/resources/*.sql `
+Clone the repository and modify the db config in `classpath:conf/global.properties `  then import the mysql script `lotus.deploy/src/main/resources/*.sql `
 
 run:
 

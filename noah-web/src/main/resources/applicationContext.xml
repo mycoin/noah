@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<context:property-placeholder location="classpath:conf/dev.properties" />
+	<context:property-placeholder location="classpath:conf/global.properties" />
 
 	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="defaultEncoding" value="utf-8" />

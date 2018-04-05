@@ -1,7 +1,7 @@
 <style>
 body {
 	font-family: monospace;
-	line-height: 1.3;
+	line-height: 1.5;
 }
 fieldset {
   font-size: 13px;
@@ -15,6 +15,7 @@ legend {
   color: red;
 }
 </style>
+
 <fieldset>
     <legend>[Global]</legend>
     <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>
@@ -53,6 +54,12 @@ legend {
     #end
 </fieldset>
 <fieldset>
+  <legend>[Context]</legend>
+    #foreach($name in $!modelContext.getKeys())
+      <strong>$name</strong>: $!modelContext.get($name) <br />
+    #end
+</fieldset>
+<fieldset>
   <legend>[Attribute]</legend>
     #foreach($name in $!request.getAttributeNames())
       <strong>$name</strong>: $!request.getAttribute($name) <br />
@@ -64,3 +71,5 @@ legend {
     <strong>$name</strong>: $properties.get($name) <br />
   #end
 </fieldset>
+
+#setLayout("layout/defaultLayout")

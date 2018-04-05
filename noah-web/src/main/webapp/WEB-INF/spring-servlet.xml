@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
@@ -28,6 +28,7 @@
 					<bean class="org.springframework.http.converter.json.GsonFactoryBean">
 						<property name="base64EncodeByteArrays" value="true" />
 						<property name="dateFormatPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" />
+						<property name="disableHtmlEscaping" value="true" />
 						<property name="serializeNulls" value="true" />
 					</bean>
 				</property>
@@ -40,7 +41,7 @@
 		<property name="resourceLoaderPath">
 			<value>classpath:modules/,/WEB-INF/templates/</value>
 		</property>
-		<property name="configLocation" value="classpath:modules/view.properties" />
+		<property name="configLocation" value="classpath:modules/velocity.properties" />
 		<property name="velocityProperties">
 			<props>
 				<prop key="resource.loader.cache">false</prop>

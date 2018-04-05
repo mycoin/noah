@@ -3,6 +3,7 @@ package com.alibaba.rigel.web.support;
 import java.io.StringWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.Template;
@@ -24,6 +25,11 @@ public class TemplateBasedLayoutView extends VelocityView {
 	public static final String DEFAULT_SCREEN_CONTENT_KEY = "screenContent";
 
 	@Override
+	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
+		return new VelocityContext(model);
+	}
+
+	@Override
 	protected void doRender(Context context, HttpServletResponse response) throws Exception {
 		StringWriter screen = new StringWriter();
 		Template screenTemplate = getTemplate(getUrl());
@@ -41,13 +47,12 @@ public class TemplateBasedLayoutView extends VelocityView {
 	}
 
 	@Override
-	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
-		model.put("NumberUtils", NumberUtils.class);
-		model.put("StringUtils", StringUtils.class);
-		model.put("ObjectUtils", ObjectUtils.class);
-		model.put("JsonUtils", JsonUtils.class);
-		model.put("context", model);
+	protected void exposeHelpers(Context velocityContext, HttpServletRequest request) throws Exception {
+		velocityContext.put("NumberUtils", NumberUtils.class);
+		velocityContext.put("StringUtils", StringUtils.class);
+		velocityContext.put("ObjectUtils", ObjectUtils.class);
+		velocityContext.put("JsonUtils", JsonUtils.class);
 
-		return new VelocityContext(model);
+		velocityContext.put("modelContext", velocityContext);
 	}
 }

@@ -9,3 +9,5 @@ echo "Using WORKSPACE:       $WORKSPACE"
 
 ./mvnw -U clean install &&
 ./mvnw -U -pl noah-web jetty:run
+
+echo '[OK success]'

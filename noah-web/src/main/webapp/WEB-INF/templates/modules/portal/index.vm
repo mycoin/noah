@@ -10,6 +10,7 @@ button {
 	margin: 10px 50px
 }
 </style>
+
 <script>
 	var dataList = $JsonUtils.stringify($user); 
 </script>
@@ -27,17 +28,27 @@ button {
 		<td>
 			<div>
 			#foreach($item in $user)
-				<li>$item.id, $item.userName <b>$item.status</b></li>
+				<span>$item.userName</span>
 			#end
 			</div>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			<input name="request_id" value="$request_id" />
-			<input name="session_id" value="$session.id" />
-		</td>
-	</tr>
 </table>
-$requestContext.getMessage("var.copyright")
+<script>
+function randomString(len) {
+　　len = len || 32;
+　　var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+　　var maxPos = chars.length;
+　　var pwd = '';
+　　for (i = 0; i < len; i++) {
+　　　　pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+　　}
+　　return pwd;
+}
+document.getElementsByName('userName')[0].value = randomString(5)
+document.getElementsByName('password')[0].value = randomString(20)
+document.getElementsByName('status')[0].value = randomString(2)
+</script>
+
+$requestContext.getMessage("var.copyright") $session.id
 #setLayout("layout/defaultLayout")
