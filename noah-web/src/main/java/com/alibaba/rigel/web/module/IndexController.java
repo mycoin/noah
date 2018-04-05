@@ -1,17 +1,26 @@
 package com.alibaba.rigel.web.module;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.rigel.shared.exception.ServiceException;
 
 @Controller
-@RequestMapping("/")
-public class IndexController extends AbstractController {
+@RequestMapping("/lotus.server")
+public class IndexController {
 
-	@RequestMapping("/index")
-	public ModelAndView index() throws ServiceException {
-		return new ModelAndView();
+	@Resource
+	protected HttpServletRequest request;
+
+	@Resource
+	protected HttpServletResponse response;
+
+	@RequestMapping
+	public String index() throws ServiceException {
+		return "/index";
 	}
 }

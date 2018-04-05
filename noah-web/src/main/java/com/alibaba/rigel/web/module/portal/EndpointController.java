@@ -1,4 +1,4 @@
-package com.alibaba.rigel.web.module.api;
+package com.alibaba.rigel.web.module.portal;
 
 import java.util.Properties;
 
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller("/api/status")
-public class StatusAction extends AbstractController {
+@Controller("/portal/endpoint")
+public class EndpointController extends AbstractController {
 
 	@Resource
 	protected HttpServletRequest request;

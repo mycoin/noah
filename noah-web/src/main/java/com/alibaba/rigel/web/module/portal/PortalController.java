@@ -1,4 +1,4 @@
-package com.alibaba.rigel.web.module.api;
+package com.alibaba.rigel.web.module.portal;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +12,9 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.alibaba.rigel.shared.param.UserParam;
 import com.alibaba.rigel.shared.service.UserService;
-import com.alibaba.rigel.web.support.CheckoutService;
 
-@Controller("/api/form")
-public class FormAction extends AbstractController {
+@Controller("/portal/index")
+public class PortalController extends AbstractController {
 
 	@Resource
 	private HttpServletRequest request;
@@ -29,9 +28,6 @@ public class FormAction extends AbstractController {
 	@Resource
 	private UserService userService;
 
-	@Resource
-	private CheckoutService checkoutService;
-
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -43,11 +39,10 @@ public class FormAction extends AbstractController {
 
 		if ("submit".equals(request.getParameter("action"))) {
 			userService.add(param);
-			mv.setViewName("api/result");
+			mv.setViewName("/index");
 		} else {
 			mv.addObject("user", userService.query(param));
 			mv.addObject("request", request);
-			mv.addObject("request_id", checkoutService.getRequestId());
 			mv.addObject("session", session);
 			mv.addObject("response", response);
 		}
