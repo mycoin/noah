@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     version="2.5">
-    <display-name>lotus.bundle</display-name>
+    <display-name>noah.bundle</display-name>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
@@ -11,7 +11,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <filter>
-        <filter-name>control</filter-name>
+        <filter-name>targetControl</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         <init-param>
             <param-name>targetBeanName</param-name>
@@ -19,7 +19,7 @@
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>control</filter-name>
+        <filter-name>targetControl</filter-name>
         <servlet-name>spring</servlet-name>
     </filter-mapping>
     <servlet>

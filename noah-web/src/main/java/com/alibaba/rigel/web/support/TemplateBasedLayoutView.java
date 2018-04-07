@@ -1,13 +1,11 @@
 package com.alibaba.rigel.web.support;
 
 import java.io.StringWriter;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
 import org.apache.velocity.context.Context;
 import org.springframework.util.NumberUtils;
 import org.springframework.util.ObjectUtils;
@@ -23,11 +21,6 @@ public class TemplateBasedLayoutView extends VelocityView {
 	public static final String DEFAULT_LAYOUT_KEY = "screenLayout";
 
 	public static final String DEFAULT_SCREEN_CONTENT_KEY = "screenContent";
-
-	@Override
-	protected Context createVelocityContext(Map<String, Object> model) throws Exception {
-		return new VelocityContext(model);
-	}
 
 	@Override
 	protected void doRender(Context context, HttpServletResponse response) throws Exception {

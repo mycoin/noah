@@ -7,6 +7,8 @@ import org.apache.velocity.util.StringUtils;
 
 public class NoEscapeHtmlReference extends EscapeHtmlReference {
 
+	private static final String NOESCAPE_KEY = "eventhandler.noescape.html.match";
+
 	private Perl5Util perl = new Perl5Util();
 
 	private String matchRegExp = null;
@@ -38,11 +40,8 @@ public class NoEscapeHtmlReference extends EscapeHtmlReference {
 		matchRegExp = StringUtils.nullTrim(rs.getConfiguration().getString(getMatchAttribute()));
 	}
 
-	/**
-	 * @return attribute "eventhandler.noescape.html.match"
-	 */
 	@Override
 	protected String getMatchAttribute() {
-		return "eventhandler.noescape.html.match";
+		return NOESCAPE_KEY;
 	}
 }
