@@ -6,6 +6,13 @@
   text-align: right;
   margin: 0 5px;
 }
+span {
+	display: inline-block;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #EEE;
+    font-size: 12px;
+}
 button {
 	margin: 10px 50px
 }
@@ -34,6 +41,7 @@ button {
 		</td>
 	</tr>
 </table>
+<script src="/static/jquery.js"></script>
 <script>
 function randomString(len) {
 　　len = len || 32;
@@ -45,9 +53,14 @@ function randomString(len) {
 　　}
 　　return pwd;
 }
-document.getElementsByName('userName')[0].value = randomString(5)
-document.getElementsByName('password')[0].value = randomString(20)
-document.getElementsByName('status')[0].value = randomString(2)
+document.getElementsByName('userName')[0].value = randomString(20)
+document.getElementsByName('password')[0].value = randomString(8)
+document.getElementsByName('status')[0].value = randomString(5)
+
+jQuery('form').submit(function(){
+	location.reload()
+})
+
 </script>
 
 $requestContext.getMessage("var.copyright") $session.id
