@@ -194,4 +194,30 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<maven.environment>dev</maven.environment>
+				<maven.conf>classpath:/conf/dev.properties</maven.conf>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<maven.environment>test</maven.environment>
+				<maven.conf>classpath:/conf/test.properties</maven.conf>
+			</properties>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<maven.environment>production</maven.environment>
+				<maven.conf>file:/opt/lotus.properties</maven.conf>
+			</properties>
+		</profile>
+	</profiles>
 </project>

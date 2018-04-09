@@ -9,12 +9,13 @@ public class NoEscapeHtmlReference extends EscapeHtmlReference {
 
 	private static final String NOESCAPE_KEY = "eventhandler.noescape.html.match";
 
-	private Perl5Util perl = new Perl5Util();
+	private Perl5Util perlMatch = new Perl5Util();
 
 	private String matchRegExp = null;
 
 	/**
-	 * Escape the provided text if it not matches the configured regular expression.
+	 * Escape the provided text if it not matches the configured regular
+	 * expression.
 	 *
 	 * @param reference
 	 * @param value
@@ -27,7 +28,7 @@ public class NoEscapeHtmlReference extends EscapeHtmlReference {
 		}
 		if (matchRegExp == null) {
 			return escape(value);
-		} else if (!perl.match(matchRegExp, reference)) {
+		} else if (!perlMatch.match(matchRegExp, reference)) {
 			return escape(value);
 		} else {
 			return value;

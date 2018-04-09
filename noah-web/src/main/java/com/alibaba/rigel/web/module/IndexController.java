@@ -2,15 +2,18 @@ package com.alibaba.rigel.web.module;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.alibaba.rigel.shared.exception.ServiceException;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/status.service")
-public class IndexController extends AbstractController {
+public class IndexController {
 
-	@RequestMapping
-	public String index() throws ServiceException {
-		return "/index";
+	@RequestMapping("/http.status")
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView("/index");
+
+		mv.addObject("status", 0);
+		mv.addObject("statusInfo", "OK");
+
+		return mv;
 	}
 }

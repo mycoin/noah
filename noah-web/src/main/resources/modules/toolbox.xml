@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+	<data type="number" key="TOOLS_VERSION" value="2.0" />
+	<data type="boolean" key="GENERIC_TOOLS_AVAILABLE" value="true" />
+	<data type="string" key="version" value="2.0" />
+	<toolbox scope="request">
+		<tool key="CookieTool" class="org.apache.velocity.tools.view.CookieTool" />
+		<tool key="ImportTool" class="org.apache.velocity.tools.view.ImportTool" />
+		<tool key="IncludeTool" class="org.apache.velocity.tools.view.IncludeTool" />
+		<tool key="LinkTool" class="org.apache.velocity.tools.view.LinkTool" />
+		<tool key="PagerTool" class="org.apache.velocity.tools.view.PagerTool" />
+		<tool key="ParameterTool" class="org.apache.velocity.tools.view.ParameterTool" />
+		<tool key="ViewContextTool" class="org.apache.velocity.tools.view.ViewContextTool" />
+		<tool key="ContextTool" class="org.apache.velocity.tools.generic.ContextTool" />
+		<tool key="LoopTool" class="org.apache.velocity.tools.generic.LoopTool" />
+		<tool key="RenderTool" class="org.apache.velocity.tools.generic.RenderTool" />
+	</toolbox>
+
+	<toolbox scope="session" createSession="false">
+		<tool key="BrowserTool" class="org.apache.velocity.tools.view.BrowserTool" />
+	</toolbox>
+
+	<toolbox scope="application">
+		<tool key="ExceptionTool" class="org.apache.commons.lang.exception.ExceptionUtils" />
+		<tool key="AlternatorTool" class="org.apache.velocity.tools.generic.AlternatorTool" />
+		<tool key="ClassTool" class="org.apache.velocity.tools.generic.ClassTool" />
+		<tool key="ComparisonDateTool" class="org.apache.velocity.tools.generic.ComparisonDateTool" />
+		<tool key="ConversionTool" class="org.apache.velocity.tools.generic.ConversionTool" />
+		<tool key="DisplayTool" class="org.apache.velocity.tools.generic.DisplayTool" />
+		<tool key="EscapeTool" class="org.apache.velocity.tools.generic.EscapeTool" />
+		<tool key="FieldTool" class="org.apache.velocity.tools.generic.FieldTool" />
+		<tool key="MathTool" class="org.apache.velocity.tools.generic.MathTool" />
+		<tool key="NumberTool" class="org.apache.velocity.tools.generic.NumberTool" />
+		<tool key="ResourceTool" class="org.apache.velocity.tools.generic.ResourceTool" />
+		<tool key="SortTool" class="org.apache.velocity.tools.generic.SortTool" />
+		<tool key="XmlTool" class="org.apache.velocity.tools.generic.XmlTool" />
+		<tool key="ListTool" class="org.apache.velocity.tools.generic.ListTool" />
+		<tool key="DateTool" class="org.apache.velocity.tools.generic.DateTool" />
+	</toolbox>
+</tools>

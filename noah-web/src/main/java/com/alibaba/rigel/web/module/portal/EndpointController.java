@@ -1,29 +1,29 @@
 package com.alibaba.rigel.web.module.portal;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
-@Controller("/portal/endpoint")
+import com.alibaba.rigel.web.module.AbstractController;
+
+@Controller
 public class EndpointController extends AbstractController {
 
-	@Resource
-	protected HttpServletRequest request;
+	@RequestMapping("/portal/endpoint")
+	public ModelAndView endpoint() throws Exception {
+		ModelAndView mv = new ModelAndView();
 
-	@Resource
-	protected HttpServletResponse response;
+		mv.addObject("properties", System.getProperties());
+		mv.addObject("request", request);
+		mv.addObject("response", request);
+		mv.addObject("session", session);
 
-	@Resource
-	protected HttpSession session;
-
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+		return mv;
+	}
+	
+	
+	@RequestMapping("/portal/servlet")
+	public ModelAndView servlet() throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("properties", System.getProperties());
