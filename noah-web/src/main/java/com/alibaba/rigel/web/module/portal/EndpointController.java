@@ -21,7 +21,6 @@ public class EndpointController extends AbstractController {
 		return mv;
 	}
 	
-	
 	@RequestMapping("/portal/servlet")
 	public ModelAndView servlet() throws Exception {
 		ModelAndView mv = new ModelAndView();

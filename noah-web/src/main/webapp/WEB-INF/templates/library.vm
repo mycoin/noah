@@ -1,5 +1,5 @@
 #macro(setLayout $url)
-	#if(!$url.startsWith("layout"))
+	#if(!$url.startsWith("layout/"))
 		<!-- [WARN] bad layout location. -->
 	#end
 	#set($screenLayout = "${url}.vm")
@@ -13,10 +13,9 @@
 	#end
 #end
 
-#macro(printException $exception) 
+#macro(printException $exception)
 $Utils.printException($exception)
 #end
-
 
 #macro(disableLayout)
   #set($screenLayout = "")

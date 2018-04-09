@@ -16,6 +16,8 @@ legend {
 }
 </style>
 
+#springMessage('static.jquery')
+
 <fieldset>
     <legend>[Global]</legend>
     <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>
