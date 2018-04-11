@@ -20,6 +20,7 @@ public class RequestContextFilter extends OncePerRequestFilter implements Framew
 		if (request.getAttribute(REQUEST_ID) == null) {
 			request.setAttribute(REQUEST_ID, UUID.randomUUID());
 		}
+		
 		filterChain.doFilter(request, response);
 	}
 }

@@ -4,7 +4,7 @@
   display: inline-block;
   width: 60px;
   text-align: right;
-  margin: 0 5px;
+  margin: 2px 5px;
 }
 span {
 	display: inline-block;
@@ -14,22 +14,20 @@ span {
     font-size: 12px;
 }
 button {
-	margin: 10px 50px
+	margin: 3px 0 20px 90px;
+	width: 60px;
 }
 </style>
-<script>
-	var dataList = $JsonUtils.stringify($user);
-</script>
 <table>
 	<tr>
-		<td>
+		<td style="vertical-align: top;">
 			<form action="?action=submit" method="POST" target="hiddenForm">
                 <li><label class="label">userName</label><input name="userName" /></li>
                 <li><label class="label">password</label><input name="password" /></li>
                 <li><label class="label">status</label><input name="status" /></li>
                 <button>提交</button>
             </form>
-			<iframe width="230" name="hiddenForm"></iframe>
+			<iframe width="220" name="hiddenForm"></iframe>
 		</td>
 		<td>
 			<div>
@@ -71,5 +69,5 @@ function sendData() {
 sendData()
 </script>
 <hr>
-$requestContext.getMessage("var.copyright") $session.id
+$requestContext.getMessage("var.copyright")
 #setLayout("layout/defaultLayout")

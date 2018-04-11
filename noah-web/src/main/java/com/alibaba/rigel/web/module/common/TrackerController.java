@@ -25,6 +25,6 @@ public class TrackerController extends AbstractController {
 
 	@RequestMapping("/e.gif")
 	public void saveLog() throws Exception {
-		response.getOutputStream().close();
+		
 	}
 }

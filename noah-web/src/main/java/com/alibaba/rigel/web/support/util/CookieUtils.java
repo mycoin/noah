@@ -32,11 +32,6 @@ public abstract class CookieUtils {
 	}
 
 	public static Cookie createCookie(String cookieKey, String cookieValue) {
-		Cookie cookie = new Cookie(cookieKey, cookieValue);
-
-		cookie.setHttpOnly(true);
-		cookie.setSecure(true);
-
-		return cookie;
+		return new Cookie(cookieKey, cookieValue);
 	}
 }
