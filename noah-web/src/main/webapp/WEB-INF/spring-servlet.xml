@@ -64,13 +64,6 @@
 					<property name="suffix" value=".vm" />
 					<property name="contentType" value="text/html; charset=UTF-8" />
 				</bean>
-				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-					<property name="exposeContextBeansAsAttributes" value="true" />
-					<property name="exposePathVariables" value="true" />
-					<property name="prefix" value="/WEB-INF/templates/modules/" />
-					<property name="suffix" value=".jsp" />
-					<property name="contentType" value="text/html; charset=UTF-8" />
-				</bean>
 			</list>
 		</property>
 	</bean>
