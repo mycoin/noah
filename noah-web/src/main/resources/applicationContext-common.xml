@@ -26,6 +26,7 @@
                     <property name="forceEncoding" value="false" />
                 </bean>
                 <bean class="org.springframework.web.filter.RequestContextFilter" />
+                <bean class="org.springframework.web.filter.ShallowEtagHeaderFilter" />
                 <bean class="org.springframework.session.web.http.SessionRepositoryFilter">
                     <constructor-arg ref="sessionRepository" />
                 </bean>
