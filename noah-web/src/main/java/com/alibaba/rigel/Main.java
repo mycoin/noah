@@ -7,15 +7,20 @@ import org.mortbay.jetty.webapp.WebAppContext;
 
 public class Main {
 
+	public static final String MAIN_WEBAPP = "src/main/webapp/";
+
+	public static final String CONTEXT_PATH = "/";
+
 	public static void main(String[] args) {
 		Server server = new Server();
-		Connector connector = new SelectChannelConnector();
-		connector.setPort(8800);
 
-		WebAppContext handler = new WebAppContext("src/main/webapp/", "/");
+		Connector connector = new SelectChannelConnector();
+		connector.setPort(8080);
+
+		WebAppContext handle = new WebAppContext(MAIN_WEBAPP, CONTEXT_PATH);
 
 		server.setConnectors(new Connector[] { connector });
-		server.setHandler(handler);
+		server.setHandler(handle);
 
 		try {
 			server.start();

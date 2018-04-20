@@ -52,22 +52,22 @@
     </bean>
 
 	<!-- 视图配置 -->
-    <bean class="org.springframework.web.servlet.view.ViewResolverComposite">
-        <property name="order" value="0" />
-        <property name="viewResolvers">
-            <list>
-                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-                <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="com.alibaba.rigel.web.support.TemplateBasedLayoutView" />
-                    <property name="requestContextAttribute" value="requestContext" />
-                    <property name="cache" value="true" />
-                    <property name="prefix" value="modules/" />
-                    <property name="suffix" value=".vm" />
-                    <property name="contentType" value="text/html; charset=UTF-8" />
-                </bean>
-            </list>
-        </property>
-    </bean>
+	<bean class="org.springframework.web.servlet.view.ViewResolverComposite">
+		<property name="order" value="0" />
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="viewClass" value="com.alibaba.rigel.web.support.TemplateBasedLayoutView" />
+					<property name="requestContextAttribute" value="requestContext" />
+					<property name="cache" value="true" />
+					<property name="prefix" value="modules/" />
+					<property name="suffix" value=".vm" />
+					<property name="contentType" value="text/html; charset=UTF-8" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<!-- 异常处理 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
