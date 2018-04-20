@@ -187,7 +187,7 @@
         for (var k in data) {
             url.push(k + '=' + encodeURIComponent(trim(data[k])));
         }
-        el.src = location.protocol + '//${serverName}:8080/e.gif?type=' + type + '&' + url.join('&');
+        el.src = location.protocol + '//${serverName}/e.gif?type=' + type + '&' + url.join('&');
     }
 
     /**

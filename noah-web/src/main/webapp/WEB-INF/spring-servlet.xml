@@ -16,6 +16,7 @@
 	<!-- 注解支持 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
 			<bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>

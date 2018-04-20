@@ -1,4 +1,4 @@
-package com.alibaba.rigel.web.support.util;
+package com.alibaba.rigel.framework.util;
 
 import java.util.ArrayList;
 import java.util.List;

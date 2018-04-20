@@ -17,10 +17,10 @@ public class Main {
 		Connector connector = new SelectChannelConnector();
 		connector.setPort(8080);
 
-		WebAppContext handle = new WebAppContext(MAIN_WEBAPP, CONTEXT_PATH);
+		WebAppContext handler = new WebAppContext(MAIN_WEBAPP, CONTEXT_PATH);
 
 		server.setConnectors(new Connector[] { connector });
-		server.setHandler(handle);
+		server.setHandler(handler);
 
 		try {
 			server.start();

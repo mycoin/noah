@@ -17,11 +17,10 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
 @ControllerAdvice(basePackages = "com.alibaba.rigel.web.module")
 public class DefaultJsonpResponseBodyAdvice extends AbstractJsonpResponseBodyAdvice {
 
-	private final String[] callbackNames;
+	private String[] callbackNames = new String[] { "callback" };;
 
 	public DefaultJsonpResponseBodyAdvice() {
-		super("callback", "jsonp");
-		this.callbackNames = new String[] { "callback" };
+		super("callback");
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class DefaultJsonpResponseBodyAdvice extends AbstractJsonpResponseBodyAdv
 			return;
 		}
 
-		for (String name : this.callbackNames) {
+		for (String name : callbackNames) {
 			String value = servletRequest.getParameter(name);
 			if (value != null) {
 				MediaType contentTypeToUse = getContentType(contentType, request, response);
@@ -42,5 +41,9 @@ public class DefaultJsonpResponseBodyAdvice extends AbstractJsonpResponseBodyAdv
 				return;
 			}
 		}
+	}
+
+	public void setCallbackNames(String[] callbackNames) {
+		this.callbackNames = callbackNames;
 	}
 }
