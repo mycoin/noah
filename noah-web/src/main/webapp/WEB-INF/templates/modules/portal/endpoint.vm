@@ -1,25 +1,28 @@
 <style>
 body {
 	font-family: monospace;
-	line-height: 1.5;
+	line-height: 1.56;
+    background: #000;
+    color: #888;
 }
 fieldset {
-  font-size: 13px;
-  border-color: #FFF;
-  border-width: 1px;
-  margin-bottom: 10px;
-  word-break: break-all;
+    font-size: 12px;
+    word-break: break-word;
+    border-color: #999;
+    border-width: 1px;
+}
+strong {
+    color: #FFF;
+    font-weight: normal;  
 }
 legend {
-  font-weight: bold;
-  color: red;
+    font-weight: bold;
+    color: red;
 }
 </style>
 
-#springMessage('static.jquery')
-
 <fieldset>
-    <legend>[Global]</legend>
+    <legend>[General]</legend>
     <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>
     <strong>ContentType</strong>: $!request.getContentType() </br/>
     <strong>Locale</strong>: $!request.getLocale() </br/>
@@ -56,13 +59,13 @@ legend {
     #end
 </fieldset>
 <fieldset>
-  <legend>[Context]</legend>
+  <legend>[Render Context]</legend>
     #foreach($name in $!modelContext.getKeys())
       <strong>$name</strong>: $!modelContext.get($name) <br />
     #end
 </fieldset>
 <fieldset>
-  <legend>[Attribute]</legend>
+  <legend>[Request Attribute]</legend>
     #foreach($name in $!request.getAttributeNames())
       <strong>$name</strong>: $!request.getAttribute($name) <br />
     #end

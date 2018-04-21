@@ -10,19 +10,7 @@ import com.alibaba.rigel.web.module.AbstractController;
 public class EndpointController extends AbstractController {
 
 	@RequestMapping("/portal/endpoint")
-	public ModelAndView endpoint() throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("properties", System.getProperties());
-		mv.addObject("request", request);
-		mv.addObject("response", request);
-		mv.addObject("session", session);
-
-		return mv;
-	}
-	
-	@RequestMapping("/portal/servlet")
-	public ModelAndView servlet() throws Exception {
+	public ModelAndView endpointPortal() throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("properties", System.getProperties());

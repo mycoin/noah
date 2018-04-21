@@ -5,33 +5,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * CookieUtils
+ * Cookie utils
  *
  * @author David Czarnecki
  */
 public abstract class CookieUtils {
 
-	public static Cookie getCookie(HttpServletRequest httpServletRequest, String cookieKey) {
-		Cookie[] cookies = httpServletRequest.getCookies();
-		if (cookies == null) {
+	/**
+	 * read a cookie with special cookieName
+	 * 
+	 * @param servletRequest
+	 * @param cookieName
+	 * @return
+	 */
+	public static Cookie getCookie(HttpServletRequest servletRequest, String cookieName) {
+		Cookie[] cookies = servletRequest.getCookies();
+		if (cookies == null || cookieName == null) {
 			return null;
 		}
-
-		for (int i = 0; i < cookies.length; i++) {
-			Cookie cookie = cookies[i];
-			if (cookie.getName().equals(cookieKey)) {
+		for (Cookie cookie : cookies) {
+			if (cookieName.equalsIgnoreCase(cookie.getName())) {
 				return cookie;
 			}
 		}
-
 		return null;
 	}
 
-	public static void addCookie(HttpServletResponse httpServletResponse, String cookieKey, String cookieValue) {
-		httpServletResponse.addCookie(createCookie(cookieKey, cookieValue));
-	}
-
-	public static Cookie createCookie(String cookieKey, String cookieValue) {
-		return new Cookie(cookieKey, cookieValue);
+	/**
+	 * add a cookie with special cookieName and cookieValue
+	 * 
+	 * @param servletResponse
+	 * @param cookieKey
+	 * @param cookieValue
+	 */
+	public static void addCookie(HttpServletResponse servletResponse, String cookieKey, String cookieValue) {
+		servletResponse.addCookie(new Cookie(cookieKey, cookieValue));
 	}
 }
