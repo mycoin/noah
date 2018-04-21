@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 文件扫描 -->
-    <context:component-scan base-package="com.alibaba.rigel.web" />
+    <context:component-scan base-package="com.breakidea.noah.web" />
     
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
@@ -59,7 +59,7 @@
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="com.alibaba.rigel.web.support.TemplateBasedLayoutView" />
+                    <property name="viewClass" value="com.breakidea.noah.web.support.TemplateBasedLayoutView" />
                     <property name="requestContextAttribute" value="requestContext" />
                     <property name="cache" value="true" />
                     <property name="prefix" value="modules/" />
