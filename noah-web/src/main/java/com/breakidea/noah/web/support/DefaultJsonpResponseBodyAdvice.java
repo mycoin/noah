@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractJsonpRespon
 @ControllerAdvice(basePackages = "com.breakidea.noah.web.module")
 public class DefaultJsonpResponseBodyAdvice extends AbstractJsonpResponseBodyAdvice {
 
-	private String[] callbackNames = new String[] { "callback" };;
+	private String[] callbackNames = new String[] { "callback" };
 
 	public DefaultJsonpResponseBodyAdvice() {
 		super("callback");

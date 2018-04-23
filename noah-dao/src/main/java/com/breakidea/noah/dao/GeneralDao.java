@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface GeneralDao<P, R> {
 
-	List<R> query(P param);
+	public List<R> query(P param);
 
-	R queryById(Long id);
+	public R queryById(Long id);
 
-	void insert(P param);
+	public void insert(P param);
 
-	void update(P param);
+	public void update(P param);
 
-	void delete(P param);
+	public void delete(P param);
 }

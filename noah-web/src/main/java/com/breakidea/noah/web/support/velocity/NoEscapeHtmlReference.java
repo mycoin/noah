@@ -18,10 +18,8 @@ public class NoEscapeHtmlReference extends EscapeHtmlReference {
 		if (value == null || !(value instanceof String)) {
 			return value;
 		}
-
-		if (matchRegExp == null) {
-			return escape(value);
-		} else if (!perlMatch.match(matchRegExp, reference)) {
+		
+		if (matchRegExp == null || !perlMatch.match(matchRegExp, reference)) {
 			return escape(value);
 		} else {
 			return value;

@@ -29,8 +29,7 @@ public class PortalController extends AbstractController {
 	private UserService userService;
 
 	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		UserParam param = new UserParam();
 
@@ -39,6 +38,9 @@ public class PortalController extends AbstractController {
 
 		if ("submit".equals(request.getParameter("action"))) {
 			userService.add(param);
+			mv.addObject("status", 0);
+			mv.addObject("statusInfo", "OK");
+
 			mv.setViewName("/index");
 		} else {
 			mv.addObject("user", userService.query(param));

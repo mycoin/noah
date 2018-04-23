@@ -12,20 +12,20 @@ import com.breakidea.noah.web.module.AbstractController;
 public class TrackerController extends AbstractController {
 
 	@RequestMapping("/tracker.js")
-	public ModelAndView index(@RequestParam Long sid) throws Exception {
+	public ModelAndView index(@RequestParam Long sid) {
 		ModelAndView mv = new ModelAndView("/internal/tracker");
 
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/javascript; charset=utf-8");
+		response.setContentType("text/javascript; charset=UTF-8");
 
 		mv.addObject("siteId", sid);
-		mv.addObject("serverName", request.getServerName());
+		mv.addObject("serverName", request.getServerName() + ":" + request.getServerPort());
 
 		return mv;
 	}
 
 	@RequestMapping("/e.gif")
-	public @ResponseBody String saveLog() throws Exception {
+	public @ResponseBody String saveLog() {
 		return "";
 
 	}

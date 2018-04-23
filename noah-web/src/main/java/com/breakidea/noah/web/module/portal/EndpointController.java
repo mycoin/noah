@@ -10,7 +10,7 @@ import com.breakidea.noah.web.module.AbstractController;
 public class EndpointController extends AbstractController {
 
 	@RequestMapping("/portal/endpoint")
-	public ModelAndView endpointPortal() throws Exception {
+	public ModelAndView endpointPortal() {
 		ModelAndView mv = new ModelAndView();
 
 		mv.addObject("properties", System.getProperties());

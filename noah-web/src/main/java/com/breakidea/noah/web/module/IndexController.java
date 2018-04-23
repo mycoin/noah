@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-	@RequestMapping("/http.status")
+	@RequestMapping("/status")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("/index");
 
