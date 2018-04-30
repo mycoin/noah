@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:lang="http://www.springframework.org/schema/lang"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:websocket="http://www.springframework.org/schema/websocket"
     xsi:schemaLocation="
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
@@ -72,6 +73,10 @@
             </list>
         </property>
     </bean>
+
+    <mvc:interceptors>
+        <bean class="com.breakidea.noah.web.support.DefaultHandlerInterceptor" />
+    </mvc:interceptors>
 
 	<!-- 异常处理 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
