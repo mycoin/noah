@@ -1,3 +1,8 @@
+#set($request = $data.request)
+#set($response = $data.response)
+#set($session = $data.session)
+#set($properties = $data.properties)
+
 <style>
 body {
 	font-family: monospace;
@@ -20,7 +25,6 @@ legend {
     color: red;
 }
 </style>
-
 <fieldset>
     <legend>[General]</legend>
     <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>

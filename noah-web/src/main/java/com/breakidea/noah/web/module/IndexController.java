@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-	@RequestMapping("/status")
+	@RequestMapping("/welcome")
 	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("/index");
+		ModelAndView mv = new ModelAndView("/welcome");
 
 		mv.addObject("status", 0);
 		mv.addObject("statusInfo", "OK");

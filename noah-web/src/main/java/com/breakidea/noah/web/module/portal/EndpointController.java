@@ -1,23 +1,22 @@
 package com.breakidea.noah.web.module.portal;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.ModelMap;
 
-import com.breakidea.noah.web.module.AbstractController;
+import com.breakidea.noah.web.support.AbstractExtendedRequest;
 
-@Controller
-public class EndpointController extends AbstractController {
+@Controller(EndpointController.ENDPOINT_NAME)
+public class EndpointController extends AbstractExtendedRequest {
 
-	@RequestMapping("/portal/endpoint")
-	public ModelAndView endpointPortal() {
-		ModelAndView mv = new ModelAndView();
+	public static final String ENDPOINT_NAME = "/portal/endpoint";
 
-		mv.addObject("properties", System.getProperties());
-		mv.addObject("request", request);
-		mv.addObject("response", request);
-		mv.addObject("session", session);
+	public Boolean defaultMain(ModelMap modelMap) {
 
-		return mv;
+		modelMap.addAttribute("properties", System.getProperties());
+		modelMap.addAttribute("request", request);
+		modelMap.addAttribute("response", request);
+		modelMap.addAttribute("session", session);
+
+		return true;
 	}
 }
