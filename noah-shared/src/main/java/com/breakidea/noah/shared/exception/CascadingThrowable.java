@@ -2,8 +2,12 @@ package com.breakidea.noah.shared.exception;
 
 public interface CascadingThrowable {
 
-	Throwable getCause();
+	public static final String INTERNAL = "<INTERNAL>";
 
-	String getName();
+	public static final String EXTERNAL = "<EXTERNAL>";
+
+	public static final String UNKNOWN = "<UNKNOWN>";
+
+	Integer getCode();
 
 }

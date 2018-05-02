@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void add(UserParam param) throws ServiceException {
 		if (!StringUtils.hasLength(param.getPassword())) {
-			throw new ServiceException("Bad Parameter", null, null);
+			throw new ServiceException("Bad Parameter", null);
 		}
 
 		String password = param.getPassword();
