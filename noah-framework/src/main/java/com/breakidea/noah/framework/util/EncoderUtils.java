@@ -3,6 +3,7 @@ package com.breakidea.noah.framework.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.UUID;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -89,5 +90,9 @@ public class EncoderUtils {
 			e.printStackTrace();
 		}
 		return "";
+	}
+
+	public static String getGuid() {
+		return UUID.randomUUID().toString();
 	}
 }

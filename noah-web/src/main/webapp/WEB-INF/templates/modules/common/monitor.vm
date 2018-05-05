@@ -101,19 +101,6 @@
     }
 
     /**
-     * returns a non-standard random IDs of arbitrary length and radix.
-     * @return {string} the result
-     * @see http://www.broofa.com/2008/09/javascript-uuid-function/
-     */
-    function getGuid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(iterator) {
-            var random = Math.random() * 16 | 0;
-            random = iterator == 'x' ? random : random & 3 | 8;
-            return random.toString(16);
-        });
-    }
-
-    /**
      * format time
      * @param time {Date} 日期对象
      * @param useCapture {Boolean}
@@ -194,7 +181,7 @@
      * @全局参数
      *
      * sid:  网站主唯一标示
-     * cid:  跟踪用户唯一标记，默认从Cookie('CID')里面读取
+     * cid:  跟踪用户唯一标记，默认从 Cookie('CID') 里面读取
      * lt:   进入页面的时间，配合 `cid` 跟踪一次访问PV
      * u:    统计维度，一般为当前页面的URL地址
      * title:页面标题，用于统计报表的标题显示
@@ -203,14 +190,8 @@
     function init() {
         G.lt = setTime(T);
         G.title = document.title;
-        G.sid = '$siteId';
-
-        if (!(G.cid = cookie('CID')) || !/^[\S-]{36}$/.test(G.cid)) {
-            // 如果没有 cookie('CID') 则表示新访问用户，设置为 `1`
-            J.nu = 1;
-            cookie('CID', G.cid = getGuid());
-        }
-
+        G.sid = "$siteId";
+		G.cid = "$clientId"
         G.u = G.u || L.href;
         G.v = '1.0';
 
@@ -319,10 +300,13 @@
 
         // cookie 是否安装 [0,1]
         V.ce = N.cookieEnabled ? 1 : 0;
+		
+		// 页面来源
+		V.refer = document.referrer || '';
 
         // 获取搜索引擎
         (function() {
-            var refer = document.referrer || '';
+            var refer = V.refer;
             var domain = refer.split('.')[1];
             var q = {
                 baidu: 'wd',
@@ -333,7 +317,7 @@
                 yahoo: 'q',
                 sogou: 'query',
                 gougou: 'search',
-                '360': 'q'
+				so: 'q'
             }[domain];
 
             if (refer && q) {
@@ -341,10 +325,9 @@
 
                 V.se = domain;
                 V.sword = reg ? decodeURIComponent(reg[1]) : '-';
-                V.refer = refer;
             }
         })();
-
+		
         // DOMready的时间戳,36进制
         V.dt = setTime(T);
     }

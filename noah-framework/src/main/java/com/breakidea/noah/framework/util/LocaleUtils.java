@@ -7,11 +7,6 @@ import java.util.Locale;
 import org.springframework.beans.propertyeditors.LocaleEditor;
 import org.springframework.util.StringUtils;
 
-/**
- * Helper-Class containing util-methods to ease work with {@link Locale}s.
- * 
- * @author Marc Kannegiesser - kannegiesser@synyx.de
- */
 public abstract class LocaleUtils {
 
 	/**
@@ -49,8 +44,8 @@ public abstract class LocaleUtils {
 	}
 
 	/**
-	 * Returns a {@link Locale} build from the given Strings with its parts
-	 * while being aware of null-values.
+	 * Returns a {@link Locale} build from the given Strings with its parts while
+	 * being aware of null-values.
 	 * 
 	 * @param language
 	 *            the language
@@ -122,8 +117,8 @@ public abstract class LocaleUtils {
 	}
 
 	/**
-	 * Returns the parent of a {@link Locale} or null if the locale has no
-	 * parent. Examples:
+	 * Returns the parent of a {@link Locale} or null if the locale has no parent.
+	 * Examples:
 	 * <ul>
 	 * <li>de_DE would return de</li>
 	 * <li>de would return null</li>

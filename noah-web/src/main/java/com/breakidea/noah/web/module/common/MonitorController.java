@@ -12,23 +12,52 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.breakidea.noah.framework.util.EncoderUtils;
 import com.breakidea.noah.shared.service.MonitorService;
 import com.breakidea.noah.web.support.AbstractExtendedController;
+import com.breakidea.noah.web.support.util.CookieUtils;
 import com.breakidea.noah.web.support.util.RequestUtils;
 
 @Controller("/monitor.js")
 public class MonitorController extends AbstractExtendedController implements InitializingBean {
 
-	private static final String MAPPER_LOCATE = "com/breakidea/noah/web/module/common/monitorMaper.properties";
+	private static final String MAPPER_LOCATE = "conf/support/monitorMaper.properties";
 
 	@Autowired
 	private MonitorService monitorService;
 
 	private Map<String, String> bindMapper = new HashMap<String, String>();
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		Properties configProperties = PropertiesLoaderUtils.loadAllProperties(MAPPER_LOCATE);
+
+		for (Object keyName : configProperties.keySet()) {
+			bindMapper.put((String) keyName, configProperties.getProperty(keyName.toString()));
+		}
+	}
+
+	@Override
+	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/javascript; charset=UTF-8");
+
+		String clientId = CookieUtils.getCookieString(request, "CID");
+
+		if (clientId == null) {
+			clientId = EncoderUtils.getGuid();
+			CookieUtils.addCookie(response, "CID", clientId);
+		}
+
+		mv.addObject("siteId", RequestUtils.getInteger(request, "sid"));
+		mv.addObject("clientId", clientId);
+		mv.addObject("serverName", request.getRemoteHost());
+
+		mv.setViewName("/common/monitor");
+	}
 
 	@RequestMapping("/e.gif")
 	public @ResponseBody String saveLog() {
@@ -47,28 +76,13 @@ public class MonitorController extends AbstractExtendedController implements Ini
 			}
 		}
 
+		resultMap.put("clientId", CookieUtils.getCookieString(request, "CID"));
+
 		monitorService.save(resultMap);
+
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("image/gif");
 		return "";
 
-	}
-
-	@Override
-	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/javascript; charset=UTF-8");
-
-		mv.addObject("siteId", RequestUtils.getInteger(request, "sid"));
-		mv.addObject("serverName", request.getRemoteHost());
-
-		mv.setViewName("/common/monitor");
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		Properties configProperties = PropertiesLoaderUtils.loadAllProperties(MAPPER_LOCATE);
-
-		for (Object keyName : configProperties.keySet()) {
-			bindMapper.put((String) keyName, configProperties.getProperty(keyName.toString()));
-		}
 	}
 }
