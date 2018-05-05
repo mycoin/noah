@@ -3,7 +3,7 @@
  *
  * author:  mycoin (nqliujiangtao@gmail.com)
  * date:    2014/04/14
- * resp:    https://github.com/mycoin/lotus
+ * resp:    https://github.com/mycoin/noah
  */
 ;(function(window, undefined) {
     'use strict';
@@ -187,7 +187,7 @@
         for (var k in data) {
             url.push(k + '=' + encodeURIComponent(trim(data[k])));
         }
-        el.src = location.protocol + '//${serverName}/e.gif?type=' + type + '&' + url.join('&');
+        el.src = '#includeMessage("server.protocol")#includeMessage("server.domainName")/e.gif?type=' + type + '&' + url.join('&');
     }
 
     /**

@@ -10,4 +10,5 @@
     default-autowire="byName">
 
     <context:component-scan base-package="com.breakidea.noah.service" />
+
 </beans>

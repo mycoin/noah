@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:lang="http://www.springframework.org/schema/lang"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:websocket="http://www.springframework.org/schema/websocket"
     xsi:schemaLocation="
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
@@ -14,6 +13,19 @@
 
 	<!-- 文件扫描 -->
     <context:component-scan base-package="com.breakidea.noah.web" />
+    
+    <!-- 消息文案 -->
+    <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="cacheSeconds" value="30" />
+        <property name="basenames">
+            <list>
+                <value>/WEB-INF/conf/system</value>
+                <value>/WEB-INF/conf/url</value>
+                <value>/WEB-INF/conf/index</value>
+            </list>
+        </property>
+    </bean>
     
 	<!-- 注解支持 -->
     <mvc:annotation-driven>

@@ -20,3 +20,6 @@ $Utils.printException($exception)
 #macro(disableLayout)
   #set($screenLayout = "")
 #end
+#macro(includeMessage $messageName)$requestContext.getMessage($messageName)#end
+
+

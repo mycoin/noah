@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.breakidea.noah.dao.MonitorDao">
+    <insert id="insert" parameterType="java.util.Map">
+        <![CDATA[
+        INSERT INTO `TABLE_MONITOR` (
+            `TYPE`,
+            `SITEID`, 
+            `CLIENTID`, 
+            `LOADINGTIME`, 
+            `URL`, 
+            `TITLE`, 
+            `VERSION`, 
+        
+            `BROWSERNAME`, 
+            `COLORDEPTH`, 
+            `SCREEN`, 
+            `CHARSET`, 
+            `OS`, 
+            `LANGUAGE`, 
+            `TIMEZONE`, 
+            `DOMAIN`, 
+            `JAVAENABLED`, 
+            `COOKIEENABLED`, 
+            `SEARCHENGINE`, 
+            `SEARCHWORD`, 
+            `REFER`, 
+            `READYTIME`, 
+        
+            `XPATH`, 
+            `LINKURL`, 
+            `TARGET`, 
+            `TEXT`, 
+            `SCREENPOSITION`, 
+            `EVENTTIME`, 
+        
+            `IS_DELETE`, 
+            `GMT_CREATE`, 
+            `GMT_MODIFY`
+        ) VALUES (
+            #{type},
+            #{siteId},
+            #{clientId},
+            #{loadingTime},
+            #{url},
+            #{title},
+            #{version},
+        
+            #{browserName},
+            #{colorDepth},
+            #{screen},
+            #{charset},
+            #{os},
+            #{language},
+            #{timeZone},
+            #{domain},
+            #{javaEnabled},
+            #{cookieEnabled},
+            #{searchEngine},
+            #{searchWord},
+            #{refer},
+            #{readyTime},
+        
+            #{xPath},
+            #{linkUrl},
+            #{target},
+            #{text},
+            #{screenPosition},
+            #{eventTime},
+        
+            0, 
+            now(), 
+            now()
+        );
+        ]]>
+    </insert>
+</mapper>
+

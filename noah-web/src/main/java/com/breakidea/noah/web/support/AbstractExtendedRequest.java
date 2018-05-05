@@ -4,38 +4,26 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.util.NestedServletException;
 
 import com.breakidea.noah.web.support.util.RequestUtils;
 
-public class AbstractExtendedRequest extends AbstractController implements InitializingBean {
+public class AbstractExtendedRequest extends AbstractExtendedController implements InitializingBean {
 
-	private static final String DEFAULT_MAIN = "defaultMain";
+	private static final String DEFAULT_MAIN = "DefaultMain";
 
 	private static final String MODULE_NAME = "module";
 
 	private static final String ERROR_NAME = "errorMsg";
 
 	private Map<String, Method> methodMap = new HashMap<String, Method>();
-
-	@Autowired
-	protected HttpServletRequest request;
-
-	@Autowired
-	protected HttpServletResponse response;
-
-	@Autowired
-	protected HttpSession session;
 
 	@Override
 	public final void afterPropertiesSet() throws Exception {
@@ -46,6 +34,10 @@ public class AbstractExtendedRequest extends AbstractController implements Initi
 			if (shouldRegistered(method)) {
 				methodMap.put(methodName, method);
 			}
+		}
+
+		if (methodMap.get(DEFAULT_MAIN) == null) {
+			throw new Exception("defaultMain method not found");
 		}
 	}
 
@@ -64,30 +56,25 @@ public class AbstractExtendedRequest extends AbstractController implements Initi
 	}
 
 	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		ModelAndView result = new ModelAndView();
-		ModelMap contextMap = new ModelMap();
+	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
+		ModelMap contextMap = mv.getModelMap();
+		String methodName = getMethodName(request);
+		Method executorMethod = getExecutor(methodName);
 
 		try {
-			String methodName = getMethodName(request);
-			Method executorMethod = getExecutor(methodName);
-
 			if (executorMethod == null) {
 				throw new NestedServletException("NotRegistered");
 			} else if (!(Boolean) executorMethod.invoke(this, contextMap)) {
 				throw new NestedServletException("Failed");
 			} else {
-				result.addObject("data", contextMap);
-				result.addObject("modules", methodMap.keySet());
+				mv.addObject("data", contextMap);
+				mv.addObject("modules", methodMap.keySet());
 			}
 		} catch (NestedServletException e) {
-			result.addObject(ERROR_NAME, e.getMessage());
+			mv.addObject(ERROR_NAME, e.getMessage());
 		} catch (Exception e) {
-			result.addObject(ERROR_NAME, "Unknown");
+			mv.addObject(ERROR_NAME, "Unknown");
 		}
-
-		return result;
 	}
 
 	/**

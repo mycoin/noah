@@ -15,5 +15,6 @@
 	</settings>
 	<mappers>
 		<mapper resource="mybatis/UserDaoImpl.xml" />
+        <mapper resource="mybatis/MonitorDaoImpl.xml" />
 	</mappers>
 </configuration>
