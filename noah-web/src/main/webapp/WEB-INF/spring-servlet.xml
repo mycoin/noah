@@ -102,5 +102,5 @@
         <property name="defaultStatusCode" value="500" />
     </bean>
 
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler default-servlet-name="default" />
 </beans>

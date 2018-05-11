@@ -1,0 +1,385 @@
+Using JAVA_HOME:       /Library/Java/JavaVirtualMachines/1.8.0.jdk/Contents/Home
+Using MAVEN_HOME:      /opt/Homebrew/opt/maven/
+Using MAVEN_OPTS:      -Xms512m -Xmx1024m -Xdebug -Xnoagent -Djava.compiler=NONE
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.breakidea.noah:noah-web:war:0.0.1-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for net.sf.alchim:winstone-maven-plugin is missing. @ line 81, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] noah-product
+[INFO] noah-shared
+[INFO] noah-framework
+[INFO] noah-dao
+[INFO] noah-service
+[INFO] noah-web
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-product 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-product ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-product ---
+[INFO] Installing /Users/apple/Zend/noah/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-product/0.0.1-SNAPSHOT/noah-product-0.0.1-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-shared 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-shared ---
+[INFO] Deleting /Users/apple/Zend/noah/noah-shared/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-shared ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-shared/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-shared ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 14 source files to /Users/apple/Zend/noah/noah-shared/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-shared ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-shared/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-shared ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ noah-shared ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ noah-shared ---
+[INFO] Building jar: /Users/apple/Zend/noah/noah-shared/target/noah-shared-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-shared ---
+[INFO] Installing /Users/apple/Zend/noah/noah-shared/target/noah-shared-0.0.1-SNAPSHOT.jar to /Users/apple/.m2/repository/com/breakidea/noah/noah-shared/0.0.1-SNAPSHOT/noah-shared-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/apple/Zend/noah/noah-shared/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-shared/0.0.1-SNAPSHOT/noah-shared-0.0.1-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-framework 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-framework ---
+[INFO] Deleting /Users/apple/Zend/noah/noah-framework/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-framework ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-framework/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-framework ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 12 source files to /Users/apple/Zend/noah/noah-framework/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-framework ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-framework/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-framework ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ noah-framework ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ noah-framework ---
+[INFO] Building jar: /Users/apple/Zend/noah/noah-framework/target/noah-framework-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-framework ---
+[INFO] Installing /Users/apple/Zend/noah/noah-framework/target/noah-framework-0.0.1-SNAPSHOT.jar to /Users/apple/.m2/repository/com/breakidea/noah/noah-framework/0.0.1-SNAPSHOT/noah-framework-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/apple/Zend/noah/noah-framework/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-framework/0.0.1-SNAPSHOT/noah-framework-0.0.1-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-dao 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-dao ---
+[INFO] Deleting /Users/apple/Zend/noah/noah-dao/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-dao ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-dao ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /Users/apple/Zend/noah/noah-dao/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-dao ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-dao/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-dao ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ noah-dao ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ noah-dao ---
+[INFO] Building jar: /Users/apple/Zend/noah/noah-dao/target/noah-dao-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-dao ---
+[INFO] Installing /Users/apple/Zend/noah/noah-dao/target/noah-dao-0.0.1-SNAPSHOT.jar to /Users/apple/.m2/repository/com/breakidea/noah/noah-dao/0.0.1-SNAPSHOT/noah-dao-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/apple/Zend/noah/noah-dao/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-dao/0.0.1-SNAPSHOT/noah-dao-0.0.1-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-service 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-service ---
+[INFO] Deleting /Users/apple/Zend/noah/noah-service/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-service ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-service/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-service ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /Users/apple/Zend/noah/noah-service/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-service ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-service/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ noah-service ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ noah-service ---
+[INFO] Building jar: /Users/apple/Zend/noah/noah-service/target/noah-service-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-service ---
+[INFO] Installing /Users/apple/Zend/noah/noah-service/target/noah-service-0.0.1-SNAPSHOT.jar to /Users/apple/.m2/repository/com/breakidea/noah/noah-service/0.0.1-SNAPSHOT/noah-service-0.0.1-SNAPSHOT.jar
+[INFO] Installing /Users/apple/Zend/noah/noah-service/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-service/0.0.1-SNAPSHOT/noah-service-0.0.1-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-web 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/net/sf/alchim/winstone-maven-plugin/maven-metadata.xml
+391/391 B               Downloaded: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/net/sf/alchim/winstone-maven-plugin/maven-metadata.xml (391 B at 0.0 KB/sec)
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ noah-web ---
+[INFO] Deleting /Users/apple/Zend/noah/noah-web/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 9 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-web ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 14 source files to /Users/apple/Zend/noah/noah-web/target/classes
+[INFO] /Users/apple/Zend/noah/noah-web/src/main/java/com/breakidea/noah/web/support/TemplateBasedLayoutView.java: /Users/apple/Zend/noah/noah-web/src/main/java/com/breakidea/noah/web/support/TemplateBasedLayoutView.java uses or overrides a deprecated API.
+[INFO] /Users/apple/Zend/noah/noah-web/src/main/java/com/breakidea/noah/web/support/TemplateBasedLayoutView.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-web/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-web ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ noah-web ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ noah-web ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [noah-web] in [/Users/apple/Zend/noah/noah-web/target/noah-web-0.0.1-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/Users/apple/Zend/noah/noah-web/src/main/webapp]
+[INFO] Webapp assembled in [228 msecs]
+[INFO] Building war: /Users/apple/Zend/noah/noah-web/target/noah-web-0.0.1-SNAPSHOT.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- winstone-maven-plugin:1.2:embed (default) @ noah-web ---
+[INFO] use winstone file: winstone-0.9.10.jar
+[INFO] use war file: noah-web-0.0.1-SNAPSHOT.war
+[INFO] no cmd line options to embed
+[INFO] /Users/apple/Zend/noah/noah-web/target/noah-web-0.0.1-SNAPSHOT-standalone.jar created
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ noah-web ---
+[INFO] Installing /Users/apple/Zend/noah/noah-web/target/noah-web-0.0.1-SNAPSHOT.war to /Users/apple/.m2/repository/com/breakidea/noah/noah-web/0.0.1-SNAPSHOT/noah-web-0.0.1-SNAPSHOT.war
+[INFO] Installing /Users/apple/Zend/noah/noah-web/pom.xml to /Users/apple/.m2/repository/com/breakidea/noah/noah-web/0.0.1-SNAPSHOT/noah-web-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] noah-product ...................................... SUCCESS [0.263s]
+[INFO] noah-shared ....................................... SUCCESS [1.366s]
+[INFO] noah-framework .................................... SUCCESS [0.269s]
+[INFO] noah-dao .......................................... SUCCESS [0.096s]
+[INFO] noah-service ...................................... SUCCESS [0.114s]
+[INFO] noah-web .......................................... SUCCESS [10.710s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 12.954s
+[INFO] Finished at: Thu May 10 20:14:26 CST 2018
+[INFO] Final Memory: 26M/533M
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.breakidea.noah:noah-web:war:0.0.1-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for net.sf.alchim:winstone-maven-plugin is missing. @ line 81, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/net/sf/alchim/winstone-maven-plugin/maven-metadata.xml
+391/391 B               Downloaded: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/net/sf/alchim/winstone-maven-plugin/maven-metadata.xml (391 B at 0.1 KB/sec)
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building noah-web 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> maven-jetty-plugin:6.1.26:run (default-cli) @ noah-web >>>
+Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/com/breakidea/noah/noah-framework/0.0.1-SNAPSHOT/maven-metadata.xml
+            Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/com/breakidea/noah/noah-shared/0.0.1-SNAPSHOT/maven-metadata.xml
+            Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/com/breakidea/noah/noah-service/0.0.1-SNAPSHOT/maven-metadata.xml
+            Downloading: http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/com/breakidea/noah/noah-dao/0.0.1-SNAPSHOT/maven-metadata.xml
+            [INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ noah-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 9 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:compile (default-compile) @ noah-web ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ noah-web ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/apple/Zend/noah/noah-web/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5:testCompile (default-testCompile) @ noah-web ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< maven-jetty-plugin:6.1.26:run (default-cli) @ noah-web <<<
+[INFO] 
+[INFO] --- maven-jetty-plugin:6.1.26:run (default-cli) @ noah-web ---
+[INFO] Configuring Jetty for project: noah-web
+[INFO] Webapp source directory = /Users/apple/Zend/noah/noah-web/src/main/webapp
+[INFO] Reload Mechanic: automatic
+[INFO] Classes = /Users/apple/Zend/noah/noah-web/target/classes
+[INFO] Logging to org.slf4j.impl.SimpleLogger(org.mortbay.log) via org.mortbay.log.Slf4jLog
+[INFO] Context path = /
+[INFO] Tmp directory =  determined at runtime
+[INFO] Web defaults = org/mortbay/jetty/webapp/webdefault.xml
+[INFO] Web overrides =  none
+[INFO] web.xml file = /Users/apple/Zend/noah/noah-web/src/main/webapp/WEB-INF/web.xml
+[INFO] Webapp directory = /Users/apple/Zend/noah/noah-web/src/main/webapp
+[INFO] Starting jetty 6.1.26 ...
+[INFO] jetty-6.1.26
+[INFO] No Transaction manager found - if your webapp requires one, please configure one.
+[INFO] Initializing Spring root WebApplicationContext
+May 10, 2018 8:14:31 PM org.springframework.web.context.ContextLoader initWebApplicationContext
+INFO: Root WebApplicationContext: initialization started
+May 10, 2018 8:14:31 PM org.springframework.web.context.support.XmlWebApplicationContext prepareRefresh
+INFO: Refreshing Root WebApplicationContext: startup date [Thu May 10 20:14:31 CST 2018]; root of context hierarchy
+May 10, 2018 8:14:31 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [applicationContext.xml]
+May 10, 2018 8:14:31 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [applicationContext-db.xml]
+May 10, 2018 8:14:31 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [applicationContext-common.xml]
+May 10, 2018 8:14:31 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [applicationContext-biz.xml]
+May 10, 2018 8:14:32 PM org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor <init>
+INFO: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+May 10, 2018 8:14:32 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+May 10, 2018 8:14:37 PM org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor finishRegistration
+INFO: No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+May 10, 2018 8:14:37 PM org.springframework.web.context.ContextLoader initWebApplicationContext
+INFO: Root WebApplicationContext: initialization completed in 5834 ms
+[INFO] Initializing Spring FrameworkServlet 'spring'
+May 10, 2018 8:14:37 PM org.springframework.web.servlet.DispatcherServlet initServletBean
+INFO: FrameworkServlet 'spring': initialization started
+May 10, 2018 8:14:37 PM org.springframework.web.context.support.XmlWebApplicationContext prepareRefresh
+INFO: Refreshing WebApplicationContext for namespace 'spring-servlet': startup date [Thu May 10 20:14:37 CST 2018]; parent: Root WebApplicationContext
+May 10, 2018 8:14:37 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from ServletContext resource [/WEB-INF/spring-servlet.xml]
+May 10, 2018 8:14:37 PM org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor <init>
+INFO: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+May 10, 2018 8:14:37 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/welcome]}" onto public org.springframework.web.servlet.ModelAndView com.breakidea.noah.web.module.IndexController.index()
+May 10, 2018 8:14:37 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping register
+INFO: Mapped "{[/e.gif]}" onto public java.lang.String com.breakidea.noah.web.module.common.MonitorController.saveLog()
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter initControllerAdviceCache
+INFO: Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-servlet': startup date [Thu May 10 20:14:37 CST 2018]; parent: Root WebApplicationContext
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter initControllerAdviceCache
+INFO: Looking for @ControllerAdvice: WebApplicationContext for namespace 'spring-servlet': startup date [Thu May 10 20:14:37 CST 2018]; parent: Root WebApplicationContext
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping registerHandler
+INFO: Mapped URL path [/monitor.js] onto handler '/monitor.js'
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping registerHandler
+INFO: Mapped URL path [/portal/endpoint] onto handler '/portal/endpoint'
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping registerHandler
+INFO: Mapped URL path [/portal/index] onto handler '/portal/index'
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.view.velocity.VelocityConfigurer createVelocityEngine
+INFO: Loading Velocity config from [class path resource [modules/velocity.properties]]
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.view.velocity.VelocityConfigurer postProcessVelocityEngine
+INFO: ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.handler.SimpleUrlHandlerMapping registerHandler
+INFO: Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+May 10, 2018 8:14:38 PM org.springframework.web.servlet.DispatcherServlet initServletBean
+INFO: FrameworkServlet 'spring': initialization completed in 747 ms
+[INFO] Started SelectChannelConnector@0.0.0.0:8080
+[INFO] Started Jetty Server
+[INFO] Starting scanner at interval of 5 seconds.
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@de9a047] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@4e19dc61] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@de9a047]
+May 10, 2018 8:14:47 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+May 10, 2018 8:14:47 PM org.springframework.jdbc.support.SQLErrorCodesFactory <init>
+INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@285e6ea9] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@72e925ea] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@285e6ea9]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a625b58] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@61561cac] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a625b58]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18260a3b] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@509cab06] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18260a3b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64c3e1d8] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@1ad4e8a8] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64c3e1d8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4157a245] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.mysql.jdbc.JDBC4Connection@57b47e5e] will not be managed by Spring
+==>  Preparing: INSERT INTO `TABLE_MONITOR` ( `TYPE`, `SITEID`, `CLIENTID`, `LOADINGTIME`, `URL`, `TITLE`, `VERSION`, `BROWSERNAME`, `COLORDEPTH`, `SCREEN`, `CHARSET`, `OS`, `LANGUAGE`, `TIMEZONE`, `DOMAIN`, `JAVAENABLED`, `COOKIEENABLED`, `SEARCHENGINE`, `SEARCHWORD`, `REFER`, `READYTIME`, `XPATH`, `LINKURL`, `TARGET`, `TEXT`, `SCREENPOSITION`, `EVENTTIME`, `IS_DELETE`, `GMT_CREATE`, `GMT_MODIFY` ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, now(), now() ); 
+==> Parameters: null, null, 2907f2fd-a8e5-4204-b2aa-2ab838abf2b9(String), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4157a245]
+[INFO] Shutdown hook executing
+[INFO] Stopped SelectChannelConnector@0.0.0.0:8080
+[INFO] Destroying Spring FrameworkServlet 'spring'
+[INFO] Closing Spring root WebApplicationContext
+[INFO] Shutdown hook complete
+[INFO] Jetty server exiting.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 53.347s
+[INFO] Finished at: Thu May 10 20:15:21 CST 2018
+[INFO] Final Memory: 27M/552M
+[INFO] ------------------------------------------------------------------------
+[OK] SUCCESS

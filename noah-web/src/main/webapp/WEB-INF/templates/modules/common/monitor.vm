@@ -191,7 +191,7 @@
         G.lt = setTime(T);
         G.title = document.title;
         G.sid = "$siteId";
-		G.cid = "$clientId"
+        G.cid = "$clientId"
         G.u = G.u || L.href;
         G.v = '1.0';
 
@@ -385,7 +385,7 @@
                 // 非输入框的点击都作为 btn 类型
                 if (/^(rad|che|but|sub|res|ima)/.test(ele.type)) {
                     type = 'btn';
-                    text = text || ele.title || ele.alt || ele.value;
+                    text = text || ele.title || ele.alt || ele.value || ele.innerText;
                 } else {
                     text = text || ele.innerText || ele.textContent || ele.innerHTML;
                 }
