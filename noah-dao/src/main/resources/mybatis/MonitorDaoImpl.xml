@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.breakidea.noah.dao.MonitorDao">
-    <insert id="insert" parameterType="java.util.Map">
+	<insert id="insert" parameterType="java.util.Map">
         <![CDATA[
         INSERT INTO `TABLE_MONITOR` (
-            `TYPE`,
+            `TYPE`, 
             `SITEID`, 
             `CLIENTID`, 
             `LOADINGTIME`, 
             `URL`, 
             `TITLE`, 
-            `VERSION`, 
+            `VERSION`,
         
             `BROWSERNAME`, 
             `COLORDEPTH`, 
@@ -73,6 +73,6 @@
             now()
         );
         ]]>
-    </insert>
+	</insert>
 </mapper>
 

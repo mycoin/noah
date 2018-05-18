@@ -47,6 +47,9 @@ public abstract class AbstractExtendedController extends AbstractController {
 		return mv;
 	}
 
+	/**
+	 * Template method. Subclasses must implement this.
+	 */
 	protected abstract void handleRequestInternal(ModelAndView mv) throws ServletException;
 
 	protected void overwriteContext(ModelAndView mv) {

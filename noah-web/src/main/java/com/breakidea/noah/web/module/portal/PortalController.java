@@ -3,6 +3,7 @@ package com.breakidea.noah.web.module.portal;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.breakidea.noah.shared.param.UserParam;
@@ -15,6 +16,9 @@ public class PortalController extends AbstractExtendedController {
 
 	@Resource
 	private UserService userService;
+
+	@Resource
+	private WebRequest webRequest;
 
 	@Override
 	public void handleRequestInternal(ModelAndView mv) {

@@ -6,5 +6,5 @@ import com.breakidea.noah.shared.param.UserParam;
 
 @AutowireMapper
 public interface UserDao extends GeneralDao<UserParam, UserModel> {
-	
+
 }
