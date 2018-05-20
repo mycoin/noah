@@ -1,5 +1,6 @@
 package com.breakidea.noah.service.impl;
 
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,12 @@ public class UserServiceImpl implements UserService {
 		}
 
 		String password = param.getPassword();
-		String encode = EncoderUtils.encode(password);
+		String encode = null;
+		try {
+			encode = EncoderUtils.encode(password);
+		} catch (GeneralSecurityException e) {
+			e.printStackTrace();
+		}
 
 		param.setPassword(encode);
 

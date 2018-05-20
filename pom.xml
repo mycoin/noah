@@ -17,13 +17,15 @@
         <java.version>1.6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
 
-        <spring.version>4.3.8.RELEASE</spring.version>
         <logback.version>1.1.7</logback.version>
         <jetty.version>6.1.26</jetty.version>
+        <scala.version>2.12.6</scala.version>
+        <spring.version>4.3.8.RELEASE</spring.version>
     </properties>
     <build>
         <plugins>
@@ -195,13 +197,24 @@
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
             </dependency>
-
+            
+            <!-- Scala Lang -->
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
-                <version>2.12.4</version>
+                <version>${scala.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            
 			<!-- Jetty -->
             <dependency>
                 <groupId>org.mortbay.jetty</groupId>

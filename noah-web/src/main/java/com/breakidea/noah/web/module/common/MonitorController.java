@@ -40,20 +40,23 @@ public class MonitorController extends AbstractExtendedController implements Ini
 		}
 	}
 
-	@Override
-	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/javascript; charset=UTF-8");
-
+	protected String resolveClientId() {
 		String clientId = CookieUtils.getCookieString(request, "CID");
 
 		if (clientId == null) {
 			clientId = EncoderUtils.getGuid();
 			CookieUtils.addCookie(response, "CID", clientId);
 		}
+		return clientId;
+	}
+
+	@Override
+	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/javascript; charset=UTF-8");
 
 		mv.addObject("siteId", RequestUtils.getInteger(request, "sid"));
-		mv.addObject("clientId", clientId);
+		mv.addObject("clientId", resolveClientId());
 		mv.addObject("serverName", request.getRemoteHost());
 
 		mv.setViewName("/common/monitor");
