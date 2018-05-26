@@ -24,7 +24,7 @@ import com.breakidea.noah.web.support.util.RequestUtils;
 @Controller("/monitor.js")
 public class MonitorController extends AbstractExtendedController implements InitializingBean {
 
-	private static final String MAPPER_LOCATE = "conf/support/monitorMaper.properties";
+	private static final String MAPPER_LOCATE = "com/breakidea/noah/web/module/common/MonitorMaper.properties";
 
 	@Autowired
 	private MonitorService monitorService;
