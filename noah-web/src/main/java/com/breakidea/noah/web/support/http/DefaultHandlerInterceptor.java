@@ -1,10 +1,12 @@
-package com.breakidea.noah.web.support;
+package com.breakidea.noah.web.support.http;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.breakidea.noah.web.support.AbstractExtendedRequest;
 
 public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 
@@ -25,9 +27,9 @@ public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 		if (request.getAttribute(AJAX_REQUEST) == null) {
 			return;
 		}
-
 		if (modelAndView.getViewName() == null) {
 			modelAndView.setViewName("/welcome");
 		}
+
 	}
 }

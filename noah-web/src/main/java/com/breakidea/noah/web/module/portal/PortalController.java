@@ -33,6 +33,7 @@ public class PortalController extends AbstractExtendedController {
 			mv.setViewName("/welcome");
 		} else {
 			mv.addObject("user", userService.query(param));
+			mv.addObject("sessionId", session.getId());
 		}
 	}
 

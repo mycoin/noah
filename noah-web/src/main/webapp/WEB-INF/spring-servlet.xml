@@ -72,7 +72,7 @@
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="com.breakidea.noah.web.support.TemplateBasedLayoutView" />
+                    <property name="viewClass" value="com.breakidea.noah.web.support.http.TemplateBasedLayoutView" />
                     <property name="requestContextAttribute" value="requestContext" />
                     <property name="cache" value="true" />
                     <property name="prefix" value="modules/" />
@@ -87,7 +87,7 @@
     </bean>
 
     <mvc:interceptors>
-        <bean class="com.breakidea.noah.web.support.DefaultHandlerInterceptor" />
+        <bean class="com.breakidea.noah.web.support.http.DefaultHandlerInterceptor" />
     </mvc:interceptors>
 
 	<!-- 异常处理 -->

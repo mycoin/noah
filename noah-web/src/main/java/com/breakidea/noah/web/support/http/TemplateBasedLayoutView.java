@@ -1,4 +1,4 @@
-package com.breakidea.noah.web.support;
+package com.breakidea.noah.web.support.http;
 
 import java.io.StringWriter;
 
