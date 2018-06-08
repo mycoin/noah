@@ -50,6 +50,21 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <bean class="org.springframework.web.servlet.view.script.ScriptTemplateConfigurer">
+        <property name="resourceLoaderPath">
+            <value>classpath:modules,/WEB-INF/templates</value>
+        </property>
+        <property name="engineName" value="rhino" />
+        <property name="renderFunction" value="render" />
+        <property name="sharedEngine" value="true" />
+        <property name="scripts">
+            <array>
+                <value>juicer.js</value>
+                <value>juicer-render.js</value>
+            </array>
+        </property>
+    </bean>
+    
 	<!-- 模板配置 -->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath">
@@ -71,6 +86,15 @@
         <property name="viewResolvers">
             <list>
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+                <bean class="org.springframework.web.servlet.view.script.ScriptTemplateViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.script.ScriptTemplateView" />
+                    <property name="requestContextAttribute" value="requestContext" />
+                    <property name="cache" value="true" />
+                    <property name="prefix" value="/modules" />
+                    <property name="suffix" value=".html" />
+                    <property name="contentType" value="text/html; charset=UTF-8" />
+                </bean>
+
                 <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
                     <property name="viewClass" value="com.breakidea.noah.web.support.http.TemplateBasedLayoutView" />
                     <property name="requestContextAttribute" value="requestContext" />

@@ -24,7 +24,6 @@
 
         <logback.version>1.1.7</logback.version>
         <jetty.version>6.1.26</jetty.version>
-        <scala.version>2.12.6</scala.version>
         <spring.version>4.3.8.RELEASE</spring.version>
     </properties>
     <build>
@@ -196,23 +195,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
-            </dependency>
-            
-            <!-- Scala Lang -->
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-library</artifactId>
-                <version>${scala.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-reflect</artifactId>
-                <version>${scala.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-compiler</artifactId>
-                <version>${scala.version}</version>
             </dependency>
             
 			<!-- Jetty -->

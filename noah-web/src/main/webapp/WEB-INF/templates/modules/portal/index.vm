@@ -20,11 +20,13 @@ button {
 	width: 60px;
 }
 </style>
+<input type="text" x-webkit-speech x-webkit-grammar="builtin:translate" />
+
 <table>
 	<tr>
 		<td style="vertical-align: top;">
 			<form action="?action=submit" method="POST" target="hiddenForm">
-                <li><label class="label">userName</label><input name="userName" /></li>
+                <li><label class="label">userName</label><input x-webkit-speech="true" name="userName" /></li>
                 <li><label class="label">password</label><input name="password" /></li>
                 <li><label class="label">status</label><input name="status" /></li>
                 <button>提交</button>

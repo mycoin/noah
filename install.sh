@@ -8,6 +8,6 @@ echo "Using MAVEN_HOME:      $MAVEN_HOME"
 echo "Using MAVEN_OPTS:      $MAVEN_OPTS"
 
 ./mvnw -U clean install &&
-./mvnw -U -pl noah-web jetty:run
+./mvnw -U jetty:run --projects=noah-web --activate-profiles=dev
 
 echo '[OK] SUCCESS'
