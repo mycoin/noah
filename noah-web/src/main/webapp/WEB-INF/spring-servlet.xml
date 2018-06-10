@@ -30,7 +30,6 @@
 	<!-- 注解支持 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter" />
             <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -54,7 +53,7 @@
         <property name="resourceLoaderPath">
             <value>classpath:modules,/WEB-INF/templates</value>
         </property>
-        <property name="engineName" value="rhino" />
+        <property name="engineName" value="javascript" />
         <property name="renderFunction" value="render" />
         <property name="sharedEngine" value="true" />
         <property name="scripts">

@@ -2,5 +2,9 @@ juicer.set('strip', false);
 juicer.set('cache', false);
 
 function render(template, data, location) {
-	return juicer(template, data);
+	try {
+		return juicer(template, data);
+	} catch(e) {
+		return "error"
+	}
 }
