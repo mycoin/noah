@@ -15,7 +15,6 @@ public class EndpointController extends AbstractExtendedRequest {
 		session.setAttribute("RequestName", request.getRequestURI());
 
 		modelMap.addAttribute("properties", System.getProperties());
-
 		return true;
 	}
 }

@@ -20,8 +20,6 @@ button {
 	width: 60px;
 }
 </style>
-<input type="text" x-webkit-speech x-webkit-grammar="builtin:translate" />
-
 <table>
 	<tr>
 		<td style="vertical-align: top;">
@@ -42,7 +40,7 @@ button {
 		</td>
 	</tr>
 </table>
-<script src="/static/jquery.js"></script>
+<script src="/assets/jquery.js"></script>
 <script>
 function randomString(len) {
 　　len = len || 32;

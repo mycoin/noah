@@ -23,21 +23,21 @@ public class AbstractContextControllerTests {
 
 	protected MockMvc mockMvc;
 
-	protected MockMvc createMockMvc() {
-		ResultMatcher statusOk = MockMvcResultMatchers.status().isOk();
+	public MockMvc createMockMvc() {
 		DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(wac);
-
+		ResultMatcher statusOk = MockMvcResultMatchers.status().isOk();
+		
 		return builder.alwaysExpect(statusOk).build();
 	}
 
-	protected MvcResult getMvcResult(MockHttpServletRequestBuilder rb) throws Exception {
+	public MvcResult getMvcResult(MockHttpServletRequestBuilder rb) throws Exception {
 		ResultActions action = mockMvc.perform(rb);
 		MvcResult mvcResult = action.andReturn();
 
 		return mvcResult;
 	}
 
-	protected MvcResult getMvcResult(String url) throws Exception {
+	public MvcResult getMvcResult(String url) throws Exception {
 		return getMvcResult(MockMvcRequestBuilders.get(url));
 	}
 }

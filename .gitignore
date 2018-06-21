@@ -8,6 +8,7 @@ bin/
 tmp/
 *.tmp
 *.bak
+*.out
 *.swp
 *~.nib
 local.properties
