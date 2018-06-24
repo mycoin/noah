@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.alibaba.rigel</groupId>
+	<groupId>com.breakidea.noah</groupId>
 	<artifactId>noah-product</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -46,47 +46,47 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-framework</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-dao</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-shared</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-plugin</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-scheduler</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-utils</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.alibaba.rigel</groupId>
+				<groupId>com.breakidea.noah</groupId>
 				<artifactId>noah-ui</artifactId>
 				<version>${project.version}</version>
 			</dependency>

@@ -1,0 +1,75 @@
+$sessionId
+
+#includeTemplate("header")
+<style>
+.label {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+  margin: 2px 5px;
+}
+span {
+	display: inline-block;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #EEE;
+    font-size: 12px;
+}
+button {
+	margin: 3px 0 20px 90px;
+	width: 60px;
+}
+</style>
+<table>
+	<tr>
+		<td style="vertical-align: top;">
+			<form action="?action=submit" method="POST" target="hiddenForm">
+                <li><label class="label">userName</label><input x-webkit-speech="true" name="userName" /></li>
+                <li><label class="label">password</label><input name="password" /></li>
+                <li><label class="label">status</label><input name="status" /></li>
+                <button>提交</button>
+            </form>
+			<iframe width="220" name="hiddenForm"></iframe>
+		</td>
+		<td>
+			<div>
+			#foreach($item in $user)
+				<span>$item.userName</span>
+			#end
+			</div>
+		</td>
+	</tr>
+</table>
+<script src="/assets/jquery.js"></script>
+<script>
+function randomString(len) {
+　　len = len || 32;
+　　var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+　　var maxPos = chars.length;
+　　var pwd = '';
+　　for (i = 0; i < len; i++) {
+　　　　pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+　　}
+　　return pwd;
+}
+function sendData() {
+	    var defaultMap = {
+        	userName: randomString(16),
+        	password: randomString(8),
+        	status: randomString(5),
+    }
+    var ajaxOpt = {
+    		dataType: 'json',
+        	data: defaultMap,
+        	method: "post",
+        	successs: function(){
+        		sendData()
+        	}
+    }
+    jQuery.ajax('?action=submit', ajaxOpt)
+}
+sendData()
+</script>
+<hr>
+$requestContext.getMessage("var.copyright")
+#setLayout("layout/defaultLayout")

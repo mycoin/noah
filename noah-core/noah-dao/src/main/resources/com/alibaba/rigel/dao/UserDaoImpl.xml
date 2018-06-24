@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alibaba.rigel.dao.UserDao">
-    <resultMap id="userResultMap" type="com.alibaba.rigel.shared.model.UserModel">
+<mapper namespace="com.breakidea.noah.dao.UserDao">
+    <resultMap id="userResultMap" type="com.breakidea.noah.shared.model.UserModel">
         <id column="ID" property="id" jdbcType="BIGINT" />
         <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
         <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <sql id="userColumnList">
         ID, USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED
     </sql>
-    <select id="query" parameterType="com.alibaba.rigel.shared.param.UserParam" resultMap="userResultMap">
+    <select id="query" parameterType="com.breakidea.noah.shared.param.UserParam" resultMap="userResultMap">
         SELECT
         <include refid="userColumnList" />
         FROM `TABLE_USER` WHERE
@@ -23,17 +23,17 @@
         <include refid="userColumnList" />
         FROM `TABLE_USER` WHERE id = #{id}
     </select>
-    <delete id="delete" parameterType="com.alibaba.rigel.shared.param.UserParam">
+    <delete id="delete" parameterType="com.breakidea.noah.shared.param.UserParam">
         DELETE FROM `TABLE_USER` WHERE
         <include refid="userCondition" />
     </delete>
-    <insert id="insert" parameterType="com.alibaba.rigel.shared.param.UserParam">
+    <insert id="insert" parameterType="com.breakidea.noah.shared.param.UserParam">
         INSERT INTO `TABLE_USER` (USER_NAME, PASSWORD, STATUS, GMT_CREATED,
         GMT_MODIFIED)
         VALUES
         (#{userName}, #{password}, #{status}, now(), now());
     </insert>
-    <update id="update" parameterType="com.alibaba.rigel.shared.param.UserParam">
+    <update id="update" parameterType="com.breakidea.noah.shared.param.UserParam">
         update `TABLE_USER`
         <set>
             <if test="userName != null"> USER_NAME = #{userName}, </if>
