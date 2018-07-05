@@ -1,36 +1,16 @@
 package com.breakidea.noah.framework.context;
 
-import com.breakidea.noah.shared.exception.CascadingThrowable;
+import com.breakidea.noah.shared.exception.CascadingRuntimeException;
 
-public class ContextException extends Exception implements CascadingThrowable {
+public class ContextException extends CascadingRuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String name;
-
-	public ContextException(final String name, final String message) {
-		this(name, message, null);
-	}
-
-	public ContextException(final String message) {
-		this(null, message, null);
-	}
-
-	public ContextException(final String name, final String message, final Throwable throwable) {
+	public ContextException(String message, Throwable throwable) {
 		super(message, throwable);
-		this.name = name;
 	}
 
-	@Override
-	public final String getName() {
-		return name;
-	}
-
-	public String getMessage() {
-		if (name == null) {
-			return super.getMessage();
-		} else {
-			return super.getMessage() + " (key [" + name + "])";
-		}
+	public ContextException(String message) {
+		super(message, null);
 	}
 }

@@ -8,10 +8,7 @@
 	</parent>
 	<artifactId>noah-service</artifactId>
 	<dependencies>
-		<dependency>
-			<groupId>com.breakidea.noah</groupId>
-			<artifactId>noah-dao</artifactId>
-		</dependency>
+		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -25,6 +22,16 @@
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.breakidea.noah</groupId>
+			<artifactId>noah-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.breakidea.noah</groupId>
+			<artifactId>noah-dao</artifactId>
+		</dependency>
+
+		<!-- Database -->
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
@@ -36,9 +43,12 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
+
+		<!-- Tests -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

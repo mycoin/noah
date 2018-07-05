@@ -1,32 +1,12 @@
 package com.breakidea.noah.framework.component;
 
-import com.breakidea.noah.shared.exception.CascadingThrowable;
+import com.breakidea.noah.shared.exception.CascadingRuntimeException;
 
-public class ComponentException extends Exception implements CascadingThrowable {
+public class ComponentException extends CascadingRuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String name;
-
-	public ComponentException(final String name, final String message) {
-		this(name, message, null);
-	}
-
-	public ComponentException(final String name, final String message, final Throwable throwable) {
-		super(message, throwable);
-		this.name = name;
-	}
-
-	@Override
-	public final String getName() {
-		return name;
-	}
-
-	public String getMessage() {
-		if (name == null) {
-			return super.getMessage();
-		} else {
-			return super.getMessage() + " (key [" + name + "])";
-		}
+	public ComponentException(String message, Throwable excecption) {
+		super(message, excecption);
 	}
 }

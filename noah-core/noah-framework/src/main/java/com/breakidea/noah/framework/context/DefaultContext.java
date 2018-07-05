@@ -35,7 +35,7 @@ public class DefaultContext implements Context, FrameworkConstants {
 		final Object data = context.get(key);
 		if (null != data) {
 			if (data instanceof Resolvable) {
-				return ((Resolvable) data).resolve(this);
+				return ((Resolvable<?>) data).resolve(this);
 			}
 			return data;
 		}

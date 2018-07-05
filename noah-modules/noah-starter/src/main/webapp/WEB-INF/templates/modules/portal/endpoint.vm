@@ -1,0 +1,84 @@
+#set($request = $data.request)
+#set($response = $data.response)
+#set($session = $data.session)
+#set($properties = $data.properties)
+
+<style>
+body {
+	font-family: monospace;
+	line-height: 1.56;
+    background: #000;
+    color: #888;
+}
+fieldset {
+    font-size: 12px;
+    word-break: break-word;
+    border-color: #999;
+    border-width: 1px;
+}
+strong {
+    color: #FFF;
+    font-weight: normal;  
+}
+legend {
+    font-weight: bold;
+    color: red;
+}
+</style>
+<fieldset>
+    <legend>[General]</legend>
+    <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>
+    <strong>ContentType</strong>: $!request.getContentType() </br/>
+    <strong>Locale</strong>: $!request.getLocale() </br/>
+    <strong>LocalName</strong>: $!request.getLocalName() </br/>
+    <strong>ServerName</strong>: $!request.getServerName() </br/>
+    <strong>Protocol</strong>: $!request.getProtocol() </br/>
+    <strong>RemoteAddr</strong>: $!request.getRemoteAddr() </br/>
+    <strong>QueryString</strong>: $!request.getQueryString() </br/>
+    <strong>RequestURI</strong>: $!request.getRequestURI() </br/>
+    <strong>RequestURL</strong>: $!request.getRequestURL() </br/>
+</fieldset>
+<fieldset>
+    <legend>[Header]</legend>
+    #foreach($name in $!request.getHeaderNames())
+      <strong>$name</strong>: $!request.getHeader($name) <br />
+    #end
+</fieldset>
+<fieldset>
+    <legend>[Parameter]</legend>
+    #foreach($name in $!request.getParameterNames())
+      <strong>$name</strong>: $!request.getParameter($name) <br />
+    #end
+</fieldset>
+<fieldset>
+    <legend>[Session]</legend>
+    #foreach($name in $!session.getAttributeNames())
+      <strong>$name</strong>: $!session.getAttribute($name) <br />
+    #end
+</fieldset>
+<fieldset>
+    <legend>[Cookie]</legend>
+    #foreach($name in $!request.getCookies())
+      <strong>$name.getName()</strong>: $name.getValue() <br />
+    #end
+</fieldset>
+<fieldset>
+  <legend>[Render Context]</legend>
+    #foreach($name in $!modelContext.getKeys())
+      <strong>$name</strong>: $!modelContext.get($name) <br />
+    #end
+</fieldset>
+<fieldset>
+  <legend>[Request Attribute]</legend>
+    #foreach($name in $!request.getAttributeNames())
+      <strong>$name</strong>: $!request.getAttribute($name) <br />
+    #end
+</fieldset>
+<fieldset>
+    <legend>[Properties]</legend>
+    #foreach($name in $properties.keySet())
+    <strong>$name</strong>: $properties.get($name) <br />
+  #end
+</fieldset>
+
+#setLayout("layout/defaultLayout")

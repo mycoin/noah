@@ -2,13 +2,11 @@ package com.breakidea.noah.framework.util;
 
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.Date;
 import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
-import com.google.gson.internal.bind.DateTypeAdapter;
 import com.google.gson.stream.MalformedJsonException;
 
 public abstract class JsonUtils {
@@ -25,10 +23,8 @@ public abstract class JsonUtils {
 	public static Gson create() {
 		GsonBuilder gb = new GsonBuilder();
 
-		gb.disableHtmlEscaping();
 		gb.serializeNulls();
 		gb.setDateFormat(DATE_FORMAT);
-		gb.registerTypeAdapter(Date.class, new DateTypeAdapter());
 
 		return gb.create();
 	}

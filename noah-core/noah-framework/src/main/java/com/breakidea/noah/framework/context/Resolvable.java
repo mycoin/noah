@@ -1,6 +1,6 @@
 package com.breakidea.noah.framework.context;
 
-public interface Resolvable {
+public interface Resolvable<T> {
 
-	Object resolve(Context context) throws ContextException;
+	T resolve(Context context) throws ContextException;
 }

@@ -1,8 +1,9 @@
 package com.breakidea.noah.framework.util;
 
+import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.UUID;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -71,23 +72,22 @@ public class EncoderUtils {
 		return null;
 	}
 
-	public static String encode(String password) {
-		try {
-			MessageDigest digest = MessageDigest.getInstance("md5");
-			byte[] bs = digest.digest(password.getBytes());
-			String hexString = "";
-			for (byte b : bs) {
-				int temp = b & 255;
-				if (temp < 16 && temp >= 0) {
-					hexString = hexString + "0" + Integer.toHexString(temp);
-				} else {
-					hexString = hexString + Integer.toHexString(temp);
-				}
+	public static String encode(String password) throws GeneralSecurityException {
+		MessageDigest digest = MessageDigest.getInstance("md5");
+		byte[] bs = digest.digest(password.getBytes());
+		String hexString = "";
+		for (byte b : bs) {
+			int temp = b & 255;
+			if (temp < 16 && temp >= 0) {
+				hexString = hexString + "0" + Integer.toHexString(temp);
+			} else {
+				hexString = hexString + Integer.toHexString(temp);
 			}
-			return hexString;
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 		}
-		return "";
+		return hexString;
+	}
+
+	public static String getGuid() {
+		return UUID.randomUUID().toString();
 	}
 }
