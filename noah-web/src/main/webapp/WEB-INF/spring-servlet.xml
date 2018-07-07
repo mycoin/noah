@@ -53,9 +53,9 @@
 	<!-- 模板配置 -->
 	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath">
-			<value>classpath:modules/,/WEB-INF/templates/</value>
+			<value>classpath:templates/,/WEB-INF/templates/</value>
 		</property>
-		<property name="configLocation" value="classpath:modules/velocity.properties" />
+		<property name="configLocation" value="classpath:templates/velocity.properties" />
 		<property name="velocityProperties">
 			<props>
 				<prop key="resource.loader.cache">false</prop>
@@ -75,11 +75,13 @@
 					<property name="viewClass" value="com.breakidea.noah.starter.view.TemplateBasedLayoutView" />
 					<property name="requestContextAttribute" value="requestContext" />
 					<property name="cache" value="true" />
-					<property name="prefix" value="modules/" />
+					<property name="prefix" value="module/" />
 					<property name="suffix" value=".vm" />
 					<property name="contentType" value="text/html; charset=UTF-8" />
 					<property name="attributesMap">
-						<bean class="com.breakidea.noah.starter.view.AttributesFactoryBean" />
+						<bean class="com.breakidea.noah.starter.view.AttributesFactoryBean">
+							<property name="configLocation" value="classpath:templates/attributes.properties" />
+						</bean>
 					</property>
 				</bean>
 			</list>

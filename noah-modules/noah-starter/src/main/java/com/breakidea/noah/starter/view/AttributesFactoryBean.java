@@ -5,22 +5,20 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.config.AbstractFactoryBean;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 @SuppressWarnings("rawtypes")
 public class AttributesFactoryBean extends AbstractFactoryBean<Map> {
 
-	private static final String MAPPER_LOCATE = "com/breakidea/noah/starter/view/AttributesMapper.properties";
-
-	@Override
-	public Class<?> getObjectType() {
-		return Map.class;
-	}
+	private Resource configLocation = null;
 
 	@Override
 	protected Map<String, ?> createInstance() throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		Properties configProperties = PropertiesLoaderUtils.loadAllProperties(MAPPER_LOCATE);
+		Properties configProperties = new Properties();
+
+		PropertiesLoaderUtils.fillProperties(configProperties, configLocation);
 		ClassLoader classLoader = getClass().getClassLoader();
 
 		for (Object keyName : configProperties.keySet()) {
@@ -31,5 +29,14 @@ public class AttributesFactoryBean extends AbstractFactoryBean<Map> {
 		}
 
 		return returnMap;
+	}
+
+	@Override
+	public Class<?> getObjectType() {
+		return Map.class;
+	}
+
+	public void setConfigLocation(Resource configLocation) {
+		this.configLocation = configLocation;
 	}
 }

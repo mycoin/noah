@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			encode = EncoderUtils.encode(password);
 		} catch (GeneralSecurityException e) {
-			e.printStackTrace();
+			throw new ServiceException("Bad Password", e);
 		}
 
 		param.setPassword(encode);
