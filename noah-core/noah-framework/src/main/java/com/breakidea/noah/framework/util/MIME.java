@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 
-public class MIME {
+public abstract class MIME {
 
 	private static String[] mimeStrings = {
 			".ez", "application/andrew-inset",

@@ -1,6 +1,6 @@
 package com.breakidea.noah.framework.util.security;
 
-public class FilterEL {
+public abstract class FilterEL {
 
 	public static String asNumber(String input) {
 		return Filter.asNumber(input);

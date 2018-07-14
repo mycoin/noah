@@ -22,7 +22,7 @@ package com.breakidea.noah.framework.util.security;
  * @author Jon Passki
  * 
  */
-public class EscapeEL {
+public abstract class EscapeEL {
 
 	/**
 	 * EL wrapper for {@link Escape#html(String)}

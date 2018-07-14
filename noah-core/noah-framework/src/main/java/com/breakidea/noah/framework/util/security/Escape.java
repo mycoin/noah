@@ -1,6 +1,5 @@
 package com.breakidea.noah.framework.util.security;
 
-
 /**
  * Escape is a small set of methods for escaping tainted data. These escaping
  * methods are useful in transforming user-controlled ("tainted") data into
@@ -25,7 +24,7 @@ package com.breakidea.noah.framework.util.security;
  * @author Jon Passki
  * 
  */
-public class Escape {
+public abstract class Escape {
 
     /**
      * HTML entity escaping for text content and attributes.

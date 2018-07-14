@@ -10,7 +10,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-public class EncoderUtils {
+public abstract class EncoderUtils {
 
 	/**
 	 * @param data
