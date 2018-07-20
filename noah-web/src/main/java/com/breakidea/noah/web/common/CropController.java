@@ -1,29 +1,30 @@
 package com.breakidea.noah.web.common;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
 import com.breakidea.noah.starter.support.AbstractExtendedController;
 
 @Controller("/common/img")
 public class CropController extends AbstractExtendedController {
 
-	@Autowired
-	NativeWebRequest webRequest;
+	@Resource
+	private ServletContext servletContext;
 
 	@Override
 	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
 		mv.setViewName("welcome");
-		MultipartHttpServletRequest e = WebUtils.getNativeRequest((HttpServletRequest) webRequest.getNativeRequest(), MultipartHttpServletRequest.class);
-		
-		
-		System.out.println(e);
+
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(servletContext);
+		if (multipartResolver.isMultipart(request)) {
+			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+		}
+
 	}
 }
