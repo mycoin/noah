@@ -1,1 +1,3 @@
+#if(!$status)#set($status = 0)#end
+#if(!$statusInfo)#set($statusInfo = "OK")#end
 {"status":$status,"statusInfo":"$statusInfo"}
