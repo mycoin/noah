@@ -2,19 +2,27 @@ package com.breakidea.noah.web.portal;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.breakidea.noah.starter.support.AbstractExtendedRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.breakidea.noah.starter.support.AbstractEnhancedController;
 
 @Controller("/portal/endpoint")
-public class EndpointController extends AbstractExtendedRequest {
+public class EndpointController extends AbstractEnhancedController {
 
-	public Boolean defaultMain(ModelMap modelMap) {
+	@Override
+	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException {
+		HttpSession session = request.getSession(true);
+
 		session.setAttribute("RequestId", new Date().getTime());
 		session.setAttribute("RequestName", request.getRequestURI());
 
-		modelMap.addAttribute("properties", System.getProperties());
-		return true;
+		mv.addObject("properties", System.getProperties());
 	}
 }

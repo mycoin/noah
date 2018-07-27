@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.breakidea.noah.framework.util.EncoderUtils;
 import com.breakidea.noah.shared.service.MonitorService;
-import com.breakidea.noah.starter.support.AbstractExtendedController;
+import com.breakidea.noah.starter.support.AbstractEnhancedController;
 import com.breakidea.noah.starter.support.CookieUtils;
 import com.breakidea.noah.starter.support.RequestUtils;
 
 @Controller("/monitor.js")
-public class MonitorController extends AbstractExtendedController implements InitializingBean {
+public class MonitorController extends AbstractEnhancedController implements InitializingBean {
 
 	private static final String MAPPER_LOCATE = "com/breakidea/noah/web/common/MonitorMaper.properties";
 
@@ -40,7 +42,7 @@ public class MonitorController extends AbstractExtendedController implements Ini
 		}
 	}
 
-	protected String resolveClientId() {
+	protected String resolveClientId(HttpServletRequest request, HttpServletResponse response) {
 		String clientId = CookieUtils.getCookieString(request, "CID");
 
 		if (clientId == null) {
@@ -51,19 +53,20 @@ public class MonitorController extends AbstractExtendedController implements Ini
 	}
 
 	@Override
-	protected void handleRequestInternal(ModelAndView mv) throws ServletException {
+	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/javascript; charset=UTF-8");
 
 		mv.addObject("siteId", RequestUtils.getInteger(request, "sid"));
-		mv.addObject("clientId", resolveClientId());
+		mv.addObject("clientId", resolveClientId(request, response));
 		mv.addObject("serverName", request.getRemoteHost());
 
 		mv.setViewName("/common/monitor");
 	}
 
 	@RequestMapping("/e.gif")
-	public @ResponseBody String saveLog() {
+	public @ResponseBody String saveLog(HttpServletRequest request, HttpServletResponse response) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		String clientId = CookieUtils.getCookieString(request, "CID");
 
@@ -85,6 +88,7 @@ public class MonitorController extends AbstractExtendedController implements Ini
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("image/gif");
+
 		return "";
 
 	}

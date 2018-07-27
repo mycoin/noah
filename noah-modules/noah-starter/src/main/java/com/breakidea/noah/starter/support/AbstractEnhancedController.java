@@ -1,17 +1,18 @@
 package com.breakidea.noah.starter.support;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-public abstract class AbstractExtendedController extends AbstractController {
+public abstract class AbstractEnhancedController extends AbstractController {
 
 	public static final String REQUEST_ATTRIBUTE = "request";
 
@@ -23,14 +24,11 @@ public abstract class AbstractExtendedController extends AbstractController {
 
 	protected Log logger = LogFactory.getLog(getClass());
 
-	@Autowired
-	protected HttpServletRequest request;
+	@Resource
+	protected ServletContext servletContext;
 
-	@Autowired
-	protected HttpServletResponse response;
-
-	@Autowired
-	protected HttpSession session;
+	@Resource
+	protected WebRequest webRequest;
 
 	@Override
 	protected final ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
@@ -38,23 +36,23 @@ public abstract class AbstractExtendedController extends AbstractController {
 		ModelAndView mv = new ModelAndView();
 
 		try {
-			handleRequestInternal(mv);
-			overwriteContext(mv);
+			handleRequestInternal(mv, request, response);
+
+			mv.addObject(REQUEST_ATTRIBUTE, request);
+			mv.addObject(RESPONSE_ATTRIBUTE, response);
+			mv.addObject(SESSION_ATTRIBUTE, request.getSession(false));
 
 		} catch (ServletException e) {
 			mv.addObject(ERROR_NAME, e.getMessage());
+			logger.error(e);
 		}
+
 		return mv;
 	}
 
 	/**
 	 * Template method. Subclasses must implement this.
 	 */
-	protected abstract void handleRequestInternal(ModelAndView mv) throws ServletException;
-
-	protected void overwriteContext(ModelAndView mv) {
-		mv.addObject(REQUEST_ATTRIBUTE, request);
-		mv.addObject(RESPONSE_ATTRIBUTE, response);
-		mv.addObject(SESSION_ATTRIBUTE, session);
-	}
+	protected abstract void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException;
 }

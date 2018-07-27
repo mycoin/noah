@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.breakidea.noah.starter.support.AbstractExtendedRequest;
+import com.breakidea.noah.starter.support.AbstractAsyncController;
 
 public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 
@@ -15,7 +15,7 @@ public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (handler instanceof AbstractExtendedRequest) {
+		if (handler instanceof AbstractAsyncController) {
 			request.setAttribute(AJAX_REQUEST, true);
 		}
 		return true;
@@ -27,9 +27,9 @@ public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 		if (request.getAttribute(AJAX_REQUEST) == null) {
 			return;
 		}
+
 		if (modelAndView.getViewName() == null) {
 			modelAndView.setViewName("/welcome");
 		}
-
 	}
 }

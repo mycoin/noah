@@ -19,8 +19,6 @@ public class RequestUtils {
 
 	private static final String SPLIT_REGEX = ",";
 
-	private static final String FLAG_NAME = "__flag";
-
 	static {
 		POSITIVE_SET.add("true");
 		POSITIVE_SET.add("T");
@@ -64,16 +62,6 @@ public class RequestUtils {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * 解析获取请求标记的Flag数据
-	 * 
-	 * @param request
-	 * @return
-	 */
-	public static Set<String> getFlagSet(HttpServletRequest request) {
-		return getSet(request, FLAG_NAME);
 	}
 
 	/**
