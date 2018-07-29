@@ -12,7 +12,7 @@
 
 	<!-- 文件扫描 -->
 	<context:component-scan base-package="com.breakidea.noah.web" />
-	<context:component-scan base-package="com.breakidea.noah.starter" />
+	<context:component-scan base-package="com.breakidea.noah.framework.web" />
 
 	<!-- 消息文案 -->
 	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -71,14 +71,14 @@
 			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-					<property name="viewClass" value="com.breakidea.noah.starter.view.TemplateBasedLayoutView" />
+					<property name="viewClass" value="com.breakidea.noah.framework.view.TemplateBasedLayoutView" />
 					<property name="requestContextAttribute" value="requestContext" />
 					<property name="cache" value="true" />
 					<property name="prefix" value="module/" />
 					<property name="suffix" value=".vm" />
 					<property name="contentType" value="text/html; charset=UTF-8" />
 					<property name="attributesMap">
-						<bean class="com.breakidea.noah.starter.view.AttributesFactoryBean">
+						<bean class="com.breakidea.noah.framework.view.AttributesFactoryBean">
 							<property name="configLocation" value="classpath:templates/attributes.properties" />
 						</bean>
 					</property>
@@ -88,9 +88,9 @@
 	</bean>
 
 	<mvc:interceptors>
-		<bean class="com.breakidea.noah.starter.http.DefaultHandlerInterceptor" />
+		<bean class="com.breakidea.noah.framework.http.DefaultHandlerInterceptor" />
 	</mvc:interceptors>
-	
+
 	<!-- 文件上传 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8" />

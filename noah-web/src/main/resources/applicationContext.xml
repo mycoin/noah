@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
@@ -8,10 +9,12 @@
 
 	<context:property-placeholder location="classpath:conf/global.properties" />
 
-	<bean name="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean name="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="commonMessages">
-			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<bean
+				class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 				<property name="locations">
 					<list>
 						<value>classpath:conf/global.properties</value>

@@ -27,7 +27,7 @@
 			data.append("action", "UploadVMKImagePath");
 			data.append("fileName", document.getElementById("fileName").files[0]);
 
-			xhr.open("post", "/portal/crop-image", true);
+			xhr.open("post", "/portal/endpoint", true);
 			xhr.timeout = 30000;
 			xhr.responseType = "json";
 			xhr.onload = function(result) {
