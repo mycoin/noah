@@ -1,0 +1,12 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <comment>URI config</comment>
+
+    <entry key="static.jquery">https://apps.bdimg.com/libs/jquery/2.1.4/jquery.js</entry>
+    <entry key="static.require">https://apps.bdimg.com/libs/require.js/2.1.9/require.js?version=1</entry>
+    <entry key="static.version">
+    <![CDATA[
+        
+    ]]>
+    </entry>
+</properties>

@@ -52,9 +52,10 @@ public class PortalController extends AbstractEnhancedController {
 			if (multipartResolver.isMultipart(request)) {
 				MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 				try {
-					multiRequest.getInputStream();
-					MultipartFile file = multiRequest.getFile("fileName");
+					MultipartFile file = multiRequest.getFile("imageFile");
 					final InputStream stream = file.getInputStream();
+					Integer width = RequestUtils.getInteger(request, "width");
+					Integer height = RequestUtils.getInteger(request, "height");
 
 					mv.setView(new AbstractView() {
 
@@ -62,7 +63,7 @@ public class PortalController extends AbstractEnhancedController {
 						protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 								HttpServletResponse response) throws Exception {
 							OutputStream os = response.getOutputStream();
-							Rectangle rectangle = new Rectangle(0, 0, 100, 100);
+							Rectangle rectangle = new Rectangle(0, 0, width, height);
 
 							ImageCrop.dispatchCrop(stream, os, rectangle);
 						}

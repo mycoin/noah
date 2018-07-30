@@ -15,10 +15,10 @@
 </head>
 <body>
 	<form class="formMain">
-		<input id="fileName" name="imageFile" type="file" /> 
+		<input id="fileName" name="imageFile" type="file" />
 		<input class="upload" type="button" value="upload" />
 	</form>
-	<script src="/assets/jquery.js"></script>
+	<script src="/static/jquery.js"></script>
 	<script>
 		function sendForm() {
 			var xhr = new XMLHttpRequest();
@@ -34,7 +34,7 @@
 				console.error("上传完成:", result);
 			};
 			xhr.send(data);
-			
+
 			console.log(data);
 		}
 

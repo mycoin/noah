@@ -1,4 +1,4 @@
-package com.breakidea.noah.framework.util.security;
+package com.breakidea.noah.framework.support.security;
 
 /**
  * Filter is a small set of methods for filtering tainted data that cannot be escaped. These

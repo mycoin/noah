@@ -1,4 +1,4 @@
-package com.breakidea.noah.framework.util.security;
+package com.breakidea.noah.framework.support.security;
 
 /**
  * Escape is a small set of methods for escaping tainted data. These escaping

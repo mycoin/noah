@@ -1,8 +1,6 @@
 package com.breakidea.noah.framework.support;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +9,11 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
-public class RequestUtils {
+public abstract class RequestUtils {
 
 	private static final String DEFAULT_VALUE = "";
 
 	private static final Set<String> POSITIVE_SET = new HashSet<String>();
-
-	private static final String SPLIT_REGEX = ",";
 
 	static {
 		POSITIVE_SET.add("true");
@@ -132,10 +128,7 @@ public class RequestUtils {
 	 * @return
 	 */
 	public static Set<String> getSet(HttpServletRequest request, String parameterName) {
-		String parameter = getParameter(request, parameterName);
-		List<String> flagList = Arrays.asList(parameter.split(SPLIT_REGEX));
-
-		return new HashSet<String>(flagList);
+		return StringUtils.commaDelimitedListToSet(getParameter(request, parameterName));
 	}
 
 	/**

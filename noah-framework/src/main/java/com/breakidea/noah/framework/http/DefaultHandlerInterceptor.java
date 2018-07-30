@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 
 	private static final String AJAX_REQUEST = DefaultHandlerInterceptor.class.getName();
-
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

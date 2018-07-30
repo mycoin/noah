@@ -1,4 +1,4 @@
-package com.breakidea.noah.framework.util.security;
+package com.breakidea.noah.framework.support.security;
 
 /**
  * EscapeEL is a wrapper class the provides alternative names for the escaping

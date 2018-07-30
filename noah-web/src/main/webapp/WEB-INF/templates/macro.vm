@@ -13,10 +13,6 @@
 	#end
 #end
 
-#macro(printException $exception)
-$Utils.printException($exception)
-#end
-
 #macro(disableLayout)
   #set($screenLayout = "")
 #end
