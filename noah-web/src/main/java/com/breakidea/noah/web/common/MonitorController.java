@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.breakidea.noah.framework.support.AbstractEnhancedController;
 import com.breakidea.noah.framework.support.CookieUtils;
 import com.breakidea.noah.framework.support.RequestUtils;
-import com.breakidea.noah.framework.util.EncoderUtils;
+import com.breakidea.noah.framework.util.Encoder;
 import com.breakidea.noah.shared.service.MonitorService;
 
 @Controller("/monitor.js")
@@ -46,7 +46,7 @@ public class MonitorController extends AbstractEnhancedController implements Ini
 		String clientId = CookieUtils.getCookieString(request, "CID");
 
 		if (clientId == null) {
-			clientId = EncoderUtils.getGuid();
+			clientId = Encoder.getGuid();
 			CookieUtils.addCookie(response, "CID", clientId);
 		}
 		return clientId;

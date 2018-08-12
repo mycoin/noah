@@ -12,7 +12,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.breakidea.noah.dao.UserDao;
-import com.breakidea.noah.framework.util.EncoderUtils;
+import com.breakidea.noah.framework.util.Encoder;
 import com.breakidea.noah.shared.exception.ServiceException;
 import com.breakidea.noah.shared.model.UserModel;
 import com.breakidea.noah.shared.param.UserParam;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		String password = param.getPassword();
 		String encode = null;
 		try {
-			encode = EncoderUtils.encode(password);
+			encode = Encoder.encode(password);
 		} catch (GeneralSecurityException e) {
 			throw new ServiceException("Bad Password", e);
 		}

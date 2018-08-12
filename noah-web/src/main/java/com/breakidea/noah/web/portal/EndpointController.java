@@ -24,5 +24,6 @@ public class EndpointController extends AbstractEnhancedController {
 		session.setAttribute("RequestName", request.getRequestURI());
 
 		mv.addObject("properties", System.getProperties());
+		mv.addObject("env", System.getenv());
 	}
 }
