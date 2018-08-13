@@ -146,4 +146,8 @@ public abstract class RequestUtils {
 		}
 		return false;
 	}
+
+	public static boolean isPost(HttpServletRequest request) {
+		return request.getMethod().equals("POST");
+	}
 }
