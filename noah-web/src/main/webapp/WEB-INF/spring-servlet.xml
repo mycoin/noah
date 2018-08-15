@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:lang="http://www.springframework.org/schema/lang"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:websocket="http://www.springframework.org/schema/websocket"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -12,103 +12,103 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 文件扫描 -->
-    <context:component-scan base-package="com.breakidea.noah.web" />
-    <context:component-scan base-package="com.breakidea.noah.framework.web" />
+	<context:component-scan base-package="com.breakidea.noah.web" />
+	<context:component-scan base-package="com.breakidea.noah.framework.web" />
 
 	<!-- 注解支持 -->
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>application/json;charset=UTF-8</value>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>text/json;charset=UTF-8</value>
-                    </list>
-                </property>
-                <property name="gson">
-                    <bean class="org.springframework.http.converter.json.GsonFactoryBean">
-                        <property name="dateFormatPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" />
-                        <property name="disableHtmlEscaping" value="true" />
-                        <property name="serializeNulls" value="true" />
-                    </bean>
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.GsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>text/json;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="gson">
+					<bean class="org.springframework.http.converter.json.GsonFactoryBean">
+						<property name="dateFormatPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" />
+						<property name="disableHtmlEscaping" value="true" />
+						<property name="serializeNulls" value="true" />
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- 模板配置 -->
-    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath">
-            <value>classpath:templates/,/WEB-INF/templates/</value>
-        </property>
-        <property name="configLocation" value="classpath:templates/velocity.properties" />
-        <property name="velocityProperties">
-            <props>
-                <prop key="resource.loader.cache">false</prop>
-                <prop key="input.encoding">UTF-8</prop>
-                <prop key="output.encoding">UTF-8</prop>
-            </props>
-        </property>
-    </bean>
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="configLocation" value="/WEB-INF/conf/velocity.properties" />
+		<property name="resourceLoaderPath">
+			<value>classpath:templates/</value>
+		</property>
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader.cache">false</prop>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- 视图配置 -->
-    <bean class="org.springframework.web.servlet.view.ViewResolverComposite">
-        <property name="order" value="0" />
-        <property name="viewResolvers">
-            <list>
-                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-                <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-                    <property name="viewClass" value="com.breakidea.noah.framework.view.TemplateBasedLayoutView" />
-                    <property name="requestContextAttribute" value="requestContext" />
-                    <property name="cache" value="true" />
-                    <property name="prefix" value="modules/" />
-                    <property name="suffix" value=".vm" />
-                    <property name="contentType" value="text/html; charset=UTF-8" />
-                    <property name="attributesMap">
-                        <bean class="com.breakidea.noah.framework.view.AttributesFactoryBean">
-                            <property name="configLocation" value="classpath:templates/attributes.properties" />
-                        </bean>
-                    </property>
-                </bean>
-            </list>
-        </property>
-    </bean>
+	<bean class="org.springframework.web.servlet.view.ViewResolverComposite">
+		<property name="order" value="0" />
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+					<property name="viewClass" value="com.breakidea.noah.framework.view.TemplateBasedLayoutView" />
+					<property name="requestContextAttribute" value="requestContext" />
+					<property name="cache" value="true" />
+					<property name="prefix" value="modules/" />
+					<property name="suffix" value=".vm" />
+					<property name="contentType" value="text/html; charset=UTF-8" />
+					<property name="attributesMap">
+						<bean class="com.breakidea.noah.framework.view.AttributesFactoryBean">
+							<property name="configLocation" value="/WEB-INF/conf/attribute.properties" />
+						</bean>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
 
-    <mvc:interceptors>
-        <bean class="com.breakidea.noah.framework.http.DefaultHandlerInterceptor" />
-    </mvc:interceptors>
+	<mvc:interceptors>
+		<bean class="com.breakidea.noah.framework.http.DefaultHandlerInterceptor" />
+	</mvc:interceptors>
 
 	<!-- 文件上传 -->
-    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="utf-8" />
-        <property name="maxUploadSize" value="10485760000" />
-        <property name="maxInMemorySize" value="40960" />
-    </bean>
-    
-    <!-- 消息文案 -->
-    <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="defaultEncoding" value="UTF-8" />
-        <property name="cacheSeconds" value="5" />
-        <property name="basenames">
-            <list>
-                <value>/WEB-INF/conf/system</value>
-                <value>/WEB-INF/conf/uri</value>
-            </list>
-        </property>
-    </bean>
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="10485760000" />
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+	<!-- 消息文案 -->
+	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="5" />
+		<property name="basenames">
+			<list>
+				<value>classpath:conf/system</value>
+				<value>classpath:conf/uri</value>
+			</list>
+		</property>
+	</bean>
 
 	<!-- 异常处理 -->
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="order" value="1" />
-        <property name="exceptionMappings">
-            <props>
-                <prop key="java.lang.RuntimeException">error</prop>
-            </props>
-        </property>
-        <property name="defaultErrorView" value="error" />
-        <property name="defaultStatusCode" value="500" />
-    </bean>
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="order" value="1" />
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.RuntimeException">error</prop>
+			</props>
+		</property>
+		<property name="defaultErrorView" value="error" />
+		<property name="defaultStatusCode" value="500" />
+	</bean>
 
-    <mvc:default-servlet-handler default-servlet-name="default" />
+	<mvc:default-servlet-handler default-servlet-name="default" />
 </beans>
