@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration>
 <configuration debug="false">
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>[%level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger - %msg%n</pattern>
-		</encoder>
-	</appender>
-	<root level="DEBUG">
-		<appender-ref ref="STDOUT" />
-	</root>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>
+                %red(%level) %d{yyyy-MM-dd HH:mm:ss} %green([%thread]) %boldMagenta(%logger) - %cyan(%msg%n)
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
 </configuration>

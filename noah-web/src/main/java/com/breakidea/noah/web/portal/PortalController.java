@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,9 @@ public class PortalController extends AbstractEnhancedController {
 	@Resource
 	private WebRequest webRequest;
 
+	@Resource
+	private ServletContext servletContext;
+
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
@@ -54,8 +58,8 @@ public class PortalController extends AbstractEnhancedController {
 				try {
 					MultipartFile file = multiRequest.getFile("imageFile");
 					final InputStream stream = file.getInputStream();
-					Integer width = RequestUtils.getInteger(request, "width");
-					Integer height = RequestUtils.getInteger(request, "height");
+					final Integer width = RequestUtils.getInteger(request, "width");
+					final Integer height = RequestUtils.getInteger(request, "height");
 
 					mv.setView(new AbstractView() {
 
