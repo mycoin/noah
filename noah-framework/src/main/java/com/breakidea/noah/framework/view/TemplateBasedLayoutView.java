@@ -15,7 +15,7 @@ public class TemplateBasedLayoutView extends VelocityView {
 
 	public static final String DEFAULT_SCREEN_CONTENT_KEY = "screenContent";
 
-	public static final String DEFAULT_LAYOUT = "layout/defaultLayout.vm";
+	public static final String DEFAULT_LAYOUT = "blankLayout.vm";
 
 	@Override
 	protected void doRender(Context context, HttpServletResponse response) throws Exception {
