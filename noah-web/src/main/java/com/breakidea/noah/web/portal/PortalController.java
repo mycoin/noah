@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,17 +21,26 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.breakidea.noah.framework.support.AbstractEnhancedController;
-import com.breakidea.noah.framework.support.RequestUtils;
+import com.breakidea.noah.framework.support.AbstractWebController;
+import com.breakidea.noah.framework.support.WebUtils;
 import com.breakidea.noah.framework.util.image.ImageCrop;
+import com.breakidea.noah.service.post.FormActionProcessorConfigBean;
+import com.breakidea.noah.service.post.FormProcessorService;
+import com.breakidea.noah.service.post.PostParameter;
 import com.breakidea.noah.shared.param.UserParam;
 import com.breakidea.noah.shared.service.UserService;
 
 @Controller("/portal/index")
-public class PortalController extends AbstractEnhancedController {
+public class PortalController extends AbstractWebController {
 
 	@Resource
 	private UserService userService;
+
+	@Resource
+	private FormProcessorService formProcessor;
+	
+	@Autowired
+	private FormActionProcessorConfigBean formActionProcessor;
 
 	@Resource
 	private WebRequest webRequest;
@@ -41,8 +51,9 @@ public class PortalController extends AbstractEnhancedController {
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		UserParam param = RequestUtils.bindRequest(request, UserParam.class);
-		String action = RequestUtils.getParameter(request, "action");
+		UserParam param = WebUtils.bindRequest(request, UserParam.class);
+		PostParameter parameter = new PostParameter(request);
+		String action = WebUtils.getParameter(request, "action");
 
 		if ("submit".equals(action)) {
 			userService.add(param);
@@ -58,8 +69,8 @@ public class PortalController extends AbstractEnhancedController {
 				try {
 					MultipartFile file = multiRequest.getFile("imageFile");
 					final InputStream stream = file.getInputStream();
-					final Integer width = RequestUtils.getInteger(request, "width");
-					final Integer height = RequestUtils.getInteger(request, "height");
+					final Integer width = parameter.getInteger("width");
+					final Integer height = parameter.getInteger("height");
 
 					mv.setView(new AbstractView() {
 
@@ -76,7 +87,8 @@ public class PortalController extends AbstractEnhancedController {
 					e.printStackTrace();
 				}
 			}
-
+		} else if ("pay".equals(action)) {
+			formProcessor.execute(formActionProcessor.getActionProcessors(), parameter);
 		} else {
 			mv.addObject("user", userService.query(param));
 			mv.addObject("sessionId", webRequest.getSessionId());

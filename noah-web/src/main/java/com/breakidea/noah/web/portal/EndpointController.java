@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.breakidea.noah.framework.support.AbstractEnhancedController;
+import com.breakidea.noah.framework.support.AbstractWebController;
 
 @Controller("/portal/endpoint")
-public class EndpointController extends AbstractEnhancedController {
+public class EndpointController extends AbstractWebController {
 
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)

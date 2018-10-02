@@ -10,4 +10,26 @@
     default-autowire="byName">
 
     <context:component-scan base-package="com.breakidea.noah.service" />
+
+    <bean class="com.breakidea.noah.service.post.FormActionProcessorConfigBean">
+        <property name="actionProcessors">
+            <list>
+                <bean class="com.breakidea.noah.service.post.processor.TokenProcessor" />
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="request">
+                    <bean class="org.springframework.web.context.request.RequestScope" />
+                </entry>
+                <entry key="session">
+                    <bean class="org.springframework.context.support.SimpleThreadScope" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+
 </beans>

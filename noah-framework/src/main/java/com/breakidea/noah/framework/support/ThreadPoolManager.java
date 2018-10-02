@@ -1,9 +1,10 @@
-package com.breakidea.noah.framework.support.from;
+package com.breakidea.noah.framework.support;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public abstract class ThreadPoolManager {
+	
 	private static ExecutorService executor;
 
 	static {

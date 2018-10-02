@@ -3,33 +3,24 @@ package com.breakidea.noah.framework.http;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.breakidea.noah.framework.support.WebUtils;
+import com.breakidea.noah.framework.support.logger.Logger;
+import com.breakidea.noah.framework.support.logger.LoggerFactory;
+
 public class DefaultHandlerInterceptor extends HandlerInterceptorAdapter {
 
-	private static final String AJAX_REQUEST = DefaultHandlerInterceptor.class.getName();
-
-	private static Log logger = LogFactory.getLog("FILE");
+	private static Logger logger = LoggerFactory.getLogger(DefaultHandlerInterceptor.class);
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
 			throws Exception {
+
 		logger.info("Request DefaultHandlerInterceptor, URL:" + request.getRequestURL());
 
-		return true;
-	}
-
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		if (request.getAttribute(AJAX_REQUEST) == null) {
-			return;
-		}
-
-		if (modelAndView.getViewName() == null) {
+		if (modelAndView.getViewName() == null && WebUtils.isAjax(request)) {
 			modelAndView.setViewName("/welcome");
 		}
 	}

@@ -1,19 +1,10 @@
-package com.breakidea.noah.framework.support.from;
-
-import java.util.Arrays;
-import java.util.List;
+package com.breakidea.noah.framework.support.post;
 
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
-public abstract class Parameter {
-
-	public static final boolean DEFAULT_BOOLEAN = false;
-
-	public static final int DEFAULT_INT = 0;
-
-	public static final double DEFAULT_DOUBLE = 0L;
+public abstract class AbstractParameter implements Parameter {
 
 	/**
 	 * 获取前端提交的参数是否为 “true” 类型'true', 'on' or 'yes' (case insensitive)
@@ -21,8 +12,8 @@ public abstract class Parameter {
 	 * @param parameterName
 	 * @return
 	 */
-	public Boolean getBoolean(String parameterName) {
-		return getBoolean(parameterName, DEFAULT_BOOLEAN);
+	public boolean getBoolean(String parameterName) {
+		return getBoolean(parameterName, false);
 	}
 
 	/**
@@ -31,7 +22,7 @@ public abstract class Parameter {
 	 * @param parameterName
 	 * @return
 	 */
-	public Boolean getBoolean(String parameterName, boolean defaultValue) {
+	public boolean getBoolean(String parameterName, boolean defaultValue) {
 		String parameter = getString(parameterName, null);
 		if (parameter == null) {
 			return defaultValue;
@@ -46,7 +37,7 @@ public abstract class Parameter {
 	 * @return
 	 */
 	public double getDouble(String parameterName) {
-		return getDouble(parameterName, DEFAULT_DOUBLE);
+		return getDouble(parameterName, 0);
 	}
 
 	/**
@@ -67,7 +58,7 @@ public abstract class Parameter {
 	 * @return
 	 */
 	public int getInteger(String parameterName) {
-		return getInteger(parameterName, DEFAULT_INT);
+		return getInteger(parameterName, 0);
 	}
 
 	/**
@@ -88,7 +79,7 @@ public abstract class Parameter {
 	 * @return
 	 */
 	public long getLong(String parameterName) {
-		return getLong(parameterName, DEFAULT_INT);
+		return getLong(parameterName, 0);
 	}
 
 	/**
@@ -110,12 +101,11 @@ public abstract class Parameter {
 	 * @param parameterName
 	 * @return
 	 */
-	public String getString(String parameterName) {
+	public final String getString(String parameterName) {
 		String[] parameter = getParameter(parameterName);
 		if (parameter == null) {
 			return null;
 		}
-
 		return StringUtils.trimToNull(parameter[0]);
 	}
 
@@ -126,38 +116,12 @@ public abstract class Parameter {
 	 * @param defaultValue
 	 * @return
 	 */
-	public String getString(String parameterName, String defaultValue) {
+	public final String getString(String parameterName, String defaultValue) {
 		String parameter = getString(parameterName);
 		if (StringUtils.isNotBlank(parameter)) {
 			return parameter;
 		}
-		return null;
-	}
-
-	/**
-	 * 解析请求用于标记 “标示” 功能的标签，前端默认按照逗号隔开供分割
-	 * 
-	 * @param parameterName
-	 * @return
-	 */
-	public List<String> getStringList(String parameterName) {
-		return getStringList(parameterName, null);
-	}
-
-	/**
-	 * 获取相同参数的列表
-	 * 
-	 * @param parameterName
-	 * @param defaultValue
-	 * @return
-	 */
-	public List<String> getStringList(String parameterName, List<String> defaultValue) {
-		String[] parameter = getParameter(parameterName);
-		if (parameter == null || parameter.length == 0) {
-			return defaultValue;
-		}
-		
-		return Arrays.asList(parameter);
+		return defaultValue;
 	}
 
 }

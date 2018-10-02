@@ -6,12 +6,12 @@
         </filter>
         <withJansi>true</withJansi>
         <encoder>
-            <!-- <pattern>
-                %red(%level) %d{yyyy-MM-dd HH:mm:ss} %green([%thread]) %boldMagenta(%logger) - %cyan(%msg%n)
-            </pattern> -->
             <pattern>
-                %level %d{yyyy-MM-dd HH:mm:ss} [%thread] %logger - %msg%n
+                %red(%level) %d{yyyy-MM-dd HH:mm:ss} %green([%thread]) %boldMagenta(%logger) - %cyan(%msg%n)
             </pattern>
+            <!-- <pattern>
+                %level %d{yyyy-MM-dd HH:mm:ss} [%thread] %logger - %msg%n
+            </pattern> -->
             <charset>UTF-8</charset>
         </encoder>
     </appender>
