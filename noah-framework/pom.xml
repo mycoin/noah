@@ -66,10 +66,15 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency> 
+
 		<!-- Misc -->
         <dependency>
             <groupId>oro</groupId>
             <artifactId>oro</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
