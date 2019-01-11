@@ -1,0 +1,2 @@
+#if(!$status)#set($status = 0)#end
+{"status":$status,"statusInfo":"$!statusInfo"}
