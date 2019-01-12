@@ -44,16 +44,6 @@ public class VelocityProperties extends AbstractTemplateViewResolverProperties {
 	public static final String DEFAULT_SUFFIX = ".vm";
 
 	/**
-	 * Name of the DateTool helper object to expose in the Velocity context of the view.
-	 */
-	private String dateToolAttribute;
-
-	/**
-	 * Name of the NumberTool helper object to expose in the Velocity context of the view.
-	 */
-	private String numberToolAttribute;
-
-	/**
 	 * Additional velocity properties.
 	 */
 	private Map<String, String> properties = new HashMap<String, String>();
@@ -75,22 +65,6 @@ public class VelocityProperties extends AbstractTemplateViewResolverProperties {
 
 	public VelocityProperties() {
 		super(DEFAULT_PREFIX, DEFAULT_SUFFIX);
-	}
-
-	public String getDateToolAttribute() {
-		return this.dateToolAttribute;
-	}
-
-	public void setDateToolAttribute(String dateToolAttribute) {
-		this.dateToolAttribute = dateToolAttribute;
-	}
-
-	public String getNumberToolAttribute() {
-		return this.numberToolAttribute;
-	}
-
-	public void setNumberToolAttribute(String numberToolAttribute) {
-		this.numberToolAttribute = numberToolAttribute;
 	}
 
 	public Map<String, String> getProperties() {
@@ -148,7 +122,8 @@ public class VelocityProperties extends AbstractTemplateViewResolverProperties {
 		// The resolver usually acts as a fallback resolver (e.g. like a
 		// InternalResourceViewResolver) so it needs to have low precedence
 		resolver.setOrder(Ordered.LOWEST_PRECEDENCE - 5);
-		resolver.setDateToolAttribute(getDateToolAttribute());
-		resolver.setNumberToolAttribute(getNumberToolAttribute());
+		//
+		// resolver.setDateToolAttribute(getDateToolAttribute());
+		// resolver.setNumberToolAttribute(getNumberToolAttribute());
 	}
 }

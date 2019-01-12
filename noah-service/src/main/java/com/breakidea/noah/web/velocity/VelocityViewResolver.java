@@ -18,7 +18,6 @@ package com.breakidea.noah.web.velocity;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
-import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
  * Convenience subclass of {@link org.springframework.web.servlet.view.UrlBasedViewResolver} that supports
@@ -45,10 +44,6 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
  */
 public class VelocityViewResolver extends AbstractTemplateViewResolver {
 
-	private String dateToolAttribute;
-
-	private String numberToolAttribute;
-
 	private Resource velocityProperties = null;
 
 	public VelocityViewResolver() {
@@ -61,36 +56,6 @@ public class VelocityViewResolver extends AbstractTemplateViewResolver {
 	@Override
 	protected Class<?> requiredViewClass() {
 		return VelocityView.class;
-	}
-
-	/**
-	 * Set the name of the DateTool helper object to expose in the Velocity context of this view, or {@code null} if not
-	 * needed. DateTool is part of Velocity Tools 1.0.
-	 * @see org.apache.velocity.tools.generic.DateTool
-	 * @see VelocityView#setDateToolAttribute
-	 */
-	public void setDateToolAttribute(String dateToolAttribute) {
-		this.dateToolAttribute = dateToolAttribute;
-	}
-
-	/**
-	 * Set the name of the NumberTool helper object to expose in the Velocity context of this view, or {@code null} if
-	 * not needed. NumberTool is part of Velocity Tools 1.1.
-	 * @see org.apache.velocity.tools.generic.NumberTool
-	 * @see VelocityView#setNumberToolAttribute
-	 */
-	public void setNumberToolAttribute(String numberToolAttribute) {
-		this.numberToolAttribute = numberToolAttribute;
-	}
-
-	@Override
-	protected AbstractUrlBasedView buildView(String viewName) throws Exception {
-		VelocityView view = (VelocityView) super.buildView(viewName);
-
-		view.setDateToolAttribute(this.dateToolAttribute);
-		view.setNumberToolAttribute(this.numberToolAttribute);
-
-		return view;
 	}
 
 	public Resource getVelocityProperties() {

@@ -139,7 +139,7 @@ public class VelocityAutoConfiguration {
 		@ConditionalOnProperty(name = "spring.velocity.enabled", matchIfMissing = true)
 		public VelocityLayoutViewResolver velocityViewResolver() {
 			VelocityLayoutViewResolver resolver = new VelocityLayoutViewResolver();
-			this.properties.applyToViewResolver(resolver);
+			properties.applyToViewResolver(resolver);
 			return resolver;
 		}
 

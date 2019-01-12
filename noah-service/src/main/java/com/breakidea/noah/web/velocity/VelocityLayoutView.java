@@ -25,6 +25,7 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
 import org.springframework.core.NestedIOException;
+import org.springframework.util.StringUtils;
 
 /**
  * VelocityLayoutView emulates the functionality offered by Velocity's VelocityLayoutServlet to ease page composition
@@ -144,11 +145,11 @@ public class VelocityLayoutView extends VelocityView {
 		// The screen template can overrule the layout by doing
 		// #set( $layout = "MyLayout.vm" )
 		String layoutUrlToUse = (String) context.get(this.layoutKey);
-		if (layoutUrlToUse != null) {
+		if (StringUtils.hasLength(layoutUrlToUse)) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Screen content template has requested layout [" + layoutUrlToUse + "]");
 			}
-		}
+		} 
 		else {
 			// No explicit layout URL given -> use default layout of this view.
 			layoutUrlToUse = this.layoutUrl;
