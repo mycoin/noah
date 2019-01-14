@@ -1,4 +1,4 @@
-package com.breakidea.noah.service;
+package com.breakidea.noah.support;
 
 import java.util.HashMap;
 import java.util.Map;
