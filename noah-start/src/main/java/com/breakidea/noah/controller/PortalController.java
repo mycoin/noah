@@ -30,7 +30,7 @@ public class PortalController extends AbstractWebController {
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		mv.addObject("velocityEngine", VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
-
+		
 	}
 
 }

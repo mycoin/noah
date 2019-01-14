@@ -113,7 +113,6 @@ public class VelocityAutoConfiguration {
 			applyProperties(velocityEngineFactoryBean);
 			return velocityEngineFactoryBean;
 		}
-
 	}
 
 	@Configuration

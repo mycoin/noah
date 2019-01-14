@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.breakidea.noah.dao.UserDao">
+    <resultMap id="userResultMap" type="com.breakidea.noah.common.model.UserModel">
+        <id column="ID" property="id" jdbcType="BIGINT" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="VARCHAR" />
+        <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+        <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="userColumnList">
+        ID, USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED
+    </sql>
+    <select id="query" parameterType="com.breakidea.noah.common.param.UserParam" resultMap="userResultMap">
+        SELECT
+        <include refid="userColumnList" />
+        FROM `TABLE_USER` WHERE
+        <include refid="userCondition" />
+    </select>
+    <select id="queryById" parameterType="java.lang.Long" resultMap="userResultMap">
+        SELECT
+        <include refid="userColumnList" />
+        FROM `TABLE_USER` WHERE id = #{id}
+    </select>
+    <delete id="delete" parameterType="com.breakidea.noah.common.param.UserParam">
+        DELETE FROM `TABLE_USER` WHERE
+        <include refid="userCondition" />
+    </delete>
+    <insert id="insert" parameterType="com.breakidea.noah.common.param.UserParam">
+        INSERT INTO `TABLE_USER` (USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED)
+        VALUES
+        (#{userName}, #{password}, #{status}, now(), now());
+    </insert>
+    <update id="update" parameterType="com.breakidea.noah.common.param.UserParam">
+        update `TABLE_USER`
+        <set>
+            <if test="userName != null"> USER_NAME = #{userName}, </if>
+            <if test="password != null"> PASSWORD = #{password}, </if>
+            <if test="status != null"> STATUS = #{status}, </if>
+            GMT_MODIFIED = now()
+        </set>
+        where ID = #{id}
+    </update>
+    <sql id="userCondition">
+        1 = 1
+        <if test="id != null"> and ID = #{id} </if>
+        <if test="userName != null"> and USER_NAME = #{userName} </if>
+        <if test="password != null"> and PASSWORD = #{password} </if>
+        <if test="status != null"> and STATUS = #{status} </if>
+    </sql>
+</mapper>

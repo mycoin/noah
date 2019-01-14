@@ -7,13 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.breakidea.noah.common.param.UserParam;
+import com.breakidea.noah.common.service.UserService;
 import com.breakidea.noah.support.AbstractWebController;
 
 @Controller("/portal/endpoint")
 public class EndpointController extends AbstractWebController {
+
+	@Autowired
+	UserService userService;
 
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
@@ -25,5 +31,6 @@ public class EndpointController extends AbstractWebController {
 
 		mv.addObject("properties", System.getProperties());
 		mv.addObject("env", System.getenv());
+		mv.addObject("userList", userService.queryList(new UserParam()));
 	}
 }

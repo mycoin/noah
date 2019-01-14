@@ -17,7 +17,7 @@ public class UserParam extends BaseParam {
 	private String status;
 
 	private String userName;
-
+	
 	public Date getGmtCreated() {
 		return gmtCreated;
 	}

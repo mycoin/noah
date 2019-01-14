@@ -11,6 +11,11 @@ public class IndexAction {
 	@Autowired
 	ApplicationContext applicationContext;
 
+	@RequestMapping("/twig")
+	public void twig() {
+
+	}
+
 	@RequestMapping("/welcome")
 	public void welcome() {
 

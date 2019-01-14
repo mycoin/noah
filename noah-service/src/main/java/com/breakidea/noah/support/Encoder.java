@@ -94,6 +94,16 @@ public abstract class Encoder {
 		return hexString;
 	}
 
+	public static String encodeQuietly(String password) {
+		try {
+			return encode(password);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
 	/**
 	 * create Random UUID
 	 *

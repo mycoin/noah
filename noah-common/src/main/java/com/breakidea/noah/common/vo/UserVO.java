@@ -2,6 +2,8 @@ package com.breakidea.noah.common.vo;
 
 import java.util.Date;
 
+import com.google.gson.GsonBuilder;
+
 public class UserVO extends GeneralVo {
 
 	private static final long serialVersionUID = 1L;
@@ -54,5 +56,10 @@ public class UserVO extends GeneralVo {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	@Override
+	public String toString() {
+		return new GsonBuilder().create().toJson(this);
 	}
 }
