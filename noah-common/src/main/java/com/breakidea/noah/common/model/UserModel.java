@@ -1,36 +1,17 @@
 package com.breakidea.noah.common.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class UserModel extends GenaralModel {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String password;
+    private String password;
 
-	private String status;
+    private String status;
 
-	private String userName;
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    private String userName;
 }

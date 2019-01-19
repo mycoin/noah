@@ -8,16 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexAction {
 
-	@Autowired
-	ApplicationContext applicationContext;
+    @Autowired
+    ApplicationContext applicationContext;
 
-	@RequestMapping("/twig")
-	public void twig() {
+    @RequestMapping("/welcome")
+    public void welcome() {
 
-	}
-
-	@RequestMapping("/welcome")
-	public void welcome() {
-
-	}
+    }
 }

@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <context:property-placeholder location="classpath:application.properties" />
+	<context:property-placeholder location="classpath:application.properties" />
 
-    <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="defaultEncoding" value="UTF-8" />
-        <property name="cacheSeconds" value="20" />
-        <property name="commonMessages">
-            <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-                <property name="locations">
-                    <list>
-                        <value>classpath:application.properties</value>
-                    </list>
-                </property>
-            </bean>
-        </property>
-    </bean>
+	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="20" />
+		<property name="commonMessages">
+			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="locations">
+					<list>
+						<value>classpath:application.properties</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
 
-    <bean name="cookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">
-        <property name="cookieName" value="HTTPSID" />
-        <property name="useBase64Encoding" value="false" />
-        <property name="useSecureCookie" value="false" />
-    </bean>
+	<bean name="cookieSerializer" class="org.springframework.session.web.http.DefaultCookieSerializer">
+		<property name="cookieName" value="HTTPSID" />
+		<property name="useBase64Encoding" value="false" />
+		<property name="useSecureCookie" value="false" />
+	</bean>
+
+	<bean name="defaultThreadPoolExecutor" class="java.util.concurrent.ThreadPoolExecutor" destroy-method="shutdown">
+		<constructor-arg index="0" value="50" />
+		<constructor-arg index="1" value="50" />
+		<constructor-arg index="2" value="1" />
+		<constructor-arg index="3" type="java.util.concurrent.TimeUnit" value="SECONDS" />
+		<constructor-arg index="4">
+			<bean class="java.util.concurrent.ArrayBlockingQueue">
+				<constructor-arg index="0" value="50" />
+				<constructor-arg index="1" value="true" />
+			</bean>
+		</constructor-arg>
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy" />
+		</property>
+	</bean>
+
+
+	<import resource="applicationContext-view.xml" />
 </beans>

@@ -46,8 +46,8 @@ import org.springframework.web.context.ServletContextAware;
  *
  * <p>
  * Note that you can also refer to a pre-configured VelocityEngine instance via the "velocityEngine" property, e.g. set
- * up by {@link com.breakidea.noah.web.velocity.VelocityEngineFactoryBean}, This allows to share a VelocityEngine for web
- * and email usage, for example.
+ * up by {@link com.breakidea.noah.web.velocity.VelocityEngineFactoryBean}, This allows to share a VelocityEngine for
+ * web and email usage, for example.
  *
  * <p>
  * This configurer registers the "spring.vm" Velocimacro library for web views (contained in this package and thus in

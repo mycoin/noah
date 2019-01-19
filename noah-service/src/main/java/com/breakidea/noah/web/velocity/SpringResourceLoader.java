@@ -30,17 +30,16 @@ import org.apache.velocity.runtime.resource.loader.ResourceLoader;
 import org.springframework.util.StringUtils;
 
 /**
- * Velocity ResourceLoader adapter that loads via a Spring ResourceLoader.
- * Used by VelocityEngineFactory for any resource loader path that cannot
- * be resolved to a {@code java.io.File}.
+ * Velocity ResourceLoader adapter that loads via a Spring ResourceLoader. Used by VelocityEngineFactory for any
+ * resource loader path that cannot be resolved to a {@code java.io.File}.
  *
- * <p>Note that this loader does not allow for modification detection:
- * Use Velocity's default FileResourceLoader for {@code java.io.File}
- * resources.
+ * <p>
+ * Note that this loader does not allow for modification detection: Use Velocity's default FileResourceLoader for
+ * {@code java.io.File} resources.
  *
- * <p>Expects "spring.resource.loader" and "spring.resource.loader.path"
- * application attributes in the Velocity runtime: the former of type
- * {@code org.springframework.core.io.ResourceLoader}, the latter a String.
+ * <p>
+ * Expects "spring.resource.loader" and "spring.resource.loader.path" application attributes in the Velocity runtime:
+ * the former of type {@code org.springframework.core.io.ResourceLoader}, the latter a String.
  *
  * @author Juergen Hoeller
  * @since 14.03.2004
@@ -60,7 +59,6 @@ public class SpringResourceLoader extends ResourceLoader {
 
 	public static final String SPRING_RESOURCE_LOADER_PATH = "spring.resource.loader.path";
 
-
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	private org.springframework.core.io.ResourceLoader resourceLoader;
@@ -69,8 +67,8 @@ public class SpringResourceLoader extends ResourceLoader {
 
 	@Override
 	public void init(ExtendedProperties configuration) {
-		this.resourceLoader = (org.springframework.core.io.ResourceLoader)
-				this.rsvc.getApplicationAttribute(SPRING_RESOURCE_LOADER);
+		this.resourceLoader = (org.springframework.core.io.ResourceLoader) this.rsvc
+				.getApplicationAttribute(SPRING_RESOURCE_LOADER);
 		String resourceLoaderPath = (String) this.rsvc.getApplicationAttribute(SPRING_RESOURCE_LOADER_PATH);
 		if (this.resourceLoader == null) {
 			throw new IllegalArgumentException(
@@ -88,8 +86,8 @@ public class SpringResourceLoader extends ResourceLoader {
 			}
 		}
 		if (logger.isInfoEnabled()) {
-			logger.info("SpringResourceLoader for Velocity: using resource loader [" + this.resourceLoader +
-					"] and resource loader paths " + Arrays.asList(this.resourceLoaderPaths));
+			logger.info("SpringResourceLoader for Velocity: using resource loader [" + this.resourceLoader
+					+ "] and resource loader paths " + Arrays.asList(this.resourceLoaderPaths));
 		}
 	}
 
@@ -99,8 +97,8 @@ public class SpringResourceLoader extends ResourceLoader {
 			logger.debug("Looking for Velocity resource with name [" + source + "]");
 		}
 		for (String resourceLoaderPath : this.resourceLoaderPaths) {
-			org.springframework.core.io.Resource resource =
-					this.resourceLoader.getResource(resourceLoaderPath + source);
+			org.springframework.core.io.Resource resource = this.resourceLoader
+					.getResource(resourceLoaderPath + source);
 			try {
 				return resource.getInputStream();
 			}
@@ -110,8 +108,7 @@ public class SpringResourceLoader extends ResourceLoader {
 				}
 			}
 		}
-		throw new ResourceNotFoundException(
-				"Could not find resource [" + source + "] in Spring resource loader path");
+		throw new ResourceNotFoundException("Could not find resource [" + source + "] in Spring resource loader path");
 	}
 
 	@Override

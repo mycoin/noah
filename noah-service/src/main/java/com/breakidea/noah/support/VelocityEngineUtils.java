@@ -1,17 +1,10 @@
 /*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2002-2013 the original author or authors. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and limitations under the
+ * License.
  */
 
 package com.breakidea.noah.support;
@@ -33,6 +26,10 @@ import org.apache.velocity.exception.VelocityException;
  */
 public abstract class VelocityEngineUtils {
 
+	public static final String CONTEXT_NAME = VelocityEngineUtils.class.getName().concat(".CONTEXT_NAME");
+
+	public static final String ENGINE_NAME = VelocityEngineUtils.class.getName().concat(".ENGINE_NAME");
+
 	/**
 	 * Merge the specified Velocity template with the given model and write the result to the given Writer.
 	 *
@@ -47,15 +44,19 @@ public abstract class VelocityEngineUtils {
 			Map<String, Object> model, Writer writer) throws VelocityException {
 
 		VelocityContext velocityContext = new VelocityContext(model);
+
+		velocityContext.put(ENGINE_NAME, velocityEngine);
+		velocityContext.put(CONTEXT_NAME, velocityContext);
+
 		velocityEngine.mergeTemplate(templateLocation, encoding, velocityContext, writer);
 	}
 
 	/**
 	 * Merge the specified Velocity template with the given model into a String.
-	 *
 	 * <p>
 	 * When using this method to prepare a text for a mail to be sent with Spring's mail support, consider wrapping
 	 * VelocityException in MailPreparationException.
+	 * 
 	 * @param velocityEngine VelocityEngine to work with
 	 * @param templateLocation the location of template, relative to Velocity's resource loader path
 	 * @param encoding the encoding of the template file

@@ -149,7 +149,7 @@ public class VelocityLayoutView extends VelocityView {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Screen content template has requested layout [" + layoutUrlToUse + "]");
 			}
-		} 
+		}
 		else {
 			// No explicit layout URL given -> use default layout of this view.
 			layoutUrlToUse = this.layoutUrl;

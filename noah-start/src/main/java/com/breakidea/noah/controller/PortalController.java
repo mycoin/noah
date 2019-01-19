@@ -1,7 +1,6 @@
 package com.breakidea.noah.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,14 +22,12 @@ public class PortalController extends AbstractWebController {
 	@Resource
 	private VelocityEngine velocityEngine;
 
-	@Resource
-	private ServletContext servletContext;
-
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		mv.addObject("velocityEngine", VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
-		
+		mv.addObject("velocityEngine",
+				VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
+
 	}
 
 }
