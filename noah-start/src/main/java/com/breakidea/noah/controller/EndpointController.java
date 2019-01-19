@@ -14,23 +14,28 @@ import org.springframework.web.servlet.ModelAndView;
 import com.breakidea.noah.common.param.UserParam;
 import com.breakidea.noah.common.service.UserService;
 import com.breakidea.noah.support.AbstractWebController;
+import com.breakidea.noah.web.session.Authz;
 
 @Controller("/portal/endpoint")
 public class EndpointController extends AbstractWebController {
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    UserService userService;
 
-	@Override
-	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
-		HttpSession session = request.getSession(true);
+    @Autowired
+    private Authz authz;
 
-		session.setAttribute("RequestId", new Date().getTime());
-		session.setAttribute("RequestName", request.getRequestURI());
+    @Override
+    protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
+        HttpSession session = request.getSession(true);
 
-		mv.addObject("properties", System.getProperties());
-		mv.addObject("env", System.getenv());
-		mv.addObject("userList", userService.query(new UserParam()));
-	}
+        session.setAttribute("RequestId", new Date().getTime());
+        session.setAttribute("RequestName", request.getRequestURI());
+
+        mv.addObject("authz", authz);
+        mv.addObject("properties", System.getProperties());
+        mv.addObject("env", System.getenv());
+        mv.addObject("userList", userService.query(new UserParam()));
+    }
 }

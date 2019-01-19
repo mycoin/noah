@@ -88,6 +88,7 @@ sendData()
 </script>
 
 $velocityEngine
+$authzName
 
 <hr>
 ##springMessage("var.copyright")

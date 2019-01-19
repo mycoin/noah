@@ -2,64 +2,26 @@ package com.breakidea.noah.common.vo;
 
 import java.util.Date;
 
-import com.google.gson.GsonBuilder;
+import com.breakidea.noah.common.Description;
 
-public class UserVO extends GeneralVo {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-	private static final long serialVersionUID = 1L;
+@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public class UserVO extends Description {
 
-	private Long id;
+    private static final long serialVersionUID = 1L;
 
-	private String status;
+    private Long id;
 
-	private String userName;
+    private String status;
 
-	private Date gmtCreated;
+    private String userName;
 
-	private Date gmtModified;
+    private Date gmtCreated;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public Date getGmtCreated() {
-		return gmtCreated;
-	}
-
-	public void setGmtCreated(Date gmtCreated) {
-		this.gmtCreated = gmtCreated;
-	}
-
-	public Date getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(Date gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-
-	@Override
-	public String toString() {
-		return new GsonBuilder().create().toJson(this);
-	}
+    private Date gmtModified;
 }
