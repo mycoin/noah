@@ -26,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
+import org.apache.velocity.runtime.RuntimeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -94,11 +95,10 @@ public class VelocityAutoConfiguration {
 			factory.setPreferFileSystemAccess(properties.isPreferFileSystemAccess());
 			factory.setConfigLocation(properties.getConfigLocation());
 
-			velocityProperties.setProperty("input.encoding", properties.getCharsetName());
+			velocityProperties.setProperty(RuntimeConstants.INPUT_ENCODING, properties.getCharsetName());
 			velocityProperties.putAll(properties.getProperties());
 
 			factory.setVelocityProperties(velocityProperties);
-
 		}
 	}
 
