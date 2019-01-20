@@ -10,7 +10,7 @@ public class IndexAction {
 
     @Autowired
     ApplicationContext applicationContext;
-
+    
     @RequestMapping("/welcome")
     public void welcome() {
 

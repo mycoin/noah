@@ -43,7 +43,4 @@
 			<bean class="java.util.concurrent.ThreadPoolExecutor$DiscardPolicy" />
 		</property>
 	</bean>
-
-
-	<import resource="applicationContext-view.xml" />
 </beans>
