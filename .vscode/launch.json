@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NoahApplication",
+            "request": "launch",
+            "mainClass": "com.breakidea.noah.NoahApplication",
+            "projectName": "noah-start"
+        }
+    ]
+}
