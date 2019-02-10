@@ -13,15 +13,15 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class UserVO extends Description {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private Long id;
+	private Long id;
 
-    private String status;
+	private String status;
 
-    private String userName;
+	private String userName;
 
-    private Date gmtCreated;
+	private Date gmtCreated;
 
-    private Date gmtModified;
+	private Date gmtModified;
 }
