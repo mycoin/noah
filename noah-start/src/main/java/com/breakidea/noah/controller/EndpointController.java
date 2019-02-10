@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.breakidea.noah.common.param.UserParam;
+import com.breakidea.noah.common.parameter.UserParameter;
 import com.breakidea.noah.common.service.UserService;
-import com.breakidea.noah.configure.RequestTaskQuery;
 import com.breakidea.noah.support.AbstractWebController;
 import com.breakidea.noah.web.session.Authz;
 
@@ -22,9 +21,6 @@ public class EndpointController extends AbstractWebController {
 
 	@Autowired
 	UserService userService;
-
-	@Autowired
-	RequestTaskQuery requestTaskQuery;
 
 	@Autowired
 	private Authz authz;
@@ -40,6 +36,6 @@ public class EndpointController extends AbstractWebController {
 		mv.addObject("authz", authz);
 		mv.addObject("properties", System.getProperties());
 		mv.addObject("env", System.getenv());
-		mv.addObject("userList", userService.queryList(new UserParam()));
+		mv.addObject("userList", userService.queryList(new UserParameter()));
 	}
 }

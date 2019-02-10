@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 
 import com.breakidea.noah.common.exception.ServiceException;
 import com.breakidea.noah.common.model.UserModel;
-import com.breakidea.noah.common.param.UserParam;
+import com.breakidea.noah.common.parameter.UserParameter;
 import com.breakidea.noah.common.service.UserService;
 import com.breakidea.noah.common.vo.UserVO;
 import com.breakidea.noah.dao.UserDao;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public void add(UserParam param) throws ServiceException {
+	public void add(UserParameter param) throws ServiceException {
 		if (!StringUtils.hasLength(param.getPassword())) {
 			throw new ServiceException("Bad Parameter", null);
 		}
@@ -40,12 +40,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(UserParam param) {
+	public void delete(UserParameter param) {
 		userDao.delete(param);
 	}
 
 	@Override
-	public List<UserVO> queryList(UserParam param) {
+	public List<UserVO> queryList(UserParameter param) {
 		List<UserVO> vos = new ArrayList<UserVO>();
 		List<UserModel> models = userDao.query(param);
 
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(UserParam param) {
+	public void update(UserParameter param) {
 		UserModel model = userDao.queryById(param.getId());
 		if (model == null) {
 			userDao.insert(param);

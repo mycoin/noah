@@ -1,11 +1,11 @@
-package com.breakidea.noah.common.param;
+package com.breakidea.noah.common.parameter;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public abstract class BaseParam implements Serializable {
+public abstract class BaseParameter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

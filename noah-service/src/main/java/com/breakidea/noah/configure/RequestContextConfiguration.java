@@ -28,20 +28,25 @@ public class RequestContextConfiguration {
 	@ConditionalOnNotWebApplication
 	public static class RequestContextFilterBean extends OncePerRequestFilter {
 
-		public void resetRequest() {
+		public void resetRequest(HttpServletRequest request) {
+
+		}
+
+		public void initRequest(HttpServletRequest request) {
+
 		}
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 				FilterChain filterChain) throws ServletException, IOException {
-
+			initRequest(request);
 			try {
 				filterChain.doFilter(request, response);
 			}
 			finally {
-				resetRequest();
-				if (logger.isTraceEnabled()) {
-					logger.trace("Cleared thread-bound request context: " + request);
+				resetRequest(request);
+				if (logger.isInfoEnabled()) {
+					logger.info("Cleared thread-bound request context: " + request.getRequestURI());
 				}
 			}
 		}

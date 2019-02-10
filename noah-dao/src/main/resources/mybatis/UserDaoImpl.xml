@@ -12,7 +12,7 @@
     <sql id="userColumnList">
         ID, USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED
     </sql>
-    <select id="query" parameterType="com.breakidea.noah.common.param.UserParam" resultMap="userResultMap">
+    <select id="query" parameterType="com.breakidea.noah.common.parameter.UserParameter" resultMap="userResultMap">
         SELECT
         <include refid="userColumnList" />
         FROM `TABLE_USER` WHERE
@@ -23,16 +23,16 @@
         <include refid="userColumnList" />
         FROM `TABLE_USER` WHERE id = #{id}
     </select>
-    <delete id="delete" parameterType="com.breakidea.noah.common.param.UserParam">
+    <delete id="delete" parameterType="com.breakidea.noah.common.parameter.UserParameter">
         DELETE FROM `TABLE_USER` WHERE
         <include refid="userCondition" />
     </delete>
-    <insert id="insert" parameterType="com.breakidea.noah.common.param.UserParam">
+    <insert id="insert" parameterType="com.breakidea.noah.common.parameter.UserParameter">
         INSERT INTO `TABLE_USER` (USER_NAME, PASSWORD, STATUS, GMT_CREATED, GMT_MODIFIED)
         VALUES
         (#{userName}, #{password}, #{status}, now(), now());
     </insert>
-    <update id="update" parameterType="com.breakidea.noah.common.param.UserParam">
+    <update id="update" parameterType="com.breakidea.noah.common.parameter.UserParameter">
         update `TABLE_USER`
         <set>
             <if test="userName != null"> USER_NAME = #{userName}, </if>

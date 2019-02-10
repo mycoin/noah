@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  *
  * <p>
  * The layout template can include the screen content through a VelocityContext variable (the default is
- * "screen_content"). At runtime, this variable will contain the rendered content template.
+ * "screenContent"). At runtime, this variable will contain the rendered content template.
  *
  * @author Darren Davison
  * @author Juergen Hoeller
@@ -100,7 +100,7 @@ public class VelocityLayoutView extends VelocityView {
 	 * Set the name of the context key that will hold the content of the screen within the layout template. This key
 	 * must be present in the layout template for the current screen to be rendered.
 	 * <p>
-	 * Default is {@link #DEFAULT_SCREEN_CONTENT_KEY "screenContent"}: accessed in VTL as {@code $screen_content}.
+	 * Default is {@link #DEFAULT_SCREEN_CONTENT_KEY "screenContent"}: accessed in VTL as {@code $screenContent}.
 	 * @param screenContentKey the name of the screen content key to use
 	 */
 	public void setScreenContentKey(String screenContentKey) {
@@ -119,15 +119,15 @@ public class VelocityLayoutView extends VelocityView {
 		}
 		try {
 			// Check that we can get the template, even if we might subsequently get it again.
-			getTemplate(this.layoutUrl);
+			getTemplate(layoutUrl);
 			return true;
 		}
 		catch (ResourceNotFoundException ex) {
-			throw new NestedIOException("Cannot find Velocity template for URL [" + this.layoutUrl
+			throw new NestedIOException("Cannot find Velocity template for URL [" + layoutUrl
 					+ "]: Did you specify the correct resource loader path?", ex);
 		}
 		catch (Exception ex) {
-			throw new NestedIOException("Could not load Velocity template for URL [" + this.layoutUrl + "]", ex);
+			throw new NestedIOException("Could not load Velocity template for URL [" + layoutUrl + "]", ex);
 		}
 	}
 
@@ -143,8 +143,9 @@ public class VelocityLayoutView extends VelocityView {
 		// Velocity context now includes any mappings that were defined
 		// (via #set) in screen content template.
 		// The screen template can overrule the layout by doing
-		// #set( $layout = "MyLayout.vm" )
-		String layoutUrlToUse = (String) context.get(this.layoutKey);
+
+		// #set( $screenLayout = "MyLayout.vm" )
+		String layoutUrlToUse = (String) context.get(layoutKey);
 		if (StringUtils.hasLength(layoutUrlToUse)) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Screen content template has requested layout [" + layoutUrlToUse + "]");
@@ -152,7 +153,7 @@ public class VelocityLayoutView extends VelocityView {
 		}
 		else {
 			// No explicit layout URL given -> use default layout of this view.
-			layoutUrlToUse = this.layoutUrl;
+			layoutUrlToUse = layoutUrl;
 		}
 
 		mergeTemplate(getTemplate(layoutUrlToUse), context, response);

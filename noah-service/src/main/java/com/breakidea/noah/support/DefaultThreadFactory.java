@@ -16,6 +16,7 @@ public class DefaultThreadFactory implements ThreadFactory {
 	public Thread newThread(Runnable r) {
 		Thread thread = new Thread(r, threadName);
 		thread.setDaemon(isDaemon);
+		
 		return thread;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadFactory;
 public class NamedThreadFactory implements ThreadFactory {
 
 	private final String threadName;
+	
 	private final boolean isDaemon;
 
 	public NamedThreadFactory(String threadName, boolean daemon) {

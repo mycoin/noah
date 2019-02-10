@@ -1,4 +1,4 @@
-package com.breakidea.noah.common.param;
+package com.breakidea.noah.common.parameter;
 
 import java.util.Date;
 
@@ -7,9 +7,9 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserParam extends BaseParam {
+public class UserParameter extends BaseParameter {
 
-	private static final long serialVersionUID = -2859563426021667683L;
+	private static final long serialVersionUID = 1L;
 
 	private Date gmtCreated;
 
