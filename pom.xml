@@ -17,14 +17,14 @@
     <modules>
         <module>noah-start</module>
         <module>noah-service</module>
-        <module>noah-common</module>
+        <module>noah-shared</module>
         <module>noah-dao</module>
     </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.breakidea.noah</groupId>
-                <artifactId>noah-common</artifactId>
+                <artifactId>noah-shared</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>

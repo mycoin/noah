@@ -1,9 +1,3 @@
-#*
-#set($request = $data.request)
-#set($response = $data.response)
-#set($session = $data.session)
-#set($properties = $data.properties)
-*#
 <style>
 body {
 	font-family: monospace;

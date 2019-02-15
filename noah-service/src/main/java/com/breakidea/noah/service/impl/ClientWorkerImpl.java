@@ -10,7 +10,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import com.breakidea.noah.common.service.ClientWorker;
-import com.breakidea.noah.support.DefaultThreadFactory;
 
 @Component
 public class ClientWorkerImpl implements ClientWorker {
@@ -19,10 +18,8 @@ public class ClientWorkerImpl implements ClientWorker {
 
 	private ScheduledExecutorService scheduledExecutor;
 
-	private String threadName = ClientWorker.class.getName();
-
 	public ClientWorkerImpl() {
-		scheduledExecutor = Executors.newSingleThreadScheduledExecutor(new DefaultThreadFactory(threadName, true));
+		scheduledExecutor = Executors.newSingleThreadScheduledExecutor(Executors.defaultThreadFactory());
 	}
 
 	public void execute(Runnable command) {

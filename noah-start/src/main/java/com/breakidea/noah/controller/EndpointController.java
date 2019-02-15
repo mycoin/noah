@@ -19,6 +19,12 @@ import com.breakidea.noah.web.session.Authz;
 @Controller("/portal/endpoint")
 public class EndpointController extends AbstractWebController {
 
+	public static final String REQUEST_ATTRIBUTE = "request";
+
+	public static final String SESSION_ATTRIBUTE = "session";
+
+	public static final String RESPONSE_ATTRIBUTE = "response";
+
 	@Autowired
 	UserService userService;
 
@@ -33,6 +39,9 @@ public class EndpointController extends AbstractWebController {
 		session.setAttribute("RequestId", new Date().getTime());
 		session.setAttribute("RequestName", request.getRequestURI());
 
+		mv.addObject(REQUEST_ATTRIBUTE, request);
+		mv.addObject(RESPONSE_ATTRIBUTE, response);
+		mv.addObject(SESSION_ATTRIBUTE, request.getSession(false));
 		mv.addObject("authz", authz);
 		mv.addObject("properties", System.getProperties());
 		mv.addObject("env", System.getenv());

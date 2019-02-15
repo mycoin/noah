@@ -15,7 +15,8 @@
 			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 				<property name="locations">
 					<list>
-						<value>classpath:application.properties</value>
+						<value>classpath:/conf/urls.properties</value>
+                        <value>classpath:/conf/languages.properties</value>
 					</list>
 				</property>
 			</bean>

@@ -13,7 +13,7 @@ This project will allow you to start off on the good foot with spring boot. In t
 ---
 Clone the repository and modify the db config in `application.properties` then import the mysql script `/support/db.sql `
 
-- startup mysql 
+- startup mysql
 - install redis and start it default port: 6379
 
 run:
@@ -32,7 +32,7 @@ This is an application to demo the implementation of a REST API.
 
 A better project structure is required:
 
-- `noah-common` shared apis, models and service interfaces
+- `noah-shared` shared apis, models and service interfaces
 - `noah-dao` the data access layer, using [mybatis ](https://github.com/mybatis/)
 - `noah-service` service implements
 - `noah-start` the front-end controllers, config files and velocity templates

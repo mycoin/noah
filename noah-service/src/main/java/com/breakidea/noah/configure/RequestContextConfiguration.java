@@ -12,7 +12,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebAppli
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.breakidea.noah.support.misc.ThreadLocalContext;
 
 @Configuration
 @ConditionalOnClass({ OncePerRequestFilter.class })
@@ -28,23 +33,33 @@ public class RequestContextConfiguration {
 	@ConditionalOnNotWebApplication
 	public static class RequestContextFilterBean extends OncePerRequestFilter {
 
-		public void resetRequest(HttpServletRequest request) {
+		public void resetContextHolders() {
+			LocaleContextHolder.resetLocaleContext();
+			RequestContextHolder.resetRequestAttributes();
 
+			ThreadLocalContext.clear();
 		}
 
-		public void initRequest(HttpServletRequest request) {
+		public void initContextHolders(HttpServletRequest request, ServletRequestAttributes requestAttributes) {
+			LocaleContextHolder.setLocale(request.getLocale(), true);
+			RequestContextHolder.setRequestAttributes(requestAttributes, true);
 
+			if (logger.isInfoEnabled()) {
+				logger.info("Bound request context to thread: " + request.getRequestURI());
+			}
 		}
 
 		@Override
 		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 				FilterChain filterChain) throws ServletException, IOException {
-			initRequest(request);
+			ServletRequestAttributes attributes = new ServletRequestAttributes(request, response);
+			initContextHolders(request, attributes);
 			try {
 				filterChain.doFilter(request, response);
 			}
 			finally {
-				resetRequest(request);
+				resetContextHolders();
+				attributes.requestCompleted();
 				if (logger.isInfoEnabled()) {
 					logger.info("Cleared thread-bound request context: " + request.getRequestURI());
 				}

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.breakidea.noah.support.AbstractWebController;
 import com.breakidea.noah.support.VelocityEngineUtils;
+import com.breakidea.noah.support.WebUtils;
 
 @Controller("/portal/index")
 public class PortalController extends AbstractWebController {
@@ -25,9 +26,13 @@ public class PortalController extends AbstractWebController {
 	@Override
 	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		mv.addObject("velocityEngine",
-				VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
-
+		String action = WebUtils.getParameter(request, "action");
+		if ("pay".equals(action)) {
+			mv.setViewName("welcome");
+		}
+		else {
+			mv.addObject("velocityEngine",
+					VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
+		}
 	}
-
 }

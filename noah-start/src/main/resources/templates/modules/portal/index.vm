@@ -45,7 +45,6 @@ button {
                 <button type="submit">提交</button>
             </form>
 			<iframe width="280" name="hiddenForm"></iframe>
-			<em>$sessionId</em>
 		</td>
 		<td>
 			<div>
@@ -56,7 +55,7 @@ button {
 		</td>
 	</tr>
 </table>
-<script src="/static/libs/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 <script>
 function randomString(len) {
 　　len = len || 32;
@@ -88,9 +87,8 @@ sendData()
 </script>
 
 $velocityEngine
-$authzName
 
 <hr>
-##springMessage("var.copyright")
-##springMessage("server.domainName")
+#springMessage("var.copyright")
+#springMessage("server.domainName") - #springMessage("server.port")
 #setLayout("layout/defaultLayout")

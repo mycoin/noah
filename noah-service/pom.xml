@@ -39,7 +39,7 @@
 
         <dependency>
             <groupId>com.breakidea.noah</groupId>
-            <artifactId>noah-common</artifactId>
+            <artifactId>noah-shared</artifactId>
         </dependency>
         <dependency>
             <groupId>com.breakidea.noah</groupId>
