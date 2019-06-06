@@ -17,5 +17,5 @@
   #set($screenLayout = "")
 #end
 #macro(includeMessage $messageName)$requestContext.getMessage($messageName)#end
-
+#macro(JSONString $data)#end
 

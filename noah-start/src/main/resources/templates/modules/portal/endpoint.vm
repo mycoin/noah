@@ -86,3 +86,5 @@ legend {
 </fieldset>
 
 #setLayout("layout/defaultLayout")
+
+#JSONString($userList)

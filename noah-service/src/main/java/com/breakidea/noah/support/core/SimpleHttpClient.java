@@ -1,4 +1,4 @@
-package com.breakidea.noah.support.misc;
+package com.breakidea.noah.support.core;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

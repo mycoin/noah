@@ -17,7 +17,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.breakidea.noah.support.misc.ThreadLocalContext;
+import com.breakidea.noah.support.core.ThreadLocalContext;
 
 @Configuration
 @ConditionalOnClass({ OncePerRequestFilter.class })
@@ -54,6 +54,7 @@ public class RequestContextConfiguration {
 				FilterChain filterChain) throws ServletException, IOException {
 			ServletRequestAttributes attributes = new ServletRequestAttributes(request, response);
 			initContextHolders(request, attributes);
+
 			try {
 				filterChain.doFilter(request, response);
 			}

@@ -1,4 +1,4 @@
-package com.breakidea.noah.support.scheduled;
+package com.breakidea.noah.support.core;
 
 import java.util.concurrent.ThreadFactory;
 
