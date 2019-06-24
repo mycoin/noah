@@ -17,22 +17,21 @@ import com.breakidea.noah.support.WebUtils;
 @Controller("/portal/index")
 public class PortalController extends AbstractWebController {
 
-	@Resource
-	private WebRequest webRequest;
+    @Resource
+    private WebRequest webRequest;
 
-	@Resource
-	private VelocityEngine velocityEngine;
+    @Resource
+    private VelocityEngine velocityEngine;
 
-	@Override
-	protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException {
-		String action = WebUtils.getParameter(request, "action");
-		if ("pay".equals(action)) {
-			mv.setViewName("welcome");
-		}
-		else {
-			mv.addObject("velocityEngine",
-					VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
-		}
-	}
+    @Override
+    protected void handleRequestInternal(ModelAndView mv, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException {
+        String action = WebUtils.getParameter(request, "action");
+        if ("pay".equals(action)) {
+            mv.setViewName("welcome");
+        } else {
+            mv.addObject("velocityEngine",
+                    VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "modules/welcome.vm", "utf-8", null));
+        }
+    }
 }

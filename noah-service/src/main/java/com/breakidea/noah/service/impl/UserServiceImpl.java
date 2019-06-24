@@ -21,52 +21,51 @@ import com.breakidea.noah.support.Encoder;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Resource
-	private UserDao userDao;
+    @Resource
+    private UserDao userDao;
 
-	@Override
-	public void add(UserParameter param) throws ServiceException {
-		if (!StringUtils.hasLength(param.getPassword())) {
-			throw new ServiceException("Bad Parameter", null);
-		}
+    @Override
+    public void add(UserParameter param) throws ServiceException {
+        if (!StringUtils.hasLength(param.getPassword())) {
+            throw new ServiceException("Bad Parameter", null);
+        }
 
-		String password = param.getPassword();
-		String encode = Encoder.encodeQuietly(password);
+        String password = param.getPassword();
+        String encode = Encoder.encodeQuietly(password);
 
-		param.setPassword(encode);
-		param.setStatus("SK");
+        param.setPassword(encode);
+        param.setStatus("SK");
 
-		userDao.insert(param);
-	}
+        userDao.insert(param);
+    }
 
-	@Override
-	public void delete(UserParameter param) {
-		userDao.delete(param);
-	}
+    @Override
+    public void delete(UserParameter param) {
+        userDao.delete(param);
+    }
 
-	@Override
-	public List<UserVO> queryList(UserParameter param) {
-		List<UserVO> vos = new ArrayList<UserVO>();
-		List<UserModel> models = userDao.query(param);
+    @Override
+    public List<UserVO> queryList(UserParameter param) {
+        List<UserVO> vos = new ArrayList<UserVO>();
+        List<UserModel> models = userDao.query(param);
 
-		if (!CollectionUtils.isEmpty(models)) {
-			for (UserModel model : models) {
-				UserVO vo = new UserVO();
-				BeanUtils.copyProperties(model, vo);
-				vos.add(vo);
-			}
-		}
-		return vos;
-	}
+        if (!CollectionUtils.isEmpty(models)) {
+            for (UserModel model : models) {
+                UserVO vo = new UserVO();
+                BeanUtils.copyProperties(model, vo);
+                vos.add(vo);
+            }
+        }
+        return vos;
+    }
 
-	@Override
-	public void update(UserParameter param) {
-		UserModel model = userDao.queryById(param.getId());
-		if (model == null) {
-			userDao.insert(param);
-		}
-		else {
-			userDao.update(param);
-		}
-	}
+    @Override
+    public void update(UserParameter param) {
+        UserModel model = userDao.queryById(param.getId());
+        if (model == null) {
+            userDao.insert(param);
+        } else {
+            userDao.update(param);
+        }
+    }
 }

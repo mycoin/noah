@@ -2,14 +2,14 @@ package com.breakidea.noah.common.exception;
 
 public class ServiceException extends CascadingRuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public ServiceException(String name, Throwable throwable) {
-		super(name, throwable);
-	}
+    public ServiceException(String name, Throwable throwable) {
+        super(name, throwable);
+    }
 
-	@Override
-	public Integer getCode() {
-		return 500;
-	}
+    @Override
+    public Integer getCode() {
+        return 500;
+    }
 }

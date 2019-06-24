@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @Configuration
 @SpringBootApplication
-@ImportResource({ "classpath:applicationContext.xml" })
+@ImportResource({"classpath:applicationContext.xml"})
 public class NoahApplication {
 
     public static void main(String[] args) {

@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public abstract class BaseParameter implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String namespace = "DEFAULT";
+    private String namespace = "DEFAULT";
 
-	private String version = "1.0.0";
+    private String version = "1.0.0";
 
-	private String ie = "utf-8";
+    private String ie = "utf-8";
 }

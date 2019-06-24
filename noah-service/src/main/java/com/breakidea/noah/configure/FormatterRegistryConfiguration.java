@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FormatterRegistryConfiguration implements InitializingBean {
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
+    @Override
+    public void afterPropertiesSet() throws Exception {
 
-	}
+    }
 
 }

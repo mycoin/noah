@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface MonitorDao {
 
-	public void insert(Map<String, Object> param);
+    public void insert(Map<String, Object> param);
 
 }

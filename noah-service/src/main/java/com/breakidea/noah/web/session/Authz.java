@@ -12,12 +12,12 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class Authz implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Autowired
-	private HttpSession session;
+    @Autowired
+    private HttpSession session;
 
-	public String getCurrentSessionId() {
-		return session.getId();
-	}
+    public String getCurrentSessionId() {
+        return session.getId();
+    }
 }

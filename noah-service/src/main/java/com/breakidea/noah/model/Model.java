@@ -8,79 +8,79 @@ import lombok.Data;
 @Data
 public class Model implements Featureable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Map<String, Object> featureMap;
+    private Map<String, Object> featureMap;
 
-	private Integer status;
+    private Integer status;
 
-	private String message;
+    private String message;
 
-	@Override
-	public boolean clearFeature() {
-		Map<String, Object> feature = getFeatureMap();
-		return ModelUtils.clear(feature);
-	}
+    @Override
+    public boolean clearFeature() {
+        Map<String, Object> feature = getFeatureMap();
+        return ModelUtils.clear(feature);
+    }
 
-	@Override
-	public <T> T getFeature(String key) {
-		Map<String, Object> feature = getFeatureMap();
+    @Override
+    public <T> T getFeature(String key) {
+        Map<String, Object> feature = getFeatureMap();
 
-		return ModelUtils.get(feature, key);
-	}
+        return ModelUtils.get(feature, key);
+    }
 
-	@Override
-	public <T> T putFeatureIfAbsent(String key, T value) {
-		if (key == null || value == null) {
-			return null;
-		}
-		Map<String, Object> feature = getFeatureMap();
+    @Override
+    public <T> T putFeatureIfAbsent(String key, T value) {
+        if (key == null || value == null) {
+            return null;
+        }
+        Map<String, Object> feature = getFeatureMap();
 
-		if (feature == null) {
-			feature = new HashMap<>();
-			setFeatureMap(feature);
-		}
+        if (feature == null) {
+            feature = new HashMap<>();
+            setFeatureMap(feature);
+        }
 
-		if (feature.containsKey(key)) {
-			return null;
-		}
-		return ModelUtils.set(feature, key, value);
-	}
+        if (feature.containsKey(key)) {
+            return null;
+        }
+        return ModelUtils.set(feature, key, value);
+    }
 
-	@Override
-	public <T> T removeFeature(String key) {
-		Map<String, Object> feature = getFeatureMap();
+    @Override
+    public <T> T removeFeature(String key) {
+        Map<String, Object> feature = getFeatureMap();
 
-		return ModelUtils.remove(feature, key);
-	}
+        return ModelUtils.remove(feature, key);
+    }
 
-	@Override
-	public <T> T setFeature(String key, T value) {
-		if (key == null || value == null) {
-			return null;
-		}
-		Map<String, Object> feature = getFeatureMap();
+    @Override
+    public <T> T setFeature(String key, T value) {
+        if (key == null || value == null) {
+            return null;
+        }
+        Map<String, Object> feature = getFeatureMap();
 
-		if (feature == null) {
-			feature = new HashMap<>();
-			setFeatureMap(feature);
-		}
+        if (feature == null) {
+            feature = new HashMap<>();
+            setFeatureMap(feature);
+        }
 
-		return ModelUtils.set(feature, key, value);
-	}
+        return ModelUtils.set(feature, key, value);
+    }
 
-	@Override
-	public void setFeatures(Map<String, Object> featureMap) {
-		if (featureMap == null) {
-			return;
-		}
+    @Override
+    public void setFeatures(Map<String, Object> featureMap) {
+        if (featureMap == null) {
+            return;
+        }
 
-		Map<String, Object> feature = getFeatureMap();
-		if (feature == null) {
-			feature = new HashMap<>();
-			setFeatureMap(feature);
-		}
-		feature.putAll(featureMap);
-		setFeatureMap(featureMap);
-	}
+        Map<String, Object> feature = getFeatureMap();
+        if (feature == null) {
+            feature = new HashMap<>();
+            setFeatureMap(feature);
+        }
+        feature.putAll(featureMap);
+        setFeatureMap(featureMap);
+    }
 }

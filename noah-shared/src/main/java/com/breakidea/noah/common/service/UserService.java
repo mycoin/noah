@@ -8,11 +8,11 @@ import com.breakidea.noah.common.vo.UserVO;
 
 public interface UserService {
 
-	List<UserVO> queryList(UserParameter param) throws ServiceException;
+    List<UserVO> queryList(UserParameter param) throws ServiceException;
 
-	void add(UserParameter param) throws ServiceException;
+    void add(UserParameter param) throws ServiceException;
 
-	void update(UserParameter param) throws ServiceException;
+    void update(UserParameter param) throws ServiceException;
 
-	void delete(UserParameter param) throws ServiceException;
+    void delete(UserParameter param) throws ServiceException;
 }
