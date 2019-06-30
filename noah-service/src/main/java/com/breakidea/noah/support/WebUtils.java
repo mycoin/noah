@@ -2,8 +2,6 @@ package com.breakidea.noah.support;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
@@ -17,14 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
 public class WebUtils {
-
-    private static final Set<String> POSITIVE_SET = new HashSet<String>();
-
-    static {
-        POSITIVE_SET.add("true");
-        POSITIVE_SET.add("T");
-        POSITIVE_SET.add("Y");
-    }
 
     /**
      * add a cookie with special cookieName and cookieValue
@@ -135,6 +125,7 @@ public class WebUtils {
      * @return
      */
     public static String getStream(HttpServletRequest request, Charset charset) {
+        Assert.notNull(request, "HttpServletRequest must be provided");
         try {
             ServletInputStream body = request.getInputStream();
             if (ObjectUtils.isEmpty(body)) {

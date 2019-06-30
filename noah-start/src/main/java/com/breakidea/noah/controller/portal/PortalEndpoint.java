@@ -1,7 +1,5 @@
 package com.breakidea.noah.controller.portal;
 
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +27,7 @@ public class PortalEndpoint extends AbstractWebController {
     public void handleRequestInternal(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws ServletException {
         HttpSession session = request.getSession(true);
 
-        session.setAttribute("RequestId", new Date().getTime());
+        session.setAttribute("RequestId", System.currentTimeMillis());
         session.setAttribute("RequestName", request.getRequestURI());
 
         model.addAttribute("authz", authz);

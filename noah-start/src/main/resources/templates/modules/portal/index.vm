@@ -1,31 +1,18 @@
 #includeTemplate("header")
 <link rel="stylesheet" href="/css/common.css" />
-<table>
-	<tr>
-		<td style="vertical-align: top;">
-			<form action="?action=upload" method="post" enctype="multipart/form-data" target="hiddenForm">
-                <li><label class="label">imageFile</label><input name="imageFile" type="file" /></li>
-                <li><label class="label">Width</label><input type="number" name="width" value="100" /></li>
-                <li><label class="label">Height</label><input type="number" name="height" value="100" /></li>
-                <button type="submit">上传</button>
-            </form>
-			<iframe width="280" name="hiddenForm"></iframe>
-		</td>
-		<td>
-			<div>
-			#foreach($item in $user)
-				<span>$item.userName</span>
-			#end
-			</div>
-		</td>
-	</tr>
-</table>
-$Data
+
+<form action="?Action=upload" method="post" enctype="multipart/form-data" target="hiddenForm">
+	<li><label class="label">imageFile</label><input name="imageFile" type="file" /></li>
+	<li><label class="label">Width</label><input type="number" name="width" value="100" /></li>
+	<li><label class="label">Height</label><input type="number" name="height" value="100" /></li>
+	<button type="submit">上传</button>
+</form>
+<iframe width="280" name="hiddenForm"></iframe>
 
 <script src="/js/jquery.js"></script>
 <script src="/js/common.js"></script>
 <script>
-F.sendRequest('?action=pay', {
+F.sendRequest('?Action=pay', {
 	dataType: 'JSON',
 	data: {
 		userName : F.random(16),
@@ -37,8 +24,8 @@ F.sendRequest('?action=pay', {
 	}
 });
 </script>
-$velocityEngine
-<hr>
-#springMessage("var.copyright")
-#springMessage("server.domainName") - #springMessage("server.port")
+<div>
+
+$Data
+</div>
 #setLayout("layout/defaultLayout")

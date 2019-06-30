@@ -1,2 +1,4 @@
 #if(!$status)#set($status = 0)#end
-{"status":$status,"statusInfo":"$!statusInfo"}
+#if(!$statusInfo)#set($statusInfo = "OK")#end
+#if(!$data)#set($data = {})#end
+{"status":$status,"statusInfo":"$!statusInfo","data":$data}

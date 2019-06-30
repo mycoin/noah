@@ -35,27 +35,27 @@ legend {
  </pre>
 <fieldset>
     <legend>[General]</legend>
-    <strong>CharacterEncoding</strong>: $!Request.getCharacterEncoding() </br/>
-    <strong>ContentType</strong>: $!Request.getContentType() </br/>
-    <strong>Locale</strong>: $!Request.getLocale() </br/>
-    <strong>LocalName</strong>: $!Request.getLocalName() </br/>
-    <strong>ServerName</strong>: $!Request.getServerName() </br/>
-    <strong>Protocol</strong>: $!Request.getProtocol() </br/>
-    <strong>RemoteAddr</strong>: $!Request.getRemoteAddr() </br/>
-    <strong>QueryString</strong>: $!Request.getQueryString() </br/>
-    <strong>RequestURI</strong>: $!Request.getRequestURI() </br/>
-    <strong>RequestURL</strong>: $!Request.getRequestURL() </br/>
+    <strong>CharacterEncoding</strong>: $Request.getCharacterEncoding() </br/>
+    <strong>ContentType</strong>: $Request.getContentType() </br/>
+    <strong>Locale</strong>: $Request.getLocale() </br/>
+    <strong>LocalName</strong>: $Request.getLocalName() </br/>
+    <strong>ServerName</strong>: $Request.getServerName() </br/>
+    <strong>Protocol</strong>: $Request.getProtocol() </br/>
+    <strong>RemoteAddr</strong>: $Request.getRemoteAddr() </br/>
+    <strong>QueryString</strong>: $Request.getQueryString() </br/>
+    <strong>RequestURI</strong>: $Request.getRequestURI() </br/>
+    <strong>RequestURL</strong>: $Request.getRequestURL() </br/>
 </fieldset>
 <fieldset>
     <legend>[Header]</legend>
-    #foreach($name in $!Request.getHeaderNames())
-      <strong>$name</strong>: $!Request.getHeader($name) <br />
+    #foreach($name in $Request.getHeaderNames())
+      <strong>$name</strong>: $Request.getHeader($name) <br />
     #end
 </fieldset>
 <fieldset>
     <legend>[Parameter]</legend>
-    #foreach($name in $!Request.getParameterNames())
-      <strong>$name</strong>: $!Request.getParameter($name) <br />
+    #foreach($name in $Request.getParameterNames())
+      <strong>$name</strong>: $Request.getParameter($name) <br />
     #end
 </fieldset>
 <fieldset>
@@ -66,21 +66,20 @@ legend {
 </fieldset>
 <fieldset>
     <legend>[Cookie]</legend>
-    #foreach($name in $!Request.getCookies())
+    #foreach($name in $Request.getCookies())
       <strong>$name.getName()</strong>: $name.getValue() <br />
     #end
 </fieldset>
 <fieldset>
-
   <legend>[Render Context]</legend>
     #foreach($name in $Data.keySet())
-      <strong>$name</strong>: $!Data.get($name) <br />
+      <strong>$name</strong>: $Data.get($name) <br />
     #end
 </fieldset>
 <fieldset>
   <legend>[Request Attribute]</legend>
-    #foreach($name in $!Request.getAttributeNames())
-      <strong>$name</strong>: $!Request.getAttribute($name) <br />
+    #foreach($name in $Request.getAttributeNames())
+      <strong>$name</strong>: $Request.getAttribute($name) <br />
     #end
 </fieldset>
 <fieldset>
@@ -91,5 +90,3 @@ legend {
 </fieldset>
 
 #setLayout("layout/defaultLayout")
-
-#JSONString($userList)

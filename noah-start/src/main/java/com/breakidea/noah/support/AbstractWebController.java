@@ -24,6 +24,8 @@ public abstract class AbstractWebController extends WebContentGenerator implemen
     public static final String DATA_ATTRIBUTE = "Data";
 
     public static final String RESPONSE_ATTRIBUTE = "Response";
+    
+    public static final String ACTION = "Action";
 
     public static final String VIEW_NAME = View.class.getName() + ".viewName";
 

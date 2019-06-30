@@ -21,8 +21,7 @@ public class PortalIndex extends AbstractWebController {
 
     @Override
     public void handleRequestInternal(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws ServletException {
-
-        String action = WebUtils.getParameter(request, "action");
+        String action = WebUtils.getParameter(request, ACTION);
         if ("pay".equals(action)) {
             model.addAttribute(VIEW_NAME, "welcome");
         } else {
