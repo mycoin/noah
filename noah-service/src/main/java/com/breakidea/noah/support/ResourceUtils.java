@@ -19,15 +19,7 @@ public class ResourceUtils {
      * @return The resource
      */
     public static URL getResourceURL(String resource) throws IOException {
-        URL url = null;
-        ClassLoader loader = ResourceUtils.class.getClassLoader();
-        if (loader != null)
-            url = loader.getResource(resource);
-        if (url == null)
-            url = ClassLoader.getSystemResource(resource);
-        if (url == null)
-            throw new IOException("Could not find resource " + resource);
-        return url;
+        return getResourceURL(ResourceUtils.class.getClassLoader(), resource);
     }
 
     /**
@@ -43,12 +35,15 @@ public class ResourceUtils {
      */
     public static URL getResourceURL(ClassLoader loader, String resource) throws IOException {
         URL url = null;
-        if (loader != null)
+        if (loader != null) {
             url = loader.getResource(resource);
-        if (url == null)
+        }
+        if (url == null) {
             url = ClassLoader.getSystemResource(resource);
-        if (url == null)
+        }
+        if (url == null) {
             throw new IOException("Could not find resource " + resource);
+        }
         return url;
     }
 
@@ -63,15 +58,7 @@ public class ResourceUtils {
      * @return The resource
      */
     public static InputStream getResourceAsStream(String resource) throws IOException {
-        InputStream in = null;
-        ClassLoader loader = ResourceUtils.class.getClassLoader();
-        if (loader != null)
-            in = loader.getResourceAsStream(resource);
-        if (in == null)
-            in = ClassLoader.getSystemResourceAsStream(resource);
-        if (in == null)
-            throw new IOException("Could not find resource " + resource);
-        return in;
+        return getResourceAsStream(ResourceUtils.class.getClassLoader(), resource);
     }
 
     /** */
@@ -109,9 +96,7 @@ public class ResourceUtils {
      */
     public static Properties getResourceAsProperties(String resource) throws IOException {
         Properties props = new Properties();
-        InputStream in = null;
-        String propfile = resource;
-        in = getResourceAsStream(propfile);
+        InputStream in = getResourceAsStream(resource);
         props.load(in);
         in.close();
         return props;
@@ -131,9 +116,7 @@ public class ResourceUtils {
      */
     public static Properties getResourceAsProperties(ClassLoader loader, String resource) throws IOException {
         Properties props = new Properties();
-        InputStream in = null;
-        String propfile = resource;
-        in = getResourceAsStream(loader, propfile);
+        InputStream in = getResourceAsStream(loader, resource);
         props.load(in);
         in.close();
         return props;
