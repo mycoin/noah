@@ -25,8 +25,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.Resource;
-import org.apache.velocity.runtime.resource.loader.ResourceLoader;
-
+import org.apache.velocity.runtime.resource.loader.FileResourceLoader;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 
 /**
@@ -49,7 +49,7 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.core.io.ResourceLoader
  * @see org.apache.velocity.runtime.resource.loader.FileResourceLoader
  */
-public class SpringResourceLoader extends ResourceLoader {
+public class SpringResourceLoader extends FileResourceLoader {
 
     public static final String NAME = "spring";
 
@@ -63,7 +63,7 @@ public class SpringResourceLoader extends ResourceLoader {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
-    private org.springframework.core.io.ResourceLoader resourceLoader;
+    private ResourceLoader resourceLoader;
 
     private String[] resourceLoaderPaths;
 

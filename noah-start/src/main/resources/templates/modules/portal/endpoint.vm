@@ -1,7 +1,7 @@
 <style>
 body {
 	font-family: monospace;
-	line-height: 1.56;
+	line-height: 1.44;
     background: #000;
     color: #888;
 }
@@ -10,6 +10,9 @@ fieldset {
     word-break: break-word;
     border-color: #999;
     border-width: 1px;
+}
+pre {
+	line-height: 1;
 }
 strong {
     color: #FFF;
@@ -27,61 +30,63 @@ legend {
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
+
  :: Spring Boot ::        (v2.1.1.RELEASE)
  </pre>
 <fieldset>
     <legend>[General]</legend>
-    <strong>CharacterEncoding</strong>: $!request.getCharacterEncoding() </br/>
-    <strong>ContentType</strong>: $!request.getContentType() </br/>
-    <strong>Locale</strong>: $!request.getLocale() </br/>
-    <strong>LocalName</strong>: $!request.getLocalName() </br/>
-    <strong>ServerName</strong>: $!request.getServerName() </br/>
-    <strong>Protocol</strong>: $!request.getProtocol() </br/>
-    <strong>RemoteAddr</strong>: $!request.getRemoteAddr() </br/>
-    <strong>QueryString</strong>: $!request.getQueryString() </br/>
-    <strong>RequestURI</strong>: $!request.getRequestURI() </br/>
-    <strong>RequestURL</strong>: $!request.getRequestURL() </br/>
+    <strong>CharacterEncoding</strong>: $!Request.getCharacterEncoding() </br/>
+    <strong>ContentType</strong>: $!Request.getContentType() </br/>
+    <strong>Locale</strong>: $!Request.getLocale() </br/>
+    <strong>LocalName</strong>: $!Request.getLocalName() </br/>
+    <strong>ServerName</strong>: $!Request.getServerName() </br/>
+    <strong>Protocol</strong>: $!Request.getProtocol() </br/>
+    <strong>RemoteAddr</strong>: $!Request.getRemoteAddr() </br/>
+    <strong>QueryString</strong>: $!Request.getQueryString() </br/>
+    <strong>RequestURI</strong>: $!Request.getRequestURI() </br/>
+    <strong>RequestURL</strong>: $!Request.getRequestURL() </br/>
 </fieldset>
 <fieldset>
     <legend>[Header]</legend>
-    #foreach($name in $!request.getHeaderNames())
-      <strong>$name</strong>: $!request.getHeader($name) <br />
+    #foreach($name in $!Request.getHeaderNames())
+      <strong>$name</strong>: $!Request.getHeader($name) <br />
     #end
 </fieldset>
 <fieldset>
     <legend>[Parameter]</legend>
-    #foreach($name in $!request.getParameterNames())
-      <strong>$name</strong>: $!request.getParameter($name) <br />
+    #foreach($name in $!Request.getParameterNames())
+      <strong>$name</strong>: $!Request.getParameter($name) <br />
     #end
 </fieldset>
 <fieldset>
     <legend>[Session]</legend>
-    #foreach($name in $!session.getAttributeNames())
-      <strong>$name</strong>: $!session.getAttribute($name) <br />
+    #foreach($name in $!Session.getAttributeNames())
+      <strong>$name</strong>: $!Session.getAttribute($name) <br />
     #end
 </fieldset>
 <fieldset>
     <legend>[Cookie]</legend>
-    #foreach($name in $!request.getCookies())
+    #foreach($name in $!Request.getCookies())
       <strong>$name.getName()</strong>: $name.getValue() <br />
     #end
 </fieldset>
 <fieldset>
+
   <legend>[Render Context]</legend>
-    #foreach($name in $!modelContext.getKeys())
-      <strong>$name</strong>: $!modelContext.get($name) <br />
+    #foreach($name in $Data.keySet())
+      <strong>$name</strong>: $!Data.get($name) <br />
     #end
 </fieldset>
 <fieldset>
   <legend>[Request Attribute]</legend>
-    #foreach($name in $!request.getAttributeNames())
-      <strong>$name</strong>: $!request.getAttribute($name) <br />
+    #foreach($name in $!Request.getAttributeNames())
+      <strong>$name</strong>: $!Request.getAttribute($name) <br />
     #end
 </fieldset>
 <fieldset>
     <legend>[Properties]</legend>
-    #foreach($name in $properties.keySet())
-    <strong>$name</strong>: $properties.get($name) <br />
+    #foreach($name in $Data.properties.keySet())
+    <strong>$name</strong>: $Data.properties.get($name) <br />
   #end
 </fieldset>
 

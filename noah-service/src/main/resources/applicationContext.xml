@@ -6,8 +6,14 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <context:property-placeholder location="classpath:application.properties" />
+    <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true" />
 
+    <bean name="gson" class="org.springframework.http.converter.json.GsonFactoryBean">
+        <property name="disableHtmlEscaping" value="true" />
+        <property name="dateFormatPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSSZ" />
+        <property name="serializeNulls" value="true" />
+    </bean>
+    
     <!-- 消息配置 -->
     <bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="defaultEncoding" value="UTF-8" />

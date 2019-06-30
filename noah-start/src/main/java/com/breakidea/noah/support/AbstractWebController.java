@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.support.WebContentGenerator;
 import org.springframework.web.util.WebUtils;
@@ -14,6 +16,16 @@ import org.springframework.web.util.WebUtils;
 public abstract class AbstractWebController extends WebContentGenerator implements Controller {
 
     public static final String ERROR_NAME = "errorMsg";
+
+    public static final String REQUEST_ATTRIBUTE = "Request";
+
+    public static final String SESSION_ATTRIBUTE = "Session";
+
+    public static final String DATA_ATTRIBUTE = "Data";
+
+    public static final String RESPONSE_ATTRIBUTE = "Response";
+
+    public static final String VIEW_NAME = View.class.getName() + ".viewName";
 
     private boolean synchronizeOnSession = false;
 
@@ -74,7 +86,7 @@ public abstract class AbstractWebController extends WebContentGenerator implemen
     }
 
     @Override
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public final ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         if (HttpMethod.OPTIONS.matches(request.getMethod())) {
             response.setHeader("Allow", getAllowHeader());
@@ -102,9 +114,18 @@ public abstract class AbstractWebController extends WebContentGenerator implemen
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ModelAndView mv = new ModelAndView();
+        ModelMap model = new ModelMap();
+
+        mv.addObject(REQUEST_ATTRIBUTE, request);
+        mv.addObject(RESPONSE_ATTRIBUTE, response);
+        mv.addObject(SESSION_ATTRIBUTE, request.getSession(false));
+        mv.addObject(DATA_ATTRIBUTE, model);
 
         try {
-            handleRequestInternal(mv, request, response);
+            handleRequestInternal(model, request, response);
+            if (model.containsKey(VIEW_NAME)) {
+                mv.setViewName((String) model.get(VIEW_NAME));
+            }
         } catch (ServletException e) {
             mv.addObject(ERROR_NAME, e.getMessage());
             logger.error(e);
@@ -116,7 +137,7 @@ public abstract class AbstractWebController extends WebContentGenerator implemen
     /**
      * Template method. Subclasses must implement this.
      */
-    protected abstract void handleRequestInternal(ModelAndView mv, HttpServletRequest request,
+    public abstract void handleRequestInternal(ModelMap model, HttpServletRequest request,
             HttpServletResponse response) throws ServletException;
 
 }

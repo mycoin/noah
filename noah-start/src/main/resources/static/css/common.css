@@ -1,0 +1,28 @@
+li {
+	margin-bottom: 3px;
+}
+li label {
+  display: inline-block;
+  width: 70px;
+  text-align: right;
+  margin: 2px 5px;
+}
+li input {
+	width: 150px;
+	border: 1px solid #CCC;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+span {
+	display: inline-block;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #EEE;
+    font-size: 12px;
+}
+button {
+	margin: 0 0 20px 102px;
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+}
