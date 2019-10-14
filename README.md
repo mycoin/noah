@@ -9,12 +9,14 @@ This project will allow you to start off on the good foot with spring boot. In t
 - Rendering Layout Views
 - Multi environment packaging `profiles`
 
+
 ### Get start
+
 ---
 Clone the repository and modify the db config in `application.properties` then import the mysql script `/support/db.sql `
 
 - startup mysql
-- install redis and start it default port: 6379
+- install redis and start it default port: `6379`
 
 run:
 
@@ -25,7 +27,10 @@ run:
 
 then open http://127.0.0.1:8080/
 
+
+
 ### Overview
+
 ---
 This is an application to demo the implementation of a REST API.
 > BTW: XML responses is not supported.
