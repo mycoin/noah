@@ -35,5 +35,4 @@ public class PortalEndpoint extends AbstractWebController {
         model.addAttribute("env", System.getenv());
         model.addAttribute("userList", userService.queryList(new UserParameter()));
     }
-
 }
