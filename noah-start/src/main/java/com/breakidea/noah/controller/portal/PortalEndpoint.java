@@ -17,22 +17,23 @@ import com.breakidea.noah.web.session.Authz;
 @Controller("/portal/endpoint")
 public class PortalEndpoint extends AbstractWebController {
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    @Autowired
-    private Authz authz;
+	@Autowired
+	private Authz authz;
 
-    @Override
-    public void handleRequestInternal(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        HttpSession session = request.getSession(true);
+	@Override
+	public void handleRequestInternal(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException {
+		HttpSession session = request.getSession(true);
 
-        session.setAttribute("RequestId", System.currentTimeMillis());
-        session.setAttribute("RequestName", request.getRequestURI());
+		session.setAttribute("RequestId", System.currentTimeMillis());
+		session.setAttribute("RequestName", request.getRequestURI());
 
-        model.addAttribute("authz", authz);
-        model.addAttribute("properties", System.getProperties());
-        model.addAttribute("env", System.getenv());
-        model.addAttribute("userList", userService.queryList(new UserParameter()));
-    }
+		model.addAttribute("authz", authz);
+		model.addAttribute("properties", System.getProperties());
+		model.addAttribute("env", System.getenv());
+		model.addAttribute("userList", userService.queryList(new UserParameter()));
+	}
 }
