@@ -36,6 +36,8 @@ import org.springframework.core.NestedIOException;
 import org.springframework.web.servlet.view.AbstractTemplateView;
 import org.springframework.web.util.NestedServletException;
 
+import com.google.gson.Gson;
+
 /**
  * View using the Velocity template engine.
  *
@@ -88,7 +90,9 @@ import org.springframework.web.util.NestedServletException;
  */
 public class VelocityView extends AbstractTemplateView {
 
-    private Map<String, Class<?>> toolAttributes;
+    private static final String INTERNAL_UTILS = "privateMacroSupport";
+
+	private Map<String, Class<?>> toolAttributes;
 
     private String encoding;
 
@@ -394,6 +398,12 @@ public class VelocityView extends AbstractTemplateView {
      * @see #exposeHelpers(Map, HttpServletRequest)
      */
     protected void exposeHelpers(Context velocityContext, HttpServletRequest request) throws Exception {
+    	VelocityInternalUtils utils = new VelocityInternalUtils();
+    	
+    	utils.setHttpServletRequest(request);
+    	utils.setVelocityContext(velocityContext);
+    	
+    	velocityContext.put(INTERNAL_UTILS, utils);
     }
 
     /**

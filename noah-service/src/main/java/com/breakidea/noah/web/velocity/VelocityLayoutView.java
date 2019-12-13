@@ -18,12 +18,12 @@ package com.breakidea.noah.web.velocity;
 
 import java.io.StringWriter;
 import java.util.Locale;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.ResourceNotFoundException;
-
 import org.springframework.core.NestedIOException;
 import org.springframework.util.StringUtils;
 
@@ -77,7 +77,7 @@ public class VelocityLayoutView extends VelocityView {
     private String layoutKey = DEFAULT_LAYOUT_KEY;
 
     private String screenContentKey = DEFAULT_SCREEN_CONTENT_KEY;
-
+    
     /**
      * Set the layout template to use. Default is {@link #DEFAULT_LAYOUT_URL
      * "blankLayout.vm"}.

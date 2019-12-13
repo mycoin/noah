@@ -12,10 +12,10 @@
 		#parse("common/${url}.vm")
 	#end
 #end
-
+#macro(LITERAL $rawContent)$!rawContent#end
 #macro(disableLayout)
   #set($screenLayout = "")
 #end
 #macro(includeMessage $messageName)$requestContext.getMessage($messageName)#end
-#macro(JSONString $data)#end
+#macro(JSONEncode $data)#LITERAL($privateMacroSupport.stringify($data))#end
 
