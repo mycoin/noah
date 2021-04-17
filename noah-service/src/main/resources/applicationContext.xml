@@ -8,7 +8,7 @@
 
 	<context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true" />
 
-	<bean name="gson" class="org.springframework.http.converter.json.GsonFactoryBean">
+	<!-- <bean name="gson" class="org.springframework.http.converter.json.GsonFactoryBean">
 		<property name="disableHtmlEscaping" value="true" />
 		<property name="dateFormatPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSSZ" />
 		<property name="serializeNulls" value="true" />
@@ -16,7 +16,7 @@
 
 	<bean id="internalUtils" scope="request" class="com.breakidea.noah.web.velocity.VelocityInternalUtils">
 		<property name="gson" ref="gson" />
-	</bean>
+	</bean> -->
 
 	<!-- 消息配置 -->
 	<bean name="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

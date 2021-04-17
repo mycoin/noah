@@ -40,7 +40,7 @@ public class RequestContextConfiguration {
 			LocaleContextHolder.resetLocaleContext();
 			RequestContextHolder.resetRequestAttributes();
 
-			ThreadLocalContext.clear();
+			ThreadLocalContext.reset();
 		}
 
 		public void initContextHolders(HttpServletRequest request, ServletRequestAttributes requestAttributes) {

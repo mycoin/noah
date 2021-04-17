@@ -14,7 +14,7 @@ public class IndexAction {
 
 	@Autowired
 	VelocityEngine velocityEngine;
-
+	
 	@RequestMapping("/welcome")
 	public void welcome() {
 

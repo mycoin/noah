@@ -36,7 +36,7 @@ public class ThreadLocalContext {
         return context;
     }
 
-    public static void clear() {
+    public static void reset() {
         bizCodeLocal.remove();
         bizIdLocal.remove();
         siteCategoryIdLocal.remove();

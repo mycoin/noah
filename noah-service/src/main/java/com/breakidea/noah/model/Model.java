@@ -1,86 +1,36 @@
 package com.breakidea.noah.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import lombok.Data;
+public class Model {
 
-@Data
-public class Model implements Featureable {
+	private Map<String, Object> featureMap;
 
-    private static final long serialVersionUID = 1L;
+	private Integer status;
 
-    private Map<String, Object> featureMap;
+	private String message;
 
-    private Integer status;
+	public Map<String, Object> getFeatureMap() {
+		return featureMap;
+	}
 
-    private String message;
+	public String getMessage() {
+		return message;
+	}
 
-    @Override
-    public boolean clearFeature() {
-        Map<String, Object> feature = getFeatureMap();
-        return ModelUtils.clear(feature);
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    @Override
-    public <T> T getFeature(String key) {
-        Map<String, Object> feature = getFeatureMap();
+	public void setFeatureMap(Map<String, Object> featureMap) {
+		this.featureMap = featureMap;
+	}
 
-        return ModelUtils.get(feature, key);
-    }
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
-    @Override
-    public <T> T putFeatureIfAbsent(String key, T value) {
-        if (key == null || value == null) {
-            return null;
-        }
-        Map<String, Object> feature = getFeatureMap();
-
-        if (feature == null) {
-            feature = new HashMap<>();
-            setFeatureMap(feature);
-        }
-
-        if (feature.containsKey(key)) {
-            return null;
-        }
-        return ModelUtils.set(feature, key, value);
-    }
-
-    @Override
-    public <T> T removeFeature(String key) {
-        Map<String, Object> feature = getFeatureMap();
-
-        return ModelUtils.remove(feature, key);
-    }
-
-    @Override
-    public <T> T setFeature(String key, T value) {
-        if (key == null || value == null) {
-            return null;
-        }
-        Map<String, Object> feature = getFeatureMap();
-
-        if (feature == null) {
-            feature = new HashMap<>();
-            setFeatureMap(feature);
-        }
-
-        return ModelUtils.set(feature, key, value);
-    }
-
-    @Override
-    public void setFeatures(Map<String, Object> featureMap) {
-        if (featureMap == null) {
-            return;
-        }
-
-        Map<String, Object> feature = getFeatureMap();
-        if (feature == null) {
-            feature = new HashMap<>();
-            setFeatureMap(feature);
-        }
-        feature.putAll(featureMap);
-        setFeatureMap(featureMap);
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }
